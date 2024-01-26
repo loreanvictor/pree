@@ -97,5 +97,13 @@ export function fileIcon(path: string) {
     return '｛'
   }
 
+  if (name === 'LICENSE') {
+    return '⚖'
+  }
+
+  if (['.js', '.html', '.css'].includes(ext)) {
+    return '👁'
+  }
+
   return '📄'
 }

@@ -1,7 +1,7 @@
 import { extname, relative } from 'path'
 import { readFile } from 'fs/promises'
 
-import { STYLES } from './style'
+import { FOOTER, STYLES } from './style'
 import { linkedPath } from './linked-path'
 
 
@@ -23,6 +23,14 @@ const EXTENSIONS = {
   '.swift': 'swift',
   '.json': 'json',
   '.md': 'markdown',
+  '.txt': 'plaintext',
+  '.yaml': 'yaml',
+  '.yml': 'yaml',
+  '.xml': 'xml',
+  '.toml': 'toml',
+  '.scss': 'sass',
+  '.sass': 'sass',
+  '.less': 'less',
 }
 
 
@@ -51,9 +59,6 @@ export async function renderCode(path: string, root: string) {
           <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/highlight.min.js"></script>
           <style>
             ${STYLES}
-            pre {
-              padding: 1rem;
-            }
           </style>
         </head>
         <body>
@@ -63,6 +68,7 @@ export async function renderCode(path: string, root: string) {
             <pre><code class="${EXTENSIONS[ext]}"
               >${content.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')}
             </code></pre>
+            ${FOOTER}
           </main>
           <script>
             hljs.highlightAll();

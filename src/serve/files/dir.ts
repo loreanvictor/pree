@@ -1,9 +1,10 @@
 import { lstat, readdir } from 'fs/promises'
 import { relative, join } from 'path'
+import { filesize } from 'filesize'
 
 import { linkedPath } from './linked-path'
 import { fileIcon } from './icon'
-import { STYLES } from './style'
+import { STYLES, FOOTER } from './style'
 
 
 export async function isDirectory(path: string) {
@@ -17,13 +18,14 @@ export async function renderDirectory(path: string, root: string) {
   const rel = relative(root, path)
 
   const subdirs: string[] = []
-  const subfiles: string[] = []
+  const subfiles: [string, number][] = []
 
   for (const file of files) {
-    if (await isDirectory(join(path, file))) {
+    const stat = await lstat(join(path, file))
+    if (stat.isDirectory()) {
       subdirs.push(file)
     } else {
-      subfiles.push(file)
+      subfiles.push([file, stat.size])
     }
   }
 
@@ -63,12 +65,14 @@ export async function renderDirectory(path: string, root: string) {
                 <a href="${'/' + join(rel, file)}"><i>📁</i> ${file}</a>
               </li>
             `).join('\n')}
-            ${subfiles.map(file => `
+            ${subfiles.map(([file, size]) => `
             <li role="treeitem">
               <a href="${'/' + join(rel, file)}"><i>${fileIcon(file)}</i> ${file}</a>
+              <small style="float: right; opacity: calc(var(--border-expression) * 3)">${filesize(size)}</small>
             </li>
           `).join('\n')}
           </ul>
+          ${FOOTER}
         </main>
       </body>
     </html>
