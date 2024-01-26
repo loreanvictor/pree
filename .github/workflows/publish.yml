@@ -1,0 +1,38 @@
+name: publish
+on:
+  push:
+    branches:
+      - main
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+      
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Check Coverage
+        run: npm run coverage
+
+      - name: Check Linting
+        run: npm run lint
+
+        # NPM has no dark mode, so we need to remove
+        # dark mode only images from it so that it looks
+        # ok on NPM.
+      - name: Fix README for NPM
+        run: sed -i '/#gh-dark-mode-only/d' README.md
+      
+      - name: Publish
+        env:
+          npm_token: ${{ secrets.NPM_AUTH_TOKEN }}
+        if: ${{ env.npm_token != '' }}
+        uses: JS-DevTools/npm-publish@v1
+        with:
+          token: ${{ secrets.NPM_AUTH_TOKEN }}
