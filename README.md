@@ -1,6 +1,5 @@
-> _👷🏽 TODO: This project is made with [publish-ts](https://github.com/trcps/publish-ts), read the docs to learn more._
-
-> _👷🏽 TODO: Read all the sections marked with "👷🏽 TODO", do them, and remove them from this README._
+<img src="./splash-dark.svg#gh-dark-mode-only"/>
+<img src=".splash-light.svg#gh-light-mode-only"/>
 
 <div align="right">
 
@@ -10,20 +9,28 @@
 
 </div>
 
-<img src="./splash-dark.svg#gh-dark-mode-only"/>
-<img src=".splash-light.svg#gh-light-mode-only"/>
 
+Modern web standards like [ESM](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules) and [Web Components](https://developer.mozilla.org/en-US/docs/Web/Web_Components), can _mostly_ provide a good enough DX for building a lot of websites (such as blogs and docs) without heavy-handed and convoluted tooling. `pree` is here to fill in the small gaps while being as minimal and simplistic as possible.
 
-prebuild for no build
-
-```js
-// a nice code example here
-// would be pretty nice!
-
-import { pree } from 'pree'
-
-console.log(pree().msg)
+```bash
+npx pree build
 ```
+
+`pree` fills in the following gaps:
+
+- 🧬 It prerenders webcomponents using [declarative shadow DOM](https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_shadow_DOM#declaratively_with_html) ([can you use it? probably.](https://caniuse.com/declarative-shadow-dom)).
+- 🏗️ It handles layouting using [Front Matter](https://www.scribendi.com/academy/articles/front_matter.en.html#:~:text=Front%20matter%20is%20the%20first,a%20preface%2C%20and%20much%20more.)
+- 👻 It provides features for server-side only components (basically scripts that are omitted after build time).
+- ✨ It provides APIs that can be used by webcomponents to access build environment.
+
+<br>
+
+> [!WARNING]
+>
+> This is work in progress. YOU CAN NOT USE IT RIGHT NOW. \
+> 🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧
+
+> 💡 Read more about the idea [here](https://gist.github.com/loreanvictor/936bffc2403f7e07e4b263f1e7d0977f).
 
 <br>
 
@@ -38,31 +45,32 @@ console.log(pree().msg)
 
 # Installation
 
-[Node](https://nodejs.org/en/):
+You need [Node](https://nodejs.org/en/). You don't need to install `pree` as you can use it with `npx`:
 
 ```bash
-npm i pree
+npx pree build
 ```
 
-Browser / [Deno](https://deno.land):
+You can install `pree` for more convenient use:
 
-```js
-import { pree } from 'https://esm.sh/pree'
+```bash
+npm i -g pree
 ```
-> _👷🏽 TODO: add the most important necessary imports from pree here._
 
 <br>
 
 # Usage
 
-> _👷🏽 TODO: explain in details what pree does._
+Preview your website:
 
-```js
-// perhaps with some nice code examples.
+```bash
+npx pree view
+```
 
-import { pree } from 'pree'
+Pre-build your website:
 
-console.log(pree().msg)
+```bash
+npx pree build
 ```
 
 <br>
