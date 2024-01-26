@@ -3,9 +3,9 @@ export function linkedPath(path: string) {
     if (i === arr.length - 1) {
       return part
     } else {
-      const link = i === 0 ? '/' : arr.slice(0, i + 1).join('/')
+      const link = arr.slice(0, i + 1).join('/')
 
-      return `<a href="${link}">${part}/</a>`
+      return `<a href="${link.startsWith('/') ? link : '/' + link}">${part}/</a>`
     }
   }).join('')
 }

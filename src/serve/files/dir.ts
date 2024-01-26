@@ -12,8 +12,10 @@ export async function isDirectory(path: string) {
 }
 
 
+const filestyle = (file: string) => `opacity: ${(file.startsWith('.') || file === 'node_modules') ? '.2' : '1'};`
 
-export async function renderDirectory(path: string, root: string) {
+
+export async function renderDirectory(path: string, root: string, namespace: string) {
   const files = await readdir(path)
   const rel = relative(root, path)
 
@@ -43,7 +45,6 @@ export async function renderDirectory(path: string, root: string) {
           font-family: 'graphis', sans-serif;
           font-style: normal;
           font-size: 1.2em;
-          opacity: .5;
           margin-right: .5em;
         }
         li:after {
@@ -58,17 +59,17 @@ export async function renderDirectory(path: string, root: string) {
       <body>
         <main>
           <br><br>
-          <h4>${linkedPath('/' + rel)}</h4>
+          <h4>${linkedPath(namespace + '/' + rel)}</h4>
           <ul role="tree">
             ${subdirs.map(file => `
-              <li role="treeitem">
-                <a href="${'/' + join(rel, file)}"><i>📁</i> ${file}</a>
+              <li role="treeitem" style="${filestyle(file)}">
+                <a href="${'/' + join(namespace, rel, file)}"><i style="opacity: .7">📁</i> ${file}</a>
               </li>
             `).join('\n')}
             ${subfiles.map(([file, size]) => `
-            <li role="treeitem">
-              <a href="${'/' + join(rel, file)}"><i>${fileIcon(file)}</i> ${file}</a>
-              <small style="float: right; opacity: calc(var(--border-expression) * 3)">${filesize(size)}</small>
+            <li role="treeitem" style="${filestyle(file)}">
+              <a href="${'/' + join(namespace, rel, file)}"><i style="opacity: .2">${fileIcon(file)}</i> ${file}</a>
+              <small style="float: right; opacity: calc(var(--border-expression) * 2)">${filesize(size)}</small>
             </li>
           `).join('\n')}
           </ul>

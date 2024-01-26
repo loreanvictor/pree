@@ -1,16 +1,16 @@
 import chalk from 'chalk'
 import { join } from 'path'
-import mime from 'mime'
 import { Context, Next } from 'koa'
 import { access, readFile } from 'fs/promises'
 
+import { mimetype } from './types'
 import { isDirectory, renderDirectory } from './dir'
-import { isCode, renderCode } from './code'
 import { isNotFound, renderNotFound } from './notfound'
 
 
 export interface FilesOptions {
-  root?: string
+  root?: string,
+  namespace?: string,
 }
 
 
@@ -21,18 +21,33 @@ const _DefaultOptions = {
 
 export function files(options?: FilesOptions) {
   const root = options?.root || _DefaultOptions.root
+  const namespace = options?.namespace ?? ''
 
   return async (ctx: Context, next: Next) => {
-    if (ctx.method === 'GET') {
-      const target = '.' + ctx.path
+    if (ctx.method === 'GET' && ctx.path.startsWith('/' + namespace)) {
+      const target = ctx.path.slice(namespace.length + 1)
       console.log('requested: ' + chalk.blueBright(target))
 
-      // TODO: add plugins for processing HTML files
+      const loadfile = async (path: string) => {
+        // TODO: add plugins for processing HTML files
+        ctx.type = mimetype(path)
+        ctx.body = await readFile(path)
+      }
 
       try {
         const path = join(root, target)
 
         if (await isNotFound(path)) {
+          if (!ctx.path.endsWith('/')) {
+            try {
+              const htmlpath = path + '.html'
+              await access(htmlpath)
+              await loadfile(htmlpath)
+
+              return
+            } catch { /* ... */ }
+          }
+
           const { type, content } = await renderNotFound(path, root)
           ctx.type = type
           ctx.body = content
@@ -40,27 +55,21 @@ export function files(options?: FilesOptions) {
 
           console.log('❌ ' + chalk.redBright('not found: ') + chalk.blueBright(target))
         } else if (await isDirectory(path)) {
-          if (path.endsWith('/')) {
+          if (ctx.path.endsWith('/')) {
             try {
               const htmlpath = join(path, 'index.html')
               await access(htmlpath)
-              ctx.type = mime.getType(htmlpath) || 'text/plain'
-              ctx.body = await readFile(htmlpath)
+              await loadfile(htmlpath)
 
               return
-            } catch { /* ... */}
+            } catch { /* ... */ }
           }
 
-          const { type, content } = await renderDirectory(path, root)
-          ctx.type = type
-          ctx.body = content
-        } else if (isCode(path)) {
-          const { type, content } = await renderCode(path, root)
+          const { type, content } = await renderDirectory(path, root, namespace)
           ctx.type = type
           ctx.body = content
         } else {
-          ctx.type = mime.getType(path) || 'text/plain'
-          ctx.body = await readFile(path)
+          await loadfile(path)
         }
       } catch (err) {
         console.log('❌ ' + chalk.redBright('cannot load: ') + chalk.blueBright(target))
