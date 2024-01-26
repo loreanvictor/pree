@@ -1,5 +1,5 @@
 <img src="./splash-dark.svg#gh-dark-mode-only"/>
-<img src=".splash-light.svg#gh-light-mode-only"/>
+<img src="./splash-light.svg#gh-light-mode-only"/>
 
 <div align="right">
 
