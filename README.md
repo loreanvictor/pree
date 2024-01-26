@@ -10,10 +10,9 @@
 
 </div>
 
-<img src="./logo-dark.svg#gh-dark-mode-only" height="42px"/>
-<img src="./logo-light.svg#gh-light-mode-only" height="42px"/>
+<img src="./splash-dark.svg#gh-dark-mode-only"/>
+<img src=".splash-light.svg#gh-light-mode-only"/>
 
-# pree
 
 prebuild for no build
 
