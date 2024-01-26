@@ -1,6 +1,10 @@
 <img src="./splash-dark.svg#gh-dark-mode-only"/>
 <img src="./splash-light.svg#gh-light-mode-only"/>
 
+```bash
+npx pree build
+```
+
 <div align="right">
 
 [![npm package minimized gzipped size](https://img.shields.io/bundlejs/size/pree?style=flat-square&label=%20&color=black)](https://bundlejs.com/?q=pree)
@@ -9,14 +13,7 @@
 
 </div>
 
-
 Modern web standards like [ESM](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules) and [Web Components](https://developer.mozilla.org/en-US/docs/Web/Web_Components), can _mostly_ provide a good enough DX for building a lot of websites (such as blogs and docs) without heavy-handed and convoluted tooling. `pree` is here to fill in the small gaps while being as minimal and simplistic as possible.
-
-```bash
-npx pree build
-```
-
-`pree` fills in the following gaps:
 
 - 🧬 It prerenders webcomponents using [declarative shadow DOM](https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_shadow_DOM#declaratively_with_html) ([can you use it? probably.](https://caniuse.com/declarative-shadow-dom)).
 - 🏗️ It handles layouting using [Front Matter](https://www.scribendi.com/academy/articles/front_matter.en.html#:~:text=Front%20matter%20is%20the%20first,a%20preface%2C%20and%20much%20more.)

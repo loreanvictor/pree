@@ -3,8 +3,8 @@
     <title>splash-dark</title>
     <defs>
         <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-1">
-            <stop stop-color="#0C2438" offset="0%"></stop>
-            <stop stop-color="#265073" offset="100%"></stop>
+            <stop stop-color="#265073" offset="0%"></stop>
+            <stop stop-color="#051726" offset="100%"></stop>
         </linearGradient>
         <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-2">
             <stop stop-color="#ECF4D6" offset="0%"></stop>
