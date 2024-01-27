@@ -12,7 +12,21 @@ async function layout(src: string, html: string, template: string) {
 
   const { content } = await get(layoutpath)
   const $ = load(content)
-  $('slot').replaceWith(html)
+  const $$ = load(html)
+
+  // FIXME: named slots have some weird interactions
+  //        in layouting, specifically when multiple layers
+  //        of layouts are used.
+
+  $('slot[name]').each((_, el) => {
+    const $el = $(el)
+    const name = $el.attr('name')!
+
+    $$(`:is(head, body)>[slot="${name}"]`).insertAfter($el)
+    $el.remove()
+  })
+
+  $('slot').replaceWith($$.html())
 
   return $.html()
 }
