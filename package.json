@@ -1,6 +1,6 @@
 {
   "name": "pree",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "prebuild for no build",
   "bin": "dist/commonjs/cli/index.js",
   "main": "dist/commonjs/index.js",
@@ -57,6 +57,7 @@
     "chalk": "^4.1.2",
     "filesize": "^10.1.0",
     "koa": "^2.15.0",
-    "mime": "^3.0.0"
+    "mime": "^3.0.0",
+    "puppeteer": "^21.9.0"
   }
 }

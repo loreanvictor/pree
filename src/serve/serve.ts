@@ -14,13 +14,25 @@ export const _DefaultOptions = {
 }
 
 
-export async function serve(options?: ServeOptions) {
-  const port = options?.port || _DefaultOptions.port
+export interface Server {
+  port: number
+  close: () => Promise<void>
+}
 
-  const app = createApp(options)
 
-  createServer(app).listen(port, () => {
-    console.log('listening on port ' + chalk.green(port))
+export function serve(options?: ServeOptions) {
+  return new Promise<Server>((resolve) => {
+    const port = options?.port || _DefaultOptions.port
+
+    const app = createApp(options)
+
+    const server = createServer(app).listen(port, () => {
+      console.log('listening on port ' + chalk.green(port))
+      resolve({
+        port,
+        close: async () => { await server.close() },
+      })
+    })
   })
 }
 
