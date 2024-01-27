@@ -1,6 +1,6 @@
 {
   "name": "pree",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "prebuild for no build",
   "bin": "dist/commonjs/cli/index.js",
   "main": "dist/commonjs/index.js",
@@ -55,7 +55,9 @@
   },
   "dependencies": {
     "chalk": "^4.1.2",
+    "cheerio": "^1.0.0-rc.12",
     "filesize": "^10.1.0",
+    "gray-matter": "^4.0.3",
     "koa": "^2.15.0",
     "mime": "^3.0.0",
     "puppeteer": "^21.9.0"

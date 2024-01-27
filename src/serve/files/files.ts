@@ -1,14 +1,14 @@
-import chalk from 'chalk'
 import { join } from 'path'
 import { Context, Next } from 'koa'
-import { access, readFile } from 'fs/promises'
+import { access } from 'fs/promises'
 
-import { mimetype } from './types'
 import { isDirectory, renderDirectory } from './dir'
 import { isNotFound, renderNotFound } from './notfound'
+import { LoggerOptions, createLogger, THEME } from '../../util/logger'
+import { get } from './file'
 
 
-export interface FilesOptions {
+export interface FilesOptions extends LoggerOptions {
   root?: string,
   namespace?: string,
 }
@@ -22,16 +22,17 @@ const _DefaultOptions = {
 export function files(options?: FilesOptions) {
   const root = options?.root || _DefaultOptions.root
   const namespace = options?.namespace ?? ''
+  const logger = createLogger({ ...options, name: 'files' })
 
   return async (ctx: Context, next: Next) => {
     if (ctx.method === 'GET' && ctx.path.startsWith('/' + namespace)) {
       const target = ctx.path.slice(namespace.length + 1)
-      console.log('requested: ' + chalk.blueBright(target))
+      logger.log('requested: ' + THEME.highlight(target))
 
       const loadfile = async (path: string) => {
-        // TODO: add plugins for processing HTML files
-        ctx.type = mimetype(path)
-        ctx.body = await readFile(path)
+        const { type, content } = await get(path)
+        ctx.type = type
+        ctx.body = content
       }
 
       try {
@@ -41,6 +42,7 @@ export function files(options?: FilesOptions) {
           if (!ctx.path.endsWith('/')) {
             try {
               const htmlpath = path + '.html'
+              logger.debug('trying: ' + htmlpath)
               await access(htmlpath)
               await loadfile(htmlpath)
 
@@ -53,11 +55,12 @@ export function files(options?: FilesOptions) {
           ctx.body = content
           ctx.status = 404
 
-          console.log('❌ ' + chalk.redBright('not found: ') + chalk.blueBright(target))
+          logger.error('not found: ' + THEME.highlight(target))
         } else if (await isDirectory(path)) {
           if (ctx.path.endsWith('/')) {
             try {
               const htmlpath = join(path, 'index.html')
+              logger.debug('trying: ' + htmlpath)
               await access(htmlpath)
               await loadfile(htmlpath)
 
@@ -72,8 +75,8 @@ export function files(options?: FilesOptions) {
           await loadfile(path)
         }
       } catch (err) {
-        console.log('❌ ' + chalk.redBright('cannot load: ') + chalk.blueBright(target))
-        console.log('❌ ' + chalk.red((err as Error).message))
+        logger.error('cannot load: ' + THEME.highlight(target))
+        logger.error((err as Error).message)
         ctx.body = 'Something went terribly wrong.'
         ctx.status = 500
       }

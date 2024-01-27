@@ -1,21 +1,22 @@
 import puppeteer, { Browser } from 'puppeteer'
-import { writeFile } from 'fs/promises'
 
 import { serve, ServeOptions, Server } from '../serve'
-import { parse, format } from 'path'
+import { relative } from 'path'
+import { createLogger, THEME, LOG_LEVEL, Logger } from '../util/logger'
+import { buildPage } from './page'
 
 
-export interface BuildOptions extends ServeOptions {
-  sourceDir?: string
-  targetDir?: string
-}
+export type BuilderOptions = ServeOptions
 
 
 export class Builder {
   private server?: Server
   private browser?: Browser
+  private logger: Logger
 
-  constructor(readonly options: BuildOptions = {}) {}
+  constructor(readonly options: BuilderOptions = {}) {
+    this.logger = createLogger({ ...options, name: 'build' })
+  }
 
   public async start() {
     await this.startServer()
@@ -23,62 +24,63 @@ export class Builder {
   }
 
   public async close() {
-    await this.server?.close()
-    await this.browser?.close()
-
-    this.server = undefined
-    this.browser = undefined
+    await this.stopBrowser()
+    await this.stopServer()
   }
 
   protected async startServer() {
-    this.server ??= await serve(this.options)
+    this.logger.debug('starting server')
+    this.server ??= await serve({
+      ...this.options,
+      logLevel: LOG_LEVEL.ERROR,
+    })
+  }
+
+  protected async stopServer() {
+    this.logger.debug('stopping server')
+    await this.server?.close()
+    this.server = undefined
   }
 
   protected async startBrowser() {
+    this.logger.debug('starting browser')
     this.browser ??= await puppeteer.launch({ headless: 'new' })
+  }
+
+  protected async stopBrowser() {
+    this.logger.debug('stopping browser')
+    await this.browser?.close()
+    this.browser = undefined
   }
 
   protected started() {
     return this.server && this.browser
   }
 
-  public async build(path: string, target?: string) {
+  public async build(path: string, target: string) {
     if (!this.started()) {
       await this.start()
     }
 
-    const page = await this.browser!.newPage()
-    await page.goto(`http://localhost:${this.server!.port}/${this.mapPath(path)}`)
-
-    await page.evaluate(() => {
-      const scripts = document.querySelectorAll('script[build-only]')
-      scripts.forEach((script) => script.remove())
-    })
-
-    // TODO: this should be done more gracefully
-    //       perhaps using a tool like cheerio
-    const head = await page.$eval('head', (el) => el.innerHTML)
-    const body = await page.$eval('body', (el: any) => el.getInnerHTML())
-
-    const content = `<!DOCTYPE html><html><head>${head}</head><body>${body}</body></html>`
-
-    await writeFile(this.getTarget(path, target), content)
-  }
-
-  protected mapPath(path: string) {
-    if (this.options.namespace) {
-      return this.options.namespace + '/' + path
-    } else {
-      return path
+    try {
+      this.logger.log('building: ' + THEME.highlight(path) + THEME.secondary(' -> ') + THEME.highlight(target))
+      await buildPage(this.browser!, `http://localhost:${this.server!.port}/${this.mapPath(path)}`, target)
+      this.logger.success('built: ' + THEME.highlight(path))
+    } catch (error) {
+      this.logger.error('failed: ' + THEME.highlight(path))
+      this.logger.error((error as Error).message)
     }
   }
 
-  protected getTarget(path: string, target?: string) {
-    if (target) {
-      return target
+  protected mapPath(path: string) {
+    const pathrel = relative(process.cwd(), path)
+    const rootrel = relative(process.cwd(), this.options.root || process.cwd())
+    const pathrelroot = relative(rootrel, pathrel)
+
+    if (this.options.namespace) {
+      return this.options.namespace + '/' + pathrelroot
     } else {
-      // TODO: detect based on sourceDir and targetDir
-      return format({ ...parse(path), base: '', ext: '.dist.html'})
+      return path
     }
   }
 }

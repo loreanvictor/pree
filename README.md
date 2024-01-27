@@ -7,7 +7,6 @@ npx pree build
 
 <div align="right">
 
-[![npm package minimized gzipped size](https://img.shields.io/bundlejs/size/pree?style=flat-square&label=%20&color=black)](https://bundlejs.com/?q=pree)
 [![npm](https://img.shields.io/npm/v/pree?color=black&label=&style=flat-square)](https://www.npmjs.com/package/pree)
 [![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/loreanvictor/pree/coverage.yml?label=&style=flat-square)](https://github.com/loreanvictor/pree/actions/workflows/coverage.yml)
 
