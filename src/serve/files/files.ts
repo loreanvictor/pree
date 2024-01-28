@@ -5,7 +5,7 @@ import { access } from 'fs/promises'
 import { isDirectory, renderDirectory } from './dir'
 import { isNotFound, renderNotFound } from './notfound'
 import { LoggerOptions, createLogger, THEME } from '../../util/logger'
-import { get } from './file'
+import { read } from './file'
 
 
 export interface FilesOptions extends LoggerOptions {
@@ -30,7 +30,7 @@ export function files(options?: FilesOptions) {
       logger.log('requested: ' + THEME.highlight(target))
 
       const loadfile = async (path: string) => {
-        const { type, content } = await get(path)
+        const { type, content } = await read(path)
         ctx.type = type
         ctx.body = content
       }

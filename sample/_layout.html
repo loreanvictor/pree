@@ -2,6 +2,7 @@
 keywords:
   - JavaScript
   - Vue
+layout: ./_parent.html
 ---
 <link rel="stylesheet"
 href="https://unpkg.com/nokss" />
@@ -10,4 +11,7 @@ href="https://unpkg.com/nokss" />
   <slot></slot>
 </main>
 
-<footer><slot name="footer"></slot></footer>
+<div slot="footer">
+  Footer things
+  <slot name="footer"></slot>
+</div>

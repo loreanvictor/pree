@@ -35,5 +35,3 @@ export function serve(options?: ServeOptions) {
     })
   })
 }
-
-
