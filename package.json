@@ -1,6 +1,6 @@
 {
   "name": "pree",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "description": "prebuild for no build",
   "bin": "dist/commonjs/cli/index.js",
   "main": "dist/commonjs/index.js",
@@ -61,6 +61,7 @@
     "gray-matter": "^4.0.3",
     "koa": "^2.15.0",
     "mime": "^3.0.0",
+    "minimatch": "^9.0.3",
     "puppeteer": "^21.9.0",
     "yargs": "^17.7.2"
   }

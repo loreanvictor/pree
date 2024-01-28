@@ -1,5 +1,5 @@
 import { cp } from 'fs/promises'
-import minimatch from 'minimatch'
+import { minimatch } from 'minimatch'
 
 import { Logger, THEME, createLogger } from '../util/logger'
 import { Builder } from './builder'
