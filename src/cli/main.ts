@@ -4,14 +4,10 @@ import { basename, extname, join } from 'path'
 import { build } from '../build'
 import { serve } from '../serve'
 import { LOG_LEVEL, createLogger } from '../util/logger'
+import { version } from './version'
+import { help } from './help'
+import { Command, Options } from './types'
 
-
-export type Command = 'build' | 'serve' | 'help' | 'version'
-export interface Options {
-  src?: string,
-  dest?: string,
-  logLevel?: number,
-}
 
 export async function main(command: Command, options: Options) {
   const logLevel = options.logLevel ?? LOG_LEVEL.INFO
@@ -41,11 +37,11 @@ export async function main(command: Command, options: Options) {
         logLevel,
       })
     }
-  } else if (command === 'serve') {
-    await serve({ logLevel })
+  } else if (command === 'view') {
+    await serve({ logLevel, root: options.src })
   } else if (command === 'help') {
-    // TODO: print help
+    await help({ logLevel })
   } else if (command === 'version') {
-    // TODO: print version
+    await version({ logLevel })
   }
 }

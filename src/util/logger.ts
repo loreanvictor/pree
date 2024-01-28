@@ -3,7 +3,7 @@ import chalk from 'chalk'
 
 export const THEME = {
   error: chalk.hex('#FF6868').bold,
-  warn: chalk.hex('#FFBB64').bold,
+  warn: chalk.hex('#FFBB64'),
   highlight: chalk.hex('#9AD0C2').bold,
   secondary: chalk.hex('#2D9596'),
   shy: chalk.hex('#265073'),
