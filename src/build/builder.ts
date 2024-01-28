@@ -1,86 +1,82 @@
 import puppeteer, { Browser } from 'puppeteer'
+import { writeFile, mkdir } from 'fs/promises'
+import { load } from 'cheerio'
+import { dirname } from 'path'
 
+import { LOG_LEVEL } from '../util/logger'
 import { serve, ServeOptions, Server } from '../serve'
-import { relative } from 'path'
-import { createLogger, THEME, LOG_LEVEL, Logger } from '../util/logger'
-import { buildPage } from './page'
 
 
-export type BuilderOptions = ServeOptions
+export interface BuilderOptions extends ServeOptions {
+  blockedResourceTypes?: string[]
+}
 
+export const _DefaultOptions = {
+  blockedResourceTypes: [
+    'image',
+    'media',
+    'font',
+    'texttrack',
+    'object',
+    'beacon',
+    'csp_report',
+    'imageset',
+  ]
+}
 
 export class Builder {
   private server?: Server
   private browser?: Browser
-  private logger: Logger
+  private blockedResourceTypes: string[]
 
   constructor(readonly options: BuilderOptions = {}) {
-    this.logger = createLogger({ ...options, name: 'build' })
+    this.blockedResourceTypes = options.blockedResourceTypes ?? _DefaultOptions.blockedResourceTypes
   }
 
   public async start() {
-    await this.startServer()
-    await this.startBrowser()
-  }
-
-  public async close() {
-    await this.stopBrowser()
-    await this.stopServer()
-  }
-
-  protected async startServer() {
-    this.logger.debug('starting server')
-    this.server ??= await serve({
-      ...this.options,
-      logLevel: LOG_LEVEL.ERROR,
-    })
-  }
-
-  protected async stopServer() {
-    this.logger.debug('stopping server')
-    await this.server?.close()
-    this.server = undefined
-  }
-
-  protected async startBrowser() {
-    this.logger.debug('starting browser')
+    this.server ??= await serve({...this.options, logLevel: LOG_LEVEL.SILENT})
     this.browser ??= await puppeteer.launch({ headless: 'new' })
   }
 
-  protected async stopBrowser() {
-    this.logger.debug('stopping browser')
+  public async close() {
     await this.browser?.close()
-    this.browser = undefined
-  }
-
-  protected started() {
-    return this.server && this.browser
+    await this.server?.close()
+    this.server = this.browser = undefined
   }
 
   public async build(path: string, target: string) {
-    if (!this.started()) {
-      await this.start()
-    }
-
-    try {
-      this.logger.log('building: ' + THEME.highlight(path) + THEME.secondary(' -> ') + THEME.highlight(target))
-      await buildPage(this.browser!, `http://localhost:${this.server!.port}/${this.mapPath(path)}`, target)
-      this.logger.success('built: ' + THEME.highlight(path))
-    } catch (error) {
-      this.logger.error('failed: ' + THEME.highlight(path))
-      this.logger.error((error as Error).message)
-    }
+    await this.start()
+    await this.buildUrl(`http://localhost:${this.server!.port}/${path}`, target)
   }
 
-  protected mapPath(path: string) {
-    const pathrel = relative(process.cwd(), path)
-    const rootrel = relative(process.cwd(), this.options.root || process.cwd())
-    const pathrelroot = relative(rootrel, pathrel)
+  protected async buildUrl(url: string, target: string) {
+    await this.start()
+    const page = await this.browser!.newPage()
+    await page.setRequestInterception(true)
+    page.on('request', (request) => {
+      const type = request.resourceType()
+      if (this.blockedResourceTypes.includes(type)) {
+        request.abort()
+      } else {
+        request.continue()
+      }
+    })
 
-    if (this.options.namespace) {
-      return this.options.namespace + '/' + pathrelroot
-    } else {
-      return path
-    }
+    await page.goto(url)
+    await page.evaluate(() => {
+      const scripts = document.querySelectorAll('script[build-only]')
+      scripts.forEach((script) => script.remove())
+    })
+
+    const html = await page.content()
+    const body = await page.$eval('body', (el: any) => el.getInnerHTML())
+
+    await page.close()
+
+    const $ = load(html)
+    $('body').html(body)
+
+    await mkdir(dirname(target), { recursive: true })
+    await writeFile(target, $.html())
   }
 }

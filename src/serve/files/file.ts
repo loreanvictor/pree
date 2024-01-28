@@ -14,7 +14,6 @@ async function withLayout(src: string, html: string, template: string) {
   return layout(content, html)
 }
 
-
 export async function read(path: string) {
   const type = mimetype(path)
   const raw = await readFile(path)

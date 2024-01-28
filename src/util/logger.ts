@@ -10,12 +10,12 @@ export const THEME = {
   fade: chalk.hex('#424242'),
 }
 
-
 export const LOG_LEVEL = {
-  ERROR: 0,
-  WARN: 1,
-  INFO: 2,
-  DEBUG: 3,
+  SILENT: 0,
+  ERROR: 1,
+  WARN: 2,
+  INFO: 3,
+  DEBUG: 4,
 }
 
 export interface LogTransport {
@@ -35,12 +35,10 @@ export interface LoggerOptions {
   logTransport?: LogTransport,
 }
 
-
 const _DefaultOptions = {
-  logLevel: LOG_LEVEL.INFO,
+  logLevel: LOG_LEVEL.SILENT,
   logTransport: CONSOLE,
 }
-
 
 export interface Logger {
   level: number,
@@ -51,7 +49,6 @@ export interface Logger {
   debug: (text: string) => void,
   success: (text: string) => void,
 }
-
 
 export function createLogger(options: LoggerOptions = _DefaultOptions): Logger {
   const name = options?.name

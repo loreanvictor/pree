@@ -2,9 +2,9 @@ import { join } from 'path'
 import { Context, Next } from 'koa'
 import { access } from 'fs/promises'
 
+import { LoggerOptions, createLogger, THEME } from '../../util/logger'
 import { isDirectory, renderDirectory } from './dir'
 import { isNotFound, renderNotFound } from './notfound'
-import { LoggerOptions, createLogger, THEME } from '../../util/logger'
 import { read } from './file'
 
 
@@ -13,11 +13,9 @@ export interface FilesOptions extends LoggerOptions {
   namespace?: string,
 }
 
-
 const _DefaultOptions = {
   root: process.cwd()
 }
-
 
 export function files(options?: FilesOptions) {
   const root = options?.root || _DefaultOptions.root

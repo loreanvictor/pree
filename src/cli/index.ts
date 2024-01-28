@@ -1,17 +1,7 @@
 #!/usr/bin/env node
 
-import { Builder } from '../build'
-import { serve } from '../serve'
+import { main } from './main'
+import { args } from './args'
 
-
-async function main() {
-  if (process.argv[2] === 'build') {
-    const builder = new Builder()
-    await builder.build(process.argv[3]!, process.argv[4]!)
-    await builder.close()
-  } else if (process.argv[2] === 'serve') {
-    await serve()
-  }
-}
-
-main()
+const { command, ...options } = args()
+main(command, options).catch(() => process.exit(1))

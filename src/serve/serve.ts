@@ -8,17 +8,14 @@ export interface ServeOptions extends AppOptions {
   port?: number
 }
 
-
 export const _DefaultOptions = {
   port: 3000
 }
-
 
 export interface Server {
   port: number
   close: () => Promise<void>
 }
-
 
 export function serve(options?: ServeOptions) {
   return new Promise<Server>((resolve) => {

@@ -1,5 +1,6 @@
 import mime from 'mime'
 
+
 export const PACKAGE_FILE = [
   /^package\.json$/,
   /^package-lock\.json$/,
@@ -11,7 +12,6 @@ export const PACKAGE_FILE = [
   /^requirements\.txt$/,
   /^Gemfile$/,
 ]
-
 
 export const CONFIG_FILE = [
   /^\.babelrc$/,

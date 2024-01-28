@@ -13,7 +13,6 @@ export async function isNotFound(path: string) {
   }
 }
 
-
 export async function renderNotFound(path: string, root: string) {
   const rel = relative(root, path)
 

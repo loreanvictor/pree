@@ -11,9 +11,7 @@ export async function isDirectory(path: string) {
   return (await lstat(path)).isDirectory()
 }
 
-
 const filestyle = (file: string) => `opacity: ${(file.startsWith('.') || file === 'node_modules') ? '.2' : '1'};`
-
 
 export async function renderDirectory(path: string, root: string, namespace: string) {
   const files = await readdir(path)
