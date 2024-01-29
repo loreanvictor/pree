@@ -1,3 +1,4 @@
+import search from 'libnpmsearch'
 import { gt } from 'semver'
 
 import { createLogger, LoggerOptions, THEME } from '../util/logger'
@@ -14,8 +15,7 @@ export async function version(options?: VersionOptions) {
   logger.info('🏠 installed: ' + THEME.highlight(local))
 
   try {
-    const { $ } = await (Function('return import("execa")'))()
-    const remote = (await $`npm view pree version`).stdout.trim()
+    const remote = (await search('pree', { limit: 1 }))[0]!.version
     logger.info('🌍 latest:    ' + THEME.highlight(remote))
 
     if (gt(remote, local!)) {

@@ -2,7 +2,7 @@
 <img src="./splash-light.svg#gh-light-mode-only"/>
 
 ```bash
-npx pree build
+npx pree build <src> <dest>
 ```
 
 <div align="right">
@@ -12,21 +12,24 @@ npx pree build
 
 </div>
 
-Modern web standards like [ESM](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules) and [Web Components](https://developer.mozilla.org/en-US/docs/Web/Web_Components), can _mostly_ provide a good enough DX for building a lot of websites (such as blogs and docs) without heavy-handed and convoluted tooling. `pree` is here to fill in the small gaps while being as minimal and simplistic as possible.
+Modern web standards like [ESM](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules) and [Web Components](https://developer.mozilla.org/en-US/docs/Web/Web_Components) can provide a smooth DX for building a lot of websites (such as blogs and docs) by simply writing and serving plain HTML, CSS and JS files (an approach called [no build](https://world.hey.com/dhh/you-can-t-get-faster-than-no-build-7a44131c)). This approach has a few inherent gaps though:
 
-- 🧬 It prerenders webcomponents using [declarative shadow DOM](https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_shadow_DOM#declaratively_with_html) ([can you use it? probably.](https://caniuse.com/declarative-shadow-dom)).
-- 🏗️ It handles layouting using [Front Matter](https://www.scribendi.com/academy/articles/front_matter.en.html#:~:text=Front%20matter%20is%20the%20first,a%20preface%2C%20and%20much%20more.)
-- 👻 It provides features for server-side only components (basically scripts that are omitted after build time).
-- ✨ It provides APIs that can be used by webcomponents to access build environment.
+- Web components are rendered on the client so the page load feels slower and jankier
+- Multiple HTML pages share layout and metadata
+- Some components are static and don't need to be shipped to clients
+- Some components need to access build environment (e.g. imagine a list of all available pages)
 
 <br>
 
-> [!WARNING]
->
-> This is work in progress. YOU CAN NOT USE IT RIGHT NOW. \
-> 🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧
+`pree` is a minimalst tool that addresses these issues:
 
-> 💡 Read more about the idea [here](https://gist.github.com/loreanvictor/936bffc2403f7e07e4b263f1e7d0977f).
+- 🧬  It pre-renders webcomponents using [declarative shadow DOM](https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_shadow_DOM#declaratively_with_html).
+- 🏗️ It handles layouting and shared metadata using [Front Matter](https://www.scribendi.com/academy/articles/front_matter.en.html#:~:text=Front%20matter%20is%20the%20first,a%20preface%2C%20and%20much%20more.)
+- 👻 It enables server components (e.g. `<script build-only>`).
+- ✨ It provides APIs that can be used by components to access build environment at build time.
+
+<br>
+
 
 <br>
 
@@ -44,7 +47,7 @@ Modern web standards like [ESM](https://developer.mozilla.org/en-US/docs/Web/Jav
 You need [Node](https://nodejs.org/en/). You don't need to install `pree` as you can use it with `npx`:
 
 ```bash
-npx pree build
+npx pree view
 ```
 
 You can install `pree` for more convenient use:
@@ -53,21 +56,37 @@ You can install `pree` for more convenient use:
 npm i -g pree
 ```
 
+To update, use `@latest` tag:
+
+```bash
+npx pree@latest view
+```
+```bash
+npm i -g pree@latest
+```
+
 <br>
 
 # Usage
 
-Preview your website:
+👉 Preview your website:
 
 ```bash
-npx pree view
+pree view <dir>
 ```
 
-Pre-build your website:
+- `<dir>` is optional. If not provided, the current directory will be used.
+
+<br>
+
+👉  Pre-build your website:
 
 ```bash
-npx pree build
+pree build <src> <dest>
 ```
+
+- `<src>` can be a file or a directory. If it's a directory, all files in it will be processed recursively.
+- `<dest>` can be a file or a directory. If `<src>` is a directory, then `<dest>` must be a directory as well.
 
 <br>
 

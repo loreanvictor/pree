@@ -1,6 +1,6 @@
 {
   "name": "pree",
-  "version": "0.0.14",
+  "version": "0.0.15",
   "description": "prebuild for no build",
   "bin": "dist/commonjs/cli/index.js",
   "main": "dist/commonjs/index.js",
@@ -39,6 +39,7 @@
     "@sindresorhus/tsconfig": "^3.0.1",
     "@types/jest": "^29.5.3",
     "@types/koa": "^2.14.0",
+    "@types/libnpmsearch": "^2.0.7",
     "@types/mime": "^3.0.4",
     "@types/node": "^20.4.2",
     "@types/yargs": "^17.0.32",
@@ -57,10 +58,10 @@
   "dependencies": {
     "chalk": "^4.1.2",
     "cheerio": "^1.0.0-rc.12",
-    "execa": "^8.0.1",
     "filesize": "^10.1.0",
     "gray-matter": "^4.0.3",
     "koa": "^2.15.0",
+    "libnpmsearch": "^7.0.1",
     "mime": "^3.0.0",
     "minimatch": "^9.0.3",
     "puppeteer": "^21.9.0",
