@@ -25,7 +25,7 @@ Modern web standards like [ESM](https://developer.mozilla.org/en-US/docs/Web/Jav
 
 - 🧬  It pre-renders HTML files with webcomponents using [declarative shadow DOM](https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_shadow_DOM#declaratively_with_html).
 - 🏗️ It handles layouting and shared metadata of HTML files using [Front Matter](https://www.scribendi.com/academy/articles/front_matter.en.html#:~:text=Front%20matter%20is%20the%20first,a%20preface%2C%20and%20much%20more.)
-- 👻 It enables server components (e.g. `<script build-only>`).
+- 👻 It enables components that only run in build time (e.g. `<script build-only>`).
 - ✨ It provides APIs that can be used by components to access build environment at build time.
 
 <br>
@@ -35,6 +35,9 @@ Modern web standards like [ESM](https://developer.mozilla.org/en-US/docs/Web/Jav
 - [Contents](#contents)
 - [Installation](#installation)
 - [Usage](#usage)
+  - [Frontmatter](#frontmatter)
+  - [Layouting](#layouting)
+  - [Build Time Scripts](#build-time-scripts)
 - [Contribution](#contribution)
 
 <br>
@@ -106,8 +109,7 @@ pree build docs/ dist/
 
 > [!NOTE]
 > Declarative shadow DOM is a relatively new feature coming to modern browsers. You can check [its support here](https://caniuse.com/declarative-shadow-dom). Browsers that don't support it won't get the benefits of pre-rendering
-> web components. Additionally, you can't use server-only components in these browsers (as they'd need the component code
-> to properly render the web components, even if it is static).
+> web components. This also means that [build time components](#build-time-scripts) won't work in these browsers.
 
 <br>
 
@@ -186,19 +188,52 @@ layout: ./layouts/_main.html
 </footer>
 ```
 
-> [!IMPORTANT]
-> Elements with named slots should reside on the root of the child document. `pree` will ignore them otherwise
-> as they might be part of a web component template.
-> ```html
-> <!-- ✅ This is OK -->
-> <span slot="footer">Some extra footer content</span>
-> ```
-> ```html
-> <!-- ❌ This will be ignored -->
-> <div>
->   <span slot="footer">Some extra footer content</span>
-> </div>
-> ```
+Elements with named slots should reside on the root of the child document. `pree` will ignore them otherwise
+as they might be part of a web component template.
+```html
+---
+layout: ./layouts/_main.html
+---
+<!-- ✅ This is OK -->
+<span slot="footer">Some extra footer content</span>
+```
+```html
+---
+layout: ./layouts/_main.html
+---
+<!-- ❌ This is WRONG (man). -->
+<div>
+  <span slot="footer">Some extra footer content</span>
+</div>
+```
+
+<br>
+
+## Build Time Scripts
+
+You can have scripts in your page that are only executed during `pree build` and not shipped to the client. This is useful for example for static web components that don't need to run on the client, or for scripts that are to be executed in the build environment. To do so, use the `build-only` tag:
+
+```html
+<script build-only>
+  console.log('This will only be executed during pree build');
+</script>
+```
+```html
+<script build-only src="./components/my-component.js" type="module"></script>
+<my-component>Ladida</my-component>
+
+<!-- 🖕 The component will be loaded and prerendered in build time. It won't be loaded on the client. -->
+```
+
+<br>
+
+> [!TIP]
+> All build time scripts will be loaded and executed during `pree view` as well.
+
+> [!NOTE]
+> [Browsers that don't support declarative shdow DOM](https://caniuse.com/declarative-shadow-dom) won't render
+> built-time components properly. If you want to support them, make sure to load all web components on the client
+> as well.
 
 <br>
 
