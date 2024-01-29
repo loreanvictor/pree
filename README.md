@@ -23,13 +23,10 @@ Modern web standards like [ESM](https://developer.mozilla.org/en-US/docs/Web/Jav
 
 `pree` is a minimalst tool that addresses these issues:
 
-- 🧬  It pre-renders webcomponents using [declarative shadow DOM](https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_shadow_DOM#declaratively_with_html).
-- 🏗️ It handles layouting and shared metadata using [Front Matter](https://www.scribendi.com/academy/articles/front_matter.en.html#:~:text=Front%20matter%20is%20the%20first,a%20preface%2C%20and%20much%20more.)
+- 🧬  It pre-renders HTML files with webcomponents using [declarative shadow DOM](https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_shadow_DOM#declaratively_with_html).
+- 🏗️ It handles layouting and shared metadata of HTML files using [Front Matter](https://www.scribendi.com/academy/articles/front_matter.en.html#:~:text=Front%20matter%20is%20the%20first,a%20preface%2C%20and%20much%20more.)
 - 👻 It enables server components (e.g. `<script build-only>`).
 - ✨ It provides APIs that can be used by components to access build environment at build time.
-
-<br>
-
 
 <br>
 
@@ -44,19 +41,16 @@ Modern web standards like [ESM](https://developer.mozilla.org/en-US/docs/Web/Jav
 
 # Installation
 
-You need [Node](https://nodejs.org/en/). You don't need to install `pree` as you can use it with `npx`:
+You need [Node](https://nodejs.org/en/). Use [npx](https://www.npmjs.com/package/npx) or install globally:
 
 ```bash
 npx pree view
 ```
-
-You can install `pree` for more convenient use:
-
 ```bash
 npm i -g pree
 ```
 
-To update, use `@latest` tag:
+To update (or to ensure you are using the latest version), use `@latest` tag:
 
 ```bash
 npx pree@latest view
@@ -72,10 +66,17 @@ npm i -g pree@latest
 👉 Preview your website:
 
 ```bash
+pree view
+```
+```bash
 pree view <dir>
 ```
 
 - `<dir>` is optional. If not provided, the current directory will be used.
+
+`pree view` will start a local server allowing you to view various files as if they were served by
+a web server. It also provides a nice file navigator for navigating through your project. The server
+resolves layouts and front matter for HTML files as well.
 
 <br>
 
@@ -85,8 +86,119 @@ pree view <dir>
 pree build <src> <dest>
 ```
 
-- `<src>` can be a file or a directory. If it's a directory, all files in it will be processed recursively.
+- `<src>` can be an HTML file or a directory. If it's a directory, all HTML files in it will be processed recursively.
 - `<dest>` can be a file or a directory. If `<src>` is a directory, then `<dest>` must be a directory as well.
+
+`pre build` builds one or more HTML files, pre-rendering their web components using [declarative shadow DOM](https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_shadow_DOM#declaratively_with_html). It launches a local server and uses an emulated browser to pre-render the files, mimicking actual browser behavior. It additionally removes any scripts with `build-only` tag.
+
+<br>
+
+Example:
+
+```bash
+pree build docs/index.html dist/index.html
+```
+```bash
+pree build docs/ dist/
+```
+
+<br>
+
+> [!NOTE]
+> Declarative shadow DOM is a relatively new feature coming to modern browsers. You can check [its support here](https://caniuse.com/declarative-shadow-dom). Browsers that don't support it won't get the benefits of pre-rendering
+> web components. Additionally, you can't use server-only components in these browsers (as they'd need the component code
+> to properly render the web components, even if it is static).
+
+<br>
+
+## Frontmatter
+
+You can use front matter on top of your HTML files to specify metadata. Front matter is a block of YAML or JSON between two lines of three dashes. For example:
+
+```html
+---
+title: My Page
+keywords:
+  - Technology
+  - Web
+  - JavaScript
+summary: This is my page
+---
+
+<h1>This is my page</h1>
+<p>
+  And it is about programming web applications in JavaScript or some other topic.
+</p>
+```
+
+<br>
+
+## Layouting
+
+You can specify the layout to be used for a page inside the front matter:
+
+```html
+---
+title: My Page
+layout: ./layouts/_main.html
+---
+
+<h1>My Page</h1>
+<p>
+  This is my page.
+</p>
+```
+```html
+<!-- ./layouts/_main.html -->
+<aside>Contents of the side menu</aside>
+<main>
+  <!-- 👇 This is where content would go -->
+  <slot></slot>
+</main>
+<footer>Some footer content</footer>
+```
+
+You can also use named slots to fill in different parts of the parent layout:
+
+```html
+---
+title: My Page
+layout: ./layouts/_main.html
+---
+
+<h1>My Page</h1>
+<p>
+  This is my page.
+</p>
+<span slot="footer">Some extra footer content</span>
+```
+```html
+<!-- ./layouts/_main.html -->
+<aside>Contents of the side menu</aside>
+<main>
+  <!-- 👇 This is where content would go -->
+  <slot></slot>
+</main>
+<footer>
+  Some generic footer content |
+  <!-- 👇 This is where content with slot=footer will go -->
+  <slot name="footer"></slot>
+</footer>
+```
+
+> [!IMPORTANT]
+> Elements with named slots should reside on the root of the child document. `pree` will ignore them otherwise
+> as they might be part of a web component template.
+> ```html
+> <!-- ✅ This is OK -->
+> <span slot="footer">Some extra footer content</span>
+> ```
+> ```html
+> <!-- ❌ This will be ignored -->
+> <div>
+>   <span slot="footer">Some extra footer content</span>
+> </div>
+> ```
 
 <br>
 
