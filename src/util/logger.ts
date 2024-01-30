@@ -55,7 +55,7 @@ export function createLogger(options: LoggerOptions = _DefaultOptions): Logger {
   const level = options?.logLevel ?? _DefaultOptions.logLevel
   const transport = (l: number) => transport[l] ?? _DefaultOptions.logTransport[l]
 
-  const format = (text: string) => name ? THEME.fade(`[${name}]`) + ' ' + text : text
+  const format = (text: string) => name ? THEME.shy(`[${name}]`) + ' ' + text : text
   const log = (text: string, loglevel = LOG_LEVEL.INFO) => {
     if (loglevel <= level) {
       transport(loglevel)(format(text))

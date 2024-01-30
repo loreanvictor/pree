@@ -7,7 +7,7 @@ export function layout(template: string, html: string) {
 
   const slots: { [name: string]: string } = {}
 
-  $$(':is(head,body)>[slot]').each((_, el) => {
+  $$('body>[slot]').each((_, el) => {
     const $el = $$(el)
     const name = $el.attr('slot')!
 

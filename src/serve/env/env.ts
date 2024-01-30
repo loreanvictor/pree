@@ -1,0 +1,35 @@
+import { Context, Next } from 'koa'
+import { LoggerOptions, THEME, createLogger } from '../../util/logger'
+import { router } from './router'
+import { fs } from './fs'
+import { git } from './git'
+
+
+export type EnvOptions = LoggerOptions
+
+export function env(options?: EnvOptions) {
+  const logger = createLogger({ ...options, name: '@env.' })
+  const handle = router({
+    '/files/': fs,
+    '/git/': git,
+  })
+
+  return async (ctx: Context, next: Next) => {
+    if (ctx.path.startsWith('/@env')) {
+      const path = ctx.path.slice(5)
+      logger.info('requested: ' + THEME.highlight('@env' + path))
+
+      try {
+        const res = await handle(path)
+        ctx.type = 'application/json'
+        ctx.body = JSON.stringify(res)
+      } catch(err) {
+        ctx.status = 404
+        ctx.body = (err as Error).message
+        logger.error((err as Error).message)
+      }
+    } else {
+      await next()
+    }
+  }
+}

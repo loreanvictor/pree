@@ -39,9 +39,9 @@ export async function main(command: Command, options: Options) {
     }
   } else if (command === 'view') {
     await serve({ logLevel, root: options.src })
-  } else if (command === 'help') {
-    await help({ logLevel })
   } else if (command === 'version') {
     await version({ logLevel })
+  } else {
+    await help({ logLevel })
   }
 }

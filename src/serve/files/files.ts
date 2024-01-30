@@ -25,7 +25,7 @@ export function files(options?: FilesOptions) {
   return async (ctx: Context, next: Next) => {
     if (ctx.method === 'GET' && ctx.path.startsWith('/' + namespace)) {
       const target = ctx.path.slice(namespace.length + 1)
-      logger.log('requested: ' + THEME.highlight(target))
+      logger.log('requested: ' + THEME.highlight('/' + target))
 
       const loadfile = async (path: string) => {
         const { type, content } = await read(path)

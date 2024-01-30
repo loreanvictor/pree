@@ -35,6 +35,10 @@ async function buildOne(src: string, target: string, builder: Builder, logger: L
 
 export async function build(options: BuildOptions) {
   const logger = createLogger({ ...options, name: 'build' })
+  if (isBuildOptionsWithDir(options)) {
+    options.root = options.dir
+  }
+
   const builder = new Builder(options)
 
   await builder.start()
@@ -55,15 +59,16 @@ export async function build(options: BuildOptions) {
       )
 
       await cp(options.dir, options.target, { recursive: true })
+
       const files = (await ls(options.target))
         .filter(file =>
           mimetype(file) === 'text/html'
           && !exclude.some(pattern => minimatch(file, pattern))
           && (!options.include || options.include.some(pattern => minimatch(file, pattern)))
-        ).map(file => join(options.target, file))
+        )
 
       for (const file of files) {
-        await buildOne(pathToUrl(file), file, builder, logger)
+        await buildOne(pathToUrl(file), join(options.target, file), builder, logger)
       }
     } catch (error) {
       logger.error('failed: ' + THEME.highlight(options.dir))

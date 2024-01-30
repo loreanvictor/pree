@@ -59,6 +59,7 @@
     "chalk": "^4.1.2",
     "cheerio": "^1.0.0-rc.12",
     "filesize": "^10.1.0",
+    "git-url-parse": "^14.0.0",
     "gray-matter": "^4.0.3",
     "koa": "^2.15.0",
     "libnpmsearch": "^7.0.1",
@@ -66,6 +67,7 @@
     "minimatch": "^9.0.3",
     "puppeteer": "^21.9.0",
     "semver": "^7.5.4",
+    "simple-git": "^3.22.0",
     "yargs": "^17.7.2"
   }
 }

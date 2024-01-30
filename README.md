@@ -23,10 +23,10 @@ Modern web standards like [ESM](https://developer.mozilla.org/en-US/docs/Web/Jav
 
 `pree` is a minimalst tool that addresses these issues:
 
-- 🧬  It pre-renders HTML files with webcomponents using [declarative shadow DOM](https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_shadow_DOM#declaratively_with_html).
-- 🏗️ It handles layouting and shared metadata of HTML files using [Front Matter](https://www.scribendi.com/academy/articles/front_matter.en.html#:~:text=Front%20matter%20is%20the%20first,a%20preface%2C%20and%20much%20more.)
-- 👻 It enables components that only run in build time (e.g. `<script build-only>`).
-- ✨ It provides APIs that can be used by components to access build environment at build time.
+🧬  It pre-renders HTML files with webcomponents using [declarative shadow DOM](https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_shadow_DOM#declaratively_with_html). \
+🏗️ It handles layouting and shared metadata of HTML files using [Front Matter](https://www.scribendi.com/academy/articles/front_matter.en.html#:~:text=Front%20matter%20is%20the%20first,a%20preface%2C%20and%20much%20more.) \
+👻 It enables components that only run in build time (e.g. `<script build-only>`). \
+✨ It provides APIs that can be used by components to access build environment at build time.
 
 <br>
 
