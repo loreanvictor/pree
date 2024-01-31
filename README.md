@@ -37,6 +37,7 @@ without using any build tools or frameworks.
   - [Layouting](#layouting)
   - [Build Time Scripts](#build-time-scripts)
   - [Build Environment](#build-environment)
+  - [CLI Options](#cli-options)
 - [Contribution](#contribution)
 
 <br>
