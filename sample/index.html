@@ -2,12 +2,20 @@
 layout: ./_layout.html
 ---
 
+<script build-only type="module" src="https://esm.sh/zero-md"></script>
 <script build-only src="./index.js" type="module"></script>
 <say-hi>World
   <span slot="footer">Yo yo</span>
 </say-hi>
 
 <span slot="footer">Go Go</span>
-<package-info></package-info>
-<last-change></last-change>
-<file-list pattern="**/*.html"></file-list>
+
+<zero-md src="/@env/files/read/README.md">
+  <template>
+    <link rel="stylesheet" href="https://unpkg.com/nokss" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/PrismJS/prism@1/themes/prism-tomorrow.min.css"
+    />
+  </template>
+</zero-md>

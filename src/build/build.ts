@@ -70,7 +70,11 @@ export async function build(options: BuildOptions) {
         )
 
       for (const file of files) {
-        await buildOne(pathToUrl(file), join(options.target, file), builder, logger)
+        await buildOne(
+          pathToUrl(join(options.dir, file), options),
+          join(options.target, file),
+          builder, logger
+        )
       }
     } catch (error) {
       logger.error('failed: ' + THEME.highlight(options.dir))

@@ -1,6 +1,6 @@
 {
   "name": "pree",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "prebuild for no build",
   "bin": "dist/commonjs/cli/index.js",
   "main": "dist/commonjs/index.js",

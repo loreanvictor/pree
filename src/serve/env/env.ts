@@ -1,6 +1,6 @@
 import { Context, Next } from 'koa'
 import { LoggerOptions, THEME, createLogger } from '../../util/logger'
-import { router } from './router'
+import { isCustomResponse, router } from './router'
 import { fs } from './fs'
 import { git } from './git'
 import { vars } from './vars'
@@ -24,8 +24,14 @@ export function env(options?: EnvOptions) {
 
       try {
         const res = await handle(path)
-        ctx.type = 'application/json'
-        ctx.body = JSON.stringify(res)
+        if (isCustomResponse(res)) {
+          ctx.type = res.type
+          ctx.status = res.status ?? 200
+          ctx.body = res.body
+        } else {
+          ctx.type = 'application/json'
+          ctx.body = JSON.stringify(res)
+        }
 
       } catch(err) {
         ctx.status = 404

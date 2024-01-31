@@ -2,7 +2,7 @@ import { minimatch } from 'minimatch'
 import { readFile } from 'fs/promises'
 
 import { ls } from '../../util/ls'
-import { router } from './router'
+import { response, router } from './router'
 import { mimetype } from '../../util/file-types'
 
 
@@ -21,7 +21,7 @@ async function read(path: string) {
   const content = await readFile(path, 'utf8')
   const type = mimetype(path)
 
-  return { content, type }
+  return response(content, type)
 }
 
 export const fs = router({

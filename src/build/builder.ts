@@ -1,8 +1,8 @@
 import puppeteer, { Browser } from 'puppeteer'
 import { load } from 'cheerio'
 
-import { LOG_LEVEL } from '../util/logger'
 import { serve, ServeOptions, Server } from '../serve'
+import { LOG_LEVEL } from '../util/logger'
 
 
 export interface BuilderOptions extends ServeOptions {
@@ -33,7 +33,10 @@ export class Builder {
   }
 
   public async start() {
-    this.server ??= await serve({...this.options, logLevel: LOG_LEVEL.SILENT})
+    this.server ??= await serve({
+      ...this.options,
+      logLevel: (this.options.logLevel ?? 5) <= LOG_LEVEL.INFO ? LOG_LEVEL.SILENT : this.options.logLevel,
+    })
     this.browser ??= await puppeteer.launch({ headless: 'new' })
   }
 

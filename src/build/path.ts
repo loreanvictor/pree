@@ -14,7 +14,7 @@ export function pathToUrl(path: string, options: PathMapOptions = {}) {
   if (options.namespace) {
     return options.namespace + '/' + pathrelroot
   } else {
-    return path
+    return pathrelroot
   }
 }
 

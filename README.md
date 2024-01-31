@@ -207,6 +207,7 @@ layout: ./layouts/_main.html
 
 Elements with named slots should reside on the root of the child document. `pree` will ignore them otherwise
 as they might be part of a web component template.
+
 ```html
 ---
 layout: ./layouts/_main.html
@@ -283,13 +284,7 @@ Access build environment from your scripts and components:
 #### Files
 
 - `/@env/files/list/<?pattern>` - List of all files in the project (matching given pattern)
-- `/@env/files/read/<path>` - Type and contents of a file. Example response:
-  ```json
-  {
-    "type": "text/plain",
-    "content": "Hellow there!"
-  }
-  ```
+- `/@env/files/read/<path>` - Contents of a file.
 
 #### Git
 
@@ -323,13 +318,7 @@ Access build environment from your scripts and components:
 
 #### Variables
 
-- `/@env/vars/<name>` - Returns the content of the environment variable. Example response:
-  ```json
-  {
-    "exists": true,
-    "value": "Some value"
-  }
-  ```
+- `/@env/vars/<name>` - Returns the value of given environment variable.
 
 <br>
 

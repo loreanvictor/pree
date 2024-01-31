@@ -1,6 +1,15 @@
 import { els } from '../../util/ensure-slash'
 
 
+const _CustomResponse = Symbol('CustomResponse')
+
+export type CustomResponse = {
+  [_CustomResponse]: true
+  body: string
+  type: string
+  status?: number
+}
+
 export type Handler = (path: string) => Promise<any>
 
 export function router(routes: {[path: string]: Handler}): Handler {
@@ -15,4 +24,17 @@ export function router(routes: {[path: string]: Handler}): Handler {
 
     throw new Error('no route matched: ' + path)
   }
+}
+
+export function response(body: string, type: string, status = 200): CustomResponse {
+  return {
+    [_CustomResponse]: true,
+    body,
+    type,
+    status,
+  }
+}
+
+export function isCustomResponse(value: any): value is CustomResponse {
+  return value && value[_CustomResponse]
 }
