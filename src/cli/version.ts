@@ -2,7 +2,6 @@ import search from 'libnpmsearch'
 import { gt } from 'semver'
 
 import { createLogger, LoggerOptions, THEME } from '../util/logger'
-import { LOGO } from './logo'
 
 
 export type VersionOptions = LoggerOptions
@@ -11,7 +10,6 @@ export async function version(options?: VersionOptions) {
   const logger = createLogger(options)
   const local = process.env['npm_package_version']
 
-  logger.info(LOGO)
   logger.info('🏠 installed: ' + THEME.highlight(local))
 
   try {

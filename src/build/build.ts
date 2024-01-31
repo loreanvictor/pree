@@ -14,6 +14,8 @@ const _DefaultBuildOptions = {
 }
 
 async function buildOne(src: string, target: string, builder: Builder, logger: Logger) {
+  const start = Date.now()
+
   logger.debug('building: ' +
     THEME.highlight(src) +
     THEME.secondary(' -> ') +
@@ -28,7 +30,7 @@ async function buildOne(src: string, target: string, builder: Builder, logger: L
     logger.success('built: ' +
       THEME.highlight(src) +
       THEME.secondary(' -> ') +
-      THEME.highlight(target)
+      THEME.highlight(target) + ' in ' + (Date.now() - start) + 'ms'
     )
   } catch(error) {
     logger.error('failed: ' + THEME.highlight(src))

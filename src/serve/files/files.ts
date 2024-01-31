@@ -6,7 +6,7 @@ import { dir } from './dir'
 import { notFound } from './notfound'
 import { file } from './file'
 import { Loader, run } from './loader'
-import els from '../../util/ensure-leading-slash'
+import { ele, els } from '../../util/ensure-slash'
 
 
 export interface FilesOptions extends LoggerOptions {
@@ -28,9 +28,10 @@ export function files(options?: FilesOptions) {
   return async (ctx: Context, next: Next) => {
     if (ctx.method === 'GET' && ctx.path.startsWith('/' + namespace)) {
       const target = ctx.path.slice(namespace.length + 1)
-      logger.log('requested: ' + THEME.highlight(els(target)))
+      logger.debug('requested: ' + THEME.highlight(els(target)))
 
-      const path = join(root, target)
+      const path = ctx.path === '/' ? ele(join(root, target)) : join(root, target)
+
       try {
         const { type, content, status } = await loader({ path, root, namespace, logger })
         ctx.type = type

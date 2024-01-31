@@ -19,6 +19,7 @@ const _DefaultOptions = {
     'beacon',
     'csp_report',
     'imageset',
+    'stylesheet',
   ]
 }
 

@@ -3,7 +3,7 @@
 
 ```bash
 pree view   <src>        # preview your HTML files
-pree build  <src> <dest> # build your HTML files
+pree build  <src> <dest> # prebuild your HTML files
 ```
 
 <div align="right">
@@ -13,16 +13,16 @@ pree build  <src> <dest> # build your HTML files
 
 </div>
 
-`pree` is a minimalistic tool that prebuilds HTML files:
+`pree` is a minimalistic tool that prebuilds HTML files, and:
 
-🧬 and pre-renders web components (faster loading, MUCH smoother UX). \
-🏗️ and handles layouting and shared metadata (no copy-pasta, breezy DX). \
-👻 and enables build-time only components and scripts (even faster loading). \
-✨ and provides access to build environment to components and scripts (for some magical web components).
+🧬 it pre-renders web components (faster loading, MUCH smoother UX), \
+🏗️ it handles layouting and shared metadata (no copy-pasta, breezy DX), \
+👻 it enables build-time only components and scripts (even faster loading), \
+✨ it provides access to build environment to components and scripts (for some magical web components).
 
 <br>
 
-Its designed to build static sites such as blogs or docs using standard HTML, CSS and JavaScript with great UX and DX,
+It is designed to create static sites such as blogs or docs using standard HTML, CSS and JavaScript with great UX and DX,
 without using any build tools or frameworks.
 
 <br>
@@ -36,6 +36,7 @@ without using any build tools or frameworks.
   - [Metadata](#metadata)
   - [Layouting](#layouting)
   - [Build Time Scripts](#build-time-scripts)
+  - [Build Environment](#build-environment)
 - [Contribution](#contribution)
 
 <br>
@@ -94,7 +95,7 @@ pree view <dir>
 
 <br>
 
-👉  Pre-build your website:
+👉  Prebuild your website:
 
 ```bash
 pree build <src> <dest>
@@ -329,6 +330,36 @@ Access build environment from your scripts and components:
     value: "Some value"
   }
   ```
+
+<br>
+
+## CLI Options
+
+Here is a comprehensive list of CLI options for `pree`:
+
+| Option              | Description | Example |
+| ---                 | ---         | ---     |
+| `-p`, `--port`      | Port to use for serving content | `pree view -p 8080` |
+| `-P`, `--prod`      | Production mode (no build environment APIs) | `pree view -P` |
+| `-r`, `--root`      | Root directory of the content | `pree build docs site -r .` |
+| `-N`, `--namespace` | Project namespace<sup>*</sup> | `pree view -N my-project` |
+| `-i`, `--include`   | Files to include in the build | `pree build docs site -i "**/*.page.html"` |
+| `-e`, `--exclude`   | Files to exclude from the build<sup>**</sup> | `pree build docs site -e "**/*.layout.html"` |
+| `-V`, `--verbose`   | Verbose mode | `pree view -V` |
+| `-S`, `--silent`    | Silent mode (only warnings and errors) | `pree build index.html dist/index.html -S` |
+| `-SS`               | Silent-er mode (only errors) | `pree build docs dist -SS` |
+| `-SSS`              | Silent-est mode (no logs)    | `pree view -SSS` |
+| `-h`, `--help`      | See a really short help message | `pree -h` |
+| `-v`, `--version`   | See the version of `pree` (and if it needs updates) | `pree -v` |
+
+<br>
+
+**<sup>*</sup>** In some hosting environments your project is not at the root of your domain, which affects your
+relative URLs. Use this option to have `pree view` emulate that. For example, if your project is hosted at
+`https://example.com/my-project/`, then use `pree view -N my-project`.
+
+**<sup>**</sup>** By default, `**/_*` is used as an excluded pattern. When you provide another exclude pattern, this default pattern is no longer used.
+
 
 <br>
 

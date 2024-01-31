@@ -2,7 +2,7 @@ import { relative } from 'path'
 
 import { STYLES } from './style'
 import { Loader, LoadingContext } from './loader'
-import els from '../../util/ensure-leading-slash'
+import { els } from '../../util/ensure-slash'
 
 
 export const notFound: Loader = async (ctx: LoadingContext) => {

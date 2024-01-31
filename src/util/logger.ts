@@ -69,6 +69,6 @@ export function createLogger(options: LoggerOptions = _DefaultOptions): Logger {
     warn: (text: string) => log(THEME.warn(text), LOG_LEVEL.WARN),
     info: (text: string) => log(text, LOG_LEVEL.INFO),
     debug: (text: string) => log(THEME.shy(text), LOG_LEVEL.DEBUG),
-    success: (text: string) => log('✅ ' + THEME.secondary(text), LOG_LEVEL.INFO),
+    success: (text: string) => log('✅ ' + text, LOG_LEVEL.INFO),
   }
 }

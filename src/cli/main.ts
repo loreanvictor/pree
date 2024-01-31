@@ -7,16 +7,19 @@ import { LOG_LEVEL, THEME, createLogger } from '../util/logger'
 import { version } from './version'
 import { help } from './help'
 import { Command, Options } from './types'
+import { LOGO } from './logo'
 
 
 export async function main(command: Command, options: Options) {
   const logLevel = options.logLevel ?? LOG_LEVEL.INFO
+  const logger = createLogger({ logLevel })
+
+  logger.info(LOGO)
 
   if (command === 'build') {
     const src = options.src
     const dest = options.dest
 
-    const logger = createLogger({ logLevel })
 
     if (!src) {
       logger.error('missing source path')
@@ -37,19 +40,19 @@ export async function main(command: Command, options: Options) {
     }
 
     if (!extname(src)) {
-      await build({ dir: src, root: src, target: dest, logLevel })
+      await build({ ...options, dir: src, target: dest })
     } else {
       await build({
+        ...options,
         file: src,
         target: extname(dest) ? dest : join(dest, basename(src)),
-        logLevel,
       })
     }
   } else if (command === 'view') {
-    await serve({ logLevel, root: options.src })
+    await serve(options)
   } else if (command === 'version') {
-    await version({ logLevel })
+    await version(options)
   } else {
-    await help({ logLevel })
+    await help(options)
   }
 }

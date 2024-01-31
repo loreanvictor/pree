@@ -1,4 +1,4 @@
-import els from '../../util/ensure-leading-slash'
+import { els } from '../../util/ensure-slash'
 
 
 export type Handler = (path: string) => Promise<any>
