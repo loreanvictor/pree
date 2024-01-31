@@ -1,4 +1,5 @@
-import { cp } from 'fs/promises'
+import { cp,  mkdir, writeFile } from 'fs/promises'
+import { dirname, join } from 'path'
 import { minimatch } from 'minimatch'
 
 import { Logger, THEME, createLogger } from '../util/logger'
@@ -7,7 +8,6 @@ import { BuildOptions, isBuildOptionsWithFile, isBuildOptionsWithDir, isBuildOpt
 import { pathToUrl } from './path'
 import { ls } from '../util/ls'
 import { mimetype } from '../util/file-types'
-import { join } from 'path'
 
 const _DefaultBuildOptions = {
   exclude: ['**/_*'],
@@ -21,7 +21,10 @@ async function buildOne(src: string, target: string, builder: Builder, logger: L
   )
 
   try {
-    await builder.build(src, target)
+    const content = await builder.build(src)
+    await mkdir(dirname(target), { recursive: true })
+    await writeFile(target, content)
+
     logger.success('built: ' +
       THEME.highlight(src) +
       THEME.secondary(' -> ') +
@@ -35,9 +38,6 @@ async function buildOne(src: string, target: string, builder: Builder, logger: L
 
 export async function build(options: BuildOptions) {
   const logger = createLogger({ ...options, name: 'build' })
-  if (isBuildOptionsWithDir(options)) {
-    options.root = options.dir
-  }
 
   const builder = new Builder(options)
 

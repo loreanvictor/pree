@@ -8,6 +8,7 @@ export type AppOptions = FilesOptions & EnvOptions
 
 export function createApp(options?: AppOptions) {
   const app = new Koa()
+  // TODO: add an option to disable env to better emulate production
   app.use(env(options))
   app.use(files(options))
 

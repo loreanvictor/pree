@@ -3,7 +3,7 @@ import { basename, extname, join } from 'path'
 
 import { build } from '../build'
 import { serve } from '../serve'
-import { LOG_LEVEL, createLogger } from '../util/logger'
+import { LOG_LEVEL, THEME, createLogger } from '../util/logger'
 import { version } from './version'
 import { help } from './help'
 import { Command, Options } from './types'
@@ -20,16 +20,24 @@ export async function main(command: Command, options: Options) {
 
     if (!src) {
       logger.error('missing source path')
+      logger.info(
+        THEME.secondary('👉 pree build <src> <dest> \n\n') +
+        'Run ' + THEME.highlight('pree help') + ' for more information.'
+      )
       throw new Error('missing source path')
     }
 
     if (!dest) {
       logger.error('missing destination path')
+      logger.info(
+        THEME.secondary('👉 pree build <src> <dest> \n\n') +
+        'Run ' + THEME.highlight('pree help') + ' for more information.'
+      )
       throw new Error('missing destination path')
     }
 
     if (!extname(src)) {
-      await build({ dir: src, target: dest, logLevel })
+      await build({ dir: src, root: src, target: dest, logLevel })
     } else {
       await build({
         file: src,

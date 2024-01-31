@@ -8,7 +8,7 @@ export interface ServeOptions extends AppOptions {
   port?: number
 }
 
-export const _DefaultOptions = {
+const _DefaultOptions = {
   port: 3000
 }
 

@@ -1,7 +1,5 @@
 import puppeteer, { Browser } from 'puppeteer'
-import { writeFile, mkdir } from 'fs/promises'
 import { load } from 'cheerio'
-import { dirname } from 'path'
 
 import { LOG_LEVEL } from '../util/logger'
 import { serve, ServeOptions, Server } from '../serve'
@@ -11,7 +9,7 @@ export interface BuilderOptions extends ServeOptions {
   blockedResourceTypes?: string[]
 }
 
-export const _DefaultOptions = {
+const _DefaultOptions = {
   blockedResourceTypes: [
     'image',
     'media',
@@ -44,12 +42,13 @@ export class Builder {
     this.server = this.browser = undefined
   }
 
-  public async build(path: string, target: string) {
+  public async build(path: string) {
     await this.start()
-    await this.buildUrl(`http://localhost:${this.server!.port}/${path}`, target)
+
+    return await this.buildUrl(`http://localhost:${this.server!.port}/${path}`)
   }
 
-  protected async buildUrl(url: string, target: string) {
+  protected async buildUrl(url: string) {
     await this.start()
     const page = await this.browser!.newPage()
     await page.setRequestInterception(true)
@@ -76,7 +75,6 @@ export class Builder {
     const $ = load(html)
     $('body').html(body)
 
-    await mkdir(dirname(target), { recursive: true })
-    await writeFile(target, $.html())
+    return $.html()
   }
 }

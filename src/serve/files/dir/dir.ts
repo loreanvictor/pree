@@ -4,16 +4,14 @@ import { filesize } from 'filesize'
 
 import { linkedPath } from './linked-path'
 import { fileIcon } from './icon'
-import { STYLES, FOOTER } from './style'
+import { STYLES, FOOTER } from '../style'
+import { Loader } from '../loader'
+import { exists, isDirectory } from '../util'
 
-
-export async function isDirectory(path: string) {
-  return (await lstat(path)).isDirectory()
-}
 
 const filestyle = (file: string) => `opacity: ${(file.startsWith('.') || file === 'node_modules') ? '.2' : '1'};`
 
-export async function renderDirectory(path: string, root: string, namespace: string) {
+async function renderDirectory(path: string, root: string, namespace: string) {
   const files = await readdir(path)
   const rel = relative(root, path)
 
@@ -77,4 +75,12 @@ export async function renderDirectory(path: string, root: string, namespace: str
     </html>
     `
   }
+}
+
+export const dir: Loader = async (ctx, next) => {
+  if (await exists(ctx.path) && await isDirectory(ctx.path)) {
+    return renderDirectory(ctx.path, ctx.root, ctx.namespace)
+  }
+
+  return await next()
 }

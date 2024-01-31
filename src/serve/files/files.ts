@@ -1,16 +1,18 @@
 import { join } from 'path'
 import { Context, Next } from 'koa'
-import { access } from 'fs/promises'
 
 import { LoggerOptions, createLogger, THEME } from '../../util/logger'
-import { isDirectory, renderDirectory } from './dir'
-import { isNotFound, renderNotFound } from './notfound'
-import { read } from './file'
+import { dir } from './dir'
+import { notFound } from './notfound'
+import { file } from './file'
+import { Loader, run } from './loader'
+import els from '../../util/ensure-leading-slash'
 
 
 export interface FilesOptions extends LoggerOptions {
   root?: string,
   namespace?: string,
+  loaders?: Loader[]
 }
 
 const _DefaultOptions = {
@@ -21,60 +23,21 @@ export function files(options?: FilesOptions) {
   const root = options?.root || _DefaultOptions.root
   const namespace = options?.namespace ?? ''
   const logger = createLogger({ ...options, name: 'files' })
+  const loader = run(...(options?.loaders ?? []), file, dir, notFound)
 
   return async (ctx: Context, next: Next) => {
     if (ctx.method === 'GET' && ctx.path.startsWith('/' + namespace)) {
       const target = ctx.path.slice(namespace.length + 1)
-      logger.log('requested: ' + THEME.highlight('/' + target))
+      logger.log('requested: ' + THEME.highlight(els(target)))
 
-      const loadfile = async (path: string) => {
-        const { type, content } = await read(path)
+      const path = join(root, target)
+      try {
+        const { type, content, status } = await loader({ path, root, namespace, logger })
         ctx.type = type
         ctx.body = content
-      }
-
-      try {
-        const path = join(root, target)
-
-        if (await isNotFound(path)) {
-          if (!ctx.path.endsWith('/')) {
-            try {
-              const htmlpath = path + '.html'
-              logger.debug('trying: ' + htmlpath)
-              await access(htmlpath)
-              await loadfile(htmlpath)
-
-              return
-            } catch { /* ... */ }
-          }
-
-          const { type, content } = await renderNotFound(path, root)
-          ctx.type = type
-          ctx.body = content
-          ctx.status = 404
-
-          logger.error('not found: ' + THEME.highlight(target))
-        } else if (await isDirectory(path)) {
-          if (ctx.path.endsWith('/')) {
-            try {
-              const htmlpath = join(path, 'index.html')
-              logger.debug('trying: ' + htmlpath)
-              await access(htmlpath)
-              await loadfile(htmlpath)
-
-              return
-            } catch { /* ... */ }
-          }
-
-          const { type, content } = await renderDirectory(path, root, namespace)
-          ctx.type = type
-          ctx.body = content
-        } else {
-          await loadfile(path)
-        }
-      } catch (err) {
-        logger.error('cannot load: ' + THEME.highlight(target))
-        logger.error((err as Error).message)
+        ctx.status = status ?? 200
+      } catch(error) {
+        logger.error((error as Error).message)
         ctx.body = 'Something went terribly wrong.'
         ctx.status = 500
       }

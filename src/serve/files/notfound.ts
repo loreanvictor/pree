@@ -1,20 +1,10 @@
-import { access } from 'fs/promises'
 import { relative } from 'path'
 import { STYLES } from './style'
+import { Loader, LoadingContext } from './loader'
 
 
-export async function isNotFound(path: string) {
-  try {
-    await access(path)
-
-    return false
-  } catch {
-    return true
-  }
-}
-
-export async function renderNotFound(path: string, root: string) {
-  const rel = relative(root, path)
+export const notFound: Loader = async (ctx: LoadingContext) => {
+  const rel = relative(ctx.root, ctx.path)
 
   return {
     type: '.html',

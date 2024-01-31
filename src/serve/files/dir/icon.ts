@@ -1,4 +1,4 @@
-import { is, AUDIO, CODE, CONFIG_FILE, IMAGE, LICENSE_FILE, PACKAGE_FILE, VIDEO } from '../../util/file-types'
+import { is, AUDIO, CODE, CONFIG_FILE, IMAGE, LICENSE_FILE, PACKAGE_FILE, VIDEO } from '../../../util/file-types'
 
 
 export function fileIcon(path: string) {
