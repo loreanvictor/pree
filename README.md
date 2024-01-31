@@ -1,5 +1,5 @@
-<img src="./splash-dark.svg#gh-dark-mode-only"/>
-<img src="./splash-light.svg#gh-light-mode-only"/>
+<img src="./docs/images/splash-dark.svg#gh-dark-mode-only"/>
+<img src="./docs/images/splash-light.svg#gh-light-mode-only"/>
 
 ```bash
 pree view   <src>        # preview your HTML files
