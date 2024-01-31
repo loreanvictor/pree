@@ -2,7 +2,8 @@
 <img src="./splash-light.svg#gh-light-mode-only"/>
 
 ```bash
-npx pree build <src> <dest>
+pree view   <src>        # preview your HTML files
+pree build  <src> <dest> # build your HTML files
 ```
 
 <div align="right">
@@ -12,33 +13,45 @@ npx pree build <src> <dest>
 
 </div>
 
-Modern web standards like [ESM](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules) and [Web Components](https://developer.mozilla.org/en-US/docs/Web/Web_Components) can provide a smooth DX for building a lot of websites (such as blogs and docs) by simply writing and serving plain HTML, CSS and JS files (an approach called [no build](https://world.hey.com/dhh/you-can-t-get-faster-than-no-build-7a44131c)). This approach has a few inherent gaps though:
+`pree` is a minimalistic tool that prebuilds HTML files:
 
-- Web components are rendered on the client so the page load feels slower and jankier
-- Multiple HTML pages share layout and metadata
-- Some components are static and don't need to be shipped to clients
-- Some components need to access build environment (e.g. imagine a list of all available pages)
+🧬 and pre-renders web components (faster loading, MUCH smoother UX). \
+🏗️ and handles layouting and shared metadata (no copy-pasta, breezy DX). \
+👻 and enables build-time only components and scripts (even faster loading). \
+✨ and provides access to build environment to components and scripts (for some magical web components).
 
 <br>
 
-`pree` is a minimalst tool that addresses these issues:
-
-🧬  It pre-renders HTML files with webcomponents using [declarative shadow DOM](https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_shadow_DOM#declaratively_with_html). \
-🏗️ It handles layouting and shared metadata of HTML files using [Front Matter](https://www.scribendi.com/academy/articles/front_matter.en.html#:~:text=Front%20matter%20is%20the%20first,a%20preface%2C%20and%20much%20more.) \
-👻 It enables components that only run in build time (e.g. `<script build-only>`). \
-✨ It provides APIs that can be used by components to access build environment at build time.
+Its designed to build static sites such as blogs or docs using standard HTML, CSS and JavaScript with great UX and DX,
+without using any build tools or frameworks.
 
 <br>
 
 # Contents
 
 - [Contents](#contents)
+- [Motivation](#motivation)
 - [Installation](#installation)
 - [Usage](#usage)
-  - [Frontmatter](#frontmatter)
+  - [Metadata](#metadata)
   - [Layouting](#layouting)
   - [Build Time Scripts](#build-time-scripts)
 - [Contribution](#contribution)
+
+<br>
+
+# Motivation
+
+With modern web features such as [ESM](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules) and [import maps](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script/type/importmap), [Web Components](https://developer.mozilla.org/en-US/docs/Web/Web_Components), [nested styles](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_nesting/Using_CSS_nesting) and [CSS variables](https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties), ... we can easily build websites by writing and serving plain HTML, CSS and JS (an approach called [no build](https://world.hey.com/dhh/you-can-t-get-faster-than-no-build-7a44131c)). Unfortunately there are still a few minor drawbacks:
+
+- Web components are rendered on the client (slower / jankier page load)
+- Multiple HTML pages share layout and metadata (tons of copy-paste)
+- Some components are static and don't need to be shipped to clients (larger bundles)
+- Some components need to access build environment (e.g. imagine a list of all available pages)
+
+<br>
+
+`pree` aims to fill in these gaps while being as minimalsitc and standard-compliant as possible.
 
 <br>
 
@@ -77,9 +90,7 @@ pree view <dir>
 
 - `<dir>` is optional. If not provided, the current directory will be used.
 
-`pree view` will start a local server allowing you to view various files as if they were served by
-a web server. It also provides a nice file navigator for navigating through your project. The server
-resolves layouts and front matter for HTML files as well.
+`pree view` starts a local server for viewing various files, also resolves layouting and metadata of HTML files. It also provides a nice file navigator to browse your content.
 
 <br>
 
@@ -92,7 +103,7 @@ pree build <src> <dest>
 - `<src>` can be an HTML file or a directory. If it's a directory, all HTML files in it will be processed recursively.
 - `<dest>` can be a file or a directory. If `<src>` is a directory, then `<dest>` must be a directory as well.
 
-`pre build` builds one or more HTML files, pre-rendering their web components using [declarative shadow DOM](https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_shadow_DOM#declaratively_with_html). It launches a local server and uses an emulated browser to pre-render the files, mimicking actual browser behavior. It additionally removes any scripts with `build-only` tag.
+`pre build` builds one or more HTML files, pre-rendering their web components. It launches a local server and uses an emulated browser to pre-render the files, mimicking actual browser behavior.
 
 <br>
 
@@ -108,14 +119,14 @@ pree build docs/ dist/
 <br>
 
 > [!NOTE]
-> Declarative shadow DOM is a relatively new feature coming to modern browsers. You can check [its support here](https://caniuse.com/declarative-shadow-dom). Browsers that don't support it won't get the benefits of pre-rendering
+> `pree` uses [declarative shadow DOM](https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_shadow_DOM#declaratively_with_html) for prerendering web components. Declarative shadow DOM is a relatively new feature not supported by [older browsers](https://caniuse.com/declarative-shadow-dom). Browsers that don't support it won't get the benefits of pre-rendering
 > web components. This also means that [build time components](#build-time-scripts) won't work in these browsers.
 
 <br>
 
-## Frontmatter
+## Metadata
 
-You can use front matter on top of your HTML files to specify metadata. Front matter is a block of YAML or JSON between two lines of three dashes. For example:
+Use [front matter](https://www.scribendi.com/academy/articles/front_matter.en.html#:~:text=Front%20matter%20is%20the%20first,a%20preface%2C%20and%20much%20more.) on top of your HTML files to specify metadata:
 
 ```html
 ---
@@ -137,7 +148,7 @@ summary: This is my page
 
 ## Layouting
 
-You can specify the layout to be used for a page inside the front matter:
+Specify the layout to be used for a page inside the front matter:
 
 ```html
 ---
@@ -160,7 +171,9 @@ layout: ./layouts/_main.html
 <footer>Some footer content</footer>
 ```
 
-You can also use named slots to fill in different parts of the parent layout:
+<br>
+
+Use named slots to fill in different parts of the parent layout:
 
 ```html
 ---
@@ -188,6 +201,8 @@ layout: ./layouts/_main.html
 </footer>
 ```
 
+<br>
+
 Elements with named slots should reside on the root of the child document. `pree` will ignore them otherwise
 as they might be part of a web component template.
 ```html
@@ -211,7 +226,7 @@ layout: ./layouts/_main.html
 
 ## Build Time Scripts
 
-You can have scripts in your page that are only executed during `pree build` and not shipped to the client. This is useful for example for static web components that don't need to run on the client, or for scripts that are to be executed in the build environment. To do so, use the `build-only` tag:
+Use `build-only` attribute on scripts to remove them from the built files:
 
 ```html
 <script build-only>
@@ -234,6 +249,86 @@ You can have scripts in your page that are only executed during `pree build` and
 > [Browsers that don't support declarative shdow DOM](https://caniuse.com/declarative-shadow-dom) won't render
 > built-time components properly. If you want to support them, make sure to load all web components on the client
 > as well.
+
+<br>
+
+## Build Environment
+
+Access build environment from your scripts and components:
+
+```html
+<script build-only>
+  // 👇 Lets get the name of the author of the project
+  //    and add it to the meta tag.
+  fetch('/@env/git/commits/first')
+    .then(r => r.json())
+    .then(commit => {
+      document.querySelector('meta[name="author"]').content = commit.author_name
+    })
+</script>
+```
+
+<br>
+
+> [!IMPORTANT]
+> You should ONLY access build environment in build-time only scripts and components. The APIs
+> ARE NOT available on production.
+
+<br>
+
+### Available APIs
+
+#### Files
+
+- `/@env/files/list/<?pattern>` - List of all files in the project (matching given pattern)
+- `/@env/files/read/<path>` - Type and contents of a file. Example response:
+  ```json
+  {
+    "type": "text/plain",
+    "content": "Hellow there!",
+  }
+  ```
+
+#### Git
+
+- `/@env/git/remote/url` - URL of the remote git repository
+- `/@env/git/remote/info` - The remote git repository info. Example response:
+  ```json
+  {
+    "full_name": "loreanvictor/pree",
+    "host": "github.com",
+    "href": "git@github.com:loreanvictor/pree.git",
+    "name": "pree",
+    "organization": "loreanvictor",
+    "owner": "loreanvictor",
+    "protocol": "ssh",
+    ...
+  }
+  ```
+- `/@env/git/commit/<hash>` - Info of a specific commit. Example response:
+  ```json
+  {
+    "hash": "49c145033666d01f27a3e6bb295957820ad10413",
+    "author_name": "Eugene Ghanizadeh Khoub",
+    "author_email": "ghanizadeh.eugene@gmail.com",
+    "date": "2024-01-31T11:52:07+01:00",
+    "message": "restructure some code",
+    "refs": "HEAD -> main, origin/main"
+  }
+  ```
+- `/@env/git/commits/first/<?file>` - Info of the first commit (for given file)
+- `/@env/git/commits/last/<?file>` - Info of the last commit (for given file)
+- `/@env/git/commits/all/<?file>` - Info of the all commits (for given file)
+
+#### Variables
+
+- `/@env/vars/<name>` - Returns the content of the environment variable. Example response:
+  ```json
+  {
+    exists: true,
+    value: "Some value"
+  }
+  ```
 
 <br>
 

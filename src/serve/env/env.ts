@@ -3,6 +3,7 @@ import { LoggerOptions, THEME, createLogger } from '../../util/logger'
 import { router } from './router'
 import { fs } from './fs'
 import { git } from './git'
+import { vars } from './vars'
 
 
 export type EnvOptions = LoggerOptions
@@ -12,10 +13,11 @@ export function env(options?: EnvOptions) {
   const handle = router({
     '/files/': fs,
     '/git/': git,
+    '/vars/': vars,
   })
 
   return async (ctx: Context, next: Next) => {
-    if (ctx.path.startsWith('/@env')) {
+    if (ctx.method === 'GET' && ctx.path.startsWith('/@env')) {
       const path = ctx.path.slice(5)
       logger.info('requested: ' + THEME.highlight('@env' + path))
 

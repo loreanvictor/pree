@@ -1,10 +1,13 @@
 import { relative } from 'path'
+
 import { STYLES } from './style'
 import { Loader, LoadingContext } from './loader'
+import els from '../../util/ensure-leading-slash'
 
 
 export const notFound: Loader = async (ctx: LoadingContext) => {
   const rel = relative(ctx.root, ctx.path)
+  ctx.logger.error(`Not found: ${els(rel)}`)
 
   return {
     type: '.html',
