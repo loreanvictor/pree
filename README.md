@@ -287,7 +287,7 @@ Access build environment from your scripts and components:
   ```json
   {
     "type": "text/plain",
-    "content": "Hellow there!",
+    "content": "Hellow there!"
   }
   ```
 
@@ -303,8 +303,7 @@ Access build environment from your scripts and components:
     "name": "pree",
     "organization": "loreanvictor",
     "owner": "loreanvictor",
-    "protocol": "ssh",
-    ...
+    "protocol": "ssh"
   }
   ```
 - `/@env/git/commit/<hash>` - Info of a specific commit. Example response:
@@ -327,8 +326,8 @@ Access build environment from your scripts and components:
 - `/@env/vars/<name>` - Returns the content of the environment variable. Example response:
   ```json
   {
-    exists: true,
-    value: "Some value"
+    "exists": true,
+    "value": "Some value"
   }
   ```
 
