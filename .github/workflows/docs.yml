@@ -14,8 +14,11 @@ jobs:
         with:
           node-version: '16'
 
+      - name: Install pree
+        run: npm i -g pree
+
       - name: Build docs
-        run: npx pree build docs site
+        run: pree build docs site
       
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4
