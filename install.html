@@ -4,6 +4,7 @@
     <base href="/pree/">
 
     
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon.ico">
 
     <link rel="stylesheet" href="https://unpkg.com/nokss">
     <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://esm.sh/graphis/font/graphis.css">
@@ -32,7 +33,7 @@
 <template shadowrootmode="open"><slot></slot></template></m-d>
 
 <script>
-  document.querySelector('prev-next').controls.load();
+  setTimeout(() => document.querySelector('prev-next').controls.load(), 500)
 </script><template shadowrootmode="open"><slot></slot></template></use-html>
     </aside>
     <main>
