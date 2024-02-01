@@ -8,6 +8,8 @@
     <title>pree: prebuild html files</title>
 
     <link rel="stylesheet" href="https://unpkg.com/nokss" />
+    <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"
+      href="https://esm.sh/graphis/font/graphis.css" >
     <link rel="stylesheet" href="./theme.css" />
     
     <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/highlight.min.js"></script>
@@ -18,6 +20,8 @@
     <script build-only type="module" src="./components/m-d.js""></script>
     <script build-only type="module" src="./components/npm-badge.js"></script>
     <script build-only type="module" src="./components/gh-link.js"></script>
+
+    <script type="module" src="./components/prev-next.js"></script>
   </head>
   <body>
     <aside>
@@ -25,12 +29,17 @@
     </aside>
     <main>
       <slot></slot>
+      <hr/>
+      <prev-next></prev-next>
     </main>
     <footer>
       <div align="right">
         <gh-link>github</gh-link> | <npm-badge></npm-badge>
       </div>
     </footer>
-    <script build-only>hljs.highlightAll();</script>
+    <script build-only>
+      hljs.highlightAll()
+    </script>
+    <script type="module" src="code.js"></script>
   </body>
 </html>
