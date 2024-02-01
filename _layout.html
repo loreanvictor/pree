@@ -6,6 +6,7 @@
     <title>pree: prebuild html files</title>
 
     <link rel="stylesheet" href="https://unpkg.com/nokss">
+    <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://esm.sh/graphis/font/graphis.css">
     <link rel="stylesheet" href="./theme.css">
     
     <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/highlight.min.js"></script>
@@ -15,6 +16,8 @@
     
     
     
+
+    <script type="module" src="./components/prev-next.js"></script>
   </head>
   <body>
     <aside>
@@ -26,10 +29,52 @@
 </ul>
 </li>
 </ul>
-<template shadowrootmode="open"><slot></slot></template></m-d><template shadowrootmode="open"><slot></slot></template></use-html>
+<template shadowrootmode="open"><slot></slot></template></m-d>
+
+<script>
+  document.querySelector('prev-next').controls.load();
+</script><template shadowrootmode="open"><slot></slot></template></use-html>
     </aside>
     <main>
       <slot></slot>
+      <hr>
+      <prev-next><template shadowrootmode="open"><link rel="stylesheet" href="https://unpkg.com/nokss"><link rel="stylesheet" href="https://unpkg.com/graphis/font/graphis.css"><style>i {
+      font-family: 'graphis', sans-serif;
+      font-style: normal;
+      font-size: 2rem;
+      opacity: .25;
+    }
+
+    section[role="feed"] {
+      flex-direction: row;
+      &[aria-hidden] {
+        opacity: 0;
+      }
+
+      opacity: 1;
+      transition: opacity .5s;
+
+      article {
+        flex-grow: 1;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 1rem;
+
+        & > a {
+          display: block;
+          flex-grow: 1;
+          text-decoration: none!important;
+        }
+
+        &.next {
+          flex-basis: flex-end;
+          text-align: right;
+        }
+      }
+
+      margin-bottom: 4rem;
+    }</style><section role="feed" ref="?" aria-hidden="true"></section></template></prev-next>
     </main>
     <footer>
       <div align="right">
@@ -40,6 +85,7 @@
       </div>
     </footer>
     
+    <script type="module" src="code.js"></script>
   
 
 </body></html>

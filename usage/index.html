@@ -3,9 +3,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <base href="/pree/">
 
-    <title>pree: prebuild html files</title>
+    
 
     <link rel="stylesheet" href="https://unpkg.com/nokss">
+    <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://esm.sh/graphis/font/graphis.css">
     <link rel="stylesheet" href="./theme.css">
     
     <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/highlight.min.js"></script>
@@ -15,7 +16,9 @@
     
     
     
-  </head>
+
+    <script type="module" src="./components/prev-next.js"></script>
+  <title>pree: usage</title></head>
   <body>
     <aside>
       <use-html src="./_toc.html"><m-d id="toc"><ul>
@@ -26,15 +29,19 @@
 </ul>
 </li>
 </ul>
-<template shadowrootmode="open"><slot></slot></template></m-d><template shadowrootmode="open"><slot></slot></template></use-html>
+<template shadowrootmode="open"><slot></slot></template></m-d>
+
+<script>
+  document.querySelector('prev-next').controls.load();
+</script><template shadowrootmode="open"><slot></slot></template></use-html>
     </aside>
     <main>
       <m-d><h1>Usage</h1>
 <p>👉 Preview your website:</p>
 <pre><code class="language-bash hljs" data-highlighted="yes">pree view
-</code></pre>
+</code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
 <pre><code class="language-bash hljs" data-highlighted="yes">pree view &lt;<span class="hljs-built_in">dir</span>&gt;
-</code></pre>
+</code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
 <ul>
 <li><code>&lt;dir&gt;</code> is optional. If not provided, the current directory will be used.</li>
 </ul>
@@ -43,7 +50,7 @@
 
 <p>👉  Prebuild your website:</p>
 <pre><code class="language-bash hljs" data-highlighted="yes">pree build &lt;src&gt; &lt;dest&gt;
-</code></pre>
+</code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
 <ul>
 <li><code>&lt;src&gt;</code> can be an HTML file or a directory. If it's a directory, all HTML files in it will be processed recursively.</li>
 <li><code>&lt;dest&gt;</code> can be a file or a directory. If <code>&lt;src&gt;</code> is a directory, then <code>&lt;dest&gt;</code> must be a directory as well.</li>
@@ -53,9 +60,9 @@
 
 <p>Example:</p>
 <pre><code class="language-bash hljs" data-highlighted="yes">pree build docs/index.html dist/index.html
-</code></pre>
+</code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
 <pre><code class="language-bash hljs" data-highlighted="yes">pree build docs/ dist/
-</code></pre>
+</code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
 <br>
 
 <blockquote>
@@ -65,6 +72,44 @@ web components. This also means that <a href="#build-time-scripts">build time co
 </blockquote>
 <p></p>
 <template shadowrootmode="open"><slot></slot></template></m-d>
+      <hr>
+      <prev-next><template shadowrootmode="open"><link rel="stylesheet" href="https://unpkg.com/nokss"><link rel="stylesheet" href="https://unpkg.com/graphis/font/graphis.css"><style>i {
+      font-family: 'graphis', sans-serif;
+      font-style: normal;
+      font-size: 2rem;
+      opacity: .25;
+    }
+
+    section[role="feed"] {
+      flex-direction: row;
+      &[aria-hidden] {
+        opacity: 0;
+      }
+
+      opacity: 1;
+      transition: opacity .5s;
+
+      article {
+        flex-grow: 1;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 1rem;
+
+        & > a {
+          display: block;
+          flex-grow: 1;
+          text-decoration: none!important;
+        }
+
+        &.next {
+          flex-basis: flex-end;
+          text-align: right;
+        }
+      }
+
+      margin-bottom: 4rem;
+    }</style><section role="feed" ref="?" aria-hidden="true"></section></template></prev-next>
     </main>
     <footer>
       <div align="right">
@@ -75,6 +120,7 @@ web components. This also means that <a href="#build-time-scripts">build time co
       </div>
     </footer>
     
+    <script type="module" src="code.js"></script>
   
 
 </body></html>

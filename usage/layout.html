@@ -3,9 +3,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <base href="/pree/">
 
-    <title>pree: prebuild html files</title>
+    
 
     <link rel="stylesheet" href="https://unpkg.com/nokss">
+    <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://esm.sh/graphis/font/graphis.css">
     <link rel="stylesheet" href="./theme.css">
     
     <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/highlight.min.js"></script>
@@ -15,7 +16,9 @@
     
     
     
-  </head>
+
+    <script type="module" src="./components/prev-next.js"></script>
+  <title>pree: layouting</title></head>
   <body>
     <aside>
       <use-html src="./_toc.html"><m-d id="toc"><ul>
@@ -26,7 +29,11 @@
 </ul>
 </li>
 </ul>
-<template shadowrootmode="open"><slot></slot></template></m-d><template shadowrootmode="open"><slot></slot></template></use-html>
+<template shadowrootmode="open"><slot></slot></template></m-d>
+
+<script>
+  document.querySelector('prev-next').controls.load();
+</script><template shadowrootmode="open"><slot></slot></template></use-html>
     </aside>
     <main>
       <m-d><h1>Layouting</h1>
@@ -40,7 +47,7 @@ layout: ./layouts/_main.html
 <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>
 This is my page.
 <span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
-</code></pre>
+</code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
 <pre><code class="language-html hljs language-xml" data-highlighted="yes"><span class="hljs-comment">&lt;!-- ./layouts/_main.html --&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">aside</span>&gt;</span>Contents of the side menu<span class="hljs-tag">&lt;/<span class="hljs-name">aside</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">main</span>&gt;</span>
@@ -48,7 +55,7 @@ This is my page.
 <span class="hljs-tag">&lt;<span class="hljs-name">slot</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">slot</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">main</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">footer</span>&gt;</span>Some footer content<span class="hljs-tag">&lt;/<span class="hljs-name">footer</span>&gt;</span>
-</code></pre>
+</code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
 <br>
 
 <p>Use named slots to fill in different parts of the parent layout:</p>
@@ -62,7 +69,7 @@ layout: ./layouts/_main.html
 This is my page.
 <span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">slot</span>=<span class="hljs-string">"footer"</span>&gt;</span>Some extra footer content<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
-</code></pre>
+</code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
 <pre><code class="language-html hljs language-xml" data-highlighted="yes"><span class="hljs-comment">&lt;!-- ./layouts/_main.html --&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">aside</span>&gt;</span>Contents of the side menu<span class="hljs-tag">&lt;/<span class="hljs-name">aside</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">main</span>&gt;</span>
@@ -74,7 +81,7 @@ Some generic footer content |
 <span class="hljs-comment">&lt;!-- 👇 This is where content with slot=footer will go --&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">slot</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"footer"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">slot</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">footer</span>&gt;</span>
-</code></pre>
+</code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
 <br>
 
 <blockquote>
@@ -86,7 +93,7 @@ layout: ./layouts/_main.html
 ---
 <span class="hljs-comment">&lt;!-- ✅ This is OK --&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">slot</span>=<span class="hljs-string">"footer"</span>&gt;</span>Some extra footer content<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
-</code></pre>
+</code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
 <pre><code class="language-html hljs language-xml" data-highlighted="yes">---
 layout: ./layouts/_main.html
 ---
@@ -94,9 +101,47 @@ layout: ./layouts/_main.html
 <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">slot</span>=<span class="hljs-string">"footer"</span>&gt;</span>Some extra footer content<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-</code></pre>
+</code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
 </blockquote>
 <template shadowrootmode="open"><slot></slot></template></m-d>
+      <hr>
+      <prev-next><template shadowrootmode="open"><link rel="stylesheet" href="https://unpkg.com/nokss"><link rel="stylesheet" href="https://unpkg.com/graphis/font/graphis.css"><style>i {
+      font-family: 'graphis', sans-serif;
+      font-style: normal;
+      font-size: 2rem;
+      opacity: .25;
+    }
+
+    section[role="feed"] {
+      flex-direction: row;
+      &[aria-hidden] {
+        opacity: 0;
+      }
+
+      opacity: 1;
+      transition: opacity .5s;
+
+      article {
+        flex-grow: 1;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 1rem;
+
+        & > a {
+          display: block;
+          flex-grow: 1;
+          text-decoration: none!important;
+        }
+
+        &.next {
+          flex-basis: flex-end;
+          text-align: right;
+        }
+      }
+
+      margin-bottom: 4rem;
+    }</style><section role="feed" ref="?" aria-hidden="true"></section></template></prev-next>
     </main>
     <footer>
       <div align="right">
@@ -107,6 +152,7 @@ layout: ./layouts/_main.html
       </div>
     </footer>
     
+    <script type="module" src="code.js"></script>
   
 
 </body></html>
