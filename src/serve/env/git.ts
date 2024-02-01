@@ -1,7 +1,7 @@
 import parse from 'git-url-parse'
 import _git from 'simple-git'
 
-import { router } from './router'
+import { response, router } from './router'
 
 
 const instance = _git()
@@ -42,7 +42,7 @@ async function allCommits(path: string) {
 }
 
 export const git = router({
-  '/remote/url': remoteUrl,
+  '/remote/url': async () => response(await remoteUrl(), 'text/plain'),
   '/remote/info': remoteInfo,
   '/commit/': commit,
   '/commits/first/': firstCommit,
