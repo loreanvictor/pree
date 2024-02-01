@@ -14,6 +14,16 @@ function whoAmI() {
     candidates.push(path + '/')
     candidates.push(path + '/index')
     candidates.push(path + '/index.html')
+  } else if (path.endsWith('.html')) {
+    const noext = path.slice(0, -5)
+    candidates.push(noext)
+    if (noext.endsWith('index.html')) {
+      candidates.push(noext.slice(0, -10))
+      candidates.push(noext.slice(0, -11))
+    } else if (noext.endsWith('index')) {
+      candidates.push(noext.slice(0, -5))
+      candidates.push(noext.slice(0, -6))
+    }
   }
 
   return candidates
@@ -112,6 +122,12 @@ define('prev-next', ({ target, prevlabel, nextlabel }) => {
         &.next {
           flex-basis: flex-end;
           text-align: right;
+        }
+
+        @media (max-width: 480px) {
+          &:first-child:not(:last-child) {
+            display: none;
+          }
         }
       }
 

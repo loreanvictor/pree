@@ -19,13 +19,11 @@
 
     <script build-only type="module" src="./components/use-html.js""></script>
     <script build-only type="module" src="./components/m-d.js""></script>
-    <script build-only type="module" src="./components/npm-badge.js"></script>
-    <script build-only type="module" src="./components/gh-link.js"></script>
 
     <script type="module" src="./components/prev-next.js"></script>
   </head>
   <body>
-    <aside>
+    <aside aria-hidden="true">
       <use-html src="./_toc.html"></use-html>
     </aside>
     <main>
@@ -34,9 +32,7 @@
       <prev-next></prev-next>
     </main>
     <footer>
-      <div align="right">
-        <gh-link>github</gh-link> | <npm-badge></npm-badge>
-      </div>
+      <use-html src="./_footer.html"></use-html>
     </footer>
     <script build-only>
       hljs.highlightAll()
