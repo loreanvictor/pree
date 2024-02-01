@@ -328,6 +328,7 @@ Here is a comprehensive list of CLI options for `pree`:
 
 | Option              | Description | Example |
 | ---                 | ---         | ---     |
+| `-c`, `--config`    | Path to config file | `pree view -c ./pree.config.yml` |
 | `-p`, `--port`      | Port to use for serving content | `pree view -p 8080` |
 | `-P`, `--prod`      | Production mode (no build environment APIs) | `pree view -P` |
 | `-r`, `--root`      | Root directory of the content | `pree build docs site -r .` |

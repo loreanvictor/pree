@@ -21,6 +21,7 @@ export function args(): Args {
     .alias('N', 'namespace')
     .alias('i', 'include')
     .alias('e', 'exclude')
+    .alias('c', 'config')
     .parseSync(hideBin(process.argv))
 
   const command = parsed['help'] ? 'help' :
@@ -41,8 +42,8 @@ export function args(): Args {
 
   return {
     command,
-    src: src ?? root,
-    root: root ?? src,
+    src: src,
+    root: root,
     dest,
     port: parsed['port'] as number | undefined,
     prod: parsed['prod'] as boolean | undefined,
@@ -54,5 +55,6 @@ export function args(): Args {
       (Array.isArray(parsed['exclude']) ? parsed['exclude'] : [parsed['exclude']])
       : undefined,
     logLevel,
+    config: parsed['config'] as string | undefined,
   }
 }

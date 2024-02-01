@@ -1,0 +1,53 @@
+---
+layout: ../_layout.html
+---
+
+<m-d>
+
+# Usage
+
+👉 Preview your website:
+
+```bash
+pree view
+```
+```bash
+pree view <dir>
+```
+
+- `<dir>` is optional. If not provided, the current directory will be used.
+
+`pree view` starts a local server for viewing various files, also resolves layouting and metadata of HTML files. It also provides a nice file navigator to browse your content.
+
+<br>
+
+👉  Prebuild your website:
+
+```bash
+pree build <src> <dest>
+```
+
+- `<src>` can be an HTML file or a directory. If it's a directory, all HTML files in it will be processed recursively.
+- `<dest>` can be a file or a directory. If `<src>` is a directory, then `<dest>` must be a directory as well.
+
+`pre build` builds one or more HTML files, pre-rendering their web components. It launches a local server and uses an emulated browser to pre-render the files, mimicking actual browser behavior.
+
+<br>
+
+Example:
+
+```bash
+pree build docs/index.html dist/index.html
+```
+```bash
+pree build docs/ dist/
+```
+
+<br>
+
+> ⚡ **IMPORTANT**
+>
+> `pree` uses [declarative shadow DOM](https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_shadow_DOM#declaratively_with_html) for prerendering web components. Declarative shadow DOM is a relatively new feature not supported by [older browsers](https://caniuse.com/declarative-shadow-dom). Browsers that don't support it won't get the benefits of pre-rendering
+> web components. This also means that [build time components](#build-time-scripts) won't work in these browsers.
+
+</m-d>

@@ -2,6 +2,10 @@
 
 import { main } from './main'
 import { args } from './args'
+import { conf } from './conf'
+import { merge } from './types'
 
 const { command, ...options } = args()
-main(command, options).catch(() => process.exit(1))
+conf(options).then((config) => {
+  main(command, merge(options, config)).catch(() => process.exit(1))
+})

@@ -8,3 +8,22 @@
     --text-color: #fffcf3;
   }
 }
+
+main {
+  margin-top: 20vh;
+}
+
+small {
+  opacity: .5;
+}
+
+ul {
+  padding-left: 1em;
+}
+
+body>aside:first-of-type {
+  padding-top: 20vh;
+  ul {
+    list-style: none;
+  }
+}

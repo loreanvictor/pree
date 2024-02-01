@@ -1,0 +1,84 @@
+---
+layout: ../_layout.html
+---
+
+<m-d>
+# Layouting
+
+Specify the layout to be used for a page inside the front matter:
+
+```html
+---
+title: My Page
+layout: ./layouts/_main.html
+---
+
+<h1>My Page</h1>
+<p>
+  This is my page.
+</p>
+```
+```html
+<!-- ./layouts/_main.html -->
+<aside>Contents of the side menu</aside>
+<main>
+  <!-- 👇 This is where content would go -->
+  <slot></slot>
+</main>
+<footer>Some footer content</footer>
+```
+
+<br>
+
+Use named slots to fill in different parts of the parent layout:
+
+```html
+---
+title: My Page
+layout: ./layouts/_main.html
+---
+
+<h1>My Page</h1>
+<p>
+  This is my page.
+</p>
+<span slot="footer">Some extra footer content</span>
+```
+```html
+<!-- ./layouts/_main.html -->
+<aside>Contents of the side menu</aside>
+<main>
+  <!-- 👇 This is where content would go -->
+  <slot></slot>
+</main>
+<footer>
+  Some generic footer content |
+  <!-- 👇 This is where content with slot=footer will go -->
+  <slot name="footer"></slot>
+</footer>
+```
+
+<br>
+
+> 💡 **NOTE**
+>
+> Elements with named slots should reside on the root of the child document. `pree` will ignore them otherwise
+> as they might be part of a web component template.
+>
+> ```html
+> ---
+> layout: ./layouts/_main.html
+> ---
+> <!-- ✅ This is OK -->
+> <span slot="footer">Some extra footer content</span>
+> ```
+> ```html
+> ---
+> layout: ./layouts/_main.html
+> ---
+> <!-- ❌ This is WRONG (man). -->
+> <div>
+>   <span slot="footer">Some extra footer content</span>
+> </div>
+> ```
+</m-d>
