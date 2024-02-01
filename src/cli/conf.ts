@@ -13,7 +13,7 @@ const _DefaultOptions = {
 }
 
 export async function conf(options?: ConfigOptions) {
-  const { config } = { ..._DefaultOptions, ...options }
+  const config = options?.config ?? _DefaultOptions.config
 
   const logger = createLogger({ ...options, name: 'conf.' })
 

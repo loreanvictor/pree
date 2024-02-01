@@ -1,11 +1,14 @@
-:root {
-  --primary-color: #2D9596;
+@media (prefers-color-scheme: light) {
+  :root {
+    --primary-color: #265073;
+  }
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --background-color: #000000;
     --text-color: #fffcf3;
+    --primary-color: #9AD0C2;
   }
 }
 
