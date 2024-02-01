@@ -29,22 +29,18 @@
 <template shadowrootmode="open"><slot></slot></template></m-d><template shadowrootmode="open"><slot></slot></template></use-html>
     </aside>
     <main>
-      <picture>
-  <source srcset="./images/logo-dark.svg" media="(prefers-color-scheme: dark)">
-  <img width="192px" src="./images/logo-light.svg" alt="pree logo">
-</picture>
-
-<br><br>
-<m-d><p><code>pree</code> is a minimalistic tool that prebuilds HTML files, and:</p>
-<p>🧬   it pre-renders web components <small>(faster loading, MUCH smoother UX)</small> <br>🏗️   it handles layouting and shared metadata <small>(no copy-pasta, breezy DX)</small> <br>👻   it enables build-time only components and scripts <small>(even faster loading)</small> <br>✨   it provides build environment access to components and scripts <small>(for some magical web components)</small></p>
-<br>
-
-<pre><code class="language-bash hljs" data-highlighted="yes">pree view     &lt;src&gt;                      <span class="hljs-comment"># 👉 preview your website</span>
-pree build    &lt;src&gt; &lt;dest&gt;               <span class="hljs-comment"># 👉 prebuild your website</span>
+      <m-d><h1>Installation</h1>
+<p>You need <a href="https://nodejs.org/en/">Node</a>. Use <a href="https://www.npmjs.com/package/npx">npx</a> or install globally:</p>
+<pre><code class="language-bash hljs" data-highlighted="yes">npx pree view
 </code></pre>
-<p></p>
+<pre><code class="language-bash hljs" data-highlighted="yes">npm i -g pree
+</code></pre>
+<p>To update (or to ensure you are using the latest version), use <code>@latest</code> tag:</p>
+<pre><code class="language-bash hljs" data-highlighted="yes">npx pree@latest view
+</code></pre>
+<pre><code class="language-bash hljs" data-highlighted="yes">npm i -g pree@latest
+</code></pre>
 <template shadowrootmode="open"><slot></slot></template></m-d>
-
     </main>
     <footer>
       <div align="right">

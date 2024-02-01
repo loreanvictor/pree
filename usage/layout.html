@@ -1,0 +1,112 @@
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <base href="/pree/">
+
+    <title>pree: prebuild html files</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/nokss">
+    <link rel="stylesheet" href="./theme.css">
+    
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/highlight.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github-dark.min.css">
+
+    
+    
+    
+    
+  </head>
+  <body>
+    <aside>
+      <use-html src="./_toc.html"><m-d id="toc"><ul>
+<li><a href="index">Home</a></li>
+<li><a href="install">Installation</a></li>
+<li><a href="usage/index">Usage</a><ul>
+<li><a href="usage/layout">Layouting</a></li>
+</ul>
+</li>
+</ul>
+<template shadowrootmode="open"><slot></slot></template></m-d><template shadowrootmode="open"><slot></slot></template></use-html>
+    </aside>
+    <main>
+      <m-d><h1>Layouting</h1>
+<p>Specify the layout to be used for a page inside the front matter:</p>
+<pre><code class="language-html hljs language-xml" data-highlighted="yes">---
+title: My Page
+layout: ./layouts/_main.html
+---
+
+<span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>My Page<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>
+This is my page.
+<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+</code></pre>
+<pre><code class="language-html hljs language-xml" data-highlighted="yes"><span class="hljs-comment">&lt;!-- ./layouts/_main.html --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">aside</span>&gt;</span>Contents of the side menu<span class="hljs-tag">&lt;/<span class="hljs-name">aside</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">main</span>&gt;</span>
+<span class="hljs-comment">&lt;!-- 👇 This is where content would go --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">slot</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">slot</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">main</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">footer</span>&gt;</span>Some footer content<span class="hljs-tag">&lt;/<span class="hljs-name">footer</span>&gt;</span>
+</code></pre>
+<br>
+
+<p>Use named slots to fill in different parts of the parent layout:</p>
+<pre><code class="language-html hljs language-xml" data-highlighted="yes">---
+title: My Page
+layout: ./layouts/_main.html
+---
+
+<span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>My Page<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>
+This is my page.
+<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">slot</span>=<span class="hljs-string">"footer"</span>&gt;</span>Some extra footer content<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+</code></pre>
+<pre><code class="language-html hljs language-xml" data-highlighted="yes"><span class="hljs-comment">&lt;!-- ./layouts/_main.html --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">aside</span>&gt;</span>Contents of the side menu<span class="hljs-tag">&lt;/<span class="hljs-name">aside</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">main</span>&gt;</span>
+<span class="hljs-comment">&lt;!-- 👇 This is where content would go --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">slot</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">slot</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">main</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">footer</span>&gt;</span>
+Some generic footer content |
+<span class="hljs-comment">&lt;!-- 👇 This is where content with slot=footer will go --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">slot</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"footer"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">slot</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">footer</span>&gt;</span>
+</code></pre>
+<br>
+
+<blockquote>
+<p>💡 <strong>NOTE</strong></p>
+<p>Elements with named slots should reside on the root of the child document. <code>pree</code> will ignore them otherwise
+as they might be part of a web component template.</p>
+<pre><code class="language-html hljs language-xml" data-highlighted="yes">---
+layout: ./layouts/_main.html
+---
+<span class="hljs-comment">&lt;!-- ✅ This is OK --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">slot</span>=<span class="hljs-string">"footer"</span>&gt;</span>Some extra footer content<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+</code></pre>
+<pre><code class="language-html hljs language-xml" data-highlighted="yes">---
+layout: ./layouts/_main.html
+---
+<span class="hljs-comment">&lt;!-- ❌ This is WRONG (man). --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">slot</span>=<span class="hljs-string">"footer"</span>&gt;</span>Some extra footer content<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+</code></pre>
+</blockquote>
+<template shadowrootmode="open"><slot></slot></template></m-d>
+    </main>
+    <footer>
+      <div align="right">
+        <gh-link>github<template shadowrootmode="open"><link rel="stylesheet" href="https://unpkg.com/nokss/dist/bundles/md.css"><a ref="?" target="_blank" href="https://github.com/loreanvictor/pree"><slot>GitHub</slot></a></template></gh-link> | <npm-badge><template shadowrootmode="open"><link rel="stylesheet" href="https://unpkg.com/nokss/dist/bundles/md.css"><style>img {
+        vertical-align: middle;
+        margin-left: 0.5rem;
+      }</style><a ref="?" target="_blank" href="https://www.npmjs.com/package/pree">pree</a><img alt="npm" ref="?" src="https://img.shields.io/npm/v/pree.svg?label=&amp;style=normal"></template></npm-badge>
+      </div>
+    </footer>
+    
+  
+
+</body></html>

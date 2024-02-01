@@ -1,0 +1,80 @@
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <base href="/pree/">
+
+    <title>pree: prebuild html files</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/nokss">
+    <link rel="stylesheet" href="./theme.css">
+    
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/highlight.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github-dark.min.css">
+
+    
+    
+    
+    
+  </head>
+  <body>
+    <aside>
+      <use-html src="./_toc.html"><m-d id="toc"><ul>
+<li><a href="index">Home</a></li>
+<li><a href="install">Installation</a></li>
+<li><a href="usage/index">Usage</a><ul>
+<li><a href="usage/layout">Layouting</a></li>
+</ul>
+</li>
+</ul>
+<template shadowrootmode="open"><slot></slot></template></m-d><template shadowrootmode="open"><slot></slot></template></use-html>
+    </aside>
+    <main>
+      <m-d><h1>Usage</h1>
+<p>👉 Preview your website:</p>
+<pre><code class="language-bash hljs" data-highlighted="yes">pree view
+</code></pre>
+<pre><code class="language-bash hljs" data-highlighted="yes">pree view &lt;<span class="hljs-built_in">dir</span>&gt;
+</code></pre>
+<ul>
+<li><code>&lt;dir&gt;</code> is optional. If not provided, the current directory will be used.</li>
+</ul>
+<p><code>pree view</code> starts a local server for viewing various files, also resolves layouting and metadata of HTML files. It also provides a nice file navigator to browse your content.</p>
+<br>
+
+<p>👉  Prebuild your website:</p>
+<pre><code class="language-bash hljs" data-highlighted="yes">pree build &lt;src&gt; &lt;dest&gt;
+</code></pre>
+<ul>
+<li><code>&lt;src&gt;</code> can be an HTML file or a directory. If it's a directory, all HTML files in it will be processed recursively.</li>
+<li><code>&lt;dest&gt;</code> can be a file or a directory. If <code>&lt;src&gt;</code> is a directory, then <code>&lt;dest&gt;</code> must be a directory as well.</li>
+</ul>
+<p><code>pre build</code> builds one or more HTML files, pre-rendering their web components. It launches a local server and uses an emulated browser to pre-render the files, mimicking actual browser behavior.</p>
+<br>
+
+<p>Example:</p>
+<pre><code class="language-bash hljs" data-highlighted="yes">pree build docs/index.html dist/index.html
+</code></pre>
+<pre><code class="language-bash hljs" data-highlighted="yes">pree build docs/ dist/
+</code></pre>
+<br>
+
+<blockquote>
+<p>⚡ <strong>IMPORTANT</strong></p>
+<p><code>pree</code> uses <a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_shadow_DOM#declaratively_with_html">declarative shadow DOM</a> for prerendering web components. Declarative shadow DOM is a relatively new feature not supported by <a href="https://caniuse.com/declarative-shadow-dom">older browsers</a>. Browsers that don't support it won't get the benefits of pre-rendering
+web components. This also means that <a href="#build-time-scripts">build time components</a> won't work in these browsers.</p>
+</blockquote>
+<p></p>
+<template shadowrootmode="open"><slot></slot></template></m-d>
+    </main>
+    <footer>
+      <div align="right">
+        <gh-link>github<template shadowrootmode="open"><link rel="stylesheet" href="https://unpkg.com/nokss/dist/bundles/md.css"><a ref="?" target="_blank" href="https://github.com/loreanvictor/pree"><slot>GitHub</slot></a></template></gh-link> | <npm-badge><template shadowrootmode="open"><link rel="stylesheet" href="https://unpkg.com/nokss/dist/bundles/md.css"><style>img {
+        vertical-align: middle;
+        margin-left: 0.5rem;
+      }</style><a ref="?" target="_blank" href="https://www.npmjs.com/package/pree">pree</a><img alt="npm" ref="?" src="https://img.shields.io/npm/v/pree.svg?label=&amp;style=normal"></template></npm-badge>
+      </div>
+    </footer>
+    
+  
+
+</body></html>
