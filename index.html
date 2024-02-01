@@ -35,17 +35,86 @@
 </script><template shadowrootmode="open"><slot></slot></template></use-html>
     </aside>
     <main>
-      <picture>
+      <script src="./components/emo-li.js" type="module"></script>
+
+<picture>
   <source srcset="./images/logo-dark.svg" media="(prefers-color-scheme: dark)">
   <img width="192px" src="./images/logo-light.svg" alt="pree logo">
 </picture>
 
 <br><br>
 <m-d><p><code>pree</code> is a minimalistic tool that prebuilds HTML files, and:</p>
-<p>🧬   it pre-renders web components <small>(faster loading, MUCH smoother UX)</small> <br>🏗️   it handles layouting and shared metadata <small>(no copy-pasta, breezy DX)</small> <br>👻   it enables build-time only components and scripts <small>(even faster loading)</small> <br>✨   it provides build environment access to components and scripts <small>(for some magical web components)</small></p>
-<br>
+<template shadowrootmode="open"><slot></slot></template></m-d>
 
-<pre><code class="language-bash hljs" data-highlighted="yes">pree view     &lt;src&gt;                      <span class="hljs-comment"># 👉 preview your website</span>
+<style>
+small {
+  opacity: .5;
+  white-space: nowrap;
+}
+</style>
+
+<emo-li>
+  <span slot="emo">🧬</span>
+  it pre-renders web components <small>(faster loading, MUCH smoother UX)</small>
+<template shadowrootmode="open">
+  <style>
+  .holder {
+    display: flex;
+    gap: 1rem;
+  }
+  </style>
+  <div class="holder">
+    <span><slot name="emo"></slot></span>
+    <div><slot></slot></div>
+  </div>
+</template></emo-li>
+<emo-li>
+  <span slot="emo">🏗️</span>
+  it handles layouting and shared metadata <small>(no copy-pasta, breezy DX)</small>
+<template shadowrootmode="open">
+  <style>
+  .holder {
+    display: flex;
+    gap: 1rem;
+  }
+  </style>
+  <div class="holder">
+    <span><slot name="emo"></slot></span>
+    <div><slot></slot></div>
+  </div>
+</template></emo-li>
+<emo-li>
+  <span slot="emo">👻</span>
+  it enables build-time only components and scripts <small>(even faster loading)</small>
+<template shadowrootmode="open">
+  <style>
+  .holder {
+    display: flex;
+    gap: 1rem;
+  }
+  </style>
+  <div class="holder">
+    <span><slot name="emo"></slot></span>
+    <div><slot></slot></div>
+  </div>
+</template></emo-li>
+<emo-li>
+  <span slot="emo">✨</span>
+  it provides build environment access to components and scripts <small>(for some magical web components)</small>
+<template shadowrootmode="open">
+  <style>
+  .holder {
+    display: flex;
+    gap: 1rem;
+  }
+  </style>
+  <div class="holder">
+    <span><slot name="emo"></slot></span>
+    <div><slot></slot></div>
+  </div>
+</template></emo-li>
+
+<m-d><pre><code class="language-bash hljs" data-highlighted="yes">pree view     &lt;src&gt;                      <span class="hljs-comment"># 👉 preview your website</span>
 pree build    &lt;src&gt; &lt;dest&gt;               <span class="hljs-comment"># 👉 prebuild your website</span>
 </code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
 <p></p>
