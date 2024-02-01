@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>pree: prebuild html files</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/nokss" />
+    <link rel="stylesheet" href="./theme.css" />
+    
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/highlight.min.js"></script>
+    <link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github-dark.min.css">
+
+      <script build-only type="module" src="./components/npm-badge.js"></script>
+  </head>
+  <body>
+    <main>
+      <slot></slot>
+    </main>
+    <footer>
+      <div align="right">
+        <a href="https://github.com/loreanvictor/pree" target="_blank">github</a>
+        |
+        <npm-badge></npm-badge>
+      </div>
+    </footer>
+    <script build-only>hljs.highlightAll();</script>
+  </body>
+</html>
