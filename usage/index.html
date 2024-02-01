@@ -15,13 +15,11 @@
 
     
     
-    
-    
 
     <script type="module" src="./components/prev-next.js"></script>
   <title>pree: usage</title></head>
   <body>
-    <aside>
+    <aside aria-hidden="true">
       <use-html src="./_toc.html"><m-d id="toc"><ul>
 <li><a href="index">Home</a></li>
 <li><a href="install">Installation</a></li>
@@ -107,18 +105,40 @@ web components. This also means that <a href="#build-time-scripts">build time co
           flex-basis: flex-end;
           text-align: right;
         }
+
+        @media (max-width: 480px) {
+          &:first-child:not(:last-child) {
+            display: none;
+          }
+        }
       }
 
       margin-bottom: 4rem;
     }</style><section role="feed" ref="?" aria-hidden="true"></section></template></prev-next>
     </main>
     <footer>
-      <div align="right">
-        <gh-link>github<template shadowrootmode="open"><link rel="stylesheet" href="https://unpkg.com/nokss/dist/bundles/md.css"><a ref="?" target="_blank" href="https://github.com/loreanvictor/pree"><slot>GitHub</slot></a></template></gh-link> | <npm-badge><template shadowrootmode="open"><link rel="stylesheet" href="https://unpkg.com/nokss/dist/bundles/md.css"><style>img {
+      <use-html src="./_footer.html"><script type="module" src="./components/menu-toggle.js"></script>
+
+
+
+<div style="display: flex">
+  <menu-toggle><template shadowrootmode="open"><link rel="stylesheet" href="https://unpkg.com/nokss"><link rel="stylesheet" href="https://unpkg.com/graphis/font/graphis.css"><style>.icon {
+      font-family: 'graphis', sans-serif;
+      font-style: normal;
+      font-size: 1.2rem;
+    }
+
+    button[role="switch"][aria-checked="true"]>span{
+      color: var(--background-color);
+    }</style><button ref="?" role="switch" aria-label="toggle sidebar" aria-checked="true"><span class="icon">❌</span><span class="icon">⩧</span></button></template></menu-toggle>
+  <div style="flex-grow: 1"></div>
+  <div align="right">
+    <gh-link>github<template shadowrootmode="open"><link rel="stylesheet" href="https://unpkg.com/nokss/dist/bundles/md.css"><a ref="?" target="_blank" href="https://github.com/loreanvictor/pree"><slot>GitHub</slot></a></template></gh-link> | <npm-badge><template shadowrootmode="open"><link rel="stylesheet" href="https://unpkg.com/nokss/dist/bundles/md.css"><style>img {
         vertical-align: middle;
         margin-left: 0.5rem;
       }</style><a ref="?" target="_blank" href="https://www.npmjs.com/package/pree">pree</a><img alt="npm" ref="?" src="https://img.shields.io/npm/v/pree.svg?label=&amp;style=normal"></template></npm-badge>
-      </div>
+  </div>
+</div><template shadowrootmode="open"><slot></slot></template></use-html>
     </footer>
     
     <script type="module" src="code.js"></script>
