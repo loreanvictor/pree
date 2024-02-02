@@ -19,9 +19,7 @@
     <script src="./components/emo-li.js" type="module"></script>
     <script type="module" src="./components/prev-next.js"></script>
   <title>pree: why?</title></head>
-  <body>
-    
-    <aside aria-hidden="true">
+  <body><aside aria-hidden="true">
       <use-html src="./_toc.html"><m-d id="toc"><ul>
 <li><a href="index">Home</a></li>
 <li><a href="motivation">Motivation</a></li>
@@ -131,12 +129,13 @@ website. <code>pree</code> just leverages web standards (e.g. <a href="https://d
 <p>You can. It is also pretty convenient. Just use a web component like <a href="https://zerodevx.github.io/zero-md/">zero-md</a>. Load it <code>build-only</code>, and <code>pree</code> ensures your customers get a pre-rendered version without the extra asset overhead.</p>
 <br>
 
-<h4>Q: Whats with the front matter? What about pure HTML?</h4>
+<h5>Q: Whats with the front matter? What about pure HTML?</h5>
 <p>Honsetly, I couldn't figure out a neat way of doing that with web components without creating a weird developer experience. If you can think of such a way, please let me know. I'm particularly salty that I can't 
 have pure HTML.</p>
 <br>
 
 <template shadowrootmode="open"><slot></slot></template></m-d>
+
       <hr>
       <prev-next><template shadowrootmode="open"><link rel="stylesheet" href="https://unpkg.com/nokss"><link rel="stylesheet" href="https://unpkg.com/graphis/font/graphis.css"><style>i {
       font-family: 'graphis', sans-serif;
@@ -180,7 +179,26 @@ have pure HTML.</p>
       }
 
       margin-bottom: 4rem;
-    }</style><section role="feed" ref="?" aria-hidden="true"></section></template></prev-next>
+    }</style><section role="feed" ref="?">        
+        
+          <article>
+            <i>⬅</i>
+            <a href="http://localhost:3000/pree/index">
+              <small>Previosly</small><br>
+              Home
+            </a>
+          </article>
+          
+        
+          <article class="next">
+            <a href="http://localhost:3000/pree/install">
+              <small>Up Next</small><br>
+              Installation
+            </a>
+            <i>➡</i>
+          </article>
+          
+      </section></template></prev-next>
     </main>
     <footer>
       <use-html src="./_footer.html"><script type="module" src="./components/menu-toggle.js"></script>
