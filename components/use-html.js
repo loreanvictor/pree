@@ -11,17 +11,16 @@ define('use-html', ({ src }) => {
       host.innerHTML = text
 
       Array.from(host.querySelectorAll('script'))
-        .forEach( oldScriptEl => {
-          const newScriptEl = document.createElement('script')
-
-          Array.from(oldScriptEl.attributes).forEach( attr => {
-            newScriptEl.setAttribute(attr.name, attr.value)
+        .forEach(script => {
+          const lively = document.createElement('script')
+          Array.from(script.attributes).forEach(attr => {
+            try {
+              lively.setAttribute(attr.name, attr.value)
+            } catch { /***/ }
           })
 
-          const scriptText = document.createTextNode(oldScriptEl.innerHTML)
-          newScriptEl.appendChild(scriptText)
-
-          oldScriptEl.parentNode.replaceChild(newScriptEl, oldScriptEl)
+          lively.textContent = script.textContent
+          script.parentNode.replaceChild(lively, script)
         })
 
       dispatch({ src, html: text })
