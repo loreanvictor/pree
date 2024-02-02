@@ -1,0 +1,215 @@
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <base href="/pree/">
+
+    
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon.ico">
+
+    <link rel="stylesheet" href="https://unpkg.com/nokss">
+    <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://esm.sh/graphis/font/graphis.css">
+    <link rel="stylesheet" href="./theme.css">
+    
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/highlight.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github-dark.min.css">
+
+    
+    
+
+    <script src="./components/emo-li.js" type="module"></script>
+    <script type="module" src="./components/prev-next.js"></script>
+  <title>pree: why?</title></head>
+  <body>
+    
+    <aside aria-hidden="true">
+      <use-html src="./_toc.html"><m-d id="toc"><ul>
+<li><a href="index">Home</a></li>
+<li><a href="motivation">Motivation</a></li>
+<li><a href="install">Installation</a></li>
+<li><a href="usage/index">Usage</a><ul>
+<li><a href="usage/layout">Layouting</a></li>
+</ul>
+</li>
+</ul>
+<template shadowrootmode="open"><slot></slot></template></m-d>
+
+<script>
+  setTimeout(() => document.querySelector('prev-next').controls.load(), 500)
+</script><template shadowrootmode="open"><slot></slot></template></use-html>
+    </aside>
+    <main>
+      <style>
+  main p {
+    margin-bottom: 1.5em;
+  }
+</style>
+
+<m-d><h3>No Time To Build</h3>
+<p>A ton of modern web development is wrestling with build tools. Transpilers, bundlers, runtimes, test runners, devtools, packages with various module formats, frameworks with custom syntax and custom devtools, all need to play nice together. In the end, more time is spent configuring build tools instead of building.</p>
+<p>But we don't need to deal with this mess anymore. Modern web features such as <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules">ESM</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script/type/importmap">import maps</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/Web_Components">Web Components</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_nesting/Using_CSS_nesting">nested styles</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties">CSS variables</a>, etc. enable building websites by writing plain HTML, CSS and JavaScript, no build tools involved.</p>
+<br>
+
+<hr>
+<br>
+
+<p>Well, thats actually just the idea. In practice, if you have big applications, you still might want to use bundlers (though <a href="https://world.hey.com/dhh/once-1-is-entirely-nobuild-for-the-front-end-ce56f6d7">it is possible</a> to not build your application in such a way). Even for smaller projects like documentation sites or blogs, which have fewer moving parts and require less logic on the client, there are inherent short comings:</p>
+<template shadowrootmode="open"><slot></slot></template></m-d>
+
+<emo-li>
+  <span slot="emo">🧬</span>
+  Web components render on client. This means inevitably jankier user experience. You'd need a build step to pre-render them and get good perceived speed and performance.
+<template shadowrootmode="open">
+  <style>
+  .holder {
+    display: flex;
+    gap: 1rem;
+  }
+  </style>
+  <div class="holder">
+    <span><slot name="emo"></slot></span>
+    <div><slot></slot></div>
+  </div>
+</template></emo-li>
+<br>
+<emo-li>
+  <span slot="emo">🏗️</span>
+  Your website typically has multiple pages. They share layout and differ in metadata. You'd need a build step, or you'd need to do tons of copy pasting yourself.
+<template shadowrootmode="open">
+  <style>
+  .holder {
+    display: flex;
+    gap: 1rem;
+  }
+  </style>
+  <div class="holder">
+    <span><slot name="emo"></slot></span>
+    <div><slot></slot></div>
+  </div>
+</template></emo-li>
+<br>
+<emo-li>
+  <span slot="emo">👻</span>
+  In many cases most components are just stylistic: they don't do anything on the client. You'd need a build step to remove them from being sent to the client, greatly increasing page speed by simply shipping less.
+<template shadowrootmode="open">
+  <style>
+  .holder {
+    display: flex;
+    gap: 1rem;
+  }
+  </style>
+  <div class="holder">
+    <span><slot name="emo"></slot></span>
+    <div><slot></slot></div>
+  </div>
+</template></emo-li>
+
+<m-d><br>
+
+<hr>
+<br>
+
+<h3>Here comes <code>pree</code></h3>
+<p><code>pree</code> aims to fill in these gaps and basically just that. It is specifically designed for building static sites such as blogs or documentations. The goal is to leverage web standards to provide the most smooth and simple developer experience for building such websites.</p>
+<ul>
+<li>It prebuilds HTML files, pre-rendering all web components using <a href="https://developer.chrome.com/docs/css-ui/declarative-shadow-dom">declarative shadow DOM</a>.</li>
+<li>It handles metadata with <a href="https://www.scribendi.com/academy/articles/front_matter.en.html#:~:text=Front%20matter%20is%20the%20first,a%20preface%2C%20and%20much%20more.">front matter</a>, handling layouting with <code>&lt;slot&gt;</code> elements.</li>
+<li>It handles build-only components and scripts, by simply removing <code>&lt;script build-only&gt;</code> tags.</li>
+</ul>
+<p>This means, barring the front matter, you will be writing HTML, CSS and JavaScript that browsers could simply just load. <code>pree</code> just makes stuff faster by pre-running some scripts and removing some, resulting in a basically no-build developer experience that also rocks top-tier performance.</p>
+<p>✨ Ok to be 100% honest, <code>pree</code> also does a little thing on top: it exposes special APIs accessible by scripts and components during build time, allowing them to access information about the build environment (such as git data, filesystem information, environment variables, etc.). This allows web components to act even smarter, while remaining standard compliant.</p>
+<br>
+
+<template shadowrootmode="open"><slot></slot></template></m-d>
+      <hr>
+      <prev-next><template shadowrootmode="open"><link rel="stylesheet" href="https://unpkg.com/nokss"><link rel="stylesheet" href="https://unpkg.com/graphis/font/graphis.css"><style>i {
+      font-family: 'graphis', sans-serif;
+      font-style: normal;
+      font-size: 2rem;
+      opacity: .25;
+    }
+
+    section[role="feed"] {
+      flex-direction: row;
+      &[aria-hidden] {
+        opacity: 0;
+      }
+
+      opacity: 1;
+      transition: opacity .5s;
+
+      article {
+        flex-grow: 1;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 1rem;
+
+        & > a {
+          display: block;
+          flex-grow: 1;
+          text-decoration: none!important;
+        }
+
+        &.next {
+          flex-basis: flex-end;
+          text-align: right;
+        }
+
+        @media (max-width: 480px) {
+          &:first-child:not(:last-child) {
+            display: none;
+          }
+        }
+      }
+
+      margin-bottom: 4rem;
+    }</style><section role="feed" ref="?">        
+        
+          <article>
+            <i>⬅</i>
+            <a href="http://localhost:3000/pree/index">
+              <small>Previosly</small><br>
+              Home
+            </a>
+          </article>
+          
+        
+          <article class="next">
+            <a href="http://localhost:3000/pree/install">
+              <small>Up Next</small><br>
+              Installation
+            </a>
+            <i>➡</i>
+          </article>
+          
+      </section></template></prev-next>
+    </main>
+    <footer>
+      <use-html src="./_footer.html"><script type="module" src="./components/menu-toggle.js"></script>
+
+
+
+<div style="display: flex">
+  <menu-toggle><template shadowrootmode="open"><link rel="stylesheet" href="https://unpkg.com/nokss"><link rel="stylesheet" href="https://unpkg.com/graphis/font/graphis.css"><style>.icon {
+      font-family: 'graphis', sans-serif;
+      font-style: normal;
+      font-size: 1.2rem;
+    }
+
+    button[role="switch"][aria-checked="true"]>span{
+      color: var(--background-color);
+    }</style><button ref="?" role="switch" aria-label="toggle sidebar" aria-checked="true"><span class="icon">❌</span><span class="icon">⩧</span></button></template></menu-toggle>
+  <div style="flex-grow: 1"></div>
+  <div align="right">
+    <gh-link>github<template shadowrootmode="open"><link rel="stylesheet" href="https://unpkg.com/nokss/dist/bundles/md.css"><a ref="?" target="_blank" href="https://github.com/loreanvictor/pree"><slot>GitHub</slot></a></template></gh-link> | <npm-badge><template shadowrootmode="open"><link rel="stylesheet" href="https://unpkg.com/nokss/dist/bundles/md.css"><style>img {
+        vertical-align: middle;
+        margin-left: 0.5rem;
+      }</style><a ref="?" target="_blank" href="https://www.npmjs.com/package/pree">pree</a><img alt="npm" ref="?" src="https://img.shields.io/npm/v/pree.svg?label=&amp;style=normal"></template></npm-badge>
+  </div>
+</div><template shadowrootmode="open"><slot></slot></template></use-html>
+    </footer>
+    
+    <script type="module" src="code.js"></script>
+  
+
+</body></html>

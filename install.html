@@ -16,12 +16,15 @@
     
     
 
+    <script src="./components/emo-li.js" type="module"></script>
     <script type="module" src="./components/prev-next.js"></script>
   <title>pree: installation</title></head>
   <body>
+    
     <aside aria-hidden="true">
       <use-html src="./_toc.html"><m-d id="toc"><ul>
 <li><a href="index">Home</a></li>
+<li><a href="motivation">Motivation</a></li>
 <li><a href="install">Installation</a></li>
 <li><a href="usage/index">Usage</a><ul>
 <li><a href="usage/layout">Layouting</a></li>
@@ -36,17 +39,24 @@
     </aside>
     <main>
       <m-d><h1>Installation</h1>
-<p>You need <a href="https://nodejs.org/en/">Node</a>. Use <a href="https://www.npmjs.com/package/npx">npx</a> or install globally:</p>
-<pre><code class="language-bash hljs" data-highlighted="yes">npx pree view
+<p>You need <a href="https://nodejs.org/en/">Node</a>. Install globally (or use <a href="https://www.npmjs.com/package/npx">npx</a>):</p>
+<pre><code class="language-bash hljs" data-highlighted="yes">npm i -g pree     <span class="hljs-comment"># ⬇️ installs the CLI</span>
 </code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
-<pre><code class="language-bash hljs" data-highlighted="yes">npm i -g pree
+<pre><code class="language-bash hljs" data-highlighted="yes">npx pree view     <span class="hljs-comment"># 🚀 runs the CLI without installing it</span>
 </code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
+<br>
+
 <p>To update (or to ensure you are using the latest version), use <code>@latest</code> tag:</p>
-<pre><code class="language-bash hljs" data-highlighted="yes">npx pree@latest view
-</code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
 <pre><code class="language-bash hljs" data-highlighted="yes">npm i -g pree@latest
 </code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
-<template shadowrootmode="open"><slot></slot></template></m-d>
+<pre><code class="language-bash hljs" data-highlighted="yes">npx pree@latest view
+</code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
+<br>
+
+<p>👉 Check for updates:</p>
+<pre><code class="language-bash hljs" data-highlighted="yes">pree version
+</code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
+<br><template shadowrootmode="open"><slot></slot></template></m-d>
       <hr>
       <prev-next><template shadowrootmode="open"><link rel="stylesheet" href="https://unpkg.com/nokss"><link rel="stylesheet" href="https://unpkg.com/graphis/font/graphis.css"><style>i {
       font-family: 'graphis', sans-serif;
