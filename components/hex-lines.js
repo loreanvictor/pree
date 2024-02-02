@@ -51,7 +51,7 @@ define('hex-line', () => {
 })
 
 
-define('hex-lines', ({ N = 16 }) => `
+define('hex-lines', ({ n = 16 }) => `
   <style>
     :host {
       position: fixed;
@@ -62,5 +62,5 @@ define('hex-lines', ({ N = 16 }) => `
       overflow: hidden;
     }
   </style>
-  ${'<hex-line></hex-line>'.repeat(parseInt(N))}
-`)
+  ${'<hex-line></hex-line>'.repeat(parseInt(n))}
+  `)

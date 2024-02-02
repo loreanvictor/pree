@@ -20,7 +20,7 @@
     <script type="module" src="./components/prev-next.js"></script>
   <title>pree: why?</title></head>
   <body><aside aria-hidden="true">
-      <use-html src="./_toc.html"><m-d id="toc"><ul>
+      <use-html src="./_toc.html"><m-d id="toc" onparse="document.querySelector('prev-next').controls.load()"><ul>
 <li><a href="index">Home</a></li>
 <li><a href="motivation">Motivation</a></li>
 <li><a href="install">Installation</a></li>
@@ -30,10 +30,7 @@
 </li>
 </ul>
 <template shadowrootmode="open"><slot></slot></template></m-d>
-
-<script>
-  setTimeout(() => document.querySelector('prev-next').controls.load(), 500)
-</script><template shadowrootmode="open"><slot></slot></template></use-html>
+<template shadowrootmode="open"><slot></slot></template></use-html>
     </aside>
     <main>
       <style>
@@ -44,13 +41,13 @@
 
 <m-d><h3>No Time To Build</h3>
 <p>A ton of modern web development is wrestling with build tools. Transpilers, bundlers, runtimes, test runners, devtools, packages with various module formats, frameworks with custom syntax and custom devtools, all need to play nice together. In the end, more time is spent configuring build tools instead of building.</p>
-<p>Should we keep torturing ourselves though? Modern web features such as <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules">ESM</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script/type/importmap">import maps</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/Web_Components">Web Components</a>, <a href="https://developer.chrome.com/docs/css-ui/declarative-shadow-dom">declarative shadow DOM</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_nesting/Using_CSS_nesting">nested styles</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties">CSS variables</a>, etc. enable building nice smooth experiences by writing plain HTML, CSS and JavaScript, no build tools involved. Perhaps its time to adopt a <a href="https://world.hey.com/dhh/you-can-t-get-faster-than-no-build-7a44131c">no build</a> approach, and enjoy the simplicity and speed of the modern web.</p>
+<p>Should we keep torturing ourselves though? Modern web features such as <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules">ESM</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script/type/importmap">import maps</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/Web_Components">Web Components</a>, <a href="https://developer.chrome.com/docs/css-ui/declarative-shadow-dom">declarative shadow DOM</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_nesting/Using_CSS_nesting">nested styles</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties">CSS variables</a>, etc. enable building nice smooth experiences by writing plain HTML, CSS and JavaScript, no build tools involved. Perhaps its time to adopt a <a href="https://world.hey.com/dhh/you-can-t-get-faster-than-no-build-7a44131c">"no build"</a> approach, embracing the simplicity and speed of the modern web.</p>
 <br>
 
 <hr>
 <br>
 
-<p>Well, there are still gaps. Big applications still might want to use bundlers, though <a href="https://world.hey.com/dhh/once-1-is-entirely-nobuild-for-the-front-end-ce56f6d7">it is possible</a> to avoid them. However, even for smaller projects like documentation sites or blogs, which have fewer moving parts and require less logic on the client, there are fundamental short comings:</p>
+<p>In practice, there are still gaps. Big applications still might want to use bundlers, though <a href="https://world.hey.com/dhh/once-1-is-entirely-nobuild-for-the-front-end-ce56f6d7">it is possible</a> to avoid them. Even for smaller projects like documentation sites or blogs, which have fewer moving parts and require less logic on the client, there are fundamental short comings:</p>
 <template shadowrootmode="open"><slot></slot></template></m-d>
 
 <emo-li>
@@ -87,7 +84,7 @@
 <br>
 <emo-li>
   <span slot="emo">👻</span>
-  In many components are just stylistic: they don't do anything on the client. If you could remove them, you wouldn't just be cutting down on client-side assets, but also client-side work that needs to be done, but that'd still require a build step.
+  Many components are static: they don't do anything on the client. If you could remove them, you wouldn't just be cutting down on downloaded assets, but also on unnecessary work the client has to do. But then again, that wouldn't be possible without a build step.
 <template shadowrootmode="open">
   <style>
   .holder {
@@ -107,31 +104,46 @@
 <br>
 
 <h3>Here comes <code>pree</code></h3>
-<p><code>pree</code> aims to fill in these gaps as leanly as it can. It is specifically designed for building static sites such as blogs or documentations. The goal is to leverage web standards to enable a simple, straightforward and smooth developer experience for building such websites.</p>
+<p><code>pree</code> aims to fill in these gaps as leanly as it can. It is specifically designed for building static sites such as blogs or documentations. The goal is to provide a simple, straightforward and smooth developer experience for building static websites, while being as "no build" as possible.</p>
 <ul>
 <li>It prebuilds HTML files, pre-rendering all web components using <a href="https://developer.chrome.com/docs/css-ui/declarative-shadow-dom">declarative shadow DOM</a>.</li>
 <li>It handles metadata with <a href="https://www.scribendi.com/academy/articles/front_matter.en.html#:~:text=Front%20matter%20is%20the%20first,a%20preface%2C%20and%20much%20more.">front matter</a>, handling layouting with <code>&lt;slot&gt;</code> elements.</li>
 <li>It handles build-only components and scripts, by simply removing <code>&lt;script build-only&gt;</code> tags.</li>
 </ul>
-<p>This means, barring the front matter, you will be writing HTML, CSS and JavaScript that browsers could simply just load. <code>pree</code> just makes stuff faster by pre-running some scripts and removing some, resulting in a basically no-build developer experience that also rocks top-tier performance.</p>
-<p>✨ Ok to be 100% honest, <code>pree</code> also does a little thing on top: it exposes special APIs accessible by scripts and components during build time, allowing them to access information about the build environment (such as git data, filesystem information, environment variables, etc.). This allows web components to act even smarter, while remaining standard compliant.</p>
+<p>This means, barring the front matter, you will be writing HTML, CSS and JavaScript that browsers could simply just load. <code>pree</code> just makes stuff faster by pre-running some scripts and removing some others, resulting in an almost no-build developer experience that also rocks top-tier performance.</p>
 <br>
 
 <hr>
 <br>
 
+<style>
+h5 {
+  &:not(:first-of-type) {
+    margin-top: 3rem;
+  }
+  margin-bottom: 0rem;
+}
+
+h5 + p {
+  margin-top: 0.5rem;
+}
+</style>
+
 <h5>Q: Isn't this just another build tool?</h5>
-<p>It is, but a really thin one. With the exception of layouting, using and not using <code>pree</code> gets you basically the same
-website. <code>pree</code> just leverages web standards (e.g. <a href="https://developer.chrome.com/docs/css-ui/declarative-shadow-dom">declarative shadow DOM</a>) and simple conventions (e.g. <code>&lt;script build-only&gt;</code>) to speed things up.</p>
-<br>
-
+<p><strong>A</strong>: It is, but a really thin and invisible one. With the exception of layouting, using and not using <code>pree</code> gets you basically the same
+website. <code>pree</code> just speeds the website up by pre-rendering it.</p>
 <h5>Q: What if I want to write Markdown?</h5>
-<p>You can. It is also pretty convenient. Just use a web component like <a href="https://zerodevx.github.io/zero-md/">zero-md</a>. Load it <code>build-only</code>, and <code>pree</code> ensures your customers get a pre-rendered version without the extra asset overhead.</p>
-<br>
-
-<h5>Q: Whats with the front matter? What about pure HTML?</h5>
-<p>Honsetly, I couldn't figure out a neat way of doing that with web components without creating a weird developer experience. If you can think of such a way, please let me know. I'm particularly salty that I can't 
-have pure HTML.</p>
+<p><strong>A</strong>: You can. Just use a web components like <a href="https://zerodevx.github.io/zero-md/">zero-md</a>. Load it <code>build-only</code>, and <code>pree</code>, and your users get prebuilt HTML and dont have to download a markdown parser.</p>
+<h5>Q: What if I want to have split an HTML file into parts?</h5>
+<p><strong>A</strong>: Web components can do that for you. Web components are pretty powerful. With <code>pree</code>, they can become even more powerful as they can do magical stuff on build time without affecting client-side performance and user experience.</p>
+<h5>Q: What sort of websites can be built with <code>pree</code>?</h5>
+<p><strong>A</strong>: Static websites, like blogs, documentations, landing pages, etc. For dynamic pages (e.g. e-commerce), use another tool. Note that <em>static</em> doesn't mean <em>non-interactive</em>, just that you have fixed HTML files.</p>
+<h5>Q: What kind of components work with <code>pree</code>?</h5>
+<p><strong>A</strong>: ALL web component works with <code>pree</code>. Static ones that are loaded <em>build-only</em> will be faster. Interactive ones supporting SSR through <a href="https://developer.chrome.com/docs/css-ui/declarative-shadow-dom">declarative shadow DOM</a> will be much faster.</p>
+<h5>Q: Can you really build cool stuff without a build tool?</h5>
+<p><strong>A</strong>: Judge for yourself. These docs are built with <code>pree</code> and no other tooling: check the <a href="https://github.com/loreanvictor/pree/tree/main/docs">source code</a>.</p>
+<h5>Q: Whats with the front matter? Why not pure HTML?</h5>
+<p><strong>A</strong>: I'm salty about this, but I couldn't come close to the developer experience of layouting with front matter using web components. As powerful as they are, they are about <em>isolation</em>, which isn't what you want with layouting.</p>
 <br>
 
 <template shadowrootmode="open"><slot></slot></template></m-d>

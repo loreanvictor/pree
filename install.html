@@ -20,7 +20,7 @@
     <script type="module" src="./components/prev-next.js"></script>
   <title>pree: installation</title></head>
   <body><aside aria-hidden="true">
-      <use-html src="./_toc.html"><m-d id="toc"><ul>
+      <use-html src="./_toc.html"><m-d id="toc" onparse="document.querySelector('prev-next').controls.load()"><ul>
 <li><a href="index">Home</a></li>
 <li><a href="motivation">Motivation</a></li>
 <li><a href="install">Installation</a></li>
@@ -30,14 +30,11 @@
 </li>
 </ul>
 <template shadowrootmode="open"><slot></slot></template></m-d>
-
-<script>
-  setTimeout(() => document.querySelector('prev-next').controls.load(), 500)
-</script><template shadowrootmode="open"><slot></slot></template></use-html>
+<template shadowrootmode="open"><slot></slot></template></use-html>
     </aside>
     <main>
-      <m-d><h1>Installation</h1>
-<p>You need <a href="https://nodejs.org/en/">Node</a>. Install globally (or use <a href="https://www.npmjs.com/package/npx">npx</a>):</p>
+      <m-d><h2>Installation</h2>
+<p>You need <a href="https://nodejs.org/en/">Node</a>. Install <code>pree</code> globally, or use <a href="https://www.npmjs.com/package/npx">npx</a>:</p>
 <pre><code class="language-bash hljs" data-highlighted="yes">npm i -g pree     <span class="hljs-comment"># ⬇️ installs the CLI</span>
 </code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
 <pre><code class="language-bash hljs" data-highlighted="yes">npx pree view     <span class="hljs-comment"># 🚀 runs the CLI without installing it</span>
@@ -98,7 +95,26 @@
       }
 
       margin-bottom: 4rem;
-    }</style><section role="feed" ref="?" aria-hidden="true"></section></template></prev-next>
+    }</style><section role="feed" ref="?">        
+        
+          <article>
+            <i>⬅</i>
+            <a href="http://localhost:3000/pree/motivation">
+              <small>Previosly</small><br>
+              Motivation
+            </a>
+          </article>
+          
+        
+          <article class="next">
+            <a href="http://localhost:3000/pree/usage/index">
+              <small>Up Next</small><br>
+              Usage
+            </a>
+            <i>➡</i>
+          </article>
+          
+      </section></template></prev-next>
     </main>
     <footer>
       <use-html src="./_footer.html"><script type="module" src="./components/menu-toggle.js"></script>

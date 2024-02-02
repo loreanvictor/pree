@@ -20,7 +20,7 @@
     <script type="module" src="./components/prev-next.js"></script>
   <title>pree: usage</title></head>
   <body><aside aria-hidden="true">
-      <use-html src="./_toc.html"><m-d id="toc"><ul>
+      <use-html src="./_toc.html"><m-d id="toc" onparse="document.querySelector('prev-next').controls.load()"><ul>
 <li><a href="index">Home</a></li>
 <li><a href="motivation">Motivation</a></li>
 <li><a href="install">Installation</a></li>
@@ -30,13 +30,10 @@
 </li>
 </ul>
 <template shadowrootmode="open"><slot></slot></template></m-d>
-
-<script>
-  setTimeout(() => document.querySelector('prev-next').controls.load(), 500)
-</script><template shadowrootmode="open"><slot></slot></template></use-html>
+<template shadowrootmode="open"><slot></slot></template></use-html>
     </aside>
     <main>
-      <m-d><h1>Usage</h1>
+      <m-d><h2>Usage</h2>
 <p>👉 Preview your website:</p>
 <pre><code class="language-bash hljs" data-highlighted="yes">pree view
 </code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>

@@ -1,4 +1,4 @@
-<m-d id="toc">
+<m-d id="toc" onparse="document.querySelector('prev-next').controls.load()">
 
   - [Home](index)
   - [Motivation](motivation)
@@ -7,7 +7,3 @@
     - [Layouting](usage/layout)
 
 </m-d>
-
-<script>
-  setTimeout(() => document.querySelector('prev-next').controls.load(), 500)
-</script>

@@ -36,8 +36,7 @@ define('prev-next', ({ target, prevlabel, nextlabel }) => {
   prevlabel ??= 'Previosly'
 
   const load = () => {
-    const query = target ?? 'body > aside:first-of-type'
-    const el = document.querySelector(query)
+    const el = document.querySelector(target ?? 'body > aside:first-of-type')
 
     if (el) {
       const me = whoAmI()
