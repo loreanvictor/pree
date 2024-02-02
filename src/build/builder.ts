@@ -1,7 +1,7 @@
 import puppeteer, { Browser } from 'puppeteer'
 import { load } from 'cheerio'
 
-import { serve, ServeOptions, Server } from '../serve'
+import { serve, ServeOptions, RunningServer } from '../serve'
 import { LOG_LEVEL } from '../util/logger'
 
 
@@ -24,7 +24,7 @@ const _DefaultOptions = {
 }
 
 export class Builder {
-  private server?: Server
+  private server?: RunningServer
   private browser?: Browser
   private blockedResourceTypes: string[]
 
@@ -42,7 +42,7 @@ export class Builder {
 
   public async close() {
     await this.browser?.close()
-    await this.server?.close()
+    await this.server?.server.close()
     this.server = this.browser = undefined
   }
 

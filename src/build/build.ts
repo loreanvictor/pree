@@ -1,6 +1,5 @@
 import { cp,  mkdir, writeFile } from 'fs/promises'
 import { dirname, join } from 'path'
-import { minimatch } from 'minimatch'
 
 import { Logger, THEME, createLogger } from '../util/logger'
 import { Builder } from './builder'
@@ -8,10 +7,8 @@ import { BuildOptions, isBuildOptionsWithFile, isBuildOptionsWithDir, isBuildOpt
 import { pathToUrl } from './path'
 import { ls } from '../util/ls'
 import { mimetype } from '../util/file-types'
+import { match } from '../util/file-match'
 
-const _DefaultBuildOptions = {
-  exclude: ['**/_*'],
-}
 
 async function buildOne(src: string, target: string, builder: Builder, logger: Logger) {
   const start = Date.now()
@@ -51,8 +48,6 @@ export async function build(options: BuildOptions) {
   } else if (isBuildOptionsWithUrlPath(options)) {
     await buildOne(options.urlpath, options.target, builder, logger)
   } else if (isBuildOptionsWithDir(options)) {
-    const exclude = options.exclude ?? _DefaultBuildOptions.exclude
-
     try {
       logger.info('copying: ' +
         THEME.highlight(options.dir) +
@@ -63,11 +58,7 @@ export async function build(options: BuildOptions) {
       await cp(options.dir, options.target, { recursive: true })
 
       const files = (await ls(options.target))
-        .filter(file =>
-          mimetype(file) === 'text/html'
-          && !exclude.some(pattern => minimatch(file, pattern))
-          && (!options.include || options.include.some(pattern => minimatch(file, pattern)))
-        )
+        .filter(file => mimetype(file) === 'text/html' && match(file, options))
 
       for (const file of files) {
         await buildOne(

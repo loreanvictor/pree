@@ -11,6 +11,7 @@ export const notFound: Loader = async (ctx: LoadingContext) => {
 
   return {
     type: '.html',
+    status: 404,
     content: `
       <html>
         <head>

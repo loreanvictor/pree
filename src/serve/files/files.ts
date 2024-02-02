@@ -15,12 +15,12 @@ export interface FilesOptions extends LoggerOptions {
   loaders?: Loader[]
 }
 
-const _DefaultOptions = {
+export const _DefaultFilesOptions = {
   root: process.cwd()
 }
 
 export function files(options?: FilesOptions) {
-  const root = options?.root || _DefaultOptions.root
+  const root = options?.root || _DefaultFilesOptions.root
   const namespace = options?.namespace ?? ''
   const logger = createLogger({ ...options, name: 'files' })
   const loader = run(...(options?.loaders ?? []), file, dir, notFound)

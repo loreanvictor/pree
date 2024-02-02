@@ -1,4 +1,4 @@
-import { createServer } from 'http'
+import { createServer, Server } from 'http'
 
 import { createApp, AppOptions } from './app'
 import { createLogger, THEME } from '../util/logger'
@@ -8,18 +8,18 @@ export interface ServeOptions extends AppOptions {
   port?: number
 }
 
-const _DefaultOptions = {
+export const _DefaultServeOptions = {
   port: 3000
 }
 
-export interface Server {
+export interface RunningServer {
   port: number
-  close: () => Promise<void>
+  server: Server
 }
 
 export function serve(options?: ServeOptions) {
-  return new Promise<Server>((resolve) => {
-    const port = options?.port || _DefaultOptions.port
+  return new Promise<RunningServer>((resolve) => {
+    const port = options?.port || _DefaultServeOptions.port
     const logger = createLogger({ ...options, name: 'serve' })
     const app = createApp(options)
 
@@ -27,7 +27,7 @@ export function serve(options?: ServeOptions) {
       logger.log('server up on ' + THEME.secondary('http://localhost:' + port))
       resolve({
         port,
-        close: async () => { await server.close() },
+        server,
       })
     })
   })

@@ -1,3 +1,4 @@
+import { FilterFilesOptions } from '../util/file-match'
 import { BuilderOptions } from './builder'
 
 
@@ -9,10 +10,8 @@ interface BuildOptionsWithFile extends BuildOptionsBase {
   file: string
 }
 
-interface BuildOptionsWithDir extends BuildOptionsBase {
+interface BuildOptionsWithDir extends BuildOptionsBase, FilterFilesOptions {
   dir: string
-  exclude?: string[]
-  include?: string[]
 }
 
 interface BuildOptionsWithUrlPath extends BuildOptionsBase {

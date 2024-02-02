@@ -22,12 +22,12 @@ export function merge(a: Options, b: Options) {
     prod: !!a.prod || !!b.prod,
     port: a.port ?? b.port,
     include: a.include ?? b.include,
-    exclude: [
+    exclude: (a.exclude || b.exclude) ? [
       ...new Set([
         ...(a.exclude ?? []),
         ...(b.exclude ?? []),
       ])
-    ],
+    ] : undefined,
     config: a.config ?? b.config,
   }
 

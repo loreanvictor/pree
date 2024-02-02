@@ -2,12 +2,12 @@
 import { basename, extname, join } from 'path'
 
 import { build } from '../build'
-import { serve } from '../serve'
 import { LOG_LEVEL, THEME, createLogger } from '../util/logger'
 import { version } from './version'
 import { help } from './help'
 import { Command, Options } from './types'
 import { LOGO } from './logo'
+import { view } from '../view'
 
 
 export async function main(command: Command, options: Options) {
@@ -49,7 +49,7 @@ export async function main(command: Command, options: Options) {
       })
     }
   } else if (command === 'view') {
-    await serve(options)
+    await view(options)
   } else if (command === 'version') {
     await version(options)
   } else {
