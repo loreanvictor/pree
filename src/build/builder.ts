@@ -77,7 +77,9 @@ export class Builder {
     await page.close()
 
     const $ = load(html)
-    $('body').html(body)
+    const $$ = load(body)
+    $$('script[build-only]').remove()
+    $('body').html($$('body').html() ?? '')
 
     return $.html()
   }

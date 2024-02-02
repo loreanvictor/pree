@@ -12,6 +12,10 @@
   }
 }
 
+a:not([role]) {
+  text-decoration: underline 0.5px;
+}
+
 main {
   margin-top: 20vh;
 }

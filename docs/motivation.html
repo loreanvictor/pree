@@ -15,7 +15,7 @@ layout: ./_layout.html
 
 A ton of modern web development is wrestling with build tools. Transpilers, bundlers, runtimes, test runners, devtools, packages with various module formats, frameworks with custom syntax and custom devtools, all need to play nice together. In the end, more time is spent configuring build tools instead of building.
 
-But we don't need to deal with this mess anymore. Modern web features such as [ESM](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules), [import maps](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script/type/importmap), [Web Components](https://developer.mozilla.org/en-US/docs/Web/Web_Components), [nested styles](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_nesting/Using_CSS_nesting), [CSS variables](https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties), etc. enable building websites by writing plain HTML, CSS and JavaScript, no build tools involved.
+Should we keep torturing ourselves though? Modern web features such as [ESM](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules), [import maps](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script/type/importmap), [Web Components](https://developer.mozilla.org/en-US/docs/Web/Web_Components), [declarative shadow DOM](https://developer.chrome.com/docs/css-ui/declarative-shadow-dom), [nested styles](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_nesting/Using_CSS_nesting), [CSS variables](https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties), etc. enable building nice smooth experiences by writing plain HTML, CSS and JavaScript, no build tools involved. Perhaps its time to adopt a [no build](https://world.hey.com/dhh/you-can-t-get-faster-than-no-build-7a44131c) approach, and enjoy the simplicity and speed of the modern web.
 
 <br>
 
@@ -23,23 +23,23 @@ But we don't need to deal with this mess anymore. Modern web features such as [E
 
 <br>
 
-Well, thats actually just the idea. In practice, if you have big applications, you still might want to use bundlers (though [it is possible](https://world.hey.com/dhh/once-1-is-entirely-nobuild-for-the-front-end-ce56f6d7) to not build your application in such a way). Even for smaller projects like documentation sites or blogs, which have fewer moving parts and require less logic on the client, there are inherent short comings:
+Well, there are still gaps. Big applications still might want to use bundlers, though [it is possible](https://world.hey.com/dhh/once-1-is-entirely-nobuild-for-the-front-end-ce56f6d7) to avoid them. However, even for smaller projects like documentation sites or blogs, which have fewer moving parts and require less logic on the client, there are fundamental short comings:
 
 </m-d>
 
 <emo-li>
   <span slot="emo">🧬</span>
-  Web components render on client. This means inevitably jankier user experience. You'd need a build step to pre-render them and get good perceived speed and performance.
+  Web components render on client. This makes user experience, specifically for static content, janky and slow. You'd need a build step to pre-render them and get good perceived speed and performance.
 </emo-li>
 <br>
 <emo-li>
   <span slot="emo">🏗️</span>
-  Your website typically has multiple pages. They share layout and differ in metadata. You'd need a build step, or you'd need to do tons of copy pasting yourself.
+  Websites typically have multiple pages, sharing layout and tons of metadata, differing in a few. Without a build step, managing these shared and differing parts would be a huge pain.
 </emo-li>
 <br>
 <emo-li>
   <span slot="emo">👻</span>
-  In many cases most components are just stylistic: they don't do anything on the client. You'd need a build step to remove them from being sent to the client, greatly increasing page speed by simply shipping less.
+  In many components are just stylistic: they don't do anything on the client. If you could remove them, you wouldn't just be cutting down on client-side assets, but also client-side work that needs to be done, but that'd still require a build step.
 </emo-li>
 
 <m-d>
@@ -52,7 +52,7 @@ Well, thats actually just the idea. In practice, if you have big applications, y
 
 ### Here comes `pree`
 
-`pree` aims to fill in these gaps and basically just that. It is specifically designed for building static sites such as blogs or documentations. The goal is to leverage web standards to provide the most smooth and simple developer experience for building such websites.
+`pree` aims to fill in these gaps as leanly as it can. It is specifically designed for building static sites such as blogs or documentations. The goal is to leverage web standards to enable a simple, straightforward and smooth developer experience for building such websites.
 
 -  It prebuilds HTML files, pre-rendering all web components using [declarative shadow DOM](https://developer.chrome.com/docs/css-ui/declarative-shadow-dom).
 - It handles metadata with [front matter](https://www.scribendi.com/academy/articles/front_matter.en.html#:~:text=Front%20matter%20is%20the%20first,a%20preface%2C%20and%20much%20more.), handling layouting with `<slot />` elements.
@@ -61,6 +61,31 @@ Well, thats actually just the idea. In practice, if you have big applications, y
 This means, barring the front matter, you will be writing HTML, CSS and JavaScript that browsers could simply just load. `pree` just makes stuff faster by pre-running some scripts and removing some, resulting in a basically no-build developer experience that also rocks top-tier performance.
 
 ✨ Ok to be 100% honest, `pree` also does a little thing on top: it exposes special APIs accessible by scripts and components during build time, allowing them to access information about the build environment (such as git data, filesystem information, environment variables, etc.). This allows web components to act even smarter, while remaining standard compliant.
+
+<br>
+
+---
+
+<br>
+
+##### Q: Isn't this just another build tool?
+
+It is, but a really thin one. With the exception of layouting, using and not using `pree` gets you basically the same
+website. `pree` just leverages web standards (e.g. [declarative shadow DOM](https://developer.chrome.com/docs/css-ui/declarative-shadow-dom)) and simple conventions (e.g. `&lt;script build-only&gt;`) to speed things up.
+
+<br>
+
+##### Q: What if I want to write Markdown?
+
+You can. It is also pretty convenient. Just use a web component like [zero-md](https://zerodevx.github.io/zero-md/). Load it `build-only`, and `pree` ensures your customers get a pre-rendered version without the extra asset overhead.
+
+
+<br>
+
+#### Q: Whats with the front matter? What about pure HTML?
+
+Honsetly, I couldn't figure out a neat way of doing that with web components without creating a weird developer experience. If you can think of such a way, please let me know. I'm particularly salty that I can't 
+have pure HTML.
 
 <br>
 
