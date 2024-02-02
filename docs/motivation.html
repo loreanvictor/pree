@@ -68,24 +68,45 @@ This means, barring the front matter, you will be writing HTML, CSS and JavaScri
 
 <style>
   h5 {
-    margin-bottom: 1rem;
+    &:not(:first-of-type) {
+      margin-top: 3rem;
+    }
+    margin-bottom: 0rem;
+  }
+
+  h5 + p {
+    margin-top: 0.5rem;
   }
 </style>
 
 ##### Q: Isn't this just another build tool?
 
-It is, but a really thin one. With the exception of layouting, using and not using `pree` gets you basically the same
-website. `pree` just leverages web standards (e.g. [declarative shadow DOM](https://developer.chrome.com/docs/css-ui/declarative-shadow-dom)) and simple conventions (e.g. `&lt;script build-only&gt;`) to speed things up.
+**A**: It is, but a really thin and invisible one. With the exception of layouting, using and not using `pree` gets you basically the same
+website. `pree` just speeds the website up by pre-rendering it.
 
 ##### Q: What if I want to write Markdown?
 
-You can. It is also pretty convenient. Just use a web component like [zero-md](https://zerodevx.github.io/zero-md/). Load it `build-only`, and `pree` ensures your customers get a pre-rendered version without the extra asset overhead.
+**A**: You can. Just use a web components like [zero-md](https://zerodevx.github.io/zero-md/). Load it `build-only`, and `pree`, and your users get prebuilt HTML and dont have to download a markdown parser.
 
+##### Q: What if I want to have split an HTML file into parts?
 
-##### Q: Whats with the front matter? What about pure HTML?
+**A**: Web components can do that for you. Web components are pretty powerful. With `pree`, they can become even more powerful as they can do magical stuff on build time without affecting client-side performance and user experience.
 
-Honsetly, I couldn't figure out a neat way of doing that with web components without creating a weird developer experience. If you can think of such a way, please let me know. I'm particularly salty that I can't 
-have pure HTML.
+##### Q: What sort of websites can be built with `pree`?
+
+**A**: Static websites, like blogs, documentations, landing pages, etc. For dynamic pages (e.g. e-commerce), use another tool. Note that _static_ doesn't mean _non-interactive_, just that you have fixed HTML files.
+
+##### Q: What kind of components work with `pree`?
+
+**A**: ALL web component works with `pree`. Static ones that are loaded _build-only_ will be faster. Interactive ones supporting SSR through [declarative shadow DOM](https://developer.chrome.com/docs/css-ui/declarative-shadow-dom) will be much faster.
+
+##### Q: Can you really build cool stuff without a build tool?
+
+**A**: Judge for yourself. These docs are built with `pree` and no other tooling: check the [source code](https://github.com/loreanvictor/pree/tree/main/docs).
+
+##### Q: Whats with the front matter? Why not pure HTML?
+
+**A**: I'm salty about this, but I couldn't come close to the developer experience of layouting with front matter using web components. As powerful as they are, they are about _isolation_, which isn't what you want with layouting.
 
 <br>
 
