@@ -53,9 +53,9 @@ As great as that sounds, in practice, there are still gaps. Even for smaller pro
 
 `pree` aims to fill in these gaps as leanly as it can. It is designed for building static sites such as blogs or documentations. The goal is to provide a simple, straightforward and smooth developer experience, while being as "no build" as possible.
 
--  It prebuilds HTML files, pre-rendering all web components using [declarative shadow DOM](https://developer.chrome.com/docs/css-ui/declarative-shadow-dom).
-- It handles metadata with [front matter](https://www.scribendi.com/academy/articles/front_matter.en.html#:~:text=Front%20matter%20is%20the%20first,a%20preface%2C%20and%20much%20more.), handling layouting with `<slot />` elements.
-- It handles build-only components and scripts, by simply removing `&lt;script build-only&gt;` tags.
+-  It [prebuilds HTML files](usage/index), pre-rendering all web components using [declarative shadow DOM](https://developer.chrome.com/docs/css-ui/declarative-shadow-dom).
+- It [handles metadata and layout](usage/meta-layout) with front matter.
+- It [handles build-only components and scripts](usage/build-only-scripts), by simply removing `&lt;script build-only&gt;` tags.
 
 Except for the front matter, with `pree` you will be writing HTML, CSS and JavaScript that browsers could simply load. `pree` just makes stuff faster by pre-running some scripts and removing some others, resulting in an almost no-build developer experience that also rocks top-tier performance.
 

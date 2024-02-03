@@ -1,0 +1,50 @@
+---
+title: "pree: build-only scripts"
+layout: ../_layout.html
+---
+
+<m-d>
+
+## Build-Only Scripts
+
+Many components are static: they don't need to be shipped to or executed on the client after they've been pre-rendered.
+For example, you might want to write your pages using markdown. You could use components such as [zero-md](https://zerodevx.github.io/zero-md/) to do that:
+
+```html
+  &lt;script type="module" src="https://esm.sh/zero-md"&gt;&lt;/script&gt;
+  <zero-md>
+    &lt;script type="text/markdown"&gt;
+      # Hello, World!
+
+      This is some markdown that I've written.
+    &lt;/script&gt;
+  </zero-md>
+```
+
+After `pree` pre-renders this HTML, there is no need to parse the markdown and re-render it on the client. Clients will unnecessarily download a whole markdown parser and parse all of this markdown.
+
+<br>
+
+👉 Add `build-only` attribute to scripts that don't need to be loaded by the client:
+
+```html
+&lt;script build-only type="module" src="https://esm.sh/zero-md"&gt;&lt;/script&gt;
+```
+
+`pree` will remove any such script from the final HTML:
+
+&ensp; 🧬 &ensp; these scripts are also removed from inside web components, \
+&ensp; ⚡ &ensp; this will increase performance by reducing executed scripts, \
+&ensp; 📦 &ensp; this will reduce asset size that's downloaded.
+
+<br>
+
+> #### ⚠️ Compatibility
+> 
+> All of this relies on [declerative shadow DOM](https://web.dev/declarative-shadow-dom/), which [some browsers](https://caniuse.com/?search=declarative%20shadow%20dom) might not support yet. Such browsers can't display the pre-rendered content of such components at all. If you need to support such browsers, ensure to include the code of all components and only use `build-only` on scripts that will modify the actual DOM during pre-rendering.
+
+<br>
+
+</m-d>
+
+<br>
