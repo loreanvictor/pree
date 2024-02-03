@@ -28,7 +28,7 @@ export const notFound: Loader = async (ctx: LoadingContext) => {
             <p>Cannot find <code>/${rel}</code>, perhaps there is something wrong with the path? Go back to the root of the project and explore all the folders to identify what has gone wrong.</p>
             <hr/>
             <menu role="group" align="right">
-              <a role="button" href="/">Go Back</a>
+              <a role="button" href="/${ctx.base ?? ''}">Go Back</a>
             </menu>
           </main>
         </body>

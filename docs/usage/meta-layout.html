@@ -1,0 +1,83 @@
+---
+title: "pree: metadata & layouts"
+layout: ../_layout.html
+---
+
+<m-d>
+## Metadata & Layouts
+
+Websites typically have multiple pages, which generally follow the same layout, and share most of their assets and metadata. Each page might also have its own unique metadata, such as its title or description. Use `pree`'s front matter and layouting to manage this shared metadata and layout.
+
+<br>
+
+👉 **STEP 1**: Create a layout page:
+
+```html
+<!-- _layout.html-->
+  &lt;html lang="en"&gt;
+    &lt;head&gt;
+      <!-- shared metadata -->
+      <!-- shared scripts and styles -->
+    &lt;/head&gt;
+    &lt;body&gt;
+        <!-- 👇 content of pages using this layout
+                will be slotted here. -->
+        <slot></slot>
+    &lt;/body&gt;
+  &lt;/html&gt;
+```
+
+👉 **STEP 2**: Add front matter to your page, and specify the layout:
+
+```html
+---
+title: My Page
+layout: ./_layout.html
+---
+
+<h1>My Page</h1>
+<p>Some Content</p>
+```
+
+<br>
+
+**Front matter** is a [YAML](https://yaml.org/) block at the top of a file, specifying title of the page, layout of the page, or any other page-specific metadata. If some metadata is provided in the front matter and the layout, the one in the front matter is used.
+
+&ensp; ⚖️ &ensp; Front matter MUST be the first string in your file, \
+&ensp; ⚖️ &ensp; Front matter MUST be valid YAML, \
+&ensp; ⚖️ &ensp; Front matter must be set between tripple-dashed lines.
+
+---
+
+### Named Slots
+
+A layout file can also have named slots, where other pages can insert specific content. For example, a page might also want to specify footer content alongside the main content:
+
+```html
+<!-- _layout.html-->
+  <!-- ... -->
+  <main>
+    <slot></slot>
+  </main>
+  <footer>
+    <slot name="footer"></slot>
+    <p> copyright (c) 2024, all rights waivered </p>
+  </footer>
+  <!-- ... -->
+```
+```html
+---
+title: My Page
+layout: ./_layout.html
+---
+
+<h1>My Page</h1>
+<p>Some Content</p>
+
+<span slot="footer">This is the footer content</span>
+```
+> **IMPORTANT**: named slots in the child pages MUST appear at the root of the content.
+
+</m-d>
+
+<br>

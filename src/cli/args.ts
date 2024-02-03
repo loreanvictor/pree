@@ -18,7 +18,7 @@ export function args(): Args {
     .alias('r', 'root')
     .alias('V', 'verbose')
     .alias('S', 'silent')
-    .alias('N', 'namespace')
+    .alias('b', 'base')
     .alias('i', 'include')
     .alias('e', 'exclude')
     .alias('c', 'config')
@@ -47,7 +47,7 @@ export function args(): Args {
     dest,
     port: parsed['port'] as number | undefined,
     prod: parsed['prod'] as boolean | undefined,
-    namespace: parsed['namespace'] as string | undefined,
+    base: parsed['base'] as string | undefined,
     include: parsed['include'] ?
       (Array.isArray(parsed['include']) ? parsed['include'] : [parsed['include']])
       : undefined,

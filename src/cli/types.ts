@@ -1,9 +1,9 @@
-export type Command = 'build' | 'view' | 'help' | 'version'
+export type Command = 'build' | 'view' | 'check' | 'help' | 'version'
 export interface Options {
   src?: string,
   dest?: string,
   logLevel?: number,
-  namespace?: string,
+  base?: string,
   root?: string,
   prod?: boolean,
   port?: number,
@@ -17,7 +17,7 @@ export function merge(a: Options, b: Options) {
     src: a.src ?? b.src,
     dest: a.dest ?? b.dest,
     logLevel: Math.max(a.logLevel ?? 0, b.logLevel ?? 0),
-    namespace: a.namespace ?? b.namespace,
+    base: a.base ?? b.base,
     root: a.root ?? b.root,
     prod: !!a.prod || !!b.prod,
     port: a.port ?? b.port,

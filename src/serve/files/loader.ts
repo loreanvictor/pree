@@ -10,7 +10,7 @@ export interface LoaderResponse {
 export interface LoadingContext {
   path: string,
   root: string,
-  namespace: string,
+  base: string,
   logger: Logger,
 }
 

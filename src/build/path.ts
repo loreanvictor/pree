@@ -3,7 +3,7 @@ import { relative } from 'path'
 
 export interface PathMapOptions {
   root?: string
-  namespace?: string
+  base?: string
 }
 
 export function pathToUrl(path: string, options: PathMapOptions = {}) {
@@ -11,8 +11,8 @@ export function pathToUrl(path: string, options: PathMapOptions = {}) {
   const rootrel = relative(process.cwd(), options.root || process.cwd())
   const pathrelroot = slash(relative(rootrel, pathrel))
 
-  if (options.namespace) {
-    return options.namespace + '/' + pathrelroot
+  if (options.base) {
+    return options.base + '/' + pathrelroot
   } else {
     return pathrelroot
   }

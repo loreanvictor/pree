@@ -7,48 +7,104 @@ layout: ../_layout.html
 
 ## Usage
 
+👉 Prebuild a single HTML file:
+
+```bash
+pree build docs/my-page.html site/my-page.html
+```
+
+This prebuilds `docs/my-page.html` into `site/my-page.html`:
+
+&ensp; 🧬 &ensp; pre-renders web components, \
+&ensp; 🏗️ &ensp; resolves [metadata and layouts](usage/layout), \
+&ensp; 👻 &ensp; removes build-only scripts and components.
+
+<br>
+
+👉 Prebuild an entire directory:
+
+```bash
+pree build docs site
+```
+This will copy over all the content of `docs` into `site` and prebuild all HTML files, except the ones excluded by CLI options or configuration. You can also specify include options (in config or CLI options), and then only the specified files will be prebuilt.
+
+<br>
+
 👉 Preview your website:
 
 ```bash
-pree view
+pree view docs
+```
+&ensp; 👀 &ensp; it loads your website without prebuilding it, \
+&ensp; 🏗️ &ensp; it still resolves [metadata and layouts](usage/layout), \
+&ensp; 🔃 &ensp; it live reloads on change, \
+&ensp; 📁 &ensp; it also lists directory content for easy navigation. 
+
+> Performance of your pages in preview mode is much slower than in production mode, since
+> the content is not prebuilt. To double check the performance of your prebuilt website, first build it:
+> ```bash
+> pree build docs site
+> ``` 
+> Then check the prebuilt website in production mode:
+> ```bash
+> pree check site
+> ```
+
+---
+
+### Asset Management
+
+`pree` is NOT an asset manager. It will copy the content of a directory when you copy it, so you can conveniently include your assets using relative paths:
+
+```
+/docs/
+  /assets/
+    /styles.css
+    /logo.png
+  /my-page.html
+```
+```html
+&lt;link rel="stylesheet" href="assets/styles.css"&gt;
+&lt;img src="assets/logo.png"&gt;
+```
+
+In some cases the base URL for your website is not the root of your domain. For example, in [GitHub Pages](https://pages.github.com/), without a custom domain, your website will be hosted at `https://username.github.io/repo/`. In this case, you can set the base URL in the `head` of your HTML files:
+
+```html
+&lt;base href="/repo/"&gt;
+```
+
+And specify a _base_ option to `pree`:
+
+```bash
+pree build docs site -b /repo/
+```
+
+---
+
+### Config File
+
+For more convenient usage of `pree`, you can create a config file to specify `pree`'s options:
+
+```yaml
+# .pree.yml
+base: /repo/
+src: docs
+dest: site
+```
+
+`pree` will look for `.pree.yml` in the current working directory, and use it as the default configuration:
+
+```bash
+pree view          # 👈 this is equal to `pree view docs`
 ```
 ```bash
-pree view <dir>
-```
-
-- `<dir>` is optional. If not provided, the current directory will be used.
-
-`pree view` starts a local server for viewing various files, also resolves layouting and metadata of HTML files. It also provides a nice file navigator to browse your content.
-
-<br>
-
-👉  Prebuild your website:
-
-```bash
-pree build <src> <dest>
-```
-
-- `<src>` can be an HTML file or a directory. If it's a directory, all HTML files in it will be processed recursively.
-- `<dest>` can be a file or a directory. If `<src>` is a directory, then `<dest>` must be a directory as well.
-
-`pre build` builds one or more HTML files, pre-rendering their web components. It launches a local server and uses an emulated browser to pre-render the files, mimicking actual browser behavior.
-
-<br>
-
-Example:
-
-```bash
-pree build docs/index.html dist/index.html
+pree build         # 👈 this is equal to `pree view build`
 ```
 ```bash
-pree build docs/ dist/
+pree check         # 👈 this is equal to `pree check site`
 ```
-
-<br>
-
-> ⚡ **IMPORTANT**
->
-> `pree` uses [declarative shadow DOM](https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_shadow_DOM#declaratively_with_html) for prerendering web components. Declarative shadow DOM is a relatively new feature not supported by [older browsers](https://caniuse.com/declarative-shadow-dom). Browsers that don't support it won't get the benefits of pre-rendering
-> web components. This also means that [build time components](#build-time-scripts) won't work in these browsers.
 
 </m-d>
+
+<br>

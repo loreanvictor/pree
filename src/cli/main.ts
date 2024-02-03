@@ -50,6 +50,12 @@ export async function main(command: Command, options: Options) {
     }
   } else if (command === 'view') {
     await view(options)
+  } else if (command === 'check') {
+    await view({
+      ...options,
+      root: options.dest ?? options.root,
+      prod: true,
+    })
   } else if (command === 'version') {
     await version(options)
   } else {

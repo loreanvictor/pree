@@ -16,7 +16,7 @@ export async function help(options: HelpOptions = {}) {
     THEME.secondary('   -r, --root <dir>\n') +
     THEME.secondary('   -V, --verbose\n') +
     THEME.secondary('   -S, --silent\n') +
-    THEME.secondary('   -N, --namespace <prefix>\n') +
+    THEME.secondary('   -b, --base <path>\n') +
     THEME.secondary('   -i, --include <glob>\n') +
     THEME.secondary('   -e, --exclude <glob>\n\n') +
     '📖 Read more at ' + THEME.highlight('https://github.com/loreanvictor/pree')

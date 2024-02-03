@@ -332,7 +332,7 @@ Here is a comprehensive list of CLI options for `pree`:
 | `-p`, `--port`      | Port to use for serving content | `pree view -p 8080` |
 | `-P`, `--prod`      | Production mode (no build environment APIs) | `pree view -P` |
 | `-r`, `--root`      | Root directory of the content | `pree build docs site -r .` |
-| `-N`, `--namespace` | Project namespace<sup>*</sup> | `pree view -N my-project` |
+| `-b`, `--base`      | Base path for your project<sup>*</sup> | `pree view -b my-project` |
 | `-i`, `--include`   | Files to include in the build | `pree build docs site -i "**/*.page.html"` |
 | `-e`, `--exclude`   | Files to exclude from the build<sup>**</sup> | `pree build docs site -e "**/*.layout.html"` |
 | `-V`, `--verbose`   | Verbose mode | `pree view -V` |
@@ -346,7 +346,7 @@ Here is a comprehensive list of CLI options for `pree`:
 
 **<sup>*</sup>** In some hosting environments your project is not at the root of your domain, which affects your
 relative URLs. Use this option to have `pree view` emulate that. For example, if your project is hosted at
-`https://example.com/my-project/`, then use `pree view -N my-project`.
+`https://example.com/my-project/`, then use `pree view -b my-project`.
 
 **<sup>**</sup>** By default, `**/_*` is used as an excluded pattern. When you provide another exclude pattern, this default pattern is no longer used.
 

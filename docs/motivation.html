@@ -11,19 +11,24 @@ layout: ./_layout.html
 
 <m-d>
 
-## No Time To Build
+## Why `pree`?
+
+TLDR:
+
+- for building websites, we spend too much time wrestling with toolchains
+- we can go _no build_ with modern web features (ESM, Web Components, etc.)
+- there are a few fundamental gaps though (e.g. web components render on client)
+- `pree` fills these gaps as leanly as possible
+
+---
 
 A ton of modern web development is wrestling with build tools. Transpilers, bundlers, runtimes, test runners, devtools, packages with various module formats, frameworks with custom syntax and custom devtools, all need to play nice together. In the end, more time is spent configuring build tools instead of building stuff.
 
 Should we keep torturing ourselves though? Modern web features such as [ESM](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules), [import maps](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script/type/importmap), [Web Components](https://developer.mozilla.org/en-US/docs/Web/Web_Components), [declarative shadow DOM](https://developer.chrome.com/docs/css-ui/declarative-shadow-dom), [nested styles](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_nesting/Using_CSS_nesting), [CSS variables](https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties), etc. enable building nice smooth experiences by writing plain HTML, CSS and JavaScript, no build tools involved. Perhaps its time to adopt a ["no build"](https://world.hey.com/dhh/you-can-t-get-faster-than-no-build-7a44131c) approach, embracing the simplicity and speed of the modern web.
 
-<br>
-
 ---
 
-<br>
-
-"No build" sounds really great, but in practice, there are still gaps. Even for smaller projects like documentation sites or blogs, which have fewer moving parts and require less logic on the client, there are fundamental shortcomings:
+As great as that sounds, in practice, there are still gaps. Even for smaller projects like documentation sites or blogs, which have fewer moving parts and require less logic on the client, there are fundamental shortcomings:
 
 </m-d>
 
@@ -44,13 +49,7 @@ Should we keep torturing ourselves though? Modern web features such as [ESM](htt
 
 <m-d>
 
-<br>
-
 ---
-
-<br>
-
-### Here comes `pree`
 
 `pree` aims to fill in these gaps as leanly as it can. It is designed for building static sites such as blogs or documentations. The goal is to provide a simple, straightforward and smooth developer experience, while being as "no build" as possible.
 
@@ -60,11 +59,7 @@ Should we keep torturing ourselves though? Modern web features such as [ESM](htt
 
 Except for the front matter, with `pree` you will be writing HTML, CSS and JavaScript that browsers could simply load. `pree` just makes stuff faster by pre-running some scripts and removing some others, resulting in an almost no-build developer experience that also rocks top-tier performance.
 
-<br>
-
 ---
-
-<br>
 
 <style>
   h5 {
@@ -94,12 +89,15 @@ Except for the front matter, with `pree` you will be writing HTML, CSS and JavaS
 
 In fact, [these docs are written](https://github.com/loreanvictor/pree/blob/main/docs/motivation.html) in markdown (with a [custom component](https://github.com/loreanvictor/pree/blob/main/docs/components/m-d.js)) and built with `pree`:
 
-```html
+```md
 &lt;m-d&gt;
-### No Time To Build
+## Why `pree`?
 
-A ton of modern web development is wrestling with ...
+TLDR:
 
+- for building websites, we spend too much time wrestling with toolchains
+- we can go _no build_ with modern web features (ESM, Web Components, etc.)
+...
 &lt;/m-d&gt;
 ```
 
