@@ -26,6 +26,7 @@
 <li><a href="install">Installation</a></li>
 <li><a href="usage/index">Usage</a><ul>
 <li><a href="usage/meta-layout">Metadata &amp; Layouts</a></li>
+<li><a href="usage/build-only-scripts">Build-Only Scripts</a></li>
 </ul>
 </li>
 </ul>
@@ -105,9 +106,9 @@
 <m-d><hr>
 <p><code>pree</code> aims to fill in these gaps as leanly as it can. It is designed for building static sites such as blogs or documentations. The goal is to provide a simple, straightforward and smooth developer experience, while being as "no build" as possible.</p>
 <ul>
-<li>It prebuilds HTML files, pre-rendering all web components using <a href="https://developer.chrome.com/docs/css-ui/declarative-shadow-dom">declarative shadow DOM</a>.</li>
-<li>It handles metadata with <a href="https://www.scribendi.com/academy/articles/front_matter.en.html#:~:text=Front%20matter%20is%20the%20first,a%20preface%2C%20and%20much%20more.">front matter</a>, handling layouting with <code>&lt;slot&gt;</code> elements.</li>
-<li>It handles build-only components and scripts, by simply removing <code>&lt;script build-only&gt;</code> tags.</li>
+<li>It <a href="usage/index">prebuilds HTML files</a>, pre-rendering all web components using <a href="https://developer.chrome.com/docs/css-ui/declarative-shadow-dom">declarative shadow DOM</a>.</li>
+<li>It <a href="usage/meta-layout">handles metadata and layout</a> with front matter.</li>
+<li>It <a href="usage/build-only-scripts">handles build-only components and scripts</a>, by simply removing <code>&lt;script build-only&gt;</code> tags.</li>
 </ul>
 <p>Except for the front matter, with <code>pree</code> you will be writing HTML, CSS and JavaScript that browsers could simply load. <code>pree</code> just makes stuff faster by pre-running some scripts and removing some others, resulting in an almost no-build developer experience that also rocks top-tier performance.</p>
 <hr>
@@ -175,9 +176,7 @@ TLDR:
 <p><strong>A</strong>: Judge for yourself. These docs are built with <code>pree</code> and no other tooling: check the <a href="https://github.com/loreanvictor/pree/tree/main/docs">source code</a>.</p>
 <h5 id="q-whats-with-the-front-matter-why-not-pure-html">Q: Whats with the front matter? Why not pure HTML?<menu role="toolbar"><button ref="?" aria-label="copy link" class="icon">🔗</button></menu></h5>
 <p><strong>A</strong>: I'm salty about this, but I couldn't come close to the developer experience of layouting with front matter using web components. As powerful as they are, they are about <em>isolation</em>, which isn't what you want with layouting.</p>
-<br>
-
-<template shadowrootmode="open"><slot></slot></template></m-d>
+<br><template shadowrootmode="open"><slot></slot></template></m-d>
 
       <prev-next><template shadowrootmode="open"><link rel="stylesheet" href="https://unpkg.com/nokss"><link rel="stylesheet" href="https://unpkg.com/graphis/font/graphis.css"><style>i {
       font-family: 'graphis', sans-serif;

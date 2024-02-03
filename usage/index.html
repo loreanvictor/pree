@@ -26,6 +26,7 @@
 <li><a href="install">Installation</a></li>
 <li><a href="usage/index">Usage</a><ul>
 <li><a href="usage/meta-layout">Metadata &amp; Layouts</a></li>
+<li><a href="usage/build-only-scripts">Build-Only Scripts</a></li>
 </ul>
 </li>
 </ul>
@@ -38,7 +39,7 @@
 <pre><code class="language-bash hljs" data-highlighted="yes">pree build docs/my-page.html site/my-page.html
 </code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
 <p>This prebuilds <code>docs/my-page.html</code> into <code>site/my-page.html</code>:</p>
-<p>  🧬   pre-renders web components, <br>  🏗️   resolves <a href="usage/layout">metadata and layouts</a>, <br>  👻   removes build-only scripts and components.</p>
+<p>  🧬   pre-renders web components, <br>  🏗️   resolves <a href="usage/meta-layout">metadata and layouts</a>, <br>  👻   removes <a href="usage/build-only-scripts">build-only scripts and components</a>.</p>
 <br>
 
 <p>👉 Prebuild an entire directory:</p>
@@ -50,7 +51,7 @@
 <p>👉 Preview your website:</p>
 <pre><code class="language-bash hljs" data-highlighted="yes">pree view docs
 </code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
-<p>  👀   it loads your website without prebuilding it, <br>  🏗️   it still resolves <a href="usage/layout">metadata and layouts</a>, <br>  🔃   it live reloads on change, <br>  📁   it also lists directory content for easy navigation. </p>
+<p>  👀   it loads your website without prebuilding it, <br>  🏗️   it still resolves <a href="usage/meta-layout">metadata and layouts</a>, <br>  🔃   it live reloads on change, <br>  📁   it also lists directory content for easy navigation. </p>
 <blockquote>
 <p>Performance of your pages in preview mode is much slower than in production mode, since
 the content is not prebuilt. To double check the performance of your prebuilt website, first build it:</p>
