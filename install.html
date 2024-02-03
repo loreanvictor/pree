@@ -20,12 +20,12 @@
     <script type="module" src="./components/prev-next.js"></script>
   <title>pree: installation</title></head>
   <body><aside aria-hidden="true">
-      <use-html src="./_toc.html"><m-d id="toc" onparse="document.querySelector('prev-next').controls.load()"><ul>
+      <use-html src="./_toc.html"><m-d id="toc" onparse="document.querySelector('prev-next').controls?.load()"><ul>
 <li><a href="index">Home</a></li>
 <li><a href="motivation">Motivation</a></li>
 <li><a href="install">Installation</a></li>
 <li><a href="usage/index">Usage</a><ul>
-<li><a href="usage/layout">Layouting</a></li>
+<li><a href="usage/meta-layout">Metadata &amp; Layouts</a></li>
 </ul>
 </li>
 </ul>
@@ -33,26 +33,21 @@
 <template shadowrootmode="open"><slot></slot></template></use-html>
     </aside>
     <main>
-      <m-d><h2>Installation</h2>
-<p>You need <a href="https://nodejs.org/en/">Node</a>. Install <code>pree</code> globally, or use <a href="https://www.npmjs.com/package/npx">npx</a>:</p>
-<pre><code class="language-bash hljs" data-highlighted="yes">npm i -g pree     <span class="hljs-comment"># ⬇️ installs the CLI</span>
+      <m-d><h2 id="installation">Installation<menu role="toolbar"><button ref="?" aria-label="copy link" class="icon">🔗</button></menu></h2>
+<p><em>You need <a href="https://nodejs.org/en/">Node.js</a> to run <code>pree</code>.</em></p>
+<p>⬇️ Install <code>pree</code>:</p>
+<pre><code class="language-bash hljs" data-highlighted="yes">npm i -g pree
 </code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
-<pre><code class="language-bash hljs" data-highlighted="yes">npx pree view     <span class="hljs-comment"># 🚀 runs the CLI without installing it</span>
+<p>📦 Check for updates:</p>
+<pre><code class="language-bash hljs" data-highlighted="yes">pree version          <span class="hljs-comment"># tells you if you need to update</span>
 </code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
-<br>
-
-<p>To update (or to ensure you are using the latest version), use <code>@latest</code> tag:</p>
 <pre><code class="language-bash hljs" data-highlighted="yes">npm i -g pree@latest
 </code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
-<pre><code class="language-bash hljs" data-highlighted="yes">npx pree@latest view
-</code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
-<br>
-
-<p>👉 Check for updates:</p>
-<pre><code class="language-bash hljs" data-highlighted="yes">pree version
+<hr>
+<p>🚀 You can also use <a href="https://www.npmjs.com/package/npx">npx</a> to run <code>pree</code> without installing it:</p>
+<pre><code class="language-bash hljs" data-highlighted="yes">npx pree view
 </code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
 <br><template shadowrootmode="open"><slot></slot></template></m-d>
-      <hr>
       <prev-next><template shadowrootmode="open"><link rel="stylesheet" href="https://unpkg.com/nokss"><link rel="stylesheet" href="https://unpkg.com/graphis/font/graphis.css"><style>i {
       font-family: 'graphis', sans-serif;
       font-style: normal;
@@ -141,7 +136,7 @@
 </div><template shadowrootmode="open"><slot></slot></template></use-html>
     </footer>
     
-    <script type="module" src="code.js"></script>
+    <script type="module" src="copy.js"></script>
   
 
 </body></html>

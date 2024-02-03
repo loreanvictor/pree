@@ -20,6 +20,10 @@ main {
   margin-top: 20vh;
 }
 
+hr {
+  margin: 3rem 0;
+}
+
 ul {
   padding-left: 1em;
 }
@@ -34,4 +38,8 @@ body>aside:first-of-type {
 .icon {
   font-family: graphis, sans-serif;
   font-size: 1rem;
+}
+
+blockquote {
+  padding-bottom: 0.2rem;
 }

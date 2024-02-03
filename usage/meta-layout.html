@@ -18,14 +18,14 @@
 
     <script src="./components/emo-li.js" type="module"></script>
     <script type="module" src="./components/prev-next.js"></script>
-  <title>pree: layouting</title></head>
+  <title>pree: metadata &amp; layouts</title></head>
   <body><aside aria-hidden="true">
-      <use-html src="./_toc.html"><m-d id="toc" onparse="document.querySelector('prev-next').controls.load()"><ul>
+      <use-html src="./_toc.html"><m-d id="toc" onparse="document.querySelector('prev-next').controls?.load()"><ul>
 <li><a href="index">Home</a></li>
 <li><a href="motivation">Motivation</a></li>
 <li><a href="install">Installation</a></li>
 <li><a href="usage/index">Usage</a><ul>
-<li><a href="usage/layout">Layouting</a></li>
+<li><a href="usage/meta-layout">Metadata &amp; Layouts</a></li>
 </ul>
 </li>
 </ul>
@@ -33,75 +33,67 @@
 <template shadowrootmode="open"><slot></slot></template></use-html>
     </aside>
     <main>
-      <m-d><h2>Layouting</h2>
-<p>Specify the layout to be used for a page inside the front matter:</p>
+      <m-d><h2 id="metadata--layouts">Metadata &amp; Layouts<menu role="toolbar"><button ref="?" aria-label="copy link" class="icon">🔗</button></menu></h2>
+<p>Websites typically have multiple pages, which generally follow the same layout, and share most of their assets and metadata. Each page might also have its own unique metadata, such as its title or description. Use <code>pree</code>'s front matter and layouting to manage this shared metadata and layout.</p>
+<br>
+
+<p>👉 <strong>STEP 1</strong>: Create a layout page:</p>
+<pre><code class="language-html hljs language-xml" data-highlighted="yes"><span class="hljs-comment">&lt;!-- _layout.html--&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">"en"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+    <span class="hljs-comment">&lt;!-- shared metadata --&gt;</span>
+    <span class="hljs-comment">&lt;!-- shared scripts and styles --&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+      <span class="hljs-comment">&lt;!-- 👇 content of pages using this layout
+              will be slotted here. --&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">slot</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">slot</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
+<p>👉 <strong>STEP 2</strong>: Add front matter to your page, and specify the layout:</p>
 <pre><code class="language-html hljs language-xml" data-highlighted="yes">---
 title: My Page
-layout: ./layouts/_main.html
+layout: ./_layout.html
 ---
 
 <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>My Page<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>
-This is my page.
-<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
-</code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
-<pre><code class="language-html hljs language-xml" data-highlighted="yes"><span class="hljs-comment">&lt;!-- ./layouts/_main.html --&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">aside</span>&gt;</span>Contents of the side menu<span class="hljs-tag">&lt;/<span class="hljs-name">aside</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">main</span>&gt;</span>
-<span class="hljs-comment">&lt;!-- 👇 This is where content would go --&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">slot</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">slot</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">main</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">footer</span>&gt;</span>Some footer content<span class="hljs-tag">&lt;/<span class="hljs-name">footer</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Some Content<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
 </code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
 <br>
 
-<p>Use named slots to fill in different parts of the parent layout:</p>
-<pre><code class="language-html hljs language-xml" data-highlighted="yes">---
-title: My Page
-layout: ./layouts/_main.html
----
-
-<span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>My Page<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>
-This is my page.
-<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">slot</span>=<span class="hljs-string">"footer"</span>&gt;</span>Some extra footer content<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
-</code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
-<pre><code class="language-html hljs language-xml" data-highlighted="yes"><span class="hljs-comment">&lt;!-- ./layouts/_main.html --&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">aside</span>&gt;</span>Contents of the side menu<span class="hljs-tag">&lt;/<span class="hljs-name">aside</span>&gt;</span>
+<p><strong>Front matter</strong> is a <a href="https://yaml.org/">YAML</a> block at the top of a file, specifying title of the page, layout of the page, or any other page-specific metadata. If some metadata is provided in the front matter and the layout, the one in the front matter is used.</p>
+<p>  ⚖️   Front matter MUST be the first string in your file, <br>  ⚖️   Front matter MUST be valid YAML, <br>  ⚖️   Front matter must be set between tripple-dashed lines.</p>
+<hr>
+<h3 id="named-slots">Named Slots<menu role="toolbar"><button ref="?" aria-label="copy link" class="icon">🔗</button></menu></h3>
+<p>A layout file can also have named slots, where other pages can insert specific content. For example, a page might also want to specify footer content alongside the main content:</p>
+<pre><code class="language-html hljs language-xml" data-highlighted="yes"><span class="hljs-comment">&lt;!-- _layout.html--&gt;</span>
+<span class="hljs-comment">&lt;!-- ... --&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">main</span>&gt;</span>
-<span class="hljs-comment">&lt;!-- 👇 This is where content would go --&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">slot</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">slot</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">slot</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">slot</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">main</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">footer</span>&gt;</span>
-Some generic footer content |
-<span class="hljs-comment">&lt;!-- 👇 This is where content with slot=footer will go --&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">slot</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"footer"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">slot</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">slot</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"footer"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">slot</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span> copyright (c) 2024, all rights waivered <span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">footer</span>&gt;</span>
+<span class="hljs-comment">&lt;!-- ... --&gt;</span>
 </code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
-<br>
+<pre><code class="language-html hljs language-xml" data-highlighted="yes">---
+title: My Page
+layout: ./_layout.html
+---
 
+<span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>My Page<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Some Content<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">slot</span>=<span class="hljs-string">"footer"</span>&gt;</span>This is the footer content<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+</code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
 <blockquote>
-<p>💡 <strong>NOTE</strong></p>
-<p>Elements with named slots should reside on the root of the child document. <code>pree</code> will ignore them otherwise
-as they might be part of a web component template.</p>
-<pre><code class="language-html hljs language-xml" data-highlighted="yes">---
-layout: ./layouts/_main.html
----
-<span class="hljs-comment">&lt;!-- ✅ This is OK --&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">slot</span>=<span class="hljs-string">"footer"</span>&gt;</span>Some extra footer content<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
-</code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
-<pre><code class="language-html hljs language-xml" data-highlighted="yes">---
-layout: ./layouts/_main.html
----
-<span class="hljs-comment">&lt;!-- ❌ This is WRONG (man). --&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">slot</span>=<span class="hljs-string">"footer"</span>&gt;</span>Some extra footer content<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-</code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
+<p><strong>IMPORTANT</strong>: named slots in the child pages MUST appear at the root of the content.</p>
 </blockquote>
 <template shadowrootmode="open"><slot></slot></template></m-d>
-      <hr>
+
+<br>
       <prev-next><template shadowrootmode="open"><link rel="stylesheet" href="https://unpkg.com/nokss"><link rel="stylesheet" href="https://unpkg.com/graphis/font/graphis.css"><style>i {
       font-family: 'graphis', sans-serif;
       font-style: normal;
@@ -182,7 +174,7 @@ layout: ./layouts/_main.html
 </div><template shadowrootmode="open"><slot></slot></template></use-html>
     </footer>
     
-    <script type="module" src="code.js"></script>
+    <script type="module" src="copy.js"></script>
   
 
 </body></html>

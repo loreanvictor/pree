@@ -20,12 +20,12 @@
     <script type="module" src="./components/prev-next.js"></script>
   <title>pree: why?</title></head>
   <body><aside aria-hidden="true">
-      <use-html src="./_toc.html"><m-d id="toc" onparse="document.querySelector('prev-next').controls.load()"><ul>
+      <use-html src="./_toc.html"><m-d id="toc" onparse="document.querySelector('prev-next').controls?.load()"><ul>
 <li><a href="index">Home</a></li>
 <li><a href="motivation">Motivation</a></li>
 <li><a href="install">Installation</a></li>
 <li><a href="usage/index">Usage</a><ul>
-<li><a href="usage/layout">Layouting</a></li>
+<li><a href="usage/meta-layout">Metadata &amp; Layouts</a></li>
 </ul>
 </li>
 </ul>
@@ -39,15 +39,19 @@
   }
 </style>
 
-<m-d><h2>No Time To Build</h2>
+<m-d><h2 id="why-pree">Why <code>pree</code>?<menu role="toolbar"><button ref="?" aria-label="copy link" class="icon">🔗</button></menu></h2>
+<p>TLDR:</p>
+<ul>
+<li>for building websites, we spend too much time wrestling with toolchains</li>
+<li>we can go <em>no build</em> with modern web features (ESM, Web Components, etc.)</li>
+<li>there are a few fundamental gaps though (e.g. web components render on client)</li>
+<li><code>pree</code> fills these gaps as leanly as possible</li>
+</ul>
+<hr>
 <p>A ton of modern web development is wrestling with build tools. Transpilers, bundlers, runtimes, test runners, devtools, packages with various module formats, frameworks with custom syntax and custom devtools, all need to play nice together. In the end, more time is spent configuring build tools instead of building stuff.</p>
 <p>Should we keep torturing ourselves though? Modern web features such as <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules">ESM</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script/type/importmap">import maps</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/Web_Components">Web Components</a>, <a href="https://developer.chrome.com/docs/css-ui/declarative-shadow-dom">declarative shadow DOM</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_nesting/Using_CSS_nesting">nested styles</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties">CSS variables</a>, etc. enable building nice smooth experiences by writing plain HTML, CSS and JavaScript, no build tools involved. Perhaps its time to adopt a <a href="https://world.hey.com/dhh/you-can-t-get-faster-than-no-build-7a44131c">"no build"</a> approach, embracing the simplicity and speed of the modern web.</p>
-<br>
-
 <hr>
-<br>
-
-<p>"No build" sounds really great, but in practice, there are still gaps. Even for smaller projects like documentation sites or blogs, which have fewer moving parts and require less logic on the client, there are fundamental shortcomings:</p>
+<p>As great as that sounds, in practice, there are still gaps. Even for smaller projects like documentation sites or blogs, which have fewer moving parts and require less logic on the client, there are fundamental shortcomings:</p>
 <template shadowrootmode="open"><slot></slot></template></m-d>
 
 <emo-li>
@@ -98,12 +102,7 @@
   </div>
 </template></emo-li>
 
-<m-d><br>
-
-<hr>
-<br>
-
-<h3>Here comes <code>pree</code></h3>
+<m-d><hr>
 <p><code>pree</code> aims to fill in these gaps as leanly as it can. It is designed for building static sites such as blogs or documentations. The goal is to provide a simple, straightforward and smooth developer experience, while being as "no build" as possible.</p>
 <ul>
 <li>It prebuilds HTML files, pre-rendering all web components using <a href="https://developer.chrome.com/docs/css-ui/declarative-shadow-dom">declarative shadow DOM</a>.</li>
@@ -111,11 +110,7 @@
 <li>It handles build-only components and scripts, by simply removing <code>&lt;script build-only&gt;</code> tags.</li>
 </ul>
 <p>Except for the front matter, with <code>pree</code> you will be writing HTML, CSS and JavaScript that browsers could simply load. <code>pree</code> just makes stuff faster by pre-running some scripts and removing some others, resulting in an almost no-build developer experience that also rocks top-tier performance.</p>
-<br>
-
 <hr>
-<br>
-
 <style>
 h5 {
   &:not(:first-of-type) {
@@ -129,22 +124,25 @@ h5 + p {
 }
 </style>
 
-<h5>Q: Isn't this just another build tool?</h5>
+<h5 id="q-isnt-this-just-another-build-tool">Q: Isn't this just another build tool?<menu role="toolbar"><button ref="?" aria-label="copy link" class="icon">🔗</button></menu></h5>
 <p><strong>A</strong>: It is, but a really thin and invisible one. With the exception of layouting, using and not using <code>pree</code> gets you basically the same website. <code>pree</code> just speeds the website up by pre-rendering it.</p>
-<h5>Q: What if I want to write Markdown?</h5>
+<h5 id="q-what-if-i-want-to-write-markdown">Q: What if I want to write Markdown?<menu role="toolbar"><button ref="?" aria-label="copy link" class="icon">🔗</button></menu></h5>
 <p><strong>A</strong>: You can. Just use a web components like <a href="https://zerodevx.github.io/zero-md/">zero-md</a>. Load it <code>build-only</code> so that your users get prebuilt HTML and dont have to download a markdown parser.</p>
 <pre><code class="language-html hljs language-xml" data-highlighted="yes"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">build-only</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"module"</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"https://esm.sh/zero-md"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">zero-md</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"my-markdown.md"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">zero-md</span>&gt;</span>
 </code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
 <p>In fact, <a href="https://github.com/loreanvictor/pree/blob/main/docs/motivation.html">these docs are written</a> in markdown (with a <a href="https://github.com/loreanvictor/pree/blob/main/docs/components/m-d.js">custom component</a>) and built with <code>pree</code>:</p>
-<pre><code class="language-html hljs language-xml" data-highlighted="yes"><span class="hljs-tag">&lt;<span class="hljs-name">m-d</span>&gt;</span>
-### No Time To Build
+<pre><code class="language-md hljs language-markdown" data-highlighted="yes"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">m-d</span>&gt;</span></span>
+<span class="hljs-section">## Why `pree`?</span>
 
-A ton of modern web development is wrestling with ...
+TLDR:
 
-<span class="hljs-tag">&lt;/<span class="hljs-name">m-d</span>&gt;</span>
+<span class="hljs-bullet">-</span> for building websites, we spend too much time wrestling with toolchains
+<span class="hljs-bullet">-</span> we can go <span class="hljs-emphasis">_no build_</span> with modern web features (ESM, Web Components, etc.)
+...
+<span class="language-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">m-d</span>&gt;</span></span>
 </code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
-<h5>Q: What if I want to split HTML files into parts?</h5>
+<h5 id="q-what-if-i-want-to-split-html-files-into-parts">Q: What if I want to split HTML files into parts?<menu role="toolbar"><button ref="?" aria-label="copy link" class="icon">🔗</button></menu></h5>
 <p><strong>A</strong>: Web components can do that too. Web components are pretty powerful, becoming more powerful with <code>pree</code> as they can do magical stuff on build time without affecting client-side performance and user experience.</p>
 <p>For example, this is how splitting is handled in these docs:</p>
 <pre><code class="language-html hljs language-xml" data-highlighted="yes"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">build-only</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"module"</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"./components/use-html.js"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
@@ -153,11 +151,11 @@ A ton of modern web development is wrestling with ...
   <span class="hljs-tag">&lt;<span class="hljs-name">use-html</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"./_toc.html"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">use-html</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">aside</span>&gt;</span>
 </code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
-<h5>Q: What sort of websites can be built with <code>pree</code>?</h5>
+<h5 id="q-what-sort-of-websites-can-be-built-with-pree">Q: What sort of websites can be built with <code>pree</code>?<menu role="toolbar"><button ref="?" aria-label="copy link" class="icon">🔗</button></menu></h5>
 <p><strong>A</strong>: Static websites, like blogs, documentations, landing pages, etc. For dynamic pages (e.g. e-commerce), use another tool. Note that <em>static</em> doesn't mean <em>non-interactive</em>, just that you have fixed pages.</p>
-<h5>Q: What kind of components work with <code>pree</code>?</h5>
+<h5 id="q-what-kind-of-components-work-with-pree">Q: What kind of components work with <code>pree</code>?<menu role="toolbar"><button ref="?" aria-label="copy link" class="icon">🔗</button></menu></h5>
 <p><strong>A</strong>: ALL web components work with <code>pree</code>. Static ones that are loaded <em>build-only</em> will be faster, as will interactive ones supporting SSR through <a href="https://developer.chrome.com/docs/css-ui/declarative-shadow-dom">declarative shadow DOM</a>.</p>
-<h5>Q: Writing web components is hard though, right?</h5>
+<h5 id="q-writing-web-components-is-hard-though-right">Q: Writing web components is hard though, right?<menu role="toolbar"><button ref="?" aria-label="copy link" class="icon">🔗</button></menu></h5>
 <p><strong>A</strong>: With proper tools, its a breeze. I use <a href="https://github.com/loreanvictor/minicomp">minicomp</a>, and combine it with <a href="https://github.com/loreanvictor/rehtm">rehtm</a> for more interactive components. They support SSR and are quite simple.</p>
 <pre><code class="language-js hljs language-javascript" data-highlighted="yes"><span class="hljs-keyword">import</span> { define, currentNode } <span class="hljs-keyword">from</span> <span class="hljs-string">'https://esm.sh/minicomp'</span>
 
@@ -173,15 +171,14 @@ A ton of modern web development is wrestling with ...
   <span class="hljs-keyword">return</span> <span class="hljs-string">'&lt;slot&gt;&lt;/slot&gt;'</span>
 })
 </code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
-<h5>Q: Can you really build cool stuff without a build tool?</h5>
+<h5 id="q-can-you-really-build-cool-stuff-without-a-build-tool">Q: Can you really build cool stuff without a build tool?<menu role="toolbar"><button ref="?" aria-label="copy link" class="icon">🔗</button></menu></h5>
 <p><strong>A</strong>: Judge for yourself. These docs are built with <code>pree</code> and no other tooling: check the <a href="https://github.com/loreanvictor/pree/tree/main/docs">source code</a>.</p>
-<h5>Q: Whats with the front matter? Why not pure HTML?</h5>
+<h5 id="q-whats-with-the-front-matter-why-not-pure-html">Q: Whats with the front matter? Why not pure HTML?<menu role="toolbar"><button ref="?" aria-label="copy link" class="icon">🔗</button></menu></h5>
 <p><strong>A</strong>: I'm salty about this, but I couldn't come close to the developer experience of layouting with front matter using web components. As powerful as they are, they are about <em>isolation</em>, which isn't what you want with layouting.</p>
 <br>
 
 <template shadowrootmode="open"><slot></slot></template></m-d>
 
-      <hr>
       <prev-next><template shadowrootmode="open"><link rel="stylesheet" href="https://unpkg.com/nokss"><link rel="stylesheet" href="https://unpkg.com/graphis/font/graphis.css"><style>i {
       font-family: 'graphis', sans-serif;
       font-style: normal;
@@ -270,7 +267,7 @@ A ton of modern web development is wrestling with ...
 </div><template shadowrootmode="open"><slot></slot></template></use-html>
     </footer>
     
-    <script type="module" src="code.js"></script>
+    <script type="module" src="copy.js"></script>
   
 
 </body></html>

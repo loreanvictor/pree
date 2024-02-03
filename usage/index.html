@@ -20,12 +20,12 @@
     <script type="module" src="./components/prev-next.js"></script>
   <title>pree: usage</title></head>
   <body><aside aria-hidden="true">
-      <use-html src="./_toc.html"><m-d id="toc" onparse="document.querySelector('prev-next').controls.load()"><ul>
+      <use-html src="./_toc.html"><m-d id="toc" onparse="document.querySelector('prev-next').controls?.load()"><ul>
 <li><a href="index">Home</a></li>
 <li><a href="motivation">Motivation</a></li>
 <li><a href="install">Installation</a></li>
 <li><a href="usage/index">Usage</a><ul>
-<li><a href="usage/layout">Layouting</a></li>
+<li><a href="usage/meta-layout">Metadata &amp; Layouts</a></li>
 </ul>
 </li>
 </ul>
@@ -33,43 +33,70 @@
 <template shadowrootmode="open"><slot></slot></template></use-html>
     </aside>
     <main>
-      <m-d><h2>Usage</h2>
+      <m-d><h2 id="usage">Usage<menu role="toolbar"><button ref="?" aria-label="copy link" class="icon">🔗</button></menu></h2>
+<p>👉 Prebuild a single HTML file:</p>
+<pre><code class="language-bash hljs" data-highlighted="yes">pree build docs/my-page.html site/my-page.html
+</code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
+<p>This prebuilds <code>docs/my-page.html</code> into <code>site/my-page.html</code>:</p>
+<p>  🧬   pre-renders web components, <br>  🏗️   resolves <a href="usage/layout">metadata and layouts</a>, <br>  👻   removes build-only scripts and components.</p>
+<br>
+
+<p>👉 Prebuild an entire directory:</p>
+<pre><code class="language-bash hljs" data-highlighted="yes">pree build docs site
+</code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
+<p>This will copy over all the content of <code>docs</code> into <code>site</code> and prebuild all HTML files, except the ones excluded by CLI options or configuration. You can also specify include options (in config or CLI options), and then only the specified files will be prebuilt.</p>
+<br>
+
 <p>👉 Preview your website:</p>
-<pre><code class="language-bash hljs" data-highlighted="yes">pree view
+<pre><code class="language-bash hljs" data-highlighted="yes">pree view docs
 </code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
-<pre><code class="language-bash hljs" data-highlighted="yes">pree view &lt;<span class="hljs-built_in">dir</span>&gt;
-</code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
-<ul>
-<li><code>&lt;dir&gt;</code> is optional. If not provided, the current directory will be used.</li>
-</ul>
-<p><code>pree view</code> starts a local server for viewing various files, also resolves layouting and metadata of HTML files. It also provides a nice file navigator to browse your content.</p>
-<br>
-
-<p>👉  Prebuild your website:</p>
-<pre><code class="language-bash hljs" data-highlighted="yes">pree build &lt;src&gt; &lt;dest&gt;
-</code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
-<ul>
-<li><code>&lt;src&gt;</code> can be an HTML file or a directory. If it's a directory, all HTML files in it will be processed recursively.</li>
-<li><code>&lt;dest&gt;</code> can be a file or a directory. If <code>&lt;src&gt;</code> is a directory, then <code>&lt;dest&gt;</code> must be a directory as well.</li>
-</ul>
-<p><code>pre build</code> builds one or more HTML files, pre-rendering their web components. It launches a local server and uses an emulated browser to pre-render the files, mimicking actual browser behavior.</p>
-<br>
-
-<p>Example:</p>
-<pre><code class="language-bash hljs" data-highlighted="yes">pree build docs/index.html dist/index.html
-</code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
-<pre><code class="language-bash hljs" data-highlighted="yes">pree build docs/ dist/
-</code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
-<br>
-
+<p>  👀   it loads your website without prebuilding it, <br>  🏗️   it still resolves <a href="usage/layout">metadata and layouts</a>, <br>  🔃   it live reloads on change, <br>  📁   it also lists directory content for easy navigation. </p>
 <blockquote>
-<p>⚡ <strong>IMPORTANT</strong></p>
-<p><code>pree</code> uses <a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_shadow_DOM#declaratively_with_html">declarative shadow DOM</a> for prerendering web components. Declarative shadow DOM is a relatively new feature not supported by <a href="https://caniuse.com/declarative-shadow-dom">older browsers</a>. Browsers that don't support it won't get the benefits of pre-rendering
-web components. This also means that <a href="#build-time-scripts">build time components</a> won't work in these browsers.</p>
+<p>Performance of your pages in preview mode is much slower than in production mode, since
+the content is not prebuilt. To double check the performance of your prebuilt website, first build it:</p>
+<pre><code class="language-bash hljs" data-highlighted="yes">pree build docs site
+</code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
+<p>Then check the prebuilt website in production mode:</p>
+<pre><code class="language-bash hljs" data-highlighted="yes">pree check site
+</code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
 </blockquote>
-<p></p>
+<hr>
+<h3 id="asset-management">Asset Management<menu role="toolbar"><button ref="?" aria-label="copy link" class="icon">🔗</button></menu></h3>
+<p><code>pree</code> is NOT an asset manager. It will copy the content of a directory when you copy it, so you can conveniently include your assets using relative paths:</p>
+<pre><code data-highlighted="yes" class="hljs language-bash">/docs/
+/assets/
+  /styles.css
+  /logo.png
+/my-page.html
+</code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
+<pre><code class="language-html hljs language-xml" data-highlighted="yes"><span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">"stylesheet"</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"assets/styles.css"</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"assets/logo.png"</span>&gt;</span>
+</code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
+<p>In some cases the base URL for your website is not the root of your domain. For example, in <a href="https://pages.github.com/">GitHub Pages</a>, without a custom domain, your website will be hosted at <code>https://username.github.io/repo/</code>. In this case, you can set the base URL in the <code>head</code> of your HTML files:</p>
+<pre><code class="language-html hljs language-xml" data-highlighted="yes"><span class="hljs-tag">&lt;<span class="hljs-name">base</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"/repo/"</span>&gt;</span>
+</code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
+<p>And specify a <em>base</em> option to <code>pree</code>:</p>
+<pre><code class="language-bash hljs" data-highlighted="yes">pree build docs site -b /repo/
+</code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
+<hr>
+<h3 id="config-file">Config File<menu role="toolbar"><button ref="?" aria-label="copy link" class="icon">🔗</button></menu></h3>
+<p>For more convenient usage of <code>pree</code>, you can create a config file to specify <code>pree</code>'s options:</p>
+<pre><code class="language-yaml hljs" data-highlighted="yes"><span class="hljs-comment"># .pree.yml</span>
+<span class="hljs-attr">base:</span> <span class="hljs-string">/repo/</span>
+<span class="hljs-attr">src:</span> <span class="hljs-string">docs</span>
+<span class="hljs-attr">dest:</span> <span class="hljs-string">site</span>
+</code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
+<p><code>pree</code> will look for <code>.pree.yml</code> in the current working directory, and use it as the default configuration:</p>
+<pre><code class="language-bash hljs" data-highlighted="yes">pree view          <span class="hljs-comment"># 👈 this is equal to `pree view docs`</span>
+</code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
+<pre><code class="language-bash hljs" data-highlighted="yes">pree build         <span class="hljs-comment"># 👈 this is equal to `pree view build`</span>
+</code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
+<pre><code class="language-bash hljs" data-highlighted="yes">pree check         <span class="hljs-comment"># 👈 this is equal to `pree check site`</span>
+</code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
 <template shadowrootmode="open"><slot></slot></template></m-d>
-      <hr>
+
+<br>
+
       <prev-next><template shadowrootmode="open"><link rel="stylesheet" href="https://unpkg.com/nokss"><link rel="stylesheet" href="https://unpkg.com/graphis/font/graphis.css"><style>i {
       font-family: 'graphis', sans-serif;
       font-style: normal;
@@ -124,9 +151,9 @@ web components. This also means that <a href="#build-time-scripts">build time co
           
         
           <article class="next">
-            <a href="http://localhost:3000/pree/usage/layout">
+            <a href="http://localhost:3000/pree/usage/meta-layout">
               <small>Up Next</small><br>
-              Layouting
+              Metadata &amp; Layouts
             </a>
             <i>➡</i>
           </article>
@@ -158,7 +185,7 @@ web components. This also means that <a href="#build-time-scripts">build time co
 </div><template shadowrootmode="open"><slot></slot></template></use-html>
     </footer>
     
-    <script type="module" src="code.js"></script>
+    <script type="module" src="copy.js"></script>
   
 
 </body></html>
