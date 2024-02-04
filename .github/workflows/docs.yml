@@ -20,7 +20,7 @@ jobs:
         run: npm i -g pree
 
       - name: Build docs
-        run: pree build docs site -N pree
+        run: pree build -V
       
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4
