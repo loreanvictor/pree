@@ -13,7 +13,12 @@
 }
 
 a:not([role]) {
-  text-decoration: underline 0.5px;
+  text-decoration: underline color-mix(in srgb, var(--primary-color) 35%, var(--background-color));
+  transition: text-decoration .15s;
+}
+
+tbody :is(th,td) pre code {
+  color: white !important;
 }
 
 main {

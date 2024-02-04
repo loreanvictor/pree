@@ -1,0 +1,407 @@
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <base href="/pree/">
+
+    
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon.ico">
+
+    <link rel="stylesheet" href="https://unpkg.com/nokss">
+    <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://esm.sh/graphis/font/graphis.css">
+    <link rel="stylesheet" href="./theme.css">
+    
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/highlight.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github-dark.min.css">
+
+    
+    
+    
+
+    <script src="./components/emo-li.js" type="module"></script>
+    <script type="module" src="./components/prev-next.js"></script>
+  <title>pree: build environment</title>
+          
+        </head>
+  <body><aside aria-hidden="true">
+      <use-html src="./_toc.html"><m-d id="toc" onparse="document.querySelector('prev-next').controls?.load()"><ul>
+<li><a href="index">Home</a></li>
+<li><a href="motivation">Motivation</a></li>
+<li><a href="install">Installation</a></li>
+<li><a href="usage/index">Usage</a><ul>
+<li><a href="usage/meta-layout">Metadata &amp; Layouts</a></li>
+<li><a href="usage/build-only-scripts">Build-Only Scripts</a></li>
+</ul>
+</li>
+<li><a href="build-env">Build Environment</a></li>
+</ul>
+<template shadowrootmode="open"><slot></slot></template></m-d>
+<template shadowrootmode="open"><slot></slot></template></use-html>
+    </aside>
+    <main>
+      <m-d><h2 id="build-environment">Build Environment<menu role="toolbar"><button ref="?" aria-label="copy link" class="icon">🔗</button></menu></h2>
+<p>Access to build environment can help web components supercharge developer experience. For example, access to git history of HTML files allows web components to automatically deduce the author or publish date of a page. Without such access, this could only be done manually.</p>
+<p><code>pree</code> provides such access to web components during pre-rendering, through APIs accessible at <code>/@env/</code> path:</p>
+<pre><code class="language-js hljs language-javascript" data-highlighted="yes"><span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> <span class="hljs-title function_">fetch</span>(<span class="hljs-string">'/@env/git/commits/first/my-page.html'</span>)
+<span class="hljs-keyword">const</span> commit = <span class="hljs-keyword">await</span> res.<span class="hljs-title function_">json</span>()
+
+<span class="hljs-keyword">const</span> author = commit.<span class="hljs-property">author_name</span>
+<span class="hljs-keyword">const</span> published = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>(commit.<span class="hljs-property">date</span>)
+</code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
+<br>
+
+<p>For example, <a href="https://github.com/loreanvictor/pree/blob/main/docs/components/gh-link.js">this custom component</a> adds the GitHub link in the footer of this page:</p>
+<pre><code class="language-js hljs language-javascript" data-highlighted="yes"><span class="hljs-keyword">import</span> { define, onFirstRender } <span class="hljs-keyword">from</span> <span class="hljs-string">'https://esm.sh/minicomp'</span>
+<span class="hljs-keyword">import</span> { html, ref } <span class="hljs-keyword">from</span> <span class="hljs-string">'https://esm.sh/rehtm'</span>
+
+<span class="hljs-title function_">define</span>(<span class="hljs-string">'gh-link'</span>, <span class="hljs-function">() =&gt;</span> {
+  <span class="hljs-keyword">const</span> anchor = <span class="hljs-title function_">ref</span>()
+
+  <span class="hljs-keyword">const</span> <span class="hljs-title function_">load</span> = <span class="hljs-keyword">async</span> (<span class="hljs-params"></span>) =&gt; {
+    <span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> <span class="hljs-title function_">fetch</span>(<span class="hljs-string">'/@env/git/remote/info'</span>)
+    <span class="hljs-keyword">const</span> info = <span class="hljs-keyword">await</span> res.<span class="hljs-title function_">json</span>()
+
+    anchor.<span class="hljs-property">current</span>.<span class="hljs-property">href</span> = <span class="hljs-string">`https://<span class="hljs-subst">${info.host}</span>/<span class="hljs-subst">${info.full_name}</span>`</span>
+  }
+
+  <span class="hljs-title function_">onFirstRender</span>(<span class="hljs-function">() =&gt;</span> <span class="hljs-title function_">load</span>())
+
+  <span class="hljs-keyword">return</span> html`<span class="language-xml">
+    <span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">"stylesheet"</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"https://unpkg.com/nokss/dist/bundles/md.css"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">"</span></span></span><span class="hljs-subst">${anchor}</span><span class="language-xml"><span class="hljs-tag"><span class="hljs-string">"</span> <span class="hljs-attr">target</span>=<span class="hljs-string">"_blank"</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">slot</span>&gt;</span>GitHub<span class="hljs-tag">&lt;/<span class="hljs-name">slot</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+  `</span>
+})
+</code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
+<hr>
+<h3 id="provided-apis">Provided APIs<menu role="toolbar"><button ref="?" aria-label="copy link" class="icon">🔗</button></menu></h3>
+<p>Note that these APIs are only available during pre-rendering, i.e. during execution of <code>pree build</code> or <code>pree view</code> commands. They should not be invoked in the final website: either load components and scripts using them as <code>build-only</code> (<a href="/usage/build-only-scripts">see this</a>), or check for their availability via <code>window.BUILD_ENV_API</code> variable:</p>
+<pre><code class="language-js hljs language-javascript" data-highlighted="yes"><span class="hljs-keyword">if</span> (<span class="hljs-variable language_">window</span>.<span class="hljs-property">BUILD_ENV_API</span>) {
+<span class="hljs-comment">// use the APIs</span>
+}
+</code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
+<template shadowrootmode="open"><slot></slot></template></m-d>
+
+<div style="max-width: 100%; overflow: auto">
+<table>
+  <thead>
+    <tr>
+      <th>endpoint</th>
+      <th>description</th>
+      <th>type</th>
+      <th>example</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><m-d><p><code>/@env/conf</code></p>
+<template shadowrootmode="open"><slot></slot></template></m-d></td>
+      <td><m-d><p><code>pree</code>'s configuration</p>
+<template shadowrootmode="open"><slot></slot></template></m-d></td>
+      <td>JSON</td>
+      <td>
+        <m-d><pre><code class="language-json hljs" data-highlighted="yes"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">"src"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"docs"</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"dest"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"site"</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"prod"</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">false</span></span><span class="hljs-punctuation">,</span>
+  ...
+<span class="hljs-punctuation">}</span>
+</code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
+<template shadowrootmode="open"><slot></slot></template></m-d>
+      </td>
+    </tr>
+    <tr>
+      <td><m-d><p><code>/@env/conf/:var</code></p>
+<template shadowrootmode="open"><slot></slot></template></m-d></td>
+      <td><m-d><p>specific configuration variable</p>
+<template shadowrootmode="open"><slot></slot></template></m-d></td>
+      <td>JSON</td>
+      <td><m-d><p><code>/@env/conf/src</code></p>
+<pre><code class="language-json hljs" data-highlighted="yes"><span class="hljs-string">"docs"</span>
+</code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
+<template shadowrootmode="open"><slot></slot></template></m-d></td></tr>
+    <tr>
+      <td><m-d><p><code>/@env/vars/:var</code></p>
+<template shadowrootmode="open"><slot></slot></template></m-d></td>
+      <td><m-d><p>specific environment variable</p>
+<template shadowrootmode="open"><slot></slot></template></m-d></td>
+      <td>text</td>
+      <td><m-d><p><code>/@env/vars/PATH</code></p>
+<pre><code class="language-text hljs language-plaintext" data-highlighted="yes">/usr/local/bin:/usr/bin:/bin
+</code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
+<template shadowrootmode="open"><slot></slot></template></m-d></td>
+    </tr>
+    <tr>
+      <td><m-d><p><code>/@env/git/remote/info</code></p>
+<template shadowrootmode="open"><slot></slot></template></m-d></td>
+      <td><m-d><p>remote git repository info</p>
+<template shadowrootmode="open"><slot></slot></template></m-d></td>
+      <td>JSON</td>
+      <td><m-d><pre><code class="language-json hljs" data-highlighted="yes"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">"host"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"github.com"</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"full_name"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"loreanvictor/pree"</span><span class="hljs-punctuation">,</span>
+  ...
+<span class="hljs-punctuation">}</span>
+</code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
+<template shadowrootmode="open"><slot></slot></template></m-d></td>
+    </tr>
+    <tr>
+      <td><m-d><p><code>/@env/git/remote/url</code></p>
+<template shadowrootmode="open"><slot></slot></template></m-d></td>
+      <td><m-d><p>remote git repository URL</p>
+<template shadowrootmode="open"><slot></slot></template></m-d></td>
+      <td>text</td>
+      <td><m-d><pre><code class="language-text hljs language-plaintext" data-highlighted="yes">git@github.com:loreanvictor/pree.git
+</code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
+<template shadowrootmode="open"><slot></slot></template></m-d></td>
+    </tr>
+    <tr>
+      <td><m-d><p><code>/@env/git/commits/first</code></p>
+<template shadowrootmode="open"><slot></slot></template></m-d></td>
+      <td><m-d><p>first commit of the project</p>
+<template shadowrootmode="open"><slot></slot></template></m-d></td>
+      <td>JSON</td>
+      <td><m-d><pre><code class="language-json hljs" data-highlighted="yes"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">"hash"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"d22c84..."</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"author_name"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"Eugene Ghanizadeh Khoub"</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"author_email"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"ghanizadeh.eugene@gmail.com"</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"date"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"2024-01-26T13:49:32+01:00"</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"message"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"Initial commit"</span>
+<span class="hljs-punctuation">}</span>
+</code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
+<template shadowrootmode="open"><slot></slot></template></m-d></td>
+    </tr>
+    <tr>
+      <td><m-d><p><code>/@env/git/commits/last</code></p>
+<template shadowrootmode="open"><slot></slot></template></m-d></td>
+      <td><m-d><p>last commit of the project</p>
+<template shadowrootmode="open"><slot></slot></template></m-d></td>
+      <td>JSON</td>
+      <td><i>same as above</i></td>
+    </tr>
+    <tr>
+      <td><m-d><p><code>/@env/git/commits/first/:PATH</code></p>
+<template shadowrootmode="open"><slot></slot></template></m-d></td>
+      <td><m-d><p>first commit of given file</p>
+<template shadowrootmode="open"><slot></slot></template></m-d></td>
+      <td>JSON</td>
+      <td><m-d><p><code>/@env/git/commits/first/docs/usage.html</code></p>
+<pre><code class="language-json hljs" data-highlighted="yes"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">"hash"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"3653af..."</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"author_name"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"Eugene Ghanizadeh Khoub"</span><span class="hljs-punctuation">,</span>
+  ...
+<span class="hljs-punctuation">}</span>
+</code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
+<template shadowrootmode="open"><slot></slot></template></m-d></td>
+    </tr>
+    <tr>
+      <td><m-d><p><code>/@env/git/commits/last/:PATH</code></p>
+<template shadowrootmode="open"><slot></slot></template></m-d></td>
+      <td><m-d><p>last commit of given file</p>
+<template shadowrootmode="open"><slot></slot></template></m-d></td>
+      <td>JSON</td>
+      <td><i>same as above</i></td>
+    </tr>
+    <tr>
+      <td><m-d><p><code>/@env/git/commits/all</code></p>
+<template shadowrootmode="open"><slot></slot></template></m-d></td>
+      <td><m-d><p>all commits of the project</p>
+<template shadowrootmode="open"><slot></slot></template></m-d></td>
+      <td>JSON</td>
+      <td><m-d><p><code>/@env/git/commits/all</code></p>
+<pre><code class="language-json hljs" data-highlighted="yes"><span class="hljs-punctuation">[</span>
+  <span class="hljs-punctuation">{</span> <span class="hljs-attr">"hash"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"3653af..."</span><span class="hljs-punctuation">,</span> ...<span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-punctuation">{</span> <span class="hljs-attr">"hash"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"d22c84..."</span><span class="hljs-punctuation">,</span> ...<span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+  ...
+<span class="hljs-punctuation">]</span>
+</code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
+<template shadowrootmode="open"><slot></slot></template></m-d></td>
+    </tr>
+    <tr>
+      <td><m-d><p><code>/@env/git/commits/all/:PATH</code></p>
+<template shadowrootmode="open"><slot></slot></template></m-d></td>
+      <td><m-d><p>all commits of given file</p>
+<template shadowrootmode="open"><slot></slot></template></m-d></td>
+      <td>JSON</td>
+      <td><i>same as above</i></td>
+    </tr>
+    <tr>
+      <td><m-d><p><code>/@env/git/show/:OBJECT</code></p>
+<template shadowrootmode="open"><slot></slot></template></m-d></td>
+      <td><m-d><p><a href="https://git-scm.com/docs/git-show">git show given object</a></p>
+<template shadowrootmode="open"><slot></slot></template></m-d></td>
+      <td>file format</td>
+      <td><m-d><p><code>/@env/git/show/HEAD:docs/index.html</code></p>
+<pre><code class="language-html hljs language-xml" data-highlighted="yes">---
+layout: ./_layout.html
+---
+
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">slot</span>=<span class="hljs-string">"background"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">use-html</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"./_lines.html"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">use-html</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+...
+</code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
+<template shadowrootmode="open"><slot></slot></template></m-d></td>
+    </tr>
+    <tr>
+      <td><m-d><p><code>/@env/files/list</code></p>
+<template shadowrootmode="open"><slot></slot></template></m-d></td>
+      <td><m-d><p>A list of files of the project</p>
+<template shadowrootmode="open"><slot></slot></template></m-d></td>
+      <td>JSON</td>
+      <td><m-d><pre><code class="language-json hljs" data-highlighted="yes"><span class="hljs-punctuation">[</span>
+  <span class="hljs-string">".eslintrc"</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-string">".pree.yml"</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-string">"LICENSE"</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-string">"docs/index.html"</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-string">"docs/usage/index.html"</span><span class="hljs-punctuation">,</span>
+  ...
+<span class="hljs-punctuation">]</span>
+</code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
+<template shadowrootmode="open"><slot></slot></template></m-d></td>
+    </tr>
+    <tr>
+      <td><m-d><p><code>/@env/files/list/:PATTERN</code></p>
+<template shadowrootmode="open"><slot></slot></template></m-d></td>
+      <td><m-d><p>A list of files matching given pattern</p>
+<template shadowrootmode="open"><slot></slot></template></m-d></td>
+      <td>JSON</td>
+      <td><m-d><p><code>/@env/files/list/docs/**/*.html</code></p>
+<pre><code class="language-json hljs" data-highlighted="yes"><span class="hljs-punctuation">[</span>
+  <span class="hljs-string">"docs/index.html"</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-string">"docs/usage/index.html"</span><span class="hljs-punctuation">,</span>
+  ...
+<span class="hljs-punctuation">]</span>
+</code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
+<template shadowrootmode="open"><slot></slot></template></m-d></td>
+    </tr>
+    <tr>
+      <td><m-d><p><code>/@env/files/read/:PATH</code></p>
+<template shadowrootmode="open"><slot></slot></template></m-d></td>
+      <td><m-d><p>Read the content of a file</p>
+<template shadowrootmode="open"><slot></slot></template></m-d></td>
+      <td>file format</td>
+      <td><m-d><p><code>/@env/files/read/package.json</code></p>
+<pre><code class="language-json hljs" data-highlighted="yes"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">"name"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"pree"</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"version"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"0.1.10"</span><span class="hljs-punctuation">,</span>
+  ...
+<span class="hljs-punctuation">}</span>
+</code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
+<template shadowrootmode="open"><slot></slot></template></m-d></td>
+  </tr></tbody>
+</table>
+</div>
+
+<m-d><h3 id="publishing-components">Publishing Components<menu role="toolbar"><button ref="?" aria-label="copy link" class="icon">🔗</button></menu></h3>
+<p>If you want to publish <code>pree</code>-supported components to be used by others, it is recommended to ensure that your components can also be used in other environments, including on the client side. Also take the following considerations into account:</p>
+<br>
+
+<p>👉 Base URL for the APIs might change in some environments. Use <code>BUILD_ENV_API.baseURL</code> instead of <code>/@env/</code>:</p>
+<pre><code class="language-js hljs language-javascript" data-highlighted="yes"><span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> <span class="hljs-title function_">fetch</span>(<span class="hljs-string">`<span class="hljs-subst">${BUILD_ENV_API.baseURL}</span>git/remote/info`</span>)
+</code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
+<br>
+
+<p>👉 It is recommended to check <code>pree</code>'s version as well:</p>
+<pre><code class="language-js hljs language-javascript" data-highlighted="yes"><span class="hljs-keyword">import</span> { satisfies } <span class="hljs-keyword">from</span> <span class="hljs-string">'https://esm.sh/semver'</span>
+
+<span class="hljs-keyword">const</span> [host, version] = <span class="hljs-variable constant_">BUILD_ENV_API</span>.<span class="hljs-property">provider</span>.<span class="hljs-title function_">split</span>(<span class="hljs-string">'@'</span>)
+<span class="hljs-keyword">if</span> (host === <span class="hljs-string">'pree'</span> &amp;&amp; <span class="hljs-title function_">satisfies</span>(version, <span class="hljs-string">'^0.1.10'</span>)) {
+  <span class="hljs-comment">// use the APIs</span>
+}
+</code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
+<template shadowrootmode="open"><slot></slot></template></m-d>
+
+<br>
+
+<change-history><template shadowrootmode="open"><style>div {
+        text-align: right;
+        opacity:.35;
+        font-size: 0.8rem;
+        font-style: italic;
+      }</style><div>Updated at <span ref="?">Feb 04, 2024</span> <br>for <span ref="?">pree</span> version <span ref="?">0.1.10</span></div></template></change-history>
+
+<br>
+      <prev-next><template shadowrootmode="open"><link rel="stylesheet" href="https://unpkg.com/nokss"><link rel="stylesheet" href="https://unpkg.com/graphis/font/graphis.css"><style>i {
+      font-family: 'graphis', sans-serif;
+      font-style: normal;
+      font-size: 2rem;
+      opacity: .25;
+    }
+
+    section[role="feed"] {
+      flex-direction: row;
+      &[aria-hidden] {
+        opacity: 0;
+      }
+
+      opacity: 1;
+      transition: opacity .5s;
+
+      article {
+        flex-grow: 1;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 1rem;
+
+        & > a {
+          display: block;
+          flex-grow: 1;
+          text-decoration: none!important;
+        }
+
+        &.next {
+          flex-basis: flex-end;
+          text-align: right;
+        }
+
+        @media (max-width: 480px) {
+          &:first-child:not(:last-child) {
+            display: none;
+          }
+        }
+      }
+
+      margin-bottom: 4rem;
+    }</style><section role="feed" ref="?">        
+        
+          <article>
+            <i>⬅</i>
+            <a href="http://localhost:3000/pree/usage/build-only-scripts">
+              <small>Previosly</small><br>
+              Build-Only Scripts
+            </a>
+          </article>
+          
+        
+      </section></template></prev-next>
+    </main>
+    <footer>
+      <use-html src="./_footer.html"><script type="module" src="./components/menu-toggle.js"></script>
+
+
+
+<div style="display: flex">
+  <menu-toggle><template shadowrootmode="open"><link rel="stylesheet" href="https://unpkg.com/nokss"><link rel="stylesheet" href="https://unpkg.com/graphis/font/graphis.css"><style>.icon {
+      font-family: 'graphis', sans-serif;
+      font-style: normal;
+      font-size: 1.2rem;
+    }
+
+    button[role="switch"][aria-checked="true"]>span{
+      color: var(--background-color);
+    }</style><button ref="?" role="switch" aria-label="toggle sidebar" aria-checked="true"><span class="icon">❌</span><span class="icon">⩧</span></button></template></menu-toggle>
+  <div style="flex-grow: 1"></div>
+  <div align="right">
+    <gh-link>github<template shadowrootmode="open"><link rel="stylesheet" href="https://unpkg.com/nokss/dist/bundles/md.css"><a ref="?" target="_blank" href="https://github.com/loreanvictor/pree"><slot>GitHub</slot></a></template></gh-link> | <npm-badge><template shadowrootmode="open"><link rel="stylesheet" href="https://unpkg.com/nokss/dist/bundles/md.css"><style>img {
+        vertical-align: middle;
+        margin-left: 0.5rem;
+      }</style><a ref="?" target="_blank" href="https://www.npmjs.com/package/pree">pree</a><img alt="npm" ref="?" src="https://img.shields.io/npm/v/pree.svg?label=&amp;style=normal"></template></npm-badge>
+  </div>
+</div><template shadowrootmode="open"><slot></slot></template></use-html>
+    </footer>
+    
+    <script type="module" src="copy.js"></script>
+  
+
+</body></html>
