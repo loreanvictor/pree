@@ -4,6 +4,7 @@ import { Loader } from '../serve/files/loader'
 import { match } from '../util/file-match'
 import { ViewOptions } from './types'
 import { _DefaultServeOptions } from '../serve'
+import { COLORS } from '../util/logger'
 
 
 export function injector(options: ViewOptions = {}): Loader {
@@ -24,7 +25,11 @@ export function injector(options: ViewOptions = {}): Loader {
             window.__autoReloadConnected = true
             const socket = new WebSocket('ws://localhost:${port}')
             socket.addEventListener('open', () => {
-              console.log('Connected to Auto Reload')
+              console.log(
+                '%cpree live reload connected @ %clocalhost:${port}',
+                'color: ${COLORS.highlight}',
+                'color: ${COLORS.secondary}'
+                )
             })
             socket.addEventListener('message', () => window.location.reload())
           }

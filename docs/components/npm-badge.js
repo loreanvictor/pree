@@ -1,4 +1,4 @@
-import { define, currentNode } from 'https://esm.sh/minicomp'
+import { define, currentNode, onFirstRender } from 'https://esm.sh/minicomp'
 import { html, ref } from 'https://esm.sh/rehtm'
 
 
@@ -9,7 +9,7 @@ define('npm-badge', ({ package_name, label, design }) => {
 
   const load = async () => {
     try {
-      const res = await fetch('/@env/files/read/package.json')
+      const res = await fetch(`${window.BUILD_ENV_API.baseURL}files/read/package.json`)
       const pkg = await res.json()
       update(pkg.name)
     } catch {
@@ -30,7 +30,7 @@ define('npm-badge', ({ package_name, label, design }) => {
   if (package_name) {
     update(package_name)
   } else {
-    load()
+    onFirstRender(() => load())
   }
 
   return html`

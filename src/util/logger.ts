@@ -1,13 +1,21 @@
 import chalk from 'chalk'
 
+export const COLORS = {
+  error: '#FF6868',
+  warn: '#FFBB64',
+  highlight: '#9AD0C2',
+  secondary: '#2D9596',
+  shy: '#265073',
+  fade: '#424242',
+}
 
 export const THEME = {
-  error: chalk.hex('#FF6868').bold,
-  warn: chalk.hex('#FFBB64'),
-  highlight: chalk.hex('#9AD0C2').bold,
-  secondary: chalk.hex('#2D9596'),
-  shy: chalk.hex('#265073'),
-  fade: chalk.hex('#424242'),
+  error: chalk.hex(COLORS.error).bold,
+  warn: chalk.hex(COLORS.warn),
+  highlight: chalk.hex(COLORS.highlight).bold,
+  secondary: chalk.hex(COLORS.secondary),
+  shy: chalk.hex(COLORS.shy),
+  fade: chalk.hex(COLORS.fade),
 }
 
 export const LOG_LEVEL = {

@@ -2,6 +2,7 @@ import parse from 'git-url-parse'
 import _git from 'simple-git'
 
 import { response, router } from './router'
+import { mimetype } from '../../util/file-types'
 
 
 const instance = _git()
@@ -41,6 +42,10 @@ async function allCommits(path: string) {
     (await instance.log([])).all
 }
 
+async function show(object: string) {
+  return response(await instance.show([object]), mimetype(object) ?? 'text/plain')
+}
+
 export const git = router({
   '/remote/url': async () => response(await remoteUrl(), 'text/plain'),
   '/remote/info': remoteInfo,
@@ -48,4 +53,5 @@ export const git = router({
   '/commits/first/': firstCommit,
   '/commits/last/': lastCommit,
   '/commits/all/': allCommits,
+  '/show/': show,
 })

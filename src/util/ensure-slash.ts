@@ -5,3 +5,7 @@ export function els(path: string) {
 export function ele(path: string) {
   return path.endsWith('/') ? path : path + '/'
 }
+
+export function trimslash(path: string) {
+  return path.replace(/\/$/, '').replace(/^\//, '')
+}
