@@ -26,6 +26,11 @@ define('change-history', () => {
     }
 
     const commit = await (await fetch(`${window.BUILD_ENV_API.baseURL}git/commits/last/${path}`)).json()
+
+    if (!commit) {
+      return
+    }
+
     const pkg = JSON.parse(
       await (await fetch(`${window.BUILD_ENV_API.baseURL}git/show/${commit.hash}:package.json`)).text()
     )

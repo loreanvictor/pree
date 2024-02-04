@@ -10,7 +10,10 @@ define('m-d', () => {
   marked.use(gfmHeadingId())
 
   onFirstRender((node) => {
-    const content = dedent(node.innerHTML).replace(/&lt;/g, '<').replace(/&gt;/g, '>')
+    const content = dedent(node.innerHTML)
+      .replace(/&lt;/g, '<')
+      .replace(/&gt;/g, '>')
+      .replace(/&amp;/g, '&')
     const parsed = marked.parse(content)
     node.innerHTML = parsed
     dispatch({ content, parsed })

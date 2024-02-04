@@ -1,0 +1,300 @@
+---
+title: "pree: build environment"
+layout: ./_layout.html
+---
+
+<m-d>
+## Build Environment
+
+Access to build environment can help web components supercharge developer experience. For example, access to git history of HTML files allows web components to automatically deduce the author or publish date of a page. Without such access, this could only be done manually.
+
+`pree` provides such access to web components during pre-rendering, through APIs accessible at `/@env/` path:
+
+```js
+const res = await fetch('/@env/git/commits/first/my-page.html')
+const commit = await res.json()
+
+const author = commit.author_name
+const published = new Date(commit.date)
+```
+
+<br>
+
+For example, [this custom component](https://github.com/loreanvictor/pree/blob/main/docs/components/gh-link.js) adds the GitHub link in the footer of this page:
+
+```js
+  import { define, onFirstRender } from 'https://esm.sh/minicomp'
+  import { html, ref } from 'https://esm.sh/rehtm'
+
+  define('gh-link', () => {
+    const anchor = ref()
+
+    const load = async () => {
+      const res = await fetch('/@env/git/remote/info')
+      const info = await res.json()
+
+      anchor.current.href = `https://${info.host}/${info.full_name}`
+    }
+
+    onFirstRender(() => load())
+
+    return html`
+      <link rel="stylesheet" href="https://unpkg.com/nokss/dist/bundles/md.css" />
+      <a ref=${anchor} target="_blank"><slot>GitHub</slot></a>
+    `
+  })
+```
+
+---
+
+### Provided APIs
+
+Note that these APIs are only available during pre-rendering, i.e. during execution of `pree build` or `pree view` commands. They should not be invoked in the final website: either load components and scripts using them as `build-only` ([see this](/usage/build-only-scripts)), or check for their availability via `window.BUILD_ENV_API` variable:
+
+```js
+if (window.BUILD_ENV_API) {
+  // use the APIs
+}
+```
+
+</m-d>
+
+<div style="max-width: 100%; overflow: auto">
+<table>
+  <thead>
+    <tr>
+      <th>endpoint</th>
+      <th>description</th>
+      <th>type</th>
+      <th>example</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><m-d>`/@env/conf`</m-d></td>
+      <td><m-d>`pree`'s configuration</m-d></td>
+      <td>JSON</td>
+      <td>
+        <m-d>
+          ```json
+          {
+            "src": "docs",
+            "dest": "site",
+            "prod": false,
+            ...
+          }
+          ```
+        </m-d>
+      </td>
+    </tr>
+    <tr>
+      <td><m-d>`/@env/conf/:var`</m-d></td>
+      <td><m-d>specific configuration variable</m-d></td>
+      <td>JSON</td>
+      <td><m-d>
+          `/@env/conf/src`
+          ```json
+          "docs"
+          ```
+      </m-d></tr>
+    <tr>
+      <td><m-d>`/@env/vars/:var`</m-d></td>
+      <td><m-d>specific environment variable</m-d></td>
+      <td>text</td>
+      <td><m-d>
+        `/@env/vars/PATH`
+        ```text
+        /usr/local/bin:/usr/bin:/bin
+        ```
+      </m-d></td>
+    </tr>
+    <tr>
+      <td><m-d>`/@env/git/remote/info`</m-d></td>
+      <td><m-d>remote git repository info</m-d></td>
+      <td>JSON</td>
+      <td><m-d>
+        ```json
+        {
+          "host": "github.com",
+          "full_name": "loreanvictor/pree",
+          ...
+        }
+        ```
+      </m-d></td>
+    </tr>
+    <tr>
+      <td><m-d>`/@env/git/remote/url`</m-d></td>
+      <td><m-d>remote git repository URL</m-d></td>
+      <td>text</td>
+      <td><m-d>
+        ```text
+        git@github.com:loreanvictor/pree.git
+        ```
+      </m-d></td>
+    </tr>
+    <tr>
+      <td><m-d>`/@env/git/commits/first`</m-d></td>
+      <td><m-d>first commit of the project</m-d></td>
+      <td>JSON</td>
+      <td><m-d>
+        ```json
+        {
+          "hash": "d22c84...",
+          "author_name": "Eugene Ghanizadeh Khoub",
+          "author_email": "ghanizadeh.eugene@gmail.com",
+          "date": "2024-01-26T13:49:32+01:00",
+          "message": "Initial commit"
+        }
+        ```
+      </m-d></td>
+    </tr>
+    <tr>
+      <td><m-d>`/@env/git/commits/last`</m-d></td>
+      <td><m-d>last commit of the project</m-d></td>
+      <td>JSON</td>
+      <td><i>same as above</i></td>
+    </tr>
+    <tr>
+      <td><m-d>`/@env/git/commits/first/:PATH`</m-d></td>
+      <td><m-d>first commit of given file</m-d></td>
+      <td>JSON</td>
+      <td><m-d>
+        `/@env/git/commits/first/docs/usage.html`
+        ```json
+        {
+          "hash": "3653af...",
+          "author_name": "Eugene Ghanizadeh Khoub",
+          ...
+        }
+        ```
+      </m-d></td>
+    </tr>
+    <tr>
+      <td><m-d>`/@env/git/commits/last/:PATH`</m-d></td>
+      <td><m-d>last commit of given file</m-d></td>
+      <td>JSON</td>
+      <td><i>same as above</i></td>
+    </tr>
+    <tr>
+      <td><m-d>`/@env/git/commits/all`</m-d></td>
+      <td><m-d>all commits of the project</m-d></td>
+      <td>JSON</td>
+      <td><m-d>
+        `/@env/git/commits/all`
+        ```json
+        [
+          { "hash": "3653af...", ...},
+          { "hash": "d22c84...", ...},
+          ...
+        ]
+        ```
+      </m-d></td>
+    </tr>
+    <tr>
+      <td><m-d>`/@env/git/commits/all/:PATH`</m-d></td>
+      <td><m-d>all commits of given file</m-d></td>
+      <td>JSON</td>
+      <td><i>same as above</i></td>
+    </tr>
+    <tr>
+      <td><m-d>`/@env/git/show/:OBJECT`</m-d></td>
+      <td><m-d>[git show given object](https://git-scm.com/docs/git-show)</m-d></td>
+      <td>file format</td>
+      <td><m-d>
+        `/@env/git/show/HEAD:docs/index.html`
+
+        ```html
+        ---
+        layout: ./_layout.html
+        ---
+        
+        &lt;div slot="background"&gt;
+          &lt;use-html src="./_lines.html"&gt;&lt;/use-html&gt;
+        &lt;/div&gt;
+
+        ...
+        ```
+      </m-d></td>
+    </tr>
+    <tr>
+      <td><m-d>`/@env/files/list`</m-d></td>
+      <td><m-d>A list of files of the project</m-d></td>
+      <td>JSON</td>
+      <td><m-d>
+        ```json
+        [
+          ".eslintrc",
+          ".pree.yml",
+          "LICENSE",
+          "docs/index.html",
+          "docs/usage/index.html",
+          ...
+        ]
+        ```
+      </m-d></td>
+    </tr>
+    <tr>
+      <td><m-d>`/@env/files/list/:PATTERN`</m-d></td>
+      <td><m-d>A list of files matching given pattern</m-d></td>
+      <td>JSON</td>
+      <td><m-d>
+        `/@env/files/list/docs/**/*.html`
+        ```json
+        [
+          "docs/index.html",
+          "docs/usage/index.html",
+          ...
+        ]
+        ```
+      </m-d></td>
+    </tr>
+    <tr>
+      <td><m-d>`/@env/files/read/:PATH`</m-d></td>
+      <td><m-d>Read the content of a file</m-d></td>
+      <td>file format</td>
+      <td><m-d>
+        `/@env/files/read/package.json`
+        ```json
+        {
+          "name": "pree",
+          "version": "0.1.10",
+          ...
+        }
+        ```
+      </m-d></td>
+  </tbody>
+</table>
+</div>
+
+<m-d>
+
+### Publishing Components
+
+If you want to publish `pree`-supported components to be used by others, it is recommended to ensure that your components can also be used in other environments, including on the client side. Also take the following considerations into account:
+
+<br>
+
+👉 Base URL for the APIs might change in some environments. Use `BUILD_ENV_API.baseURL` instead of `/@env/`:
+```js
+const res = await fetch(`${BUILD_ENV_API.baseURL}git/remote/info`)
+```
+
+<br>
+
+👉 It is recommended to check `pree`'s version as well:
+```js
+  import { satisfies } from 'https://esm.sh/semver'
+
+  const [host, version] = BUILD_ENV_API.provider.split('@')
+  if (host === 'pree' &amp;&amp; satisfies(version, '^0.1.10')) {
+    // use the APIs
+  }
+```
+
+</m-d>
+
+<br>
+
+<change-history></change-history>
+
+<br>
