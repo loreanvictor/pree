@@ -65,7 +65,7 @@ export class Builder {
       }
     })
 
-    await page.goto(url)
+    await page.goto(url, { waitUntil: 'networkidle0' })
     await page.evaluate(() => {
       const scripts = document.querySelectorAll('script[build-only]')
       scripts.forEach((script) => script.remove())

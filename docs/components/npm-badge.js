@@ -12,7 +12,7 @@ define('npm-badge', ({ package_name, label, design }) => {
       const res = await fetch(`${window.BUILD_ENV_API.baseURL}files/read/package.json`)
       const pkg = await res.json()
       update(pkg.name)
-    } catch {
+    } catch(error) {
       host.remove()
     }
   }
