@@ -15,6 +15,7 @@
 
     
     
+    
 
     <script src="./components/emo-li.js" type="module"></script>
     <script type="module" src="./components/prev-next.js"></script>
@@ -178,6 +179,10 @@ TLDR:
 <p><strong>A</strong>: I'm salty about this, but I couldn't come close to the developer experience of layouting with front matter using web components. As powerful as they are, they are about <em>isolation</em>, which isn't what you want with layouting.</p>
 <br><template shadowrootmode="open"><slot></slot></template></m-d>
 
+<change-history><template shadowrootmode="open"></template></change-history>
+
+<br>
+
       <prev-next><template shadowrootmode="open"><link rel="stylesheet" href="https://unpkg.com/nokss"><link rel="stylesheet" href="https://unpkg.com/graphis/font/graphis.css"><style>i {
       font-family: 'graphis', sans-serif;
       font-style: normal;
@@ -258,10 +263,7 @@ TLDR:
     }</style><button ref="?" role="switch" aria-label="toggle sidebar" aria-checked="true"><span class="icon">❌</span><span class="icon">⩧</span></button></template></menu-toggle>
   <div style="flex-grow: 1"></div>
   <div align="right">
-    <gh-link>github<template shadowrootmode="open"><link rel="stylesheet" href="https://unpkg.com/nokss/dist/bundles/md.css"><a ref="?" target="_blank" href="https://github.com/loreanvictor/pree"><slot>GitHub</slot></a></template></gh-link> | <npm-badge><template shadowrootmode="open"><link rel="stylesheet" href="https://unpkg.com/nokss/dist/bundles/md.css"><style>img {
-        vertical-align: middle;
-        margin-left: 0.5rem;
-      }</style><a ref="?" target="_blank" href="https://www.npmjs.com/package/pree">pree</a><img alt="npm" ref="?" src="https://img.shields.io/npm/v/pree.svg?label=&amp;style=normal"></template></npm-badge>
+    <gh-link>github<template shadowrootmode="open"><link rel="stylesheet" href="https://unpkg.com/nokss/dist/bundles/md.css"><a ref="?" target="_blank"><slot>GitHub</slot></a></template></gh-link> | 
   </div>
 </div><template shadowrootmode="open"><slot></slot></template></use-html>
     </footer>

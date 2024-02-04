@@ -15,6 +15,7 @@
 
     
     
+    
 
     <script src="./components/emo-li.js" type="module"></script>
     <script type="module" src="./components/prev-next.js"></script>
@@ -61,6 +62,8 @@ For example, you might want to write your pages using markdown. You could use co
 <p>All of this relies on <a href="https://web.dev/declarative-shadow-dom/">declerative shadow DOM</a>, which <a href="https://caniuse.com/?search=declarative%20shadow%20dom">some browsers</a> might not support yet. Such browsers can't display the pre-rendered content of such components at all. If you need to support such browsers, ensure to include the code of all components and only use <code>build-only</code> on scripts that will modify the actual DOM during pre-rendering.</p>
 </blockquote>
 <br><template shadowrootmode="open"><slot></slot></template></m-d>
+
+<change-history><template shadowrootmode="open"></template></change-history>
 
 <br>
       <prev-next><template shadowrootmode="open"><link rel="stylesheet" href="https://unpkg.com/nokss"><link rel="stylesheet" href="https://unpkg.com/graphis/font/graphis.css"><style>i {
@@ -135,10 +138,7 @@ For example, you might want to write your pages using markdown. You could use co
     }</style><button ref="?" role="switch" aria-label="toggle sidebar" aria-checked="true"><span class="icon">❌</span><span class="icon">⩧</span></button></template></menu-toggle>
   <div style="flex-grow: 1"></div>
   <div align="right">
-    <gh-link>github<template shadowrootmode="open"><link rel="stylesheet" href="https://unpkg.com/nokss/dist/bundles/md.css"><a ref="?" target="_blank" href="https://github.com/loreanvictor/pree"><slot>GitHub</slot></a></template></gh-link> | <npm-badge><template shadowrootmode="open"><link rel="stylesheet" href="https://unpkg.com/nokss/dist/bundles/md.css"><style>img {
-        vertical-align: middle;
-        margin-left: 0.5rem;
-      }</style><a ref="?" target="_blank" href="https://www.npmjs.com/package/pree">pree</a><img alt="npm" ref="?" src="https://img.shields.io/npm/v/pree.svg?label=&amp;style=normal"></template></npm-badge>
+    <gh-link>github<template shadowrootmode="open"><link rel="stylesheet" href="https://unpkg.com/nokss/dist/bundles/md.css"><a ref="?" target="_blank"><slot>GitHub</slot></a></template></gh-link> | 
   </div>
 </div><template shadowrootmode="open"><slot></slot></template></use-html>
     </footer>
