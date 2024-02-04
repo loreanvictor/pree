@@ -19,7 +19,9 @@
 
     <script src="./components/emo-li.js" type="module"></script>
     <script type="module" src="./components/prev-next.js"></script>
-  <title>pree: usage</title></head>
+  <title>pree: usage</title>
+          
+        </head>
   <body><aside aria-hidden="true">
       <use-html src="./_toc.html"><m-d id="toc" onparse="document.querySelector('prev-next').controls?.load()"><ul>
 <li><a href="index">Home</a></li>
@@ -99,7 +101,12 @@ the content is not prebuilt. To double check the performance of your prebuilt we
 
 <br>
 
-<change-history><template shadowrootmode="open"></template></change-history>
+<change-history><template shadowrootmode="open"><style>div {
+        text-align: right;
+        opacity:.35;
+        font-size: 0.8rem;
+        font-style: italic;
+      }</style><div>Updated at <span ref="?">Feb 04, 2024</span> <br>for <span ref="?">pree</span> version <span ref="?">0.1.10</span></div></template></change-history>
 
 <br>
 
@@ -183,7 +190,10 @@ the content is not prebuilt. To double check the performance of your prebuilt we
     }</style><button ref="?" role="switch" aria-label="toggle sidebar" aria-checked="true"><span class="icon">❌</span><span class="icon">⩧</span></button></template></menu-toggle>
   <div style="flex-grow: 1"></div>
   <div align="right">
-    <gh-link>github<template shadowrootmode="open"><link rel="stylesheet" href="https://unpkg.com/nokss/dist/bundles/md.css"><a ref="?" target="_blank"><slot>GitHub</slot></a></template></gh-link> | 
+    <gh-link>github<template shadowrootmode="open"><link rel="stylesheet" href="https://unpkg.com/nokss/dist/bundles/md.css"><a ref="?" target="_blank" href="https://github.com/loreanvictor/pree"><slot>GitHub</slot></a></template></gh-link> | <npm-badge><template shadowrootmode="open"><link rel="stylesheet" href="https://unpkg.com/nokss/dist/bundles/md.css"><style>img {
+        vertical-align: middle;
+        margin-left: 0.5rem;
+      }</style><a ref="?" target="_blank" href="https://www.npmjs.com/package/pree">pree</a><img alt="npm" ref="?" src="https://img.shields.io/npm/v/pree.svg?label=&amp;style=normal"></template></npm-badge>
   </div>
 </div><template shadowrootmode="open"><slot></slot></template></use-html>
     </footer>
