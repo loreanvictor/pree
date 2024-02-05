@@ -6,7 +6,7 @@ import { isCustomResponse, router } from './router'
 import { fs } from './fs'
 import { git } from './git'
 import { vars } from './vars'
-import { ele, els } from '../../util/ensure-slash'
+import { ets, els } from '../../util/ensure-slash'
 import { conf } from './conf'
 import { myVersion } from '../../util/my-version'
 import { FilterFilesOptions, match } from '../../util/file-match'
@@ -22,7 +22,7 @@ const _DefaultOptions = {
 
 export function env(options?: EnvOptions) {
   const prefix = options?.buildEnvPrefix ?? _DefaultOptions.buildEnvPrefix
-  const slashed = els(ele(prefix))
+  const slashed = els(ets(prefix))
   const logger = createLogger({ ...options, name: '@env.' })
   const handle = router({
     '/files/': fs,

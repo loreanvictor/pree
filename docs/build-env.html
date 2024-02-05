@@ -6,9 +6,7 @@ layout: ./_layout.html
 <m-d>
 ## Build Environment
 
-Access to build environment can help web components supercharge developer experience. For example, access to git history of HTML files allows web components to automatically deduce the author or publish date of a page. Without such access, this could only be done manually.
-
-`pree` provides such access to web components during pre-rendering, through APIs accessible at `/@env/` path:
+Access to build environment can help web components supercharge developer experience. For example, access to git history of HTML files allows web components to automatically deduce the author or publish date of a page. `pree` provides such access to web components during pre-rendering, through APIs accessible at `/@env/` path:
 
 ```js
 const res = await fetch('/@env/git/commits/first/my-page.html')
