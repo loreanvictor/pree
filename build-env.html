@@ -39,8 +39,7 @@
     </aside>
     <main>
       <m-d><h2 id="build-environment">Build Environment<menu role="toolbar"><button ref="?" aria-label="copy link" class="icon">🔗</button></menu></h2>
-<p>Access to build environment can help web components supercharge developer experience. For example, access to git history of HTML files allows web components to automatically deduce the author or publish date of a page. Without such access, this could only be done manually.</p>
-<p><code>pree</code> provides such access to web components during pre-rendering, through APIs accessible at <code>/@env/</code> path:</p>
+<p>Access to build environment can help web components supercharge developer experience. For example, access to git history of HTML files allows web components to automatically deduce the author or publish date of a page. <code>pree</code> provides such access to web components during pre-rendering, through APIs accessible at <code>/@env/</code> path:</p>
 <pre><code class="language-js hljs language-javascript" data-highlighted="yes"><span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> <span class="hljs-title function_">fetch</span>(<span class="hljs-string">'/@env/git/commits/first/my-page.html'</span>)
 <span class="hljs-keyword">const</span> commit = <span class="hljs-keyword">await</span> res.<span class="hljs-title function_">json</span>()
 
@@ -319,7 +318,7 @@ layout: ./_layout.html
         opacity:.35;
         font-size: 0.8rem;
         font-style: italic;
-      }</style><div>Updated at <span ref="?">Feb 04, 2024</span> <br>for <span ref="?">pree</span> version <span ref="?">0.1.10</span></div></template></change-history>
+      }</style><div>Updated at <span ref="?">Feb 05, 2024</span> <br>for <span ref="?">pree</span> version <span ref="?">0.1.11</span></div></template></change-history>
 
 <br>
       <prev-next><template shadowrootmode="open"><link rel="stylesheet" href="https://unpkg.com/nokss"><link rel="stylesheet" href="https://unpkg.com/graphis/font/graphis.css"><style>i {
