@@ -18,7 +18,7 @@
 🧬 pre-renders web components ([docs](https://loreanvictor.github.io/pree/usage/)), \
 🏗️ handles layouting and metadata ([docs](https://loreanvictor.github.io/pree/usage/meta-layout)), \
 👻 manages build-only components and scripts ([docs](https://loreanvictor.github.io/pree/usage/build-only-scripts)), \
-✨ gets components and scripts access to build environment ([docs](https://loreanvictor.github.io/pree/build-env)).
+✨ gets components and scripts access to build environment ([docs](https://loreanvictor.github.io/pree/components/build-env)).
 
 ```bash
 pree view     <src>                      # 👉 preview your website
@@ -40,10 +40,10 @@ npx pree view src
 ```bash
 npx pree build src dest
 ```
-- All web components will be pre-rendered, loading instantly on clients. Web components [supporting SSR](https://developer.chrome.com/docs/css-ui/declarative-shadow-dom#component_hydration) can re-hydrating on client instead of full re-rendering, improving UX.
+- All web components will be pre-rendered, loading instantly on clients. Web components [supporting SSR](https://loreanvictor.github.io/pree/components/ssr) can re-hydrating on client instead of full re-rendering, improving UX.
 - Any `<script build-only>` tags [will be removed](https://loreanvictor.github.io/pree/usage/build-only-scripts) from prebuilt HTML files. Use this to load static web components. They are pre-rendered, no need to send them to clients.
 - Use front matter in HTML files [for handling layouting and metadata](https://loreanvictor.github.io/pree/usage/meta-layout).
-- Web components can also [use information about the build environment](https://loreanvictor.github.io/pree/build-env).
+- Web components can also [use information about the build environment](https://loreanvictor.github.io/pree/components/build-env).
 
 <br>
 
