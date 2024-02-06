@@ -19,7 +19,7 @@
 
     <script src="./_components/emo-li.js" type="module"></script>
     <script type="module" src="./_components/prev-next.js"></script>
-  <title>pree: build-only scripts</title>
+  <title>pree: writing components</title>
           
         </head>
   <body><aside aria-hidden="true">
@@ -44,34 +44,18 @@
 <template shadowrootmode="open"><slot></slot></template></use-html>
     </aside>
     <main>
-      <m-d><h2 id="build-only-scripts">Build-Only Scripts<menu role="toolbar"><button ref="?" aria-label="copy link" class="icon">🔗</button></menu></h2>
-<p>Many components are static: they don't need to be shipped to or executed on the client after they've been pre-rendered.
-For example, you might want to write your pages using markdown. You could use components such as <a href="https://zerodevx.github.io/zero-md/">zero-md</a> to do that:</p>
-<pre><code class="language-html hljs language-xml" data-highlighted="yes"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"module"</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"https://esm.sh/zero-md"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">zero-md</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text/markdown"</span>&gt;</span>
-    # Hello, World!
-
-    This is some markdown that I've written.
-  <span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">zero-md</span>&gt;</span>
-</code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
-<p>After <code>pree</code> pre-renders this HTML, there is no need to parse the markdown and re-render it on the client. Clients will unnecessarily download a whole markdown parser and parse all of this markdown.</p>
-<br>
-
-<p>👉 Add <code>build-only</code> attribute to scripts that don't need to be loaded by the client:</p>
-<pre><code class="language-html hljs language-xml" data-highlighted="yes"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">build-only</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"module"</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"https://esm.sh/zero-md"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
-</code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
-<p><code>pree</code> will remove any such script from the final HTML:</p>
-<p>  🧬   these scripts are also removed from inside web components, <br>  ⚡   this will increase performance by reducing executed scripts, <br>  📦   this will reduce asset size that's downloaded.</p>
-<br>
-
+      <m-d><h2 id="using-components">Using Components<menu role="toolbar"><button ref="?" aria-label="copy link" class="icon">🔗</button></menu></h2>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_components">Web components</a> are a key technology making <code>pree</code> (and no-build in general) possible. You can use them to re-use logic, DOM and styling across various pages of your website. Due to their isolated nature, you can also use them on multiple websites with ease, share them with others, etc.</p>
 <blockquote>
-<h4 id="️-compatibility">⚠️ Compatibility<menu role="toolbar"><button ref="?" aria-label="copy link" class="icon">🔗</button></menu></h4>
-<p>All of this relies on <a href="https://web.dev/declarative-shadow-dom/">declerative shadow DOM</a>, which <a href="https://caniuse.com/?search=declarative%20shadow%20dom">some browsers</a> might not support yet. Such browsers can't display the pre-rendered content of such components at all. If you need to support such browsers, ensure to include the code of all components and only use <code>build-only</code> on scripts that will modify the actual DOM during pre-rendering.</p>
+<p>🔍   Find reusable components in collections like <a href="https://www.webcomponents.org/">webcomponents.org</a>, <br>🎨   Or develop your own components <a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_custom_elements">without any tooling</a>, or using libraries such as <a href="https://lit.dev">Lit</a> or <a href="https://github.com/loreanvictor/minicomp">minicomp</a>.</p>
 </blockquote>
-<br><template shadowrootmode="open"><slot></slot></template></m-d>
+<br>
 
+<p>Any web component works with <code>pree</code>. When using web components or writing your own components, consider the following guildelines to get a better website performance / improved developer experience:</p>
+<p>⚡   Load static components <a href="usage/build-only-scripts">build-only</a>. <br>🕹️   Interactive components supporting <a href="components/ssr">SSR</a> are faster. <br>✨   Components can access <a href="components/build-env">build environment</a> for improved DX.</p>
+<template shadowrootmode="open"><slot></slot></template></m-d>
+
+<br>
 <change-history><template shadowrootmode="open"><style>a {
         display: block;
         text-align: right;
@@ -80,8 +64,7 @@ For example, you might want to write your pages using markdown. You could use co
         font-style: italic;
         text-decoration: none;
         color: inherit;
-      }</style><a ref="?" target="_blank" href="https://github.com/loreanvictor/pree/commit/0069d5ede3f090e9c885d2a7614b4aa5df641dbf">Updated at <span ref="?">Feb 04, 2024</span> <br>for <span ref="?">pree</span> version <span ref="?">0.1.9</span></a></template></change-history>
-
+      }</style><a ref="?" target="_blank" href="https://github.com/loreanvictor/pree/commit/631d47f6d359a32a4ad5ffbaefcff971499de556">Updated at <span ref="?">Feb 06, 2024</span> <br>for <span ref="?">pree</span> version <span ref="?">0.1.12</span></a></template></change-history>
 <br>
       <prev-next><template shadowrootmode="open"><link rel="stylesheet" href="https://unpkg.com/nokss"><link rel="stylesheet" href="https://unpkg.com/graphis/font/graphis.css"><style>i {
       font-family: 'graphis', sans-serif;
@@ -129,17 +112,17 @@ For example, you might want to write your pages using markdown. You could use co
         
           <article>
             <i>⬅</i>
-            <a href="http://localhost:3000/pree/usage/meta-layout">
+            <a href="http://localhost:3000/pree/usage/config">
               <small>Previosly</small><br>
-              Metadata &amp; Layouts
+              Configuration
             </a>
           </article>
           
         
           <article class="next">
-            <a href="http://localhost:3000/pree/usage/config">
+            <a href="http://localhost:3000/pree/components/ssr">
               <small>Up Next</small><br>
-              Configuration
+              Server Side Rendering
             </a>
             <i>➡</i>
           </article>

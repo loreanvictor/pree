@@ -1,0 +1,206 @@
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <base href="/pree/">
+
+    
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon.ico">
+
+    <link rel="stylesheet" href="https://unpkg.com/nokss">
+    <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://esm.sh/graphis/font/graphis.css">
+    <link rel="stylesheet" href="./theme.css">
+    
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/highlight.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github-dark.min.css">
+
+    
+    
+    
+
+    <script src="./_components/emo-li.js" type="module"></script>
+    <script type="module" src="./_components/prev-next.js"></script>
+  <title>pree: server side rendering</title>
+          
+        </head>
+  <body><aside aria-hidden="true">
+      <use-html src="./_toc.html"><style>
+  #toc {
+    a:not(:hover) {
+      text-decoration-color: transparent;
+    }
+
+    hr {
+      margin: 0;
+    }
+  }
+
+</style>
+<m-d id="toc" onparse="document.querySelector('prev-next').controls?.load()"><p><a href="index">Home</a> <br><a href="motivation">Motivation</a> <br><a href="install">Installation</a></p>
+<hr>
+<p><a href="usage/index"><strong>Usage</strong></a> <br>  <a href="usage/meta-layout">Metadata &amp; Layouts</a> <br>  <a href="usage/build-only-scripts">Build-Only Scripts</a> <br>  <a href="usage/config">Configuration</a></p>
+<hr>
+<p><a href="components/index"><strong>Using Components</strong></a> <br>  <a href="components/ssr">Server Side Rendering</a> <br>  <a href="components/build-env">Build Environment</a> <br>  <a href="components/publish">Publishing</a></p>
+<template shadowrootmode="open"><slot></slot></template></m-d>
+<template shadowrootmode="open"><slot></slot></template></use-html>
+    </aside>
+    <main>
+      <m-d><h2 id="server-side-rendering">Server Side Rendering<menu role="toolbar"><button ref="?" aria-label="copy link" class="icon">🔗</button></menu></h2>
+<p>Server side rendering refers to running component code on the server (or during build time) first, instead of running them on the client. This is useful as clients don't have to wait for component code to load and run before seeing their content.</p>
+<br>
+
+<p><code>pree</code> pre-renders ALL web components, whether they support SSR or not. Components without interactivity (static components), can be <a href="usage/build-only-scripts">loaded build-only</a>, so that clients don't have to load or execute their code at all. Interactive components however are different:</p>
+<p>🦕   They can re-render on the client, replacing pre-rendered content, <br>🧠   They can use the pre-rendered content and add interactivity to it.</p>
+<p>Naturally, components supporting SSR and hydrating pre-rendered content instead of recreating it, will provide a better performance and user experience as they become interactive faster.</p>
+<hr>
+<p>To write components supporting SSR, you can use libraries such as <a href="https://github.com/loreanvictor/minicomp">minicomp</a>, combined with <a href="https://github.com/loreanvictor/rehtm">rehtm</a>:</p>
+<pre><code class="language-js hljs language-javascript" data-highlighted="yes"><span class="hljs-keyword">import</span> { define } <span class="hljs-keyword">from</span> <span class="hljs-string">'https://esm.sh/minicomp'</span>
+<span class="hljs-keyword">import</span> { ref, template } <span class="hljs-keyword">from</span> <span class="hljs-string">'https://esm.sh/rehtm'</span>
+
+<span class="hljs-title function_">define</span>(<span class="hljs-string">'a-button'</span>, <span class="hljs-function">() =&gt;</span> {
+  <span class="hljs-keyword">const</span> span = <span class="hljs-title function_">ref</span>()
+  <span class="hljs-keyword">let</span> count = <span class="hljs-number">0</span>
+  
+  <span class="hljs-keyword">return</span> template<span class="hljs-string">`
+    &lt;button onclick=<span class="hljs-subst">${() =&gt; span.current.textContent = ++count}</span>&gt;
+      Clicked &lt;span ref=<span class="hljs-subst">${span}</span> role="status"&gt;0&lt;/span&gt; times
+    &lt;/button&gt;
+  `</span>
+})
+</code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
+<p>You can also support SSR without any library, simply check for existence of <code>this.shadowRoot</code> and render accordingly:</p>
+<pre><code class="language-js hljs language-javascript" data-highlighted="yes"><span class="hljs-keyword">class</span> <span class="hljs-title class_">AButton</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_ inherited__">HTMLElement</span> {
+  <span class="hljs-title function_">constructor</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-variable language_">super</span>()
+
+    <span class="hljs-keyword">let</span> span, button
+    <span class="hljs-keyword">if</span> (<span class="hljs-variable language_">this</span>.<span class="hljs-property">shadowRoot</span>) {
+      span = <span class="hljs-variable language_">this</span>.<span class="hljs-property">shadowRoot</span>.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">'span'</span>)
+      button = <span class="hljs-variable language_">this</span>.<span class="hljs-property">shadowRoot</span>.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">'button'</span>)
+    } <span class="hljs-keyword">else</span> {
+      <span class="hljs-keyword">const</span> shadow = <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">attachShadow</span>({ <span class="hljs-attr">mode</span>: <span class="hljs-string">'open'</span> })
+      
+      span = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">createElement</span>(<span class="hljs-string">'span'</span>)
+      span.<span class="hljs-property">textContent</span> = <span class="hljs-number">0</span>
+
+      button = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">createElement</span>(<span class="hljs-string">'button'</span>)
+      button.<span class="hljs-title function_">append</span>(<span class="hljs-string">'Clicked '</span>, span, <span class="hljs-string">' times'</span>)
+
+      shadow.<span class="hljs-title function_">append</span>(button)
+    }
+
+    button.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">'click'</span>, <span class="hljs-function">() =&gt;</span> {
+      span.<span class="hljs-property">textContent</span> = ++count
+    })
+  }
+}
+
+customElements.<span class="hljs-title function_">define</span>(<span class="hljs-string">'a-button'</span>, <span class="hljs-title class_">AButton</span>)
+</code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
+<blockquote>
+<p>📖 <a href="https://developer.chrome.com/docs/css-ui/declarative-shadow-dom#component_hydration">Read more about SSR and rehydration with declarative shadow DOM</a></p>
+</blockquote>
+<template shadowrootmode="open"><slot></slot></template></m-d>
+
+<br>
+<change-history><template shadowrootmode="open"><style>a {
+        display: block;
+        text-align: right;
+        opacity:.35;
+        font-size: 0.8rem;
+        font-style: italic;
+        text-decoration: none;
+        color: inherit;
+      }</style><a ref="?" target="_blank" href="https://github.com/loreanvictor/pree/commit/631d47f6d359a32a4ad5ffbaefcff971499de556">Updated at <span ref="?">Feb 06, 2024</span> <br>for <span ref="?">pree</span> version <span ref="?">0.1.12</span></a></template></change-history>
+<br>
+      <prev-next><template shadowrootmode="open"><link rel="stylesheet" href="https://unpkg.com/nokss"><link rel="stylesheet" href="https://unpkg.com/graphis/font/graphis.css"><style>i {
+      font-family: 'graphis', sans-serif;
+      font-style: normal;
+      font-size: 2rem;
+      opacity: .25;
+    }
+
+    section[role="feed"] {
+      flex-direction: row;
+      &[aria-hidden] {
+        opacity: 0;
+      }
+
+      opacity: 1;
+      transition: opacity .5s;
+
+      article {
+        flex-grow: 1;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 1rem;
+
+        & > a {
+          display: block;
+          flex-grow: 1;
+          text-decoration: none!important;
+        }
+
+        &.next {
+          flex-basis: flex-end;
+          text-align: right;
+        }
+
+        @media (max-width: 480px) {
+          &:first-child:not(:last-child) {
+            display: none;
+          }
+        }
+      }
+
+      margin-bottom: 4rem;
+    }</style><section role="feed" ref="?">        
+        
+          <article>
+            <i>⬅</i>
+            <a href="http://localhost:3000/pree/components/index">
+              <small>Previosly</small><br>
+              Using Components
+            </a>
+          </article>
+          
+        
+          <article class="next">
+            <a href="http://localhost:3000/pree/components/build-env">
+              <small>Up Next</small><br>
+              Build Environment
+            </a>
+            <i>➡</i>
+          </article>
+          
+      </section></template></prev-next>
+    </main>
+    <footer>
+      <use-html src="./_footer.html"><script type="module" src="./_components/menu-toggle.js"></script>
+
+
+
+<div style="display: flex">
+  <menu-toggle><template shadowrootmode="open"><link rel="stylesheet" href="https://unpkg.com/nokss"><link rel="stylesheet" href="https://unpkg.com/graphis/font/graphis.css"><style>.icon {
+      font-family: 'graphis', sans-serif;
+      font-style: normal;
+      font-size: 1.2rem;
+    }
+
+    button[role="switch"][aria-checked="true"]>span{
+      color: var(--background-color);
+    }</style><button ref="?" role="switch" aria-label="toggle sidebar" aria-checked="true"><span class="icon">❌</span><span class="icon">⩧</span></button></template></menu-toggle>
+  <div style="flex-grow: 1"></div>
+  <div align="right">
+    <gh-link>github<template shadowrootmode="open"><link rel="stylesheet" href="https://unpkg.com/nokss/dist/bundles/md.css"><a ref="?" target="_blank" href="https://github.com/loreanvictor/pree"><slot>GitHub</slot></a></template></gh-link> | <npm-badge><template shadowrootmode="open"><link rel="stylesheet" href="https://unpkg.com/nokss/dist/bundles/md.css"><style>img {
+        vertical-align: middle;
+        margin-left: 0.5rem;
+      }</style><a ref="?" target="_blank" href="https://www.npmjs.com/package/pree">pree</a><img alt="npm" ref="?" src="https://img.shields.io/npm/v/pree.svg?label=&amp;style=normal"></template></npm-badge>
+  </div>
+</div><template shadowrootmode="open"><slot></slot></template></use-html>
+    </footer>
+    
+    <script type="module" src="copy.js"></script>
+  
+
+</body></html>

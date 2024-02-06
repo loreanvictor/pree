@@ -1,11 +1,33 @@
+<style>
+  #toc {
+    a:not(:hover) {
+      text-decoration-color: transparent;
+    }
+
+    hr {
+      margin: 0;
+    }
+  }
+
+</style>
 <m-d id="toc" onparse="document.querySelector('prev-next').controls?.load()">
 
-  - [Home](index)
-  - [Motivation](motivation)
-  - [Installation](install)
-  - [Usage](usage/index)
-    - [Metadata & Layouts](usage/meta-layout)
-    - [Build-Only Scripts](usage/build-only-scripts)
-  - [Build Environment](build-env)
+  [Home](index) \
+  [Motivation](motivation) \
+  [Installation](install)
+
+  ---
+
+  [**Usage**](usage/index) \
+  &ensp; [Metadata & Layouts](usage/meta-layout) \
+  &ensp; [Build-Only Scripts](usage/build-only-scripts) \
+  &ensp; [Configuration](usage/config)
+
+  ---
+
+  [**Using Components**](components/index) \
+  &ensp; [Server Side Rendering](components/ssr) \
+  &ensp; [Build Environment](components/build-env) \
+  &ensp; [Publishing](components/publish)
 
 </m-d>
