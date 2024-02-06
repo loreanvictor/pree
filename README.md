@@ -15,10 +15,10 @@
 
 `pree` is a command line utility that prebuilds HTML files, and:
 
-🧬 pre-renders web components <small>(faster loading, MUCH smoother UX)</small>, \
-🏗️ handles layouting and metadata <small>(no copy-pasta, breezy DX)</small>, \
-👻 manages build-only components and scripts <small>(even faster loading)</small>, \
-✨ gets components and scripts access to build environment <small>(for some magical web components)</small>.
+🧬 pre-renders web components ([docs](https://loreanvictor.github.com/pree/usage/)), \
+🏗️ handles layouting and metadata ([docs](https://loreanvictor.github.com/pree/usage/meta-layout)), \
+👻 manages build-only components and scripts ([docs](https://loreanvictor.github.com/pree/usage/build-only-scripts)), \
+✨ gets components and scripts access to build environment ([docs](https://loreanvictor.github.com/pree/build-env)).
 
 ```bash
 pree view     <src>                      # 👉 preview your website
@@ -41,11 +41,10 @@ npx pree view <src>
 npx pree build <src> <dest>
 ```
 
----
+<br>
 
-📖 Read [the docs](https://loreanvictor.github.io/pree) for more info.
-
----
+> [!IMPORTANT]
+> 📖 Read [the documentation](https://loreanvictor.github.io/pree) for more info on using `pree`.
 
 <br>
 
