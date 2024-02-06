@@ -2,6 +2,7 @@ import { createServer, Server } from 'http'
 
 import { createApp, AppOptions } from './app'
 import { createLogger, THEME } from '../util/logger'
+import { els } from '../util/ensure-slash'
 
 
 export interface ServeOptions extends AppOptions {
@@ -24,7 +25,12 @@ export function serve(options?: ServeOptions) {
     const app = createApp(options)
 
     const server = createServer(app).listen(port, () => {
-      logger.log('server up on ' + THEME.secondary('http://localhost:' + port))
+      logger.log('server up on ' + THEME.secondary(
+        'http://localhost:'
+        + port
+        + (options?.base ? els(options.base) : '')
+        + '/'
+      ))
       resolve({
         port,
         server,

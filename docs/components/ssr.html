@@ -1,0 +1,78 @@
+---
+title: "pree: server side rendering"
+layout: ../_layout.html
+---
+
+<m-d>
+## Server Side Rendering
+
+Server side rendering refers to running component code on the server (or during build time) first, instead of running them on the client. This is useful as clients don't have to wait for component code to load and run before seeing their content.
+
+<br>
+
+`pree` pre-renders ALL web components, whether they support SSR or not. Components without interactivity (static components), can be [loaded build-only](usage/build-only-scripts), so that clients don't have to load or execute their code at all. Interactive components however are different:
+
+🦕 &ensp; They can re-render on the client, replacing pre-rendered content, \
+🧠 &ensp; They can use the pre-rendered content and add interactivity to it.
+
+Naturally, components supporting SSR and hydrating pre-rendered content instead of recreating it, will provide a better performance and user experience as they become interactive faster.
+
+---
+
+To write components supporting SSR, you can use libraries such as [minicomp](https://github.com/loreanvictor/minicomp), combined with [rehtm](https://github.com/loreanvictor/rehtm):
+
+```js
+  import { define } from 'https://esm.sh/minicomp'
+  import { ref, template } from 'https://esm.sh/rehtm'
+
+  define('a-button', () => {
+    const span = ref()
+    let count = 0
+    
+    return template`
+      &lt;button onclick=${() =&gt; span.current.textContent = ++count}&gt;
+        Clicked &lt;span ref=${span} role="status"&gt;0&lt;/span&gt; times
+      &lt;/button&gt;
+    `
+  })
+```
+
+You can also support SSR without any library, simply check for existence of `this.shadowRoot` and render accordingly:
+
+```js
+  class AButton extends HTMLElement {
+    constructor() {
+      super()
+
+      let span, button
+      if (this.shadowRoot) {
+        span = this.shadowRoot.querySelector('span')
+        button = this.shadowRoot.querySelector('button')
+      } else {
+        const shadow = this.attachShadow({ mode: 'open' })
+        
+        span = document.createElement('span')
+        span.textContent = 0
+
+        button = document.createElement('button')
+        button.append('Clicked ', span, ' times')
+
+        shadow.append(button)
+      }
+
+      button.addEventListener('click', () => {
+        span.textContent = ++count
+      })
+    }
+  }
+
+  customElements.define('a-button', AButton)
+```
+
+> 📖 [Read more about SSR and rehydration with declarative shadow DOM](https://developer.chrome.com/docs/css-ui/declarative-shadow-dom#component_hydration)
+
+</m-d>
+
+<br>
+<change-history></change-history>
+<br>

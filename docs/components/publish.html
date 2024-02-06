@@ -1,0 +1,34 @@
+---
+title: "pree: publishing components"
+layout: ../_layout.html
+---
+
+<m-d>
+## Publishing Components
+
+If you want to publish `pree`-supported components to be used by others, it is recommended to ensure that your components can also be used in other environments, including on the client side. Also take the following considerations into account:
+
+<br>
+
+👉 Base URL for the APIs might change in some environments. Use `BUILD_ENV_API.baseURL` instead of `/@env/`:
+```js
+const res = await fetch(`${BUILD_ENV_API.baseURL}git/remote/info`)
+```
+
+<br>
+
+👉 It is recommended to check `pree`'s version as well:
+```js
+  import { satisfies } from 'https://esm.sh/semver'
+
+  const [host, version] = BUILD_ENV_API.provider.split('@')
+  if (host === 'pree' &amp;&amp; satisfies(version, '^0.1.10')) {
+    // use the APIs
+  }
+```
+
+</m-d>
+
+<br>
+<change-history></change-history>
+<br>

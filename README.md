@@ -8,8 +8,8 @@
 
 <br>
 
-<img src="./docs/images/logo-dark.svg#gh-dark-mode-only" width="192px"/>
-<img src="./docs/images/logo-light.svg#gh-light-mode-only" width="192px"/>
+<img src="./docs/_images/logo-dark.svg#gh-dark-mode-only" width="192px"/>
+<img src="./docs/_images/logo-light.svg#gh-light-mode-only" width="192px"/>
 
 <br>
 
