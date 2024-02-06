@@ -3,6 +3,7 @@ import { html, ref } from 'https://esm.sh/rehtm'
 
 
 define('change-history', () => {
+  const link = ref()
   const date = ref()
   const name = ref()
   const version = ref()
@@ -25,11 +26,14 @@ define('change-history', () => {
       path += '.html'
     }
 
+    const git = await (await fetch(`${window.BUILD_ENV_API.baseURL}git/remote/info`)).json()
     const commit = await (await fetch(`${window.BUILD_ENV_API.baseURL}git/commits/last/${path}`)).json()
 
     if (!commit) {
       return
     }
+
+    link.current.href = `https://${git.host}/${git.full_name}/commit/${commit.hash}`
 
     const pkg = JSON.parse(
       await (await fetch(`${window.BUILD_ENV_API.baseURL}git/show/${commit.hash}:package.json`)).text()
@@ -54,16 +58,19 @@ define('change-history', () => {
 
   return html`
     <style>
-      div {
+      a {
+        display: block;
         text-align: right;
         opacity:.35;
         font-size: 0.8rem;
         font-style: italic;
+        text-decoration: none;
+        color: inherit;
       }
     </style>
-    <div>
+    <a ref=${link} target="_blank">
       Updated at <span ref=${date}>??</span> <br />
       for <span ref=${name}>??</span> version <span ref=${version}>??</span>
-    </div>
+    </a>
   `
 })

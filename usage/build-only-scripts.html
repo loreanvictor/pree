@@ -66,12 +66,15 @@ For example, you might want to write your pages using markdown. You could use co
 </blockquote>
 <br><template shadowrootmode="open"><slot></slot></template></m-d>
 
-<change-history><template shadowrootmode="open"><style>div {
+<change-history><template shadowrootmode="open"><style>a {
+        display: block;
         text-align: right;
         opacity:.35;
         font-size: 0.8rem;
         font-style: italic;
-      }</style><div>Updated at <span ref="?">Feb 04, 2024</span> <br>for <span ref="?">pree</span> version <span ref="?">0.1.9</span></div></template></change-history>
+        text-decoration: none;
+        color: inherit;
+      }</style><a ref="?" target="_blank" href="https://github.com/loreanvictor/pree/commit/0069d5ede3f090e9c885d2a7614b4aa5df641dbf">Updated at <span ref="?">Feb 04, 2024</span> <br>for <span ref="?">pree</span> version <span ref="?">0.1.9</span></a></template></change-history>
 
 <br>
       <prev-next><template shadowrootmode="open"><link rel="stylesheet" href="https://unpkg.com/nokss"><link rel="stylesheet" href="https://unpkg.com/graphis/font/graphis.css"><style>i {
