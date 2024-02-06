@@ -29,22 +29,26 @@ pree build    <src> <dest>               # 👉 prebuild your website
 
 # Usage
 
-👉 Preview your website:
+👉 Write plain HTML, CSS and JavaScript for your website. Assuming your HTML files and your assets are in `src` folder, preview your website:
 
 ```bash
-npx pree view <src>
+npx pree view src
 ```
 
-👉 Prebuild your website:
+👉 And prebuild it into `dest` folder:
 
 ```bash
-npx pree build <src> <dest>
+npx pree build src dest
 ```
+- All web components will be pre-rendered, loading instantly on clients. Web components [supporting SSR](https://developer.chrome.com/docs/css-ui/declarative-shadow-dom#component_hydration) can re-hydrating on client instead of full re-rendering, improving UX.
+- Any `<script build-only>` tags [will be removed](https://loreanvictor.github.io/pree/usage/build-only-scripts) from prebuilt HTML files. Use this to load static web components. They are pre-rendered, no need to send them to clients.
+- Use front matter in HTML files [for handling layouting and metadata](https://loreanvictor.github.io/pree/usage/meta-layout).
+- Web components can also [use information about the build environment](https://loreanvictor.github.io/pree/build-env).
 
 <br>
 
 > [!IMPORTANT]
-> 📖 Read [the documentation](https://loreanvictor.github.io/pree) for more info on using `pree`.
+> 📖 Read [the documentation](https://loreanvictor.github.io/pree) for more info.
 
 <br>
 
