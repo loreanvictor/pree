@@ -15,10 +15,10 @@
 
 `pree` is a command line utility that prebuilds HTML files, and:
 
-🧬 pre-renders web components ([docs](https://loreanvictor.github.com/pree/usage/)), \
-🏗️ handles layouting and metadata ([docs](https://loreanvictor.github.com/pree/usage/meta-layout)), \
-👻 manages build-only components and scripts ([docs](https://loreanvictor.github.com/pree/usage/build-only-scripts)), \
-✨ gets components and scripts access to build environment ([docs](https://loreanvictor.github.com/pree/build-env)).
+🧬 pre-renders web components ([docs](https://loreanvictor.github.io/pree/usage/)), \
+🏗️ handles layouting and metadata ([docs](https://loreanvictor.github.io/pree/usage/meta-layout)), \
+👻 manages build-only components and scripts ([docs](https://loreanvictor.github.io/pree/usage/build-only-scripts)), \
+✨ gets components and scripts access to build environment ([docs](https://loreanvictor.github.io/pree/build-env)).
 
 ```bash
 pree view     <src>                      # 👉 preview your website
