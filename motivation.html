@@ -39,7 +39,7 @@
 <hr>
 <p><a href="usage/index"><strong>Usage</strong></a> <br>  <a href="usage/meta-layout">Metadata &amp; Layouts</a> <br>  <a href="usage/build-only-scripts">Build-Only Scripts</a> <br>  <a href="usage/config">Configuration</a></p>
 <hr>
-<p><a href="components/index"><strong>Using Components</strong></a> <br>  <a href="components/ssr">Server Side Rendering</a> <br>  <a href="components/build-env">Build Environment</a> <br>  <a href="components/publish">Publishing</a></p>
+<p><a href="components/index"><strong>Using Components</strong></a> <br>  <a href="components/ssr">Server Side Rendering</a> <br>  <a href="components/build-env">Build Environment</a> <br>  <a href="components/publish">Publishing Components</a></p>
 <template shadowrootmode="open"><slot></slot></template></m-d>
 <template shadowrootmode="open"><slot></slot></template></use-html>
     </aside>
@@ -73,7 +73,9 @@
   .holder {
     display: flex;
     gap: 1rem;
+    align-items: baseline;
   }
+
   </style>
   <div class="holder">
     <span><slot name="emo"></slot></span>
@@ -89,7 +91,9 @@
   .holder {
     display: flex;
     gap: 1rem;
+    align-items: baseline;
   }
+
   </style>
   <div class="holder">
     <span><slot name="emo"></slot></span>
@@ -105,7 +109,9 @@
   .holder {
     display: flex;
     gap: 1rem;
+    align-items: baseline;
   }
+
   </style>
   <div class="holder">
     <span><slot name="emo"></slot></span>

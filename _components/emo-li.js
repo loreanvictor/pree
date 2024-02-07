@@ -6,7 +6,9 @@ define('emo-li', () => `
   .holder {
     display: flex;
     gap: 1rem;
+    align-items: baseline;
   }
+
   </style>
   <div class="holder">
     <span><slot name="emo"></slot></span>

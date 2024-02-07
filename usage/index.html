@@ -39,7 +39,7 @@
 <hr>
 <p><a href="usage/index"><strong>Usage</strong></a> <br>  <a href="usage/meta-layout">Metadata &amp; Layouts</a> <br>  <a href="usage/build-only-scripts">Build-Only Scripts</a> <br>  <a href="usage/config">Configuration</a></p>
 <hr>
-<p><a href="components/index"><strong>Using Components</strong></a> <br>  <a href="components/ssr">Server Side Rendering</a> <br>  <a href="components/build-env">Build Environment</a> <br>  <a href="components/publish">Publishing</a></p>
+<p><a href="components/index"><strong>Using Components</strong></a> <br>  <a href="components/ssr">Server Side Rendering</a> <br>  <a href="components/build-env">Build Environment</a> <br>  <a href="components/publish">Publishing Components</a></p>
 <template shadowrootmode="open"><slot></slot></template></m-d>
 <template shadowrootmode="open"><slot></slot></template></use-html>
     </aside>
@@ -49,10 +49,60 @@
 <pre><code class="language-bash hljs" data-highlighted="yes">pree build docs/my-page.html site/my-page.html
 </code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
 <p>This prebuilds <code>docs/my-page.html</code> into <code>site/my-page.html</code>:</p>
-<p>  🧬   pre-renders web components, <br>  🏗️   resolves <a href="usage/meta-layout">metadata and layouts</a>, <br>  👻   removes <a href="usage/build-only-scripts">build-only scripts and components</a>.</p>
+<template shadowrootmode="open"><slot></slot></template></m-d>
+
+<emo-li>
+  <span slot="emo">🧬</span> pre-renders web components,
+<template shadowrootmode="open">
+  <style>
+  .holder {
+    display: flex;
+    gap: 1rem;
+    align-items: baseline;
+  }
+
+  </style>
+  <div class="holder">
+    <span><slot name="emo"></slot></span>
+    <div><slot></slot></div>
+  </div>
+</template></emo-li>
+<emo-li>
+  <span slot="emo">🏗️</span> resolves <a href="usage/meta-layout">metadata and layouts</a>,
+<template shadowrootmode="open">
+  <style>
+  .holder {
+    display: flex;
+    gap: 1rem;
+    align-items: baseline;
+  }
+
+  </style>
+  <div class="holder">
+    <span><slot name="emo"></slot></span>
+    <div><slot></slot></div>
+  </div>
+</template></emo-li>
+<emo-li>
+  <span slot="emo">👻</span>removes <a href="usage/build-only-scripts">build-only scripts and components</a>.
+<template shadowrootmode="open">
+  <style>
+  .holder {
+    display: flex;
+    gap: 1rem;
+    align-items: baseline;
+  }
+
+  </style>
+  <div class="holder">
+    <span><slot name="emo"></slot></span>
+    <div><slot></slot></div>
+  </div>
+</template></emo-li>
+
 <br>
 
-<p>👉 Prebuild an entire directory:</p>
+<m-d><p>👉 Prebuild an entire directory:</p>
 <pre><code class="language-bash hljs" data-highlighted="yes">pree build docs site
 </code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
 <p>This will copy over all the content of <code>docs</code> into <code>site</code> and prebuild all HTML files, except the ones excluded by CLI options or configuration. You can also specify include options (in config or CLI options), and then only the specified files will be prebuilt.</p>
@@ -61,8 +111,74 @@
 <p>👉 Preview your website:</p>
 <pre><code class="language-bash hljs" data-highlighted="yes">pree view docs
 </code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
-<p>  👀   it loads your website without prebuilding it, <br>  🏗️   it still resolves <a href="usage/meta-layout">metadata and layouts</a>, <br>  🔃   it live reloads on change, <br>  📁   it also lists directory content for easy navigation. </p>
-<blockquote>
+<template shadowrootmode="open"><slot></slot></template></m-d>
+
+<emo-li>
+  <span slot="emo">👀</span> it loads your website without prebuilding it,
+<template shadowrootmode="open">
+  <style>
+  .holder {
+    display: flex;
+    gap: 1rem;
+    align-items: baseline;
+  }
+
+  </style>
+  <div class="holder">
+    <span><slot name="emo"></slot></span>
+    <div><slot></slot></div>
+  </div>
+</template></emo-li>
+<emo-li>
+  <span slot="emo">🏗️</span> it still resolves <a href="usage/meta-layout">metadata and layouts</a>,
+<template shadowrootmode="open">
+  <style>
+  .holder {
+    display: flex;
+    gap: 1rem;
+    align-items: baseline;
+  }
+
+  </style>
+  <div class="holder">
+    <span><slot name="emo"></slot></span>
+    <div><slot></slot></div>
+  </div>
+</template></emo-li>
+<emo-li>
+  <span slot="emo">🔃</span> it live reloads on change,
+<template shadowrootmode="open">
+  <style>
+  .holder {
+    display: flex;
+    gap: 1rem;
+    align-items: baseline;
+  }
+
+  </style>
+  <div class="holder">
+    <span><slot name="emo"></slot></span>
+    <div><slot></slot></div>
+  </div>
+</template></emo-li>
+<emo-li>
+  <span slot="emo">📁</span> it also lists directory content for easy navigation.
+<template shadowrootmode="open">
+  <style>
+  .holder {
+    display: flex;
+    gap: 1rem;
+    align-items: baseline;
+  }
+
+  </style>
+  <div class="holder">
+    <span><slot name="emo"></slot></span>
+    <div><slot></slot></div>
+  </div>
+</template></emo-li>
+
+<m-d><blockquote>
 <p>Performance of your pages in preview mode is much slower than in production mode, since
 the content is not prebuilt. To double check the performance of your prebuilt website, first build it:</p>
 <pre><code class="language-bash hljs" data-highlighted="yes">pree build docs site
@@ -104,6 +220,11 @@ the content is not prebuilt. To double check the performance of your prebuilt we
 </code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
 <pre><code class="language-bash hljs" data-highlighted="yes">pree check         <span class="hljs-comment"># 👈 this is equal to `pree check site`</span>
 </code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
+<br>
+
+<blockquote>
+<p>📖 <a href="usage/config">Read this</a> for a comprehensive list of options.</p>
+</blockquote>
 <template shadowrootmode="open"><slot></slot></template></m-d>
 
 <br>
@@ -116,7 +237,7 @@ the content is not prebuilt. To double check the performance of your prebuilt we
         font-style: italic;
         text-decoration: none;
         color: inherit;
-      }</style><a ref="?" target="_blank" href="https://github.com/loreanvictor/pree/commit/92e59be822714a35869a514372e56f80e3d18f6c">Updated at <span ref="?">Feb 05, 2024</span> <br>for <span ref="?">pree</span> version <span ref="?">0.1.11</span></a></template></change-history>
+      }</style><a ref="?" target="_blank" href="https://github.com/loreanvictor/pree/commit/f1bde2096973806bae13525ce558c1a08bac9adf">Updated at <span ref="?">Feb 07, 2024</span> <br>for <span ref="?">pree</span> version <span ref="?">0.1.13</span></a></template></change-history>
 
 <br>
 

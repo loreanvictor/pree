@@ -53,3 +53,31 @@ body>aside:first-of-type {
 blockquote {
   padding-bottom: 0.2rem;
 }
+
+emo-li {
+  p { margin: 0; }
+  &:last-child p { margin-bottom: revert; }
+}
+
+
+td {
+  vertical-align: top;
+
+  & > details {
+    min-width: 256px;
+    &:first-child { margin-top: 1rem; }
+    &:not(:first-child) { margin-top: .5rem; }
+
+    & > summary {
+      opacity: .5;
+      transition: opacity .15s;
+      cursor: pointer;
+      font-size: 0.8rem;
+      margin-bottom: .5rem;
+  
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+}

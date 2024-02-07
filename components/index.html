@@ -39,21 +39,111 @@
 <hr>
 <p><a href="usage/index"><strong>Usage</strong></a> <br>  <a href="usage/meta-layout">Metadata &amp; Layouts</a> <br>  <a href="usage/build-only-scripts">Build-Only Scripts</a> <br>  <a href="usage/config">Configuration</a></p>
 <hr>
-<p><a href="components/index"><strong>Using Components</strong></a> <br>  <a href="components/ssr">Server Side Rendering</a> <br>  <a href="components/build-env">Build Environment</a> <br>  <a href="components/publish">Publishing</a></p>
+<p><a href="components/index"><strong>Using Components</strong></a> <br>  <a href="components/ssr">Server Side Rendering</a> <br>  <a href="components/build-env">Build Environment</a> <br>  <a href="components/publish">Publishing Components</a></p>
 <template shadowrootmode="open"><slot></slot></template></m-d>
 <template shadowrootmode="open"><slot></slot></template></use-html>
     </aside>
     <main>
       <m-d><h2 id="using-components">Using Components<menu role="toolbar"><button ref="?" aria-label="copy link" class="icon">🔗</button></menu></h2>
 <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_components">Web components</a> are a key technology making <code>pree</code> (and no-build in general) possible. You can use them to re-use logic, DOM and styling across various pages of your website. Due to their isolated nature, you can also use them on multiple websites with ease, share them with others, etc.</p>
+<template shadowrootmode="open"><slot></slot></template></m-d>
+
 <blockquote>
-<p>🔍   Find reusable components in collections like <a href="https://www.webcomponents.org/">webcomponents.org</a>, <br>🎨   Or develop your own components <a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_custom_elements">without any tooling</a>, or using libraries such as <a href="https://lit.dev">Lit</a> or <a href="https://github.com/loreanvictor/minicomp">minicomp</a>.</p>
+  <emo-li>
+    <span slot="emo">🔍</span><m-d><p>Find reusable components in collections like <a href="https://www.webcomponents.org/">webcomponents.org</a> or <a href="https://component.kitchen/elix">component kitchen</a>.</p>
+<template shadowrootmode="open"><slot></slot></template></m-d>
+  <template shadowrootmode="open">
+  <style>
+  .holder {
+    display: flex;
+    gap: 1rem;
+    align-items: baseline;
+  }
+
+  </style>
+  <div class="holder">
+    <span><slot name="emo"></slot></span>
+    <div><slot></slot></div>
+  </div>
+</template></emo-li>
+  <emo-li>
+    <span slot="emo">🎨</span><m-d><p>Develop your own components <a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_custom_elements">without any tooling</a>, or using libraries such as <a href="https://lit.dev">Lit</a> or <a href="https://github.com/loreanvictor/minicomp">minicomp</a>. Also check the resources at <a href="https://open-wc.org/">Open Web Components</a></p>
+<template shadowrootmode="open"><slot></slot></template></m-d>
+  <template shadowrootmode="open">
+  <style>
+  .holder {
+    display: flex;
+    gap: 1rem;
+    align-items: baseline;
+  }
+
+  </style>
+  <div class="holder">
+    <span><slot name="emo"></slot></span>
+    <div><slot></slot></div>
+  </div>
+</template></emo-li>
 </blockquote>
+
 <br>
 
-<p>Any web component works with <code>pree</code>. When using web components or writing your own components, consider the following guildelines to get a better website performance / improved developer experience:</p>
-<p>⚡   Load static components <a href="usage/build-only-scripts">build-only</a>. <br>🕹️   Interactive components supporting <a href="components/ssr">SSR</a> are faster. <br>✨   Components can access <a href="components/build-env">build environment</a> for improved DX.</p>
+<m-d><p>Any web component works with <code>pree</code>. When using web components or writing your own components, consider the following guildelines to get a better website performance / improved developer experience:</p>
 <template shadowrootmode="open"><slot></slot></template></m-d>
+
+<emo-li>
+  <span slot="emo">⚡</span>
+  <m-d><p>Load static components <a href="usage/build-only-scripts">build-only</a>.</p>
+<template shadowrootmode="open"><slot></slot></template></m-d>
+<template shadowrootmode="open">
+  <style>
+  .holder {
+    display: flex;
+    gap: 1rem;
+    align-items: baseline;
+  }
+
+  </style>
+  <div class="holder">
+    <span><slot name="emo"></slot></span>
+    <div><slot></slot></div>
+  </div>
+</template></emo-li>
+<emo-li>
+  <span slot="emo">🕹️</span>
+  <m-d><p>Interactive components supporting <a href="components/ssr">SSR</a> are faster.</p>
+<template shadowrootmode="open"><slot></slot></template></m-d>
+<template shadowrootmode="open">
+  <style>
+  .holder {
+    display: flex;
+    gap: 1rem;
+    align-items: baseline;
+  }
+
+  </style>
+  <div class="holder">
+    <span><slot name="emo"></slot></span>
+    <div><slot></slot></div>
+  </div>
+</template></emo-li>
+<emo-li>
+  <span slot="emo">✨</span>
+  <m-d><p>Components can access <a href="components/build-env">build environment</a> for improved DX.</p>
+<template shadowrootmode="open"><slot></slot></template></m-d>
+<template shadowrootmode="open">
+  <style>
+  .holder {
+    display: flex;
+    gap: 1rem;
+    align-items: baseline;
+  }
+
+  </style>
+  <div class="holder">
+    <span><slot name="emo"></slot></span>
+    <div><slot></slot></div>
+  </div>
+</template></emo-li>
 
 <br>
 <change-history><template shadowrootmode="open"><style>a {
@@ -64,7 +154,7 @@
         font-style: italic;
         text-decoration: none;
         color: inherit;
-      }</style><a ref="?" target="_blank" href="https://github.com/loreanvictor/pree/commit/631d47f6d359a32a4ad5ffbaefcff971499de556">Updated at <span ref="?">Feb 06, 2024</span> <br>for <span ref="?">pree</span> version <span ref="?">0.1.12</span></a></template></change-history>
+      }</style><a ref="?" target="_blank" href="https://github.com/loreanvictor/pree/commit/f1bde2096973806bae13525ce558c1a08bac9adf">Updated at <span ref="?">Feb 07, 2024</span> <br>for <span ref="?">pree</span> version <span ref="?">0.1.13</span></a></template></change-history>
 <br>
       <prev-next><template shadowrootmode="open"><link rel="stylesheet" href="https://unpkg.com/nokss"><link rel="stylesheet" href="https://unpkg.com/graphis/font/graphis.css"><style>i {
       font-family: 'graphis', sans-serif;

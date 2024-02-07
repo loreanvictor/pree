@@ -39,18 +39,52 @@
 <hr>
 <p><a href="usage/index"><strong>Usage</strong></a> <br>  <a href="usage/meta-layout">Metadata &amp; Layouts</a> <br>  <a href="usage/build-only-scripts">Build-Only Scripts</a> <br>  <a href="usage/config">Configuration</a></p>
 <hr>
-<p><a href="components/index"><strong>Using Components</strong></a> <br>  <a href="components/ssr">Server Side Rendering</a> <br>  <a href="components/build-env">Build Environment</a> <br>  <a href="components/publish">Publishing</a></p>
+<p><a href="components/index"><strong>Using Components</strong></a> <br>  <a href="components/ssr">Server Side Rendering</a> <br>  <a href="components/build-env">Build Environment</a> <br>  <a href="components/publish">Publishing Components</a></p>
 <template shadowrootmode="open"><slot></slot></template></m-d>
 <template shadowrootmode="open"><slot></slot></template></use-html>
     </aside>
     <main>
       <m-d><h2 id="server-side-rendering">Server Side Rendering<menu role="toolbar"><button ref="?" aria-label="copy link" class="icon">🔗</button></menu></h2>
+<blockquote>
 <p>Server side rendering refers to running component code on the server (or during build time) first, instead of running them on the client. This is useful as clients don't have to wait for component code to load and run before seeing their content.</p>
-<br>
+</blockquote>
+<p><code>pree</code> pre-renders ALL web components, whether they support SSR or not. Components without interactivity (static components), can be <a href="usage/build-only-scripts">loaded build-only</a>, so that clients don't have to load or execute their code at all. For interactive components, there are two alternatives:</p>
+<template shadowrootmode="open"><slot></slot></template></m-d>
 
-<p><code>pree</code> pre-renders ALL web components, whether they support SSR or not. Components without interactivity (static components), can be <a href="usage/build-only-scripts">loaded build-only</a>, so that clients don't have to load or execute their code at all. Interactive components however are different:</p>
-<p>🦕   They can re-render on the client, replacing pre-rendered content, <br>🧠   They can use the pre-rendered content and add interactivity to it.</p>
-<p>Naturally, components supporting SSR and hydrating pre-rendered content instead of recreating it, will provide a better performance and user experience as they become interactive faster.</p>
+<emo-li>
+  <span slot="emo">🦕</span> They can re-render on the client, replacing pre-rendered content, or,
+<template shadowrootmode="open">
+  <style>
+  .holder {
+    display: flex;
+    gap: 1rem;
+    align-items: baseline;
+  }
+
+  </style>
+  <div class="holder">
+    <span><slot name="emo"></slot></span>
+    <div><slot></slot></div>
+  </div>
+</template></emo-li>
+<emo-li>
+  <span slot="emo">🧠</span> They can use the pre-rendered content and add interactivity to it.
+<template shadowrootmode="open">
+  <style>
+  .holder {
+    display: flex;
+    gap: 1rem;
+    align-items: baseline;
+  }
+
+  </style>
+  <div class="holder">
+    <span><slot name="emo"></slot></span>
+    <div><slot></slot></div>
+  </div>
+</template></emo-li>
+
+<m-d><p>Naturally, components supporting SSR and hydrating pre-rendered content instead of recreating it, will provide a better performance and user experience as they become interactive faster.</p>
 <hr>
 <p>To write components supporting SSR, you can use libraries such as <a href="https://github.com/loreanvictor/minicomp">minicomp</a>, combined with <a href="https://github.com/loreanvictor/rehtm">rehtm</a>:</p>
 <pre><code class="language-js hljs language-javascript" data-highlighted="yes"><span class="hljs-keyword">import</span> { define } <span class="hljs-keyword">from</span> <span class="hljs-string">'https://esm.sh/minicomp'</span>
@@ -67,6 +101,8 @@
   `</span>
 })
 </code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
+<br>
+
 <p>You can also support SSR without any library, simply check for existence of <code>this.shadowRoot</code> and render accordingly:</p>
 <pre><code class="language-js hljs language-javascript" data-highlighted="yes"><span class="hljs-keyword">class</span> <span class="hljs-title class_">AButton</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_ inherited__">HTMLElement</span> {
   <span class="hljs-title function_">constructor</span>(<span class="hljs-params"></span>) {
@@ -96,8 +132,10 @@
 
 customElements.<span class="hljs-title function_">define</span>(<span class="hljs-string">'a-button'</span>, <span class="hljs-title class_">AButton</span>)
 </code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
+<br>
+
 <blockquote>
-<p>📖 <a href="https://developer.chrome.com/docs/css-ui/declarative-shadow-dom#component_hydration">Read more about SSR and rehydration with declarative shadow DOM</a></p>
+<p>📖 <a href="https://developer.chrome.com/docs/css-ui/declarative-shadow-dom#component_hydration">Read this</a> for more info on hydration with declarative shadow DOM.</p>
 </blockquote>
 <template shadowrootmode="open"><slot></slot></template></m-d>
 
@@ -110,7 +148,7 @@ customElements.<span class="hljs-title function_">define</span>(<span class="hlj
         font-style: italic;
         text-decoration: none;
         color: inherit;
-      }</style><a ref="?" target="_blank" href="https://github.com/loreanvictor/pree/commit/631d47f6d359a32a4ad5ffbaefcff971499de556">Updated at <span ref="?">Feb 06, 2024</span> <br>for <span ref="?">pree</span> version <span ref="?">0.1.12</span></a></template></change-history>
+      }</style><a ref="?" target="_blank" href="https://github.com/loreanvictor/pree/commit/f1bde2096973806bae13525ce558c1a08bac9adf">Updated at <span ref="?">Feb 07, 2024</span> <br>for <span ref="?">pree</span> version <span ref="?">0.1.13</span></a></template></change-history>
 <br>
       <prev-next><template shadowrootmode="open"><link rel="stylesheet" href="https://unpkg.com/nokss"><link rel="stylesheet" href="https://unpkg.com/graphis/font/graphis.css"><style>i {
       font-family: 'graphis', sans-serif;

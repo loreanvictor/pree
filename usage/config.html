@@ -39,13 +39,319 @@
 <hr>
 <p><a href="usage/index"><strong>Usage</strong></a> <br>  <a href="usage/meta-layout">Metadata &amp; Layouts</a> <br>  <a href="usage/build-only-scripts">Build-Only Scripts</a> <br>  <a href="usage/config">Configuration</a></p>
 <hr>
-<p><a href="components/index"><strong>Using Components</strong></a> <br>  <a href="components/ssr">Server Side Rendering</a> <br>  <a href="components/build-env">Build Environment</a> <br>  <a href="components/publish">Publishing</a></p>
+<p><a href="components/index"><strong>Using Components</strong></a> <br>  <a href="components/ssr">Server Side Rendering</a> <br>  <a href="components/build-env">Build Environment</a> <br>  <a href="components/publish">Publishing Components</a></p>
 <template shadowrootmode="open"><slot></slot></template></m-d>
 <template shadowrootmode="open"><slot></slot></template></use-html>
     </aside>
     <main>
       <m-d><h1 id="configuration">Configuration<menu role="toolbar"><button ref="?" aria-label="copy link" class="icon">🔗</button></menu></h1>
+<p>To configure <code>pree</code>, either provide params and options to the CLI:</p>
+<pre><code class="language-bash hljs" data-highlighted="yes">pree build docs site -b repo
+</code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
+<p>Or provide a config file:</p>
+<pre><code class="language-yaml hljs" data-highlighted="yes"><span class="hljs-comment"># .pree.yml</span>
+<span class="hljs-attr">src:</span> <span class="hljs-string">docs</span>
+<span class="hljs-attr">dest:</span> <span class="hljs-string">site</span>
+<span class="hljs-attr">base:</span> <span class="hljs-string">repo</span>
+
+<span class="hljs-comment"># 🖕 running `pree build` with this config file</span>
+<span class="hljs-comment">#    is equivalent to running the previous command.</span>
+</code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
+<br>
+
+<p>A config file is normally a <a href="https://yaml.org/">YAML file</a> named <code>.pree.yml</code> located at working directory, but its name and address can also be configured. The config file
+is treated as a convenient default, any options provided to the CLI will override the config file.</p>
 <template shadowrootmode="open"><slot></slot></template></m-d>
+
+<div style="max-width: 100%; overflow: auto">
+<table>
+  <caption>
+    Config &amp; CLI Options
+  </caption>
+  <thead>
+    <tr>
+      <th>Config</th>
+      <th>CLI</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><m-d><p><code>src</code></p>
+<template shadowrootmode="open"><slot></slot></template></m-d></td>
+      <td><m-d><p><em>first param</em></p>
+<template shadowrootmode="open"><slot></slot></template></m-d></td>
+      <td><m-d><p>The source of website content.<br> Either an HTML file or a directory.</p>
+<template shadowrootmode="open"><slot></slot></template></m-d></td>
+      <td>
+        <details>
+          <summary>CLI Example</summary>
+          <m-d><pre><code class="language-bash hljs" data-highlighted="yes">pree view docs
+</code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
+<template shadowrootmode="open"><slot></slot></template></m-d>
+        </details>
+        <details>
+          <summary>Config Example</summary>
+          <m-d><pre><code class="language-yaml hljs" data-highlighted="yes"><span class="hljs-attr">src:</span> <span class="hljs-string">docs</span>
+</code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
+<template shadowrootmode="open"><slot></slot></template></m-d>
+        </details>
+      </td>
+    </tr>
+    <tr>
+      <td><m-d><p><code>dest</code></p>
+<template shadowrootmode="open"><slot></slot></template></m-d></td>
+      <td><m-d><p><em>second param</em></p>
+<template shadowrootmode="open"><slot></slot></template></m-d></td>
+      <td><m-d><p>The destination of the built website.<br> Either an HTML file or a directory.</p>
+<template shadowrootmode="open"><slot></slot></template></m-d></td>
+      <td>
+        <details>
+          <summary>CLI Example</summary>
+          <m-d><pre><code class="language-bash hljs" data-highlighted="yes">pree build docs site
+</code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
+<template shadowrootmode="open"><slot></slot></template></m-d>
+        </details>
+        <details>
+          <summary>Config Example</summary>
+          <m-d><pre><code class="language-yaml hljs" data-highlighted="yes"><span class="hljs-attr">src:</span> <span class="hljs-string">docs</span>
+<span class="hljs-attr">dest:</span> <span class="hljs-string">site</span>
+</code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
+<template shadowrootmode="open"><slot></slot></template></m-d>
+        </details>
+      </td>
+    </tr>
+    <tr>
+      <td><m-d><p><code>base</code></p>
+<template shadowrootmode="open"><slot></slot></template></m-d></td>
+      <td><m-d><p><code>-b</code>, <code>--base</code></p>
+<template shadowrootmode="open"><slot></slot></template></m-d></td>
+      <td><m-d><p>The <a href="usage/index#asset-management">base path</a> of the website.</p>
+<template shadowrootmode="open"><slot></slot></template></m-d></td>
+      <td>
+        <details>
+          <summary>CLI Example</summary>
+          <m-d><pre><code class="language-bash hljs" data-highlighted="yes">pree build docs site -b repo
+</code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
+<template shadowrootmode="open"><slot></slot></template></m-d>
+        </details>
+        <details>
+          <summary>Config Example</summary>
+          <m-d><pre><code class="language-yaml hljs" data-highlighted="yes"><span class="hljs-attr">base:</span> <span class="hljs-string">repo</span>
+</code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
+<template shadowrootmode="open"><slot></slot></template></m-d>
+        </details>
+      </td>
+    </tr>
+    <tr>
+      <td><m-d><p><code>include</code></p>
+<template shadowrootmode="open"><slot></slot></template></m-d></td>
+      <td><m-d><p><code>-i</code>, <code>--include</code></p>
+<template shadowrootmode="open"><slot></slot></template></m-d></td>
+      <td><m-d><p>A <a href="https://en.wikipedia.org/wiki/Glob_(programming)">glob pattern</a> to include files for build. <br></p>
+<blockquote>
+<p>For multiple patterns, use multiple <code>-i</code> flags, <br>
+or provide an array in the config.</p>
+</blockquote>
+<template shadowrootmode="open"><slot></slot></template></m-d></td>
+      <td>
+        <details>
+          <summary>CLI Example</summary>
+          <m-d><pre><code class="language-bash hljs" data-highlighted="yes">pree build -i <span class="hljs-string">"**/*.final.html"</span>
+</code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
+<template shadowrootmode="open"><slot></slot></template></m-d>
+        </details>
+        <details>
+          <summary>Config Example</summary>
+          <m-d><pre><code class="language-yaml hljs" data-highlighted="yes"><span class="hljs-attr">src:</span> <span class="hljs-string">docs</span>
+<span class="hljs-attr">include:</span> <span class="hljs-string">"**/*.final.html"</span>
+</code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
+<template shadowrootmode="open"><slot></slot></template></m-d>
+        </details>
+    </td></tr>
+    <tr>
+      <td><m-d><p><code>exclude</code></p>
+<template shadowrootmode="open"><slot></slot></template></m-d></td>
+      <td><m-d><p><code>-e</code>, <code>--exclude</code></p>
+<template shadowrootmode="open"><slot></slot></template></m-d></td>
+      <td><m-d><p>A <a href="https://en.wikipedia.org/wiki/Glob_(programming)">glob pattern</a> to exclude files from build. <br>
+Defaults to <code>**/_*.html</code>. <br></p>
+<blockquote>
+<p>For multiple patterns, use multiple <code>-e</code> flags, <br>
+or provide an array in the config. <br></p>
+</blockquote>
+<template shadowrootmode="open"><slot></slot></template></m-d></td>
+      <td>
+        <details>
+          <summary>CLI Example</summary>
+          <m-d><pre><code class="language-bash hljs" data-highlighted="yes">pree build -e <span class="hljs-string">"**/*.draft.html"</span>
+</code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
+<template shadowrootmode="open"><slot></slot></template></m-d>
+        </details>
+        <details>
+          <summary>Config Example</summary>
+          <m-d><pre><code class="language-yaml hljs" data-highlighted="yes"><span class="hljs-attr">src:</span> <span class="hljs-string">docs</span>
+<span class="hljs-attr">exclude:</span> <span class="hljs-string">"**/*.draft.html"</span>
+</code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
+<template shadowrootmode="open"><slot></slot></template></m-d>
+        </details>
+    </td></tr>
+    <tr>
+      <td><m-d><p><code>port</code></p>
+<template shadowrootmode="open"><slot></slot></template></m-d></td>
+      <td><m-d><p><code>-p</code>, <code>--port</code></p>
+<template shadowrootmode="open"><slot></slot></template></m-d></td>
+      <td><m-d><p>The port to serve the website on.<br>
+Defaults to <code>3000</code>.</p>
+<template shadowrootmode="open"><slot></slot></template></m-d></td>
+      <td>
+        <details>
+          <summary>CLI Example</summary>
+          <m-d><pre><code class="language-bash hljs" data-highlighted="yes">pree view -p 8080
+</code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
+<template shadowrootmode="open"><slot></slot></template></m-d>
+        </details>
+        <details>
+          <summary>Config Example</summary>
+          <m-d><pre><code class="language-yaml hljs" data-highlighted="yes"><span class="hljs-attr">port:</span> <span class="hljs-number">8080</span>
+</code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
+<template shadowrootmode="open"><slot></slot></template></m-d>
+        </details>
+        </td>
+    </tr>
+    <tr>
+      <td><m-d><p><code>prod</code></p>
+<template shadowrootmode="open"><slot></slot></template></m-d></td>
+      <td><m-d><p><code>-P</code>, <code>--prod</code></p>
+<template shadowrootmode="open"><slot></slot></template></m-d></td>
+      <td><m-d><p>View the website in production mode. <br>
+Disables <a href="components/build-env">build env access</a>.</p>
+<template shadowrootmode="open"><slot></slot></template></m-d></td>
+      <td>
+        <details>
+          <summary>CLI Example</summary>
+          <m-d><pre><code class="language-bash hljs" data-highlighted="yes">pree view -P
+</code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
+<template shadowrootmode="open"><slot></slot></template></m-d>
+        </details>
+        <details>
+          <summary>Config Example</summary>
+          <m-d><pre><code class="language-yaml hljs" data-highlighted="yes"><span class="hljs-attr">prod:</span> <span class="hljs-literal">true</span>
+</code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
+<template shadowrootmode="open"><slot></slot></template></m-d>
+        </details>
+      </td>
+    </tr>
+    <tr>
+      <td><m-d><p><code>concurrency</code></p>
+<template shadowrootmode="open"><slot></slot></template></m-d></td>
+      <td><m-d><p><code>-C</code>, <code>--concurrency</code></p>
+<template shadowrootmode="open"><slot></slot></template></m-d></td>
+      <td><m-d><p>The number of concurrent pages to build at once. <br>
+Defaults to <code>16</code>.</p>
+<template shadowrootmode="open"><slot></slot></template></m-d></td>
+      <td>
+        <details>
+          <summary>CLI Example</summary>
+          <m-d><pre><code class="language-bash hljs" data-highlighted="yes">pree build -C 8
+</code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
+<template shadowrootmode="open"><slot></slot></template></m-d>
+        </details>
+        <details>
+          <summary>Config Example</summary>
+          <m-d><pre><code class="language-yaml hljs" data-highlighted="yes"><span class="hljs-attr">concurrency:</span> <span class="hljs-number">8</span>
+</code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
+<template shadowrootmode="open"><slot></slot></template></m-d>
+        </details>
+      </td>
+    </tr>
+    <tr>
+      <td><m-d><p><code>root</code></p>
+<template shadowrootmode="open"><slot></slot></template></m-d></td>
+      <td><m-d><p><code>-r</code>, <code>--root</code></p>
+<template shadowrootmode="open"><slot></slot></template></m-d></td>
+      <td><m-d><p>The root path of the website.<br>
+Defaults to <code>src</code>.</p>
+<template shadowrootmode="open"><slot></slot></template></m-d></td>
+      <td>
+        <details>
+          <summary>CLI Example</summary>
+          <m-d><pre><code class="language-bash hljs" data-highlighted="yes">pree view -r path
+</code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
+<template shadowrootmode="open"><slot></slot></template></m-d>
+        </details>
+        <details>
+          <summary>Config Example</summary>
+          <m-d><pre><code class="language-yaml hljs" data-highlighted="yes"><span class="hljs-attr">root:</span> <span class="hljs-string">path</span>
+</code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
+<template shadowrootmode="open"><slot></slot></template></m-d>
+        </details>
+    </td></tr>
+    <tr>
+      <td><m-d><p><code>logLevel</code></p>
+<template shadowrootmode="open"><slot></slot></template></m-d></td>
+      <td></td>
+      <td><m-d><p>The log level of the CLI. <br>
+One of <code>debug</code>, <code>info</code>, <code>warn</code>, <code>error</code>, <code>silent</code>. <br>
+Defaults to <code>info</code>.</p>
+<template shadowrootmode="open"><slot></slot></template></m-d></td>
+      <td>
+        <details>
+          <summary>Config Example</summary>
+          <m-d><pre><code class="language-yaml hljs" data-highlighted="yes"><span class="hljs-attr">logLevel:</span> <span class="hljs-string">debug</span>
+</code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
+<template shadowrootmode="open"><slot></slot></template></m-d>
+        </details>
+      </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td><m-d><p><code>-c</code>, <code>--config</code></p>
+<template shadowrootmode="open"><slot></slot></template></m-d></td>
+      <td><m-d><p>The path to the config file. <br>
+Defaults to <code>.pree.yml</code>.</p>
+<template shadowrootmode="open"><slot></slot></template></m-d></td>
+      <td>
+        <details>
+          <summary>CLI Example</summary>
+          <m-d><pre><code class="language-bash hljs" data-highlighted="yes">pree build -c preeconf.yml
+</code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
+<template shadowrootmode="open"><slot></slot></template></m-d>
+        </details>
+    </td></tr>
+    <tr>
+      <td></td>
+      <td><m-d><p><code>-V</code>, <code>--verbose</code></p>
+<template shadowrootmode="open"><slot></slot></template></m-d></td>
+      <td><m-d><p>Show verbose output.</p>
+<template shadowrootmode="open"><slot></slot></template></m-d></td>
+      <td>
+        <details>
+          <summary>CLI Example</summary>
+          <m-d><pre><code class="language-bash hljs" data-highlighted="yes">pree build -V
+</code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
+<template shadowrootmode="open"><slot></slot></template></m-d>
+        </details>
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td><m-d><p><code>-S</code>, <code>--silent</code></p>
+<template shadowrootmode="open"><slot></slot></template></m-d></td>
+      <td><m-d><p>Silent mode. <br>
+Use multiple times to silence more.</p>
+<template shadowrootmode="open"><slot></slot></template></m-d></td>
+      <td>
+        <details>
+          <summary>CLI Example</summary>
+          <m-d><pre><code class="language-bash hljs" data-highlighted="yes">pree build -SS
+</code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
+<template shadowrootmode="open"><slot></slot></template></m-d>
+        </details>
+    </td></tr>
+  </tbody>
+</table>
+</div>
 
 <br>
 <change-history><template shadowrootmode="open"><style>a {
@@ -56,7 +362,7 @@
         font-style: italic;
         text-decoration: none;
         color: inherit;
-      }</style><a ref="?" target="_blank" href="https://github.com/loreanvictor/pree/commit/631d47f6d359a32a4ad5ffbaefcff971499de556">Updated at <span ref="?">Feb 06, 2024</span> <br>for <span ref="?">pree</span> version <span ref="?">0.1.12</span></a></template></change-history>
+      }</style><a ref="?" target="_blank" href="https://github.com/loreanvictor/pree/commit/f1bde2096973806bae13525ce558c1a08bac9adf">Updated at <span ref="?">Feb 07, 2024</span> <br>for <span ref="?">pree</span> version <span ref="?">0.1.13</span></a></template></change-history>
 <br>
       <prev-next><template shadowrootmode="open"><link rel="stylesheet" href="https://unpkg.com/nokss"><link rel="stylesheet" href="https://unpkg.com/graphis/font/graphis.css"><style>i {
       font-family: 'graphis', sans-serif;

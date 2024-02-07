@@ -39,7 +39,7 @@
 <hr>
 <p><a href="usage/index"><strong>Usage</strong></a> <br>  <a href="usage/meta-layout">Metadata &amp; Layouts</a> <br>  <a href="usage/build-only-scripts">Build-Only Scripts</a> <br>  <a href="usage/config">Configuration</a></p>
 <hr>
-<p><a href="components/index"><strong>Using Components</strong></a> <br>  <a href="components/ssr">Server Side Rendering</a> <br>  <a href="components/build-env">Build Environment</a> <br>  <a href="components/publish">Publishing</a></p>
+<p><a href="components/index"><strong>Using Components</strong></a> <br>  <a href="components/ssr">Server Side Rendering</a> <br>  <a href="components/build-env">Build Environment</a> <br>  <a href="components/publish">Publishing Components</a></p>
 <template shadowrootmode="open"><slot></slot></template></m-d>
 <template shadowrootmode="open"><slot></slot></template></use-html>
     </aside>
@@ -74,8 +74,58 @@ layout: ./_layout.html
 <br>
 
 <p><strong>Front matter</strong> is a <a href="https://yaml.org/">YAML</a> block at the top of a file, specifying title of the page, layout of the page, or any other page-specific metadata. If some metadata is provided in the front matter and the layout, the one in the front matter is used.</p>
-<p>  ⚖️   Front matter MUST be the first string in your file, <br>  ⚖️   Front matter MUST be valid YAML, <br>  ⚖️   Front matter must be set between tripple-dashed lines.</p>
-<hr>
+<template shadowrootmode="open"><slot></slot></template></m-d>
+
+<emo-li>
+  <span slot="emo">⚖️</span> Front matter MUST be the first string in your file,
+<template shadowrootmode="open">
+  <style>
+  .holder {
+    display: flex;
+    gap: 1rem;
+    align-items: baseline;
+  }
+
+  </style>
+  <div class="holder">
+    <span><slot name="emo"></slot></span>
+    <div><slot></slot></div>
+  </div>
+</template></emo-li>
+<emo-li>
+  <span slot="emo">⚖️</span> Front matter MUST be valid YAML,
+<template shadowrootmode="open">
+  <style>
+  .holder {
+    display: flex;
+    gap: 1rem;
+    align-items: baseline;
+  }
+
+  </style>
+  <div class="holder">
+    <span><slot name="emo"></slot></span>
+    <div><slot></slot></div>
+  </div>
+</template></emo-li>
+<emo-li>
+  <span slot="emo">⚖️</span> Front matter must be set between tripple-dashed lines.
+<template shadowrootmode="open">
+  <style>
+  .holder {
+    display: flex;
+    gap: 1rem;
+    align-items: baseline;
+  }
+
+  </style>
+  <div class="holder">
+    <span><slot name="emo"></slot></span>
+    <div><slot></slot></div>
+  </div>
+</template></emo-li>
+
+<m-d><hr>
 <h3 id="named-slots">Named Slots<menu role="toolbar"><button ref="?" aria-label="copy link" class="icon">🔗</button></menu></h3>
 <p>A layout file can also have named slots, where other pages can insert specific content. For example, a page might also want to specify footer content alongside the main content:</p>
 <pre><code class="language-html hljs language-xml" data-highlighted="yes"><span class="hljs-comment">&lt;!-- _layout.html--&gt;</span>
@@ -114,7 +164,7 @@ layout: ./_layout.html
         font-style: italic;
         text-decoration: none;
         color: inherit;
-      }</style><a ref="?" target="_blank" href="https://github.com/loreanvictor/pree/commit/0069d5ede3f090e9c885d2a7614b4aa5df641dbf">Updated at <span ref="?">Feb 04, 2024</span> <br>for <span ref="?">pree</span> version <span ref="?">0.1.9</span></a></template></change-history>
+      }</style><a ref="?" target="_blank" href="https://github.com/loreanvictor/pree/commit/f1bde2096973806bae13525ce558c1a08bac9adf">Updated at <span ref="?">Feb 07, 2024</span> <br>for <span ref="?">pree</span> version <span ref="?">0.1.13</span></a></template></change-history>
 
 <br>
       <prev-next><template shadowrootmode="open"><link rel="stylesheet" href="https://unpkg.com/nokss"><link rel="stylesheet" href="https://unpkg.com/graphis/font/graphis.css"><style>i {

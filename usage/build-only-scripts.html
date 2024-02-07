@@ -39,7 +39,7 @@
 <hr>
 <p><a href="usage/index"><strong>Usage</strong></a> <br>  <a href="usage/meta-layout">Metadata &amp; Layouts</a> <br>  <a href="usage/build-only-scripts">Build-Only Scripts</a> <br>  <a href="usage/config">Configuration</a></p>
 <hr>
-<p><a href="components/index"><strong>Using Components</strong></a> <br>  <a href="components/ssr">Server Side Rendering</a> <br>  <a href="components/build-env">Build Environment</a> <br>  <a href="components/publish">Publishing</a></p>
+<p><a href="components/index"><strong>Using Components</strong></a> <br>  <a href="components/ssr">Server Side Rendering</a> <br>  <a href="components/build-env">Build Environment</a> <br>  <a href="components/publish">Publishing Components</a></p>
 <template shadowrootmode="open"><slot></slot></template></m-d>
 <template shadowrootmode="open"><slot></slot></template></use-html>
     </aside>
@@ -63,10 +63,60 @@ For example, you might want to write your pages using markdown. You could use co
 <pre><code class="language-html hljs language-xml" data-highlighted="yes"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">build-only</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"module"</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"https://esm.sh/zero-md"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 </code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
 <p><code>pree</code> will remove any such script from the final HTML:</p>
-<p>  🧬   these scripts are also removed from inside web components, <br>  ⚡   this will increase performance by reducing executed scripts, <br>  📦   this will reduce asset size that's downloaded.</p>
+<template shadowrootmode="open"><slot></slot></template></m-d>
+
+<emo-li>
+  <span slot="emo">🧬</span> these scripts are also removed from inside web components,
+<template shadowrootmode="open">
+  <style>
+  .holder {
+    display: flex;
+    gap: 1rem;
+    align-items: baseline;
+  }
+
+  </style>
+  <div class="holder">
+    <span><slot name="emo"></slot></span>
+    <div><slot></slot></div>
+  </div>
+</template></emo-li>
+<emo-li>
+  <span slot="emo">⚡</span> this will increase performance by reducing executed scripts,
+<template shadowrootmode="open">
+  <style>
+  .holder {
+    display: flex;
+    gap: 1rem;
+    align-items: baseline;
+  }
+
+  </style>
+  <div class="holder">
+    <span><slot name="emo"></slot></span>
+    <div><slot></slot></div>
+  </div>
+</template></emo-li>
+<emo-li>
+  <span slot="emo">📦</span> this will reduce asset size that's downloaded.
+<template shadowrootmode="open">
+  <style>
+  .holder {
+    display: flex;
+    gap: 1rem;
+    align-items: baseline;
+  }
+
+  </style>
+  <div class="holder">
+    <span><slot name="emo"></slot></span>
+    <div><slot></slot></div>
+  </div>
+</template></emo-li>
+
 <br>
 
-<blockquote>
+<m-d><blockquote>
 <h4 id="️-compatibility">⚠️ Compatibility<menu role="toolbar"><button ref="?" aria-label="copy link" class="icon">🔗</button></menu></h4>
 <p>All of this relies on <a href="https://web.dev/declarative-shadow-dom/">declerative shadow DOM</a>, which <a href="https://caniuse.com/?search=declarative%20shadow%20dom">some browsers</a> might not support yet. Such browsers can't display the pre-rendered content of such components at all. If you need to support such browsers, ensure to include the code of all components and only use <code>build-only</code> on scripts that will modify the actual DOM during pre-rendering.</p>
 </blockquote>
@@ -80,7 +130,7 @@ For example, you might want to write your pages using markdown. You could use co
         font-style: italic;
         text-decoration: none;
         color: inherit;
-      }</style><a ref="?" target="_blank" href="https://github.com/loreanvictor/pree/commit/0069d5ede3f090e9c885d2a7614b4aa5df641dbf">Updated at <span ref="?">Feb 04, 2024</span> <br>for <span ref="?">pree</span> version <span ref="?">0.1.9</span></a></template></change-history>
+      }</style><a ref="?" target="_blank" href="https://github.com/loreanvictor/pree/commit/f1bde2096973806bae13525ce558c1a08bac9adf">Updated at <span ref="?">Feb 07, 2024</span> <br>for <span ref="?">pree</span> version <span ref="?">0.1.13</span></a></template></change-history>
 
 <br>
       <prev-next><template shadowrootmode="open"><link rel="stylesheet" href="https://unpkg.com/nokss"><link rel="stylesheet" href="https://unpkg.com/graphis/font/graphis.css"><style>i {
