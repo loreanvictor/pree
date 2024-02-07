@@ -48,12 +48,12 @@ define('prev-next', ({ target, prevlabel, nextlabel }) => {
       }
 
       const prev = index > 0 ? {
-        href: links[index - 1].href,
+        href: links[index - 1].getAttribute('href'),
         text: links[index - 1].textContent
       } : undefined
 
       const next = index < links.length - 1 ? {
-        href: links[index + 1].href,
+        href: links[index + 1].getAttribute('href'),
         text: links[index + 1].textContent
       } : undefined
 
