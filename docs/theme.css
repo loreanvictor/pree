@@ -41,6 +41,7 @@ ul {
 body>aside:first-of-type {
   background: color-mix(in srgb, var(--background-color) 60%, transparent);
   backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
 
   padding-top: 20vh;
   ul {
