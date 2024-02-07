@@ -1,5 +1,5 @@
 import { define, onConnected, attachControls } from 'https://esm.sh/minicomp'
-import { template, ref } from 'https://esm.sh/rehtm'
+import { template, ref, html } from 'https://esm.sh/rehtm'
 
 
 function whoAmI() {
@@ -56,6 +56,9 @@ define('prev-next', ({ target, prevlabel, nextlabel }) => {
         href: links[index + 1].href,
         text: links[index + 1].textContent
       } : undefined
+
+      prev && document.head.appendChild(html`<link rel="prefetch" href="${prev.href}" />`)
+      next && document.head.appendChild(html`<link rel="prefetch" href="${next.href}" />`)
 
       host.current.innerHTML = `        
         ${prev ? `
