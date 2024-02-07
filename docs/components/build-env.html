@@ -50,216 +50,313 @@ For example, [this custom component](https://github.com/loreanvictor/pree/blob/m
 Note that these APIs are only available during pre-rendering, i.e. during execution of `pree build` or `pree view` commands. They should not be invoked in the final website: either load components and scripts using them as `build-only` ([see this](/usage/build-only-scripts)), or check for their availability via `window.BUILD_ENV_API` variable:
 
 ```js
-if (window.BUILD_ENV_API) {
-  // use the APIs
-}
+  if (window.BUILD_ENV_API) {
+    // use the APIs
+  }
 ```
 
 </m-d>
 
 <div style="max-width: 100%; overflow: auto">
 <table>
-  <thead>
-    <tr>
-      <th>endpoint</th>
-      <th>description</th>
-      <th>type</th>
-      <th>example</th>
-    </tr>
-  </thead>
+  <caption>
+    Build Environment APIs
+  </caption>
   <tbody>
     <tr>
       <td><m-d>`/@env/conf`</m-d></td>
       <td><m-d>`pree`'s configuration</m-d></td>
-      <td>JSON</td>
+      <td><m-d>JSON</m-d></td>
       <td>
-        <m-d>
-          ```json
-          {
-            "src": "docs",
-            "dest": "site",
-            "prod": false,
-            ...
-          }
-          ```
-        </m-d>
+        <details>
+          <summary>Example</summary>
+          <m-d>
+            ```json
+            {
+              "src": "docs",
+              "dest": "site",
+              "prod": false,
+              ...
+            }
+            ```
+          </m-d>
+        </details>
       </td>
     </tr>
     <tr>
       <td><m-d>`/@env/conf/:var`</m-d></td>
       <td><m-d>specific configuration variable</m-d></td>
-      <td>JSON</td>
-      <td><m-d>
+      <td><m-d>JSON</m-d></td>
+      <td>
+        <details>
+          <summary>Example</summary>
+          <m-d>
           `/@env/conf/src`
           ```json
           "docs"
           ```
-      </m-d></tr>
+          </m-d>
+        </details>
+      </td>
+    </tr>
     <tr>
       <td><m-d>`/@env/vars/:var`</m-d></td>
       <td><m-d>specific environment variable</m-d></td>
-      <td>text</td>
-      <td><m-d>
-        `/@env/vars/PATH`
-        ```text
-        /usr/local/bin:/usr/bin:/bin
-        ```
-      </m-d></td>
+      <td><m-d>text</m-d></td>
+      <td>
+        <details>
+          <summary>Example</summary>
+          <m-d>
+          `/@env/vars/PATH`
+          ```text
+          /usr/local/bin:/usr/bin:/bin
+          ```
+          </m-d>
+        </details>
+      </td>
     </tr>
     <tr>
       <td><m-d>`/@env/git/remote/info`</m-d></td>
       <td><m-d>remote git repository info</m-d></td>
-      <td>JSON</td>
-      <td><m-d>
-        ```json
-        {
-          "host": "github.com",
-          "full_name": "loreanvictor/pree",
-          ...
-        }
-        ```
-      </m-d></td>
+      <td><m-d>JSON</m-d></td>
+      <td>
+        <details>
+          <summary>Example</summary>
+          <m-d>
+          ```json
+          {
+            "host": "github.com",
+            "full_name": "loreanvictor/pree",
+            ...
+          }
+          ```
+          </m-d>
+        </details>
+      </td>
     </tr>
     <tr>
       <td><m-d>`/@env/git/remote/url`</m-d></td>
       <td><m-d>remote git repository URL</m-d></td>
-      <td>text</td>
-      <td><m-d>
-        ```text
-        git@github.com:loreanvictor/pree.git
-        ```
-      </m-d></td>
+      <td><m-d>text</m-d></td>
+      <td>
+        <details>
+          <summary>Example</summary>
+          <m-d>
+          ```text
+          git@github.com:loreanvictor/pree.git
+          ```
+          </m-d>
+        </details>
+      </td>
     </tr>
     <tr>
       <td><m-d>`/@env/git/commits/first`</m-d></td>
       <td><m-d>first commit of the project</m-d></td>
-      <td>JSON</td>
-      <td><m-d>
-        ```json
-        {
-          "hash": "d22c84...",
-          "author_name": "Eugene Ghanizadeh Khoub",
-          "author_email": "ghanizadeh.eugene@gmail.com",
-          "date": "2024-01-26T13:49:32+01:00",
-          "message": "Initial commit"
-        }
-        ```
-      </m-d></td>
+      <td><m-d>JSON</m-d></td>
+      <td>
+        <details>
+          <summary>Example</summary>
+          <m-d>
+          ```json
+          {
+            "hash": "d22c84...",
+            "author_name": "Eugene Ghanizadeh Khoub",
+            "author_email": "ghanizadeh.eugene@gmail.com",
+            "date": "2024-01-26T13:49:32+01:00",
+            "message": "Initial commit"
+          }
+          ```
+          </m-d>
+        </details>
+      </td>
     </tr>
     <tr>
       <td><m-d>`/@env/git/commits/last`</m-d></td>
       <td><m-d>last commit of the project</m-d></td>
-      <td>JSON</td>
-      <td><i>same as above</i></td>
+      <td><m-d>JSON</m-d></td>
+      <td>
+        <details>
+          <summary>Example</summary>
+          <m-d>
+          ```json
+          {
+            "hash": "051kl3z...",
+            "author_name": "Eugene Ghanizadeh Khoub",
+            "author_email": "ghanizadeh.eugene@gmail.com",
+            "date": "2024-02-04T14:21:50+01:00",
+            "message": "Some polush"
+          }
+          ```
+          </m-d>
+        </details>
+      </td>
     </tr>
     <tr>
       <td><m-d>`/@env/git/commits/first/:PATH`</m-d></td>
       <td><m-d>first commit of given file</m-d></td>
-      <td>JSON</td>
-      <td><m-d>
-        `/@env/git/commits/first/docs/usage.html`
-        ```json
-        {
-          "hash": "3653af...",
-          "author_name": "Eugene Ghanizadeh Khoub",
-          ...
-        }
-        ```
-      </m-d></td>
+      <td><m-d>JSON</m-d></td>
+      <td>
+        <details>
+          <summary>Example</summary>
+          <m-d>
+          `/@env/git/commits/first/docs/usage.html`
+          ```json
+          {
+            "hash": "3653af...",
+            "author_name": "Eugene Ghanizadeh Khoub",
+            ...
+          }
+          ```
+          </m-d>
+        </details>
+      </td>
     </tr>
     <tr>
       <td><m-d>`/@env/git/commits/last/:PATH`</m-d></td>
       <td><m-d>last commit of given file</m-d></td>
-      <td>JSON</td>
-      <td><i>same as above</i></td>
+      <td><m-d>JSON</m-d></td>
+      <td>
+        <details>
+          <summary>Example</summary>
+          <m-d>
+          `/@env/git/commits/last/docs/usage.html`
+          ```json
+          {
+            "hash": "72g421...",
+            "author_name": "Eugene Ghanizadeh Khoub",
+            ...
+          }
+          ```
+          </m-d>
+        </details>
+      </td>
     </tr>
     <tr>
       <td><m-d>`/@env/git/commits/all`</m-d></td>
       <td><m-d>all commits of the project</m-d></td>
-      <td>JSON</td>
-      <td><m-d>
-        `/@env/git/commits/all`
-        ```json
-        [
-          { "hash": "3653af...", ...},
-          { "hash": "d22c84...", ...},
-          ...
-        ]
-        ```
-      </m-d></td>
+      <td><m-d>JSON</m-d></td>
+      <td>
+        <details>
+          <summary>Example</summary>
+          <m-d>
+          `/@env/git/commits/all`
+          ```json
+          [
+            { "hash": "3653af...", ...},
+            { "hash": "d22c84...", ...},
+            ...
+          ]
+          ```
+          </m-d>
+        </details>
+      </td>
     </tr>
     <tr>
       <td><m-d>`/@env/git/commits/all/:PATH`</m-d></td>
       <td><m-d>all commits of given file</m-d></td>
-      <td>JSON</td>
-      <td><i>same as above</i></td>
+      <td><m-d>JSON</m-d></td>
+      <td>
+        <details>
+          <summary>Example</summary>
+          <m-d>
+          `/@env/git/commits/all/docs/usage.html`
+          ```json
+          [
+            { "hash": "3653af...", ...},
+            { "hash": "d22c84...", ...},
+            ...
+          ]
+          ```
+          </m-d>
+        </details>
+      </td>
     </tr>
     <tr>
       <td><m-d>`/@env/git/show/:OBJECT`</m-d></td>
       <td><m-d>[git show given object](https://git-scm.com/docs/git-show)</m-d></td>
-      <td>file format</td>
-      <td><m-d>
-        `/@env/git/show/HEAD:docs/index.html`
+      <td><m-d>file format</m-d></td>
+      <td>
+        <details>
+          <summary>Example</summary>
+          <m-d>
+          `/@env/git/show/HEAD:docs/index.html`
 
-        ```html
-        ---
-        layout: ./_layout.html
-        ---
-        
-        &lt;div slot="background"&gt;
-          &lt;use-html src="./_lines.html"&gt;&lt;/use-html&gt;
-        &lt;/div&gt;
+          ```html
+          ---
+          layout: ./_layout.html
+          ---
+          
+          &lt;div slot="background"&gt;
+            &lt;use-html src="./_lines.html"&gt;&lt;/use-html&gt;
+          &lt;/div&gt;
 
-        ...
-        ```
-      </m-d></td>
+          ...
+          ```
+          </m-d>
+        </details>
+      </td>
     </tr>
     <tr>
       <td><m-d>`/@env/files/list`</m-d></td>
       <td><m-d>A list of files of the project</m-d></td>
-      <td>JSON</td>
-      <td><m-d>
-        ```json
-        [
-          ".eslintrc",
-          ".pree.yml",
-          "LICENSE",
-          "docs/index.html",
-          "docs/usage/index.html",
-          ...
-        ]
-        ```
-      </m-d></td>
+      <td><m-d>JSON</m-d></td>
+      <td>
+        <details>
+          <summary>Example</summary>
+          <m-d>
+          ```json
+          [
+            ".eslintrc",
+            ".pree.yml",
+            "LICENSE",
+            "docs/index.html",
+            "docs/usage/index.html",
+            ...
+          ]
+          ```
+          </m-d>
+        </details>
+      </td>
     </tr>
     <tr>
       <td><m-d>`/@env/files/list/:PATTERN`</m-d></td>
       <td><m-d>A list of files matching given pattern</m-d></td>
-      <td>JSON</td>
-      <td><m-d>
-        `/@env/files/list/docs/**/*.html`
-        ```json
-        [
-          "docs/index.html",
-          "docs/usage/index.html",
-          ...
-        ]
-        ```
-      </m-d></td>
+      <td><m-d>JSON</m-d></td>
+      <td>
+        <details>
+          <summary>Example</summary>
+          <m-d>
+          `/@env/files/list/docs/**/*.html`
+          ```json
+          [
+            "docs/index.html",
+            "docs/usage/index.html",
+            ...
+          ]
+          ```
+          </m-d>
+        </details>
+      </td>
     </tr>
     <tr>
       <td><m-d>`/@env/files/read/:PATH`</m-d></td>
       <td><m-d>Read the content of a file</m-d></td>
-      <td>file format</td>
-      <td><m-d>
-        `/@env/files/read/package.json`
-        ```json
-        {
-          "name": "pree",
-          "version": "0.1.10",
-          ...
-        }
-        ```
-      </m-d></td>
+      <td><m-d>file format</m-d></td>
+      <td>
+        <details>
+          <summary>Example</summary>
+          <m-d>
+          `/@env/files/read/package.json`
+          ```json
+          {
+            "name": "pree",
+            "version": "0.1.10",
+            ...
+          }
+          ```
+          </m-d>
+        </details>
+      </td>
   </tbody>
 </table>
 </div>

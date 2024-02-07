@@ -15,11 +15,21 @@ pree build docs/my-page.html site/my-page.html
 
 This prebuilds `docs/my-page.html` into `site/my-page.html`:
 
-&ensp; 🧬 &ensp; pre-renders web components, \
-&ensp; 🏗️ &ensp; resolves [metadata and layouts](usage/meta-layout), \
-&ensp; 👻 &ensp; removes [build-only scripts and components](usage/build-only-scripts).
+</m-d>
+
+<emo-li>
+  <span slot="emo">🧬</span> pre-renders web components,
+</emo-li>
+<emo-li>
+  <span slot="emo">🏗️</span> resolves <a href="usage/meta-layout">metadata and layouts</a>,
+</emo-li>
+<emo-li>
+  <span slot="emo">👻</span>removes <a href="usage/build-only-scripts">build-only scripts and components</a>.
+</emo-li>
 
 <br>
+
+<m-d>
 
 👉 Prebuild an entire directory:
 
@@ -35,10 +45,22 @@ This will copy over all the content of `docs` into `site` and prebuild all HTML 
 ```bash
 pree view docs
 ```
-&ensp; 👀 &ensp; it loads your website without prebuilding it, \
-&ensp; 🏗️ &ensp; it still resolves [metadata and layouts](usage/meta-layout), \
-&ensp; 🔃 &ensp; it live reloads on change, \
-&ensp; 📁 &ensp; it also lists directory content for easy navigation. 
+</m-d>
+
+<emo-li>
+  <span slot="emo">👀</span> it loads your website without prebuilding it,
+</emo-li>
+<emo-li>
+  <span slot="emo">🏗️</span> it still resolves <a href="usage/meta-layout">metadata and layouts</a>,
+</emo-li>
+<emo-li>
+  <span slot="emo">🔃</span> it live reloads on change,
+</emo-li>
+<emo-li>
+  <span slot="emo">📁</span> it also lists directory content for easy navigation.
+</emo-li>
+
+<m-d>
 
 > Performance of your pages in preview mode is much slower than in production mode, since
 > the content is not prebuilt. To double check the performance of your prebuilt website, first build it:
@@ -104,6 +126,10 @@ pree build         # 👈 this is equal to `pree view build`
 ```bash
 pree check         # 👈 this is equal to `pree check site`
 ```
+
+<br>
+
+> 📖 [Read this](usage/config) for a comprehensive list of options.
 
 </m-d>
 

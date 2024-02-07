@@ -10,6 +10,7 @@ export interface Options {
   include?: string[],
   exclude?: string[],
   config?: string,
+  concurrency?: number,
 }
 
 export function merge(a: Options, b: Options) {
@@ -29,6 +30,7 @@ export function merge(a: Options, b: Options) {
       ])
     ] : undefined,
     config: a.config ?? b.config,
+    concurrency: a.concurrency ?? b.concurrency,
   }
 
   merged.src = merged.src ?? merged.root

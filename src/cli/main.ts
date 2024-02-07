@@ -20,7 +20,6 @@ export async function main(command: Command, options: Options) {
     const src = options.src
     const dest = options.dest
 
-
     if (!src) {
       logger.error('missing source path')
       logger.info(

@@ -2,6 +2,7 @@ import yargs from 'yargs'
 import { hideBin } from 'yargs/helpers'
 import { Command, Options } from './types'
 import { LOG_LEVEL } from '../util/logger'
+import { earr } from '../util/ensure-array'
 
 
 export interface Args extends Options {
@@ -22,6 +23,7 @@ export function args(): Args {
     .alias('i', 'include')
     .alias('e', 'exclude')
     .alias('c', 'config')
+    .alias('C', 'concurrency')
     .parseSync(hideBin(process.argv))
 
   const command = parsed['help'] ? 'help' :
@@ -41,20 +43,14 @@ export function args(): Args {
   ) : LOG_LEVEL.INFO
 
   return {
-    command,
-    src: src,
-    root: root,
-    dest,
+    command, src, dest, root,
     port: parsed['port'] as number | undefined,
     prod: parsed['prod'] as boolean | undefined,
     base: parsed['base'] as string | undefined,
-    include: parsed['include'] ?
-      (Array.isArray(parsed['include']) ? parsed['include'] : [parsed['include']])
-      : undefined,
-    exclude: parsed['exclude'] ?
-      (Array.isArray(parsed['exclude']) ? parsed['exclude'] : [parsed['exclude']])
-      : undefined,
+    include: parsed['include'] ? earr(parsed['include'] as string) : undefined,
+    exclude: parsed['exclude'] ? earr(parsed['exclude'] as string) : undefined,
     logLevel,
     config: parsed['config'] as string | undefined,
+    concurrency: parsed['concurrency'] as number | undefined,
   }
 }

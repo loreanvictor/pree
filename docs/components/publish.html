@@ -6,7 +6,42 @@ layout: ../_layout.html
 <m-d>
 ## Publishing Components
 
-If you want to publish `pree`-supported components to be used by others, it is recommended to ensure that your components can also be used in other environments, including on the client side. Also take the following considerations into account:
+You can easily share your components by publishing them through [NPM](https://npmjs.com), where they can get used via CDNs such as [unpkg](https://unpkg.com) or [esm.sh](https://esm.sh). In this page we discuss a few good practices for publishing web components that integrate with `pree`. Checkout [this checklist](https://github.com/webcomponents/gold-standard/wiki) and [these guides](https://open-wc.org/guides/publishing/) some recommendations for publishing web components in general.
+
+---
+
+### SSR Support
+
+👉 If your component is interactive, make sure it supports [SSR](components/ssr). This will make your website interactive faster on the client, as the pre-rendered DOM won't be recreated and is just hydrated. Use libraries such as [minicomp](https://github.com/loreanvictor/minicomp) and [rehtm](https://github.com/loreanvictor/rehtm) to make your components easily SSR-friendly.
+
+```js
+  import { define } from 'https://esm.sh/minicomp'
+  import { ref, template } from 'https://esm.sh/rehtm'
+
+  define('a-button', () => {
+    const span = ref()
+    let count = 0
+    
+    return template`
+      &lt;button onclick=${() =&gt; span.current.textContent = ++count}&gt;
+        Clicked &lt;span ref=${span} role="status"&gt;0&lt;/span&gt; times
+      &lt;/button&gt;
+    `
+  })
+```
+
+---
+
+### Using Build Environment
+
+👉 If your component accesses [build environment](components/build-env), check for availability and version of the APIs
+so that your component doesn't cause errors if used in other environments:
+
+```js
+  if (window.BUILD_ENV_API) {
+    // use the APIs
+  }
+```
 
 <br>
 
@@ -15,17 +50,40 @@ If you want to publish `pree`-supported components to be used by others, it is r
 const res = await fetch(`${BUILD_ENV_API.baseURL}git/remote/info`)
 ```
 
+
 <br>
 
-👉 It is recommended to check `pree`'s version as well:
+It is recommended to also check the version of `pree` to ensure the APIs you need are provided. Use `BUILD_ENV_API.provider` to check that information:
+
+```js
+  window.BUILD_ENV_API.provider
+  // pree@0.1.13
+```
+
 ```js
   import { satisfies } from 'https://esm.sh/semver'
 
-  const [host, version] = BUILD_ENV_API.provider.split('@')
-  if (host === 'pree' &amp;&amp; satisfies(version, '^0.1.10')) {
+  const buildEnvAccess = supportedVersions => {
+    if (!window.BUILD_ENV_API) return false
+
+    const [host, version] = window.BUILD_ENV_API.provider.split('@')
+    if (host === 'pree' &amp;&amp; satisfies(version, supportedVersions)) {
+      return true
+    } else {
+      return false
+    }
+  }
+
+  if (buildEnvAccess('^0.1.10')) {
     // use the APIs
   }
 ```
+
+<br>
+
+> It is highly recommended to ensure that your components can function properly
+> even if access to build environment is not available. If not, users might get confused about when and where
+> they can use your components.
 
 </m-d>
 

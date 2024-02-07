@@ -1,8 +1,9 @@
 import { FilterFilesOptions } from '../util/file-match'
+import { ParallelOptions } from '../util/parallel'
 import { BuilderOptions } from './builder'
 
 
-interface BuildOptionsBase extends BuilderOptions {
+interface BuildOptionsBase extends BuilderOptions, ParallelOptions {
   target: string
 }
 

@@ -8,19 +8,36 @@ layout: ../_layout.html
 
 [Web components](https://developer.mozilla.org/en-US/docs/Web/API/Web_components) are a key technology making `pree` (and no-build in general) possible. You can use them to re-use logic, DOM and styling across various pages of your website. Due to their isolated nature, you can also use them on multiple websites with ease, share them with others, etc.
 
-> 🔍 &ensp; Find reusable components in collections like [webcomponents.org](https://www.webcomponents.org/), \
-> 🎨 &ensp; Or develop your own components [without any tooling](https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_custom_elements), or using libraries such as [Lit](https://lit.dev) or [minicomp](https://github.com/loreanvictor/minicomp).
+</m-d>
+
+<blockquote>
+  <emo-li>
+    <span slot="emo">🔍</span><m-d>Find reusable components in collections like [webcomponents.org](https://www.webcomponents.org/) or [component kitchen](https://component.kitchen/elix).</m-d>
+  </emo-li>
+  <emo-li>
+    <span slot="emo">🎨</span><m-d>Develop your own components [without any tooling](https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_custom_elements), or using libraries such as [Lit](https://lit.dev) or [minicomp](https://github.com/loreanvictor/minicomp). Also check the resources at [Open Web Components](https://open-wc.org/)</m-d>
+  </emo-li>
+</blockquote>
 
 <br>
 
+<m-d>
 Any web component works with `pree`. When using web components or writing your own components, consider the following guildelines to get a better website performance / improved developer experience:
 
-⚡ &ensp; Load static components [build-only](usage/build-only-scripts). \
-🕹️ &ensp; Interactive components supporting [SSR](components/ssr) are faster. \
-✨ &ensp; Components can access [build environment](components/build-env) for improved DX.
-
-
 </m-d>
+
+<emo-li>
+  <span slot="emo">⚡</span>
+  <m-d>Load static components [build-only](usage/build-only-scripts).</m-d>
+</emo-li>
+<emo-li>
+  <span slot="emo">🕹️</span>
+  <m-d>Interactive components supporting [SSR](components/ssr) are faster.</m-d>
+</emo-li>
+<emo-li>
+  <span slot="emo">✨</span>
+  <m-d>Components can access [build environment](components/build-env) for improved DX.</m-d>
+</emo-li>
 
 <br>
 <change-history></change-history>

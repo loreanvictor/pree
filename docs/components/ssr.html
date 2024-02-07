@@ -6,15 +6,20 @@ layout: ../_layout.html
 <m-d>
 ## Server Side Rendering
 
-Server side rendering refers to running component code on the server (or during build time) first, instead of running them on the client. This is useful as clients don't have to wait for component code to load and run before seeing their content.
+> Server side rendering refers to running component code on the server (or during build time) first, instead of running them on the client. This is useful as clients don't have to wait for component code to load and run before seeing their content.
 
-<br>
+`pree` pre-renders ALL web components, whether they support SSR or not. Components without interactivity (static components), can be [loaded build-only](usage/build-only-scripts), so that clients don't have to load or execute their code at all. For interactive components, there are two alternatives:
 
-`pree` pre-renders ALL web components, whether they support SSR or not. Components without interactivity (static components), can be [loaded build-only](usage/build-only-scripts), so that clients don't have to load or execute their code at all. Interactive components however are different:
+</m-d>
 
-🦕 &ensp; They can re-render on the client, replacing pre-rendered content, \
-🧠 &ensp; They can use the pre-rendered content and add interactivity to it.
+<emo-li>
+  <span slot="emo">🦕</span> They can re-render on the client, replacing pre-rendered content, or,
+</emo-li>
+<emo-li>
+  <span slot="emo">🧠</span> They can use the pre-rendered content and add interactivity to it.
+</emo-li>
 
+<m-d>
 Naturally, components supporting SSR and hydrating pre-rendered content instead of recreating it, will provide a better performance and user experience as they become interactive faster.
 
 ---
@@ -36,6 +41,8 @@ To write components supporting SSR, you can use libraries such as [minicomp](htt
     `
   })
 ```
+
+<br>
 
 You can also support SSR without any library, simply check for existence of `this.shadowRoot` and render accordingly:
 
@@ -69,7 +76,9 @@ You can also support SSR without any library, simply check for existence of `thi
   customElements.define('a-button', AButton)
 ```
 
-> 📖 [Read more about SSR and rehydration with declarative shadow DOM](https://developer.chrome.com/docs/css-ui/declarative-shadow-dom#component_hydration)
+<br>
+
+> 📖 [Read this](https://developer.chrome.com/docs/css-ui/declarative-shadow-dom#component_hydration) for more info on hydration with declarative shadow DOM.
 
 </m-d>
 

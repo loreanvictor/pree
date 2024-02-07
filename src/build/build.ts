@@ -1,3 +1,4 @@
+import ms from 'ms'
 import { cp,  mkdir, writeFile } from 'fs/promises'
 import { dirname, join } from 'path'
 
@@ -8,6 +9,7 @@ import { pathToUrl } from './path'
 import { ls } from '../util/ls'
 import { mimetype } from '../util/file-types'
 import { match } from '../util/file-match'
+import { parallel } from '../util/parallel'
 
 
 async function buildOne(src: string, target: string, builder: Builder, logger: Logger) {
@@ -27,7 +29,7 @@ async function buildOne(src: string, target: string, builder: Builder, logger: L
     logger.success('built: ' +
       THEME.highlight(src) +
       THEME.secondary(' -> ') +
-      THEME.highlight(target) + ' in ' + (Date.now() - start) + 'ms'
+      THEME.highlight(target) + ' in ' + ms(Date.now() - start)
     )
   } catch(error) {
     logger.error('failed: ' + THEME.highlight(src))
@@ -36,6 +38,8 @@ async function buildOne(src: string, target: string, builder: Builder, logger: L
 }
 
 export async function build(options: BuildOptions) {
+  const start = Date.now()
+
   const logger = createLogger({ ...options, name: 'build' })
 
   const builder = new Builder(options)
@@ -60,13 +64,16 @@ export async function build(options: BuildOptions) {
       const files = (await ls(options.target))
         .filter(file => mimetype(file) === 'text/html' && match(file, options))
 
-      for (const file of files) {
-        await buildOne(
-          pathToUrl(join(options.dir, file), options),
-          join(options.target, file),
-          builder, logger
-        )
-      }
+      await parallel(
+        files.map(file => () =>
+          buildOne(
+            pathToUrl(join(options.dir, file), options),
+            join(options.target, file),
+            builder, logger
+          )
+        ),
+        options,
+      )
     } catch (error) {
       logger.error('failed: ' + THEME.highlight(options.dir))
       logger.error((error as Error).message)
@@ -77,4 +84,5 @@ export async function build(options: BuildOptions) {
 
   await builder.close()
   logger.debug('builder closed.')
+  logger.success('build finished in ' + ms(Date.now() - start))
 }

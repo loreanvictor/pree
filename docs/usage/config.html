@@ -6,7 +6,344 @@ layout: ../_layout.html
 <m-d>
 # Configuration
 
+To configure `pree`, either provide params and options to the CLI:
+
+```bash
+pree build docs site -b repo
+```
+Or provide a config file:
+```yaml
+# .pree.yml
+src: docs
+dest: site
+base: repo
+
+# 🖕 running `pree build` with this config file
+#    is equivalent to running the previous command.
+```
+
+<br>
+
+A config file is normally a [YAML file](https://yaml.org/) named `.pree.yml` located at working directory, but its name and address can also be configured. The config file
+is treated as a convenient default, any options provided to the CLI will override the config file.
+
 </m-d>
+
+<div style="max-width: 100%; overflow: auto">
+<table>
+  <caption>
+    Config & CLI Options
+  </caption>
+  <thead>
+    <tr>
+      <th>Config</th>
+      <th>CLI</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><m-d>`src`</m-d></td>
+      <td><m-d>_first param_</m-d></td>
+      <td><m-d>The source of website content.<br> Either an HTML file or a directory.</m-d></td>
+      <td>
+        <details>
+          <summary>CLI Example</summary>
+          <m-d>
+            ```bash
+            pree view docs
+            ```
+          </m-d>
+        </details>
+        <details>
+          <summary>Config Example</summary>
+          <m-d>
+            ```yaml
+            src: docs
+            ```
+          </m-d>
+        </details>
+      </td>
+    </tr>
+    <tr>
+      <td><m-d>`dest`</m-d></td>
+      <td><m-d>_second param_</m-d></td>
+      <td><m-d>The destination of the built website.<br> Either an HTML file or a directory.</m-d></td>
+      <td>
+        <details>
+          <summary>CLI Example</summary>
+          <m-d>
+            ```bash
+            pree build docs site
+            ```
+          </m-d>
+        </details>
+        <details>
+          <summary>Config Example</summary>
+          <m-d>
+            ```yaml
+            src: docs
+            dest: site
+            ```
+          </m-d>
+        </details>
+      </td>
+    </tr>
+    <tr>
+      <td><m-d>`base`</m-d></td>
+      <td><m-d>`-b`, `--base`</m-d></td>
+      <td><m-d>
+        The [base path](usage/index#asset-management) of the website.
+      </m-d></td>
+      <td>
+        <details>
+          <summary>CLI Example</summary>
+          <m-d>
+            ```bash
+            pree build docs site -b repo
+            ```
+          </m-d>
+        </details>
+        <details>
+          <summary>Config Example</summary>
+          <m-d>
+            ```yaml
+            base: repo
+            ```
+          </m-d>
+        </details>
+      </td>
+    </tr>
+    <tr>
+      <td><m-d>`include`</m-d></td>
+      <td><m-d>`-i`, `--include`</m-d></td>
+      <td><m-d>
+        A [glob pattern](https://en.wikipedia.org/wiki/Glob_(programming)) to include files for build. <br>
+        > For multiple patterns, use multiple `-i` flags, <br>
+        or provide an array in the config.
+      </m-d></td>
+      <td>
+        <details>
+          <summary>CLI Example</summary>
+          <m-d>
+            ```bash
+            pree build -i "**/*.final.html"
+            ```
+          </m-d>
+        </details>
+        <details>
+          <summary>Config Example</summary>
+          <m-d>
+            ```yaml
+            src: docs
+            include: "**/*.final.html"
+            ```
+          </m-d>
+        </details>
+    </tr>
+    <tr>
+      <td><m-d>`exclude`</m-d></td>
+      <td><m-d>`-e`, `--exclude`</m-d></td>
+      <td><m-d>
+        A [glob pattern](https://en.wikipedia.org/wiki/Glob_(programming)) to exclude files from build. <br>
+        Defaults to `**/_*.html`. <br>
+        > For multiple patterns, use multiple `-e` flags, <br>
+        or provide an array in the config. <br>
+        
+      </m-d></td>
+      <td>
+        <details>
+          <summary>CLI Example</summary>
+          <m-d>
+            ```bash
+            pree build -e "**/*.draft.html"
+            ```
+          </m-d>
+        </details>
+        <details>
+          <summary>Config Example</summary>
+          <m-d>
+            ```yaml
+            src: docs
+            exclude: "**/*.draft.html"
+            ```
+          </m-d>
+        </details>
+    </tr>
+    <tr>
+      <td><m-d>`port`</m-d></td>
+      <td><m-d>`-p`, `--port`</m-d></td>
+      <td><m-d>
+        The port to serve the website on.<br>
+        Defaults to `3000`.
+      </m-d></td>
+      <td>
+        <details>
+          <summary>CLI Example</summary>
+          <m-d>
+            ```bash
+            pree view -p 8080
+            ```
+          </m-d>
+        </details>
+        <details>
+          <summary>Config Example</summary>
+          <m-d>
+            ```yaml
+            port: 8080
+            ```
+          </m-d>
+        </details>
+        </td>
+    </tr>
+    <tr>
+      <td><m-d>`prod`</m-d></td>
+      <td><m-d>`-P`, `--prod`</m-d></td>
+      <td><m-d>
+        View the website in production mode. <br>
+        Disables [build env access](components/build-env).
+      </m-d></td>
+      <td>
+        <details>
+          <summary>CLI Example</summary>
+          <m-d>
+            ```bash
+            pree view -P
+            ```
+          </m-d>
+        </details>
+        <details>
+          <summary>Config Example</summary>
+          <m-d>
+            ```yaml
+            prod: true
+            ```
+          </m-d>
+        </details>
+      </td>
+    </tr>
+    <tr>
+      <td><m-d>`concurrency`</m-d></td>
+      <td><m-d>`-C`, `--concurrency`</m-d></td>
+      <td><m-d>
+        The number of concurrent pages to build at once. <br>
+        Defaults to `16`.
+      </m-d></td>
+      <td>
+        <details>
+          <summary>CLI Example</summary>
+          <m-d>
+            ```bash
+            pree build -C 8
+            ```
+          </m-d>
+        </details>
+        <details>
+          <summary>Config Example</summary>
+          <m-d>
+            ```yaml
+            concurrency: 8
+            ```
+          </m-d>
+        </details>
+      </td>
+    </tr>
+    <tr>
+      <td><m-d>`root`</m-d></td>
+      <td><m-d>`-r`, `--root`</m-d></td>
+      <td><m-d>
+        The root path of the website.<br>
+        Defaults to `src`.
+      </m-d></td>
+      <td>
+        <details>
+          <summary>CLI Example</summary>
+          <m-d>
+            ```bash
+            pree view -r path
+            ```
+          </m-d>
+        </details>
+        <details>
+          <summary>Config Example</summary>
+          <m-d>
+            ```yaml
+            root: path
+            ```
+          </m-d>
+        </details>
+    </tr>
+    <tr>
+      <td><m-d>`logLevel`</m-d></td>
+      <td></td>
+      <td><m-d>
+        The log level of the CLI. <br>
+        One of `debug`, `info`, `warn`, `error`, `silent`. <br>
+        Defaults to `info`.
+      </m-d></td>
+      <td>
+        <details>
+          <summary>Config Example</summary>
+          <m-d>
+            ```yaml
+            logLevel: debug
+            ```
+          </m-d>
+        </details>
+      </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td><m-d>`-c`, `--config`</m-d></td>
+      <td><m-d>
+        The path to the config file. <br>
+        Defaults to `.pree.yml`.
+      </m-d></td>
+      <td>
+        <details>
+          <summary>CLI Example</summary>
+          <m-d>
+            ```bash
+            pree build -c preeconf.yml
+            ```
+          </m-d>
+        </details>
+    </tr>
+    <tr>
+      <td></td>
+      <td><m-d>`-V`, `--verbose`</m-d></td>
+      <td><m-d>Show verbose output.</m-d></td>
+      <td>
+        <details>
+          <summary>CLI Example</summary>
+          <m-d>
+            ```bash
+            pree build -V
+            ```
+          </m-d>
+        </details>
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td><m-d>`-S`, `--silent`</m-d></td>
+      <td><m-d>
+         Silent mode. <br>
+         Use multiple times to silence more.
+      </m-d></td>
+      <td>
+        <details>
+          <summary>CLI Example</summary>
+          <m-d>
+            ```bash
+            pree build -SS
+            ```
+          </m-d>
+        </details>
+    </tr>
+  </tbody>
+</table>
+</div>
 
 <br>
 <change-history></change-history>
