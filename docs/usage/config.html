@@ -146,7 +146,7 @@ is treated as a convenient default, any options provided to the CLI will overrid
       <td><m-d>`-e`, `--exclude`</m-d></td>
       <td><m-d>
         A [glob pattern](https://en.wikipedia.org/wiki/Glob_(programming)) to exclude files from build. <br>
-        Defaults to `**/_*.html`. <br>
+        Defaults to `['**/_*', '**/.*']`. <br>
         > For multiple patterns, use multiple `-e` flags, <br>
         or provide an array in the config. <br>
         

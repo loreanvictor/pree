@@ -31,10 +31,10 @@ export interface LogTransport {
 }
 
 const CONSOLE = {
-  [LOG_LEVEL.ERROR]: console.error,
-  [LOG_LEVEL.WARN]: console.warn,
-  [LOG_LEVEL.INFO]: console.info,
-  [LOG_LEVEL.DEBUG]: console.debug,
+  [LOG_LEVEL.ERROR]: (...args) => console.error(...args),
+  [LOG_LEVEL.WARN]: (...args) => console.warn(...args),
+  [LOG_LEVEL.INFO]: (...args) => console.info(...args),
+  [LOG_LEVEL.DEBUG]: (...args) => console.debug(...args),
 }
 
 export interface LoggerOptions {
@@ -50,7 +50,6 @@ const _DefaultOptions = {
 
 export interface Logger {
   level: number,
-  log: (text: string, loglevel?: number) => void
   error: (text: string) => void
   warn: (text: string) => void
   info: (text: string) => void
@@ -59,12 +58,13 @@ export interface Logger {
 }
 
 export function createLogger(options: LoggerOptions = _DefaultOptions): Logger {
-  const name = options?.name
-  const level = options?.logLevel ?? _DefaultOptions.logLevel
-  const transport = (l: number) => transport[l] ?? _DefaultOptions.logTransport[l]
+  const name = options.name
+  const level = options.logLevel ?? _DefaultOptions.logLevel
+  const logTransport = options.logTransport ?? _DefaultOptions.logTransport
+  const transport = (l: number) => logTransport[l] ?? _DefaultOptions.logTransport[l]!
 
   const format = (text: string) => name ? THEME.shy(`[${name}]`) + ' ' + text : text
-  const log = (text: string, loglevel = LOG_LEVEL.INFO) => {
+  const log = (text: string, loglevel) => {
     if (loglevel <= level) {
       transport(loglevel)(format(text))
     }
@@ -72,7 +72,6 @@ export function createLogger(options: LoggerOptions = _DefaultOptions): Logger {
 
   return {
     level,
-    log,
     error: (text: string) => log('❌ ' + THEME.error(text), LOG_LEVEL.ERROR),
     warn: (text: string) => log(THEME.warn(text), LOG_LEVEL.WARN),
     info: (text: string) => log(text, LOG_LEVEL.INFO),

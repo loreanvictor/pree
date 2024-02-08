@@ -1,6 +1,7 @@
 import { readdir, stat } from 'fs/promises'
 import { join } from 'path'
 
+// TODO: spin into own library?
 
 export async function ls(path: string) {
   const res: string[] = []

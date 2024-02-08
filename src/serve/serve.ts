@@ -25,7 +25,7 @@ export function serve(options?: ServeOptions) {
     const app = createApp(options)
 
     const server = createServer(app).listen(port, () => {
-      logger.log('server up on ' + THEME.secondary(
+      logger.info('server up on ' + THEME.secondary(
         'http://localhost:'
         + port
         + (options?.base ? els(options.base) : '')

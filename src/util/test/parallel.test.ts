@@ -8,9 +8,9 @@ describe(parallel, () => {
     const res: string[] = []
 
     const tasks = [
-      () => sleep(1).then(() => res.push('A')),
-      () => sleep(3).then(() => res.push('B')),
-      () => sleep(1).then(() => res.push('C')),
+      () => sleep(10).then(() => res.push('A')),
+      () => sleep(30).then(() => res.push('B')),
+      () => sleep(10).then(() => res.push('C')),
     ]
 
     await parallel(tasks, { concurrency: 2 })
@@ -22,13 +22,13 @@ describe(parallel, () => {
     const res: string[] = []
 
     const tasks = [
-      () => sleep(1).then(() => res.push('A')),
-      () => sleep(3).then(() => res.push('B')),
-      () => sleep(1).then(() => res.push('C')),
-      () => sleep(3).then(() => res.push('D')),
-      () => sleep(1).then(() => res.push('E')),
-      () => sleep(1).then(() => res.push('F')),
-      () => sleep(1).then(() => res.push('G')),
+      () => sleep(10).then(() => res.push('A')),
+      () => sleep(30).then(() => res.push('B')),
+      () => sleep(10).then(() => res.push('C')),
+      () => sleep(30).then(() => res.push('D')),
+      () => sleep(10).then(() => res.push('E')),
+      () => sleep(10).then(() => res.push('F')),
+      () => sleep(10).then(() => res.push('G')),
     ]
 
     await parallel(tasks)
