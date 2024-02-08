@@ -1,5 +1,5 @@
-import { define, onFirstRender } from 'https://esm.sh/minicomp'
-import { template, html, ref } from 'https://esm.sh/rehtm'
+import { define, onFirstRender, currentNode } from 'https://esm.sh/minicomp'
+import { template, ref } from 'https://esm.sh/rehtm'
 
 
 define('octo-icon', () => `
@@ -16,8 +16,10 @@ define('octo-icon', () => `
 define('gh-link', (params) => {
   const { host, owner, repo } = params
   const hide = params['hide-icon'] !== undefined
+  const nolabel = params['no-label'] !== undefined
   const anchor = ref()
   const slot = ref()
+  const elem = currentNode()
 
   const update = (url) => anchor.current.href = url
 
@@ -28,7 +30,7 @@ define('gh-link', (params) => {
     update(`https://${info.host}/${info.full_name}`)
 
     if (slot.current.assignedNodes().length === 0) {
-      anchor.current.textContent = info.name
+      elem.append(info.name)
     }
   }
 
@@ -42,11 +44,15 @@ define('gh-link', (params) => {
     <link rel="stylesheet" href="https://unpkg.com/nokss/dist/bundles/md.css" />
     <style>
       octo-icon { opacity: .45; transition: opacity .15s; }
-      a:hover octo-icon { opacity: 1; }
+      a:not([role]) {
+        filter: none;
+        color: var(--text-color);
+        &:hover octo-icon { opacity: 1; }
+      }
     </style>
     <a ref=${anchor} target="_blank">
       <octo-icon style=${hide ? 'display: none': ''}></octo-icon>
-      <slot ref=${slot}>GitHub</slot>
+      <slot ref=${slot} style=${nolabel ? 'display: none': ''}>GitHub</slot>
     </a>
   `
 })
