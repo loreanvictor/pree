@@ -14,7 +14,7 @@ define('octo-icon', () => `
 `)
 
 define('gh-link', (params) => {
-  const { url } = params
+  const { host, owner, repo } = params
   const hide = params['hide-icon'] !== undefined
   const anchor = ref()
   const slot = ref()
@@ -32,8 +32,8 @@ define('gh-link', (params) => {
     }
   }
 
-  if (url) {
-    update(url)
+  if (owner && repo) {
+    update(`https://${host ?? 'https://github.com'}/${owner}/${repo}`)
   } else if (window.BUILD_ENV_API) {
     onFirstRender(() => load())
   }
@@ -41,11 +41,11 @@ define('gh-link', (params) => {
   return template`
     <link rel="stylesheet" href="https://unpkg.com/nokss/dist/bundles/md.css" />
     <style>
-      octo-icon { opacity: .45; transition: opacity .2s; }
+      octo-icon { opacity: .45; transition: opacity .15s; }
       a:hover octo-icon { opacity: 1; }
     </style>
     <a ref=${anchor} target="_blank">
-      ${hide ? '' : html`<octo-icon></octo-icon>`}
+      <octo-icon style=${hide ? 'display: none': ''}></octo-icon>
       <slot ref=${slot}>GitHub</slot>
     </a>
   `
