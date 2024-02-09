@@ -52,6 +52,21 @@ npx pree build src dest
 
 <br>
 
+# Credits
+
+`pree` is built on top of the following open-source projects (amongst others). For a more complete list, check out [the credits page](https://loreanvictor.github.io/pree/credits).
+
+- [puppeteer](https://pptr.dev/): for prebuilding pages and pre-rendering web components.
+- [koa](https://koajs.com/): for serving content and layouting.
+- [cheerio](https://cheerio.js.org/): for manipulating HTML (e.g. layouting).
+- [gray-matter](https://github.com/jonschlinkert/gray-matter): for parsing front matter.
+- [chokidar](https://github.com/paulmillr/chokidar): for watching files.
+- [chalk](https://github.com/chalk/chalk): for all the colors.
+- [yargs](https://yargs.js.org/): for parsing command line arguments.
+- [yaml](https://eemeli.org/yaml/): for parsing CLI config.
+
+<br>
+
 # Contribution
 
 You need [node](https://nodejs.org/en/), [NPM](https://www.npmjs.com) to start and [git](https://git-scm.com) to start.

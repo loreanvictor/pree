@@ -1,4 +1,5 @@
 import Koa from 'koa'
+import ms from 'ms'
 
 import { files, FilesOptions } from './files'
 import { env, EnvOptions } from './env'
@@ -17,8 +18,7 @@ export function createApp(options?: AppOptions) {
   app.use(async (ctx, next) => {
     const start = Date.now()
     await next()
-    const ms = Date.now() - start
-    logger.info(`${THEME.secondary(ctx.method)} ${THEME.highlight(ctx.url)} in ${ms}ms`)
+    logger.info(`${THEME.secondary(ctx.method)} ${THEME.highlight(ctx.url)} in ${ms(Date.now() - start)}`)
   })
 
   if (!options || !options.prod) {

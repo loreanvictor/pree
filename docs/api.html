@@ -191,12 +191,11 @@ Takes the same options as `serve()`.
 
 ### Proper Use Cases
 
-JavaScript APIs are provided to make it easy to build on top of `pree` or customise it for various use cases. For example, you can use custom loaders to prebuild markdown files that utilise web components instead of custom markdown syntax.
+The JavaScript API can be used to create other applications on top of / using `pree`. That said, `pree` is still built and optimized for a very specific use case: prebuilding a static collection of HTML files. It is NOT optimised for other use cases such as server-side rendering of dynamic content.
 
-That said, `pree` is optimised for robustness in what it is designed for, building static HTML files, and not performance. Specifically, the `build()` function starts a local server, then launches a headless browser and loads pages to prebuild them, particularly waiting for scripts and components to load and run. Scripts and components
-might in-turn load and run other scripts and components, and so on. `pree` needs to do this because prebuilding correctly means behaving as closely as possible to a real browser.
+To be more specific: `pree` takes a considerable amount of time to prebuild a single HTML page. Its pre-rendering needs to be as close as possible to a real initial load by a browser, which specifically means waiting for all scripts and components, and scripts and components loaded by them, so on, to finish.
 
-In case of prebuilding a bunch of HTML files, cost of launching a server is acceptable and multiple pages can be prebuilt concurrently, speeding up the process to usable levels. These optimisations don't necessarily work in other contexts though: for example, if you have a web server that creates HTML files based on user requests (e.g. most e-commerce websites), then `pree`'s process will be painfully slow and resource intensive for your use-case, and you might want to use another solution (or combine another solution with `pree`).
+In case of a fixed set of HTML files this is easily offset by parallelisation: the same headless browser is used to load and prebuild multiple pages concurrently. However that optimisation might not work in other contexts and use cases, so take that into consideration when you are thinking about using `pree` in a different application.
 
 </m-d>
 
