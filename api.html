@@ -23,7 +23,7 @@
     <script type="module" src="./.components/prev-next.js"></script>
   <title>pree: javascript api</title>
           
-        <link rel="prefetch" href="components/publish"></head>
+        <link rel="prefetch" href="components/publish"><link rel="prefetch" href="credits"></head>
   <body><aside aria-hidden="true">
       <use-html src="./_toc.html"><style>
   #toc {
@@ -44,7 +44,8 @@
 <hr>
 <p><a href="components/index"><strong>Using Components</strong></a> <br>  <a href="components/ssr">Server Side Rendering</a> <br>  <a href="components/build-env">Build Environment</a> <br>  <a href="components/publish">Publishing Components</a></p>
 <hr>
-<p><a href="api">JavaScript API</a></p>
+<p><a href="api">JavaScript API</a>
+<a href="credits">Credits</a></p>
 <p><br><br></p>
 <template shadowrootmode="open"><slot></slot></template></m-d>
 <template shadowrootmode="open"><slot></slot></template></use-html>
@@ -236,10 +237,9 @@ Takes the same options as <code>serve()</code>.</p>
 </code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
 <hr>
 <h3 id="proper-use-cases">Proper Use Cases<menu role="toolbar"><button ref="?" aria-label="copy link" class="icon">🔗</button></menu></h3>
-<p>JavaScript APIs are provided to make it easy to build on top of <code>pree</code> or customise it for various use cases. For example, you can use custom loaders to prebuild markdown files that utilise web components instead of custom markdown syntax.</p>
-<p>That said, <code>pree</code> is optimised for robustness in what it is designed for, building static HTML files, and not performance. Specifically, the <code>build()</code> function starts a local server, then launches a headless browser and loads pages to prebuild them, particularly waiting for scripts and components to load and run. Scripts and components
-might in-turn load and run other scripts and components, and so on. <code>pree</code> needs to do this because prebuilding correctly means behaving as closely as possible to a real browser.</p>
-<p>In case of prebuilding a bunch of HTML files, cost of launching a server is acceptable and multiple pages can be prebuilt concurrently, speeding up the process to usable levels. These optimisations don't necessarily work in other contexts though: for example, if you have a web server that creates HTML files based on user requests (e.g. most e-commerce websites), then <code>pree</code>'s process will be painfully slow and resource intensive for your use-case, and you might want to use another solution (or combine another solution with <code>pree</code>).</p>
+<p>The JavaScript API can be used to create other applications on top of / using <code>pree</code>. That said, <code>pree</code> is still built and optimized for a very specific use case: prebuilding a static collection of HTML files. It is NOT optimised for other use cases such as server-side rendering of dynamic content.</p>
+<p>To be more specific: <code>pree</code> takes a considerable amount of time to prebuild a single HTML page. Its pre-rendering needs to be as close as possible to a real initial load by a browser, which specifically means waiting for all scripts and components, and scripts and components loaded by them, so on, to finish.</p>
+<p>In case of a fixed set of HTML files this is easily offset by parallelisation: the same headless browser is used to load and prebuild multiple pages concurrently. However that optimisation might not work in other contexts and use cases, so take that into consideration when you are thinking about using <code>pree</code> in a different application.</p>
 <template shadowrootmode="open"><slot></slot></template></m-d>
 
 <br>
@@ -251,7 +251,7 @@ might in-turn load and run other scripts and components, and so on. <code>pree</
         font-style: italic;
         text-decoration: none;
         color: inherit;
-      }</style><a ref="?" target="_blank" href="https://github.com/loreanvictor/pree/commit/927e5d70f2b69c8014da470413a76845a9aaa4ca">Updated at <span ref="?">Feb 09, 2024</span> <br>for <span ref="?">pree</span> version <span ref="?">0.1.14</span></a></template></change-history>
+      }</style><a ref="?" target="_blank" href="https://github.com/loreanvictor/pree/commit/46f9c554902a8ac3b925ba076e3a0036b48622e8">Updated at <span ref="?">Feb 09, 2024</span> <br>for <span ref="?">pree</span> version <span ref="?">0.1.15</span></a></template></change-history>
 <br>
 
 
@@ -308,6 +308,14 @@ might in-turn load and run other scripts and components, and so on. <code>pree</
           </article>
           
         
+          <article class="next">
+            <a href="credits">
+              <small>Up Next</small><br>
+              Credits
+            </a>
+            <i>➡</i>
+          </article>
+          
       </section></template></prev-next>
     </main>
     <footer>
@@ -315,7 +323,7 @@ might in-turn load and run other scripts and components, and so on. <code>pree</
 
 
 
-<div style="display: flex" class="local-style-5nazadh2nw6"><style>.local-style-5nazadh2nw6 { 
+<div style="display: flex" class="local-style-gt5h9z10uz"><style>.local-style-gt5h9z10uz { 
  
     b {
       opacity: .35;
@@ -390,14 +398,14 @@ might in-turn load and run other scripts and components, and so on. <code>pree</
   <svg width="32" height="32" viewBox="0 0 98 96" xmlns="http://www.w3.org/2000/svg"> <path fill-rule="evenodd" clip-rule="evenodd" d="M48.854 0C21.839 0 0 22 0 49.217c0 21.756 13.993 40.172 33.405 46.69 2.427.49 3.316-1.059 3.316-2.362 0-1.141-.08-5.052-.08-9.127-13.59 2.934-16.42-5.867-16.42-5.867-2.184-5.704-5.42-7.17-5.42-7.17-4.448-3.015.324-3.015.324-3.015 4.934.326 7.523 5.052 7.523 5.052 4.367 7.496 11.404 5.378 14.235 4.074.404-3.178 1.699-5.378 3.074-6.6-10.839-1.141-22.243-5.378-22.243-24.283 0-5.378 1.94-9.778 5.014-13.2-.485-1.222-2.184-6.275.486-13.038 0 0 4.125-1.304 13.426 5.052a46.97 46.97 0 0 1 12.214-1.63c4.125 0 8.33.571 12.213 1.63 9.302-6.356 13.427-5.052 13.427-5.052 2.67 6.763.97 11.816.485 13.038 3.155 3.422 5.015 7.822 5.015 13.2 0 18.905-11.404 23.06-22.324 24.283 1.78 1.548 3.316 4.481 3.316 9.126 0 6.6-.08 11.897-.08 13.526 0 1.304.89 2.853 3.316 2.364 19.412-6.52 33.405-24.935 33.405-46.691C97.707 22 75.788 0 48.854 0z" fill="currentColor"></path> </svg>
 </template></octo-icon><slot ref="?" style="">GitHub</slot></a></template></gh-link>
       <b>|</b>
-      <npm-badge>npm<template shadowrootmode="open"><link rel="stylesheet" href="https://unpkg.com/nokss/dist/bundles/md.css"><style>a:not([role]) {
+      <npm-badge design="flat-square">npm<template shadowrootmode="open"><link rel="stylesheet" href="https://unpkg.com/nokss/dist/bundles/md.css"><style>a:not([role]) {
         filter: none;
         color: var(--text-color);
       }
       img {
         vertical-align: middle;
         margin-left: 0.5rem;
-      }</style><a ref="?" target="_blank" href="https://www.npmjs.com/package/pree"><slot ref="?" style="">NPM</slot><img alt="npm" ref="?" src="https://img.shields.io/npm/v/pree.svg?label=&amp;style=normal"></a></template></npm-badge>
+      }</style><a ref="?" target="_blank" href="https://www.npmjs.com/package/pree"><slot ref="?" style="">NPM</slot><img alt="npm" ref="?" src="https://img.shields.io/npm/v/pree.svg?label=&amp;style=flat-square"></a></template></npm-badge>
     <template shadowrootmode="open">
   <style>
     @media (max-width: 767px) {

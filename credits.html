@@ -21,9 +21,9 @@
 
     <script src="./.components/emo-li.js" type="module"></script>
     <script type="module" src="./.components/prev-next.js"></script>
-  <title>pree: usage</title>
+  <title>pree: credits</title>
           
-        <link rel="prefetch" href="install"><link rel="prefetch" href="usage/meta-layout"></head>
+        <link rel="prefetch" href="api"></head>
   <body><aside aria-hidden="true">
       <use-html src="./_toc.html"><style>
   #toc {
@@ -51,191 +51,122 @@
 <template shadowrootmode="open"><slot></slot></template></use-html>
     </aside>
     <main>
-      <m-d><h2 id="usage">Usage<menu role="toolbar"><button ref="?" aria-label="copy link" class="icon">🔗</button></menu></h2>
-<p>👉 Prebuild a single HTML file:</p>
-<pre><code class="language-bash hljs" data-highlighted="yes">pree build docs/my-page.html site/my-page.html
-</code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
-<p>This prebuilds <code>docs/my-page.html</code> into <code>site/my-page.html</code>:</p>
-<template shadowrootmode="open"><slot></slot></template></m-d>
-
-<emo-li>
-  <span slot="emo">🧬</span> pre-renders web components,
-<template shadowrootmode="open">
-  <style>
-  .holder {
-    display: flex;
-    gap: 1rem;
-    align-items: baseline;
+      <m-d><h2 id="credits">Credits<menu role="toolbar"><button ref="?" aria-label="copy link" class="icon">🔗</button></menu></h2>
+<p><code>pree</code> depends on the following open-source projects to work, so hats off to their creators and contributors:</p>
+<div style="overflow: auto; width: 100%" class="local-style-6khvx7t3r75"><style>.local-style-6khvx7t3r75 { 
+ 
+  tr {
+    filter: none;
   }
-
-  </style>
-  <div class="holder">
-    <span><slot name="emo"></slot></span>
-    <div><slot></slot></div>
-  </div>
-</template></emo-li>
-<emo-li>
-  <span slot="emo">🏗️</span> resolves <a href="usage/meta-layout">metadata and layouts</a>,
-<template shadowrootmode="open">
-  <style>
-  .holder {
-    display: flex;
-    gap: 1rem;
-    align-items: baseline;
+  td {
+    &:first-child {
+      padding-top: 1.5rem;
+    }
+    &:not(:first-child) {
+      white-space: pre-wrap;
+    }
+    p {
+      margin-bottom: -0.5rem;
+    }
   }
+ 
+ }</style>
+<table>
 
-  </style>
-  <div class="holder">
-    <span><slot name="emo"></slot></span>
-    <div><slot></slot></div>
-  </div>
-</template></emo-li>
-<emo-li>
-  <span slot="emo">👻</span>removes <a href="usage/build-only-scripts">build-only scripts and components</a>.
-<template shadowrootmode="open">
-  <style>
-  .holder {
-    display: flex;
-    gap: 1rem;
-    align-items: baseline;
-  }
-
-  </style>
-  <div class="holder">
-    <span><slot name="emo"></slot></span>
-    <div><slot></slot></div>
-  </div>
-</template></emo-li>
+<tbody><tr>
+  <td>🪆 <a href="https://pptr.dev/" target="_blank">Puppeteer</a></td>
+  <td><m-d><p>Node.js API for Chrome. Used to prebuild HTML files and pre-render web components using <a href="https://developer.chrome.com/docs/css-ui/declarative-shadow-dom">declarative shadow DOM</a>.</p>
+<template shadowrootmode="open"><slot></slot></template></m-d></td>
+</tr>
+<tr>
+  <td>🫕 <a href="https://koajs.com/" target="_blank">Koa</a></td>
+  <td><m-d><p>Next generation web framework for Node.js. Used for serving files either in <code>pree view</code> or in <code>pree build</code>. Koa middlewares also handle <a href="usage/meta-layout">metadata and layouts</a></p>
+<template shadowrootmode="open"><slot></slot></template></m-d></td>
+</tr>
+<tr>
+  <td>🖌️ <a href="https://cheerio.js.org/" target="_blank">Cheerio</a></td>
+  <td><m-d><p>The fast, flexible &amp; elegant library for parsing and manipulating HTML and XML. Used for manipulating HTML files for <a href="usage/meta-layout">layouting</a>, <a href="usage/build-only-scripts">removing build-only scripts</a>, injecting code, etc.</p>
+<template shadowrootmode="open"><slot></slot></template></m-d></td>
+</tr>
+<tr>
+  <td>🎭 <a href="https://github.com/broofa/mime" target="_blank">Mime</a></td>
+  <td><m-d><p>Mime types for JavaScript. Used for determining file types, proper response types, and detecting HTML files that need to be layouted / manipulated, etc.</p>
+<template shadowrootmode="open"><slot></slot></template></m-d></td>
+</tr>
+<tr>
+  <td>🕵️ <a href="https://github.com/isaacs/minimatch" target="_blank">minimatch</a></td>
+  <td><m-d><p>A glob matcher in javascript. Used for figuring out which files to build.</p>
+<template shadowrootmode="open"><slot></slot></template></m-d></td>
+</tr>
+<tr>
+  <td>🎨 <a href="https://github.com/chalk/chalk" target="_blank">Chalk</a></td>
+  <td><m-d><p>Terminal string styling done right. Used to do right terminal styling.</p>
+<template shadowrootmode="open"><slot></slot></template></m-d></td>
+</tr>
+<tr>
+  <td>⏱️ <a href="https://github.com/vercel/ms" target="_blank">ms</a></td>
+  <td><m-d><p>Tiny millisecond conversion utility. Used to display how long CLI tasks take.</p>
+<template shadowrootmode="open"><slot></slot></template></m-d></td>
+</tr>
+<tr>
+  <td>☠️ <a href="https://yargs.js.org/" target="_blank">Yargs</a></td>
+  <td><m-d><p>Yargs be a node.js library fer hearties tryin' ter parse optstrings.</p>
+<template shadowrootmode="open"><slot></slot></template></m-d></td>
+</tr>
+<tr>
+  <td>📙 <a href="https://eemeli.org/yaml/" target="_blank">YAML</a></td>
+  <td><m-d><p>YAML parser and stringifier for JavaScript. Used for parsing <a href="usage/config">config</a>.</p>
+<template shadowrootmode="open"><slot></slot></template></m-d></td>
+</tr>
+<tr>
+  <td>💳 <a href="https://github.com/jonschlinkert/gray-matter" target="_blank">gray-matter</a></td>
+  <td><m-d><p>Smarter YAML front matter parser. Used for handling <a href="usage/meta-layout">metadata</a></p>
+<template shadowrootmode="open"><slot></slot></template></m-d></td>
+</tr>
+<tr>
+  <td>🗄️ <a href="https://github.com/steveukx/git-js" target="_blank">Simple Git</a></td>
+  <td><m-d><p>A light weight interface for running git commands in any node.js application. Used for providing git related <a href="components/build-env">build environment APIs</a>.</p>
+<template shadowrootmode="open"><slot></slot></template></m-d></td>
+</tr>
+<tr>
+  <td>🗺️ <a href="https://github.com/IonicaBizau/git-url-parse" target="_blank">git url parse</a></td>
+  <td><m-d><p>A high level git url parser for common git providers. Used for providing git related <a href="components/build-env">build environment APIs</a>.</p>
+<template shadowrootmode="open"><slot></slot></template></m-d></td>
+</tr>
+<tr>
+  <td>💓 <a href="https://github.com/paulmillr/chokidar" target="_blank">Chokidar</a></td>
+  <td><m-d><p>Minimal and efficient cross-platform file watching library. Used for live-reloading.</p>
+<template shadowrootmode="open"><slot></slot></template></m-d></td>
+</tr>
+<tr>
+  <td>🔌 <a href="https://github.com/websockets/ws" target="_blank">ws</a></td>
+  <td><m-d><p>Simple to use, blazing fast and thoroughly tested WebSocket client and server for Node.js. Used for live-reloading.</p>
+<template shadowrootmode="open"><slot></slot></template></m-d></td>
+</tr>
+<tr>
+  <td>🔍 <a href="https://www.npmjs.com/package/libnpmsearch" target="_blank">libnpmsearch</a></td>
+  <td><m-d><p>Node.js library for programmatically accessing the npm search endpoint. Used to determine the latest published version of <code>pree</code> and if an update is required.</p>
+<template shadowrootmode="open"><slot></slot></template></m-d></td>
+</tr>
+<tr>
+  <td>📦 <a href="https://github.com/3rd-Eden/find-package-json" target="_blank">find-package-json</a></td>
+  <td><m-d><p>Easily find package.json files. Used to determine locally installed version of <code>pree</code> and if an update is required.</p>
+<template shadowrootmode="open"><slot></slot></template></m-d></td>
+</tr>
+<tr>
+  <td>🏷️ <a href="https://github.com/npm/node-semver" target="_blank">semver</a></td>
+  <td><m-d><p>The semver parser for node (the one npm uses). Used to check whether an update for <code>pree</code> is required.</p>
+<template shadowrootmode="open"><slot></slot></template></m-d></td>
+</tr>
+<tr>
+  <td>⚖️ <a href="https://filesizejs.com/" target="_blank">filesize.js</a></td>
+  <td><m-d><p>JavaScript library to generate a human-readable string describing the file size. Used to display file sizes in directory view.</p>
+<template shadowrootmode="open"><slot></slot></template></m-d></td>
+</tr>
+</tbody></table>
+</div><template shadowrootmode="open"><slot></slot></template></m-d>
 
 <br>
-
-<m-d><p>👉 Prebuild an entire directory:</p>
-<pre><code class="language-bash hljs" data-highlighted="yes">pree build docs site
-</code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
-<p>This will copy over all the content of <code>docs</code> into <code>site</code> and prebuild all HTML files, except the ones excluded by CLI options or configuration. You can also specify include options (in config or CLI options), and then only the specified files will be prebuilt.</p>
-<br>
-
-<p>👉 Preview your website:</p>
-<pre><code class="language-bash hljs" data-highlighted="yes">pree view docs
-</code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
-<template shadowrootmode="open"><slot></slot></template></m-d>
-
-<emo-li>
-  <span slot="emo">👀</span> it loads your website without prebuilding it,
-<template shadowrootmode="open">
-  <style>
-  .holder {
-    display: flex;
-    gap: 1rem;
-    align-items: baseline;
-  }
-
-  </style>
-  <div class="holder">
-    <span><slot name="emo"></slot></span>
-    <div><slot></slot></div>
-  </div>
-</template></emo-li>
-<emo-li>
-  <span slot="emo">🏗️</span> it still resolves <a href="usage/meta-layout">metadata and layouts</a>,
-<template shadowrootmode="open">
-  <style>
-  .holder {
-    display: flex;
-    gap: 1rem;
-    align-items: baseline;
-  }
-
-  </style>
-  <div class="holder">
-    <span><slot name="emo"></slot></span>
-    <div><slot></slot></div>
-  </div>
-</template></emo-li>
-<emo-li>
-  <span slot="emo">🔃</span> it live reloads on change,
-<template shadowrootmode="open">
-  <style>
-  .holder {
-    display: flex;
-    gap: 1rem;
-    align-items: baseline;
-  }
-
-  </style>
-  <div class="holder">
-    <span><slot name="emo"></slot></span>
-    <div><slot></slot></div>
-  </div>
-</template></emo-li>
-<emo-li>
-  <span slot="emo">📁</span> it also lists directory content for easy navigation.
-<template shadowrootmode="open">
-  <style>
-  .holder {
-    display: flex;
-    gap: 1rem;
-    align-items: baseline;
-  }
-
-  </style>
-  <div class="holder">
-    <span><slot name="emo"></slot></span>
-    <div><slot></slot></div>
-  </div>
-</template></emo-li>
-
-<m-d><blockquote>
-<p>Performance of your pages in preview mode is much slower than in production mode, since
-the content is not prebuilt. To double check the performance of your prebuilt website, first build it:</p>
-<pre><code class="language-bash hljs" data-highlighted="yes">pree build docs site
-</code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
-<p>Then check the prebuilt website in production mode:</p>
-<pre><code class="language-bash hljs" data-highlighted="yes">pree check site
-</code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
-</blockquote>
-<hr>
-<h3 id="asset-management">Asset Management<menu role="toolbar"><button ref="?" aria-label="copy link" class="icon">🔗</button></menu></h3>
-<p><code>pree</code> is NOT an asset manager. It will copy the content of a directory when you copy it, so you can conveniently include your assets using relative paths:</p>
-<pre><code data-highlighted="yes" class="hljs language-bash">/docs/
-/assets/
-  /styles.css
-  /logo.png
-/my-page.html
-</code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
-<pre><code class="language-html hljs language-xml" data-highlighted="yes"><span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">"stylesheet"</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"assets/styles.css"</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"assets/logo.png"</span>&gt;</span>
-</code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
-<p>In some cases the base URL for your website is not the root of your domain. For example, in <a href="https://pages.github.com/">GitHub Pages</a>, without a custom domain, your website will be hosted at <code>https://username.github.io/repo/</code>. In this case, you can set the base URL in the <code>head</code> of your HTML files:</p>
-<pre><code class="language-html hljs language-xml" data-highlighted="yes"><span class="hljs-tag">&lt;<span class="hljs-name">base</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"/repo/"</span>&gt;</span>
-</code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
-<p>And specify a <em>base</em> option to <code>pree</code>:</p>
-<pre><code class="language-bash hljs" data-highlighted="yes">pree build docs site -b repo
-</code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
-<hr>
-<h3 id="config-file">Config File<menu role="toolbar"><button ref="?" aria-label="copy link" class="icon">🔗</button></menu></h3>
-<p>For more convenient usage of <code>pree</code>, you can create a config file to specify <code>pree</code>'s options:</p>
-<pre><code class="language-yaml hljs" data-highlighted="yes"><span class="hljs-comment"># .pree.yml</span>
-<span class="hljs-attr">base:</span> <span class="hljs-string">repo</span>
-<span class="hljs-attr">src:</span> <span class="hljs-string">docs</span>
-<span class="hljs-attr">dest:</span> <span class="hljs-string">site</span>
-</code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
-<p><code>pree</code> will look for <code>.pree.yml</code> in the current working directory, and use it as the default configuration:</p>
-<pre><code class="language-bash hljs" data-highlighted="yes">pree view          <span class="hljs-comment"># 👈 this is equal to `pree view docs`</span>
-</code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
-<pre><code class="language-bash hljs" data-highlighted="yes">pree build         <span class="hljs-comment"># 👈 this is equal to `pree view build`</span>
-</code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
-<pre><code class="language-bash hljs" data-highlighted="yes">pree check         <span class="hljs-comment"># 👈 this is equal to `pree check site`</span>
-</code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
-<br>
-
-<blockquote>
-<p>📖 <a href="usage/config">Read this</a> for a comprehensive list of options.</p>
-</blockquote>
-<template shadowrootmode="open"><slot></slot></template></m-d>
-
-<br>
-
 <change-history><template shadowrootmode="open"><style>a {
         display: block;
         text-align: right;
@@ -244,8 +175,7 @@ the content is not prebuilt. To double check the performance of your prebuilt we
         font-style: italic;
         text-decoration: none;
         color: inherit;
-      }</style><a ref="?" target="_blank" href="https://github.com/loreanvictor/pree/commit/f1bde2096973806bae13525ce558c1a08bac9adf">Updated at <span ref="?">Feb 07, 2024</span> <br>for <span ref="?">pree</span> version <span ref="?">0.1.13</span></a></template></change-history>
-
+      }</style><a ref="?" target="_blank" href="https://github.com/loreanvictor/pree/commit/46f9c554902a8ac3b925ba076e3a0036b48622e8">Updated at <span ref="?">Feb 09, 2024</span> <br>for <span ref="?">pree</span> version <span ref="?">0.1.15</span></a></template></change-history>
 <br>
 
       <prev-next><template shadowrootmode="open"><link rel="stylesheet" href="https://unpkg.com/nokss"><link rel="stylesheet" href="https://unpkg.com/graphis/font/graphis.css"><style>i {
@@ -294,21 +224,13 @@ the content is not prebuilt. To double check the performance of your prebuilt we
         
           <article>
             <i>⬅</i>
-            <a href="install">
+            <a href="api">
               <small>Previosly</small><br>
-              Installation
+              JavaScript API
             </a>
           </article>
           
         
-          <article class="next">
-            <a href="usage/meta-layout">
-              <small>Up Next</small><br>
-              Metadata &amp; Layouts
-            </a>
-            <i>➡</i>
-          </article>
-          
       </section></template></prev-next>
     </main>
     <footer>
@@ -316,7 +238,7 @@ the content is not prebuilt. To double check the performance of your prebuilt we
 
 
 
-<div style="display: flex" class="local-style-2kghiriekzl"><style>.local-style-2kghiriekzl { 
+<div style="display: flex" class="local-style-t5yiw96nta"><style>.local-style-t5yiw96nta { 
  
     b {
       opacity: .35;
