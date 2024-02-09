@@ -107,3 +107,4 @@ site
 .tmplr-preview
 
 .DS_Store
+.vercel

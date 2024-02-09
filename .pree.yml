@@ -1,3 +1,4 @@
 base: pree
 src: docs
 dest: site
+inject base: true

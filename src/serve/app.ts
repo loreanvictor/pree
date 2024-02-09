@@ -4,10 +4,12 @@ import ms from 'ms'
 import { files, FilesOptions } from './files'
 import { env, EnvOptions } from './env'
 import { createLogger, THEME } from '../util/logger'
+import { base } from './base'
 
 
 export type AppOptions = FilesOptions & EnvOptions & {
   prod?: boolean
+  injectBase?: boolean
 }
 
 export function createApp(options?: AppOptions) {
@@ -23,6 +25,10 @@ export function createApp(options?: AppOptions) {
 
   if (!options || !options.prod) {
     app.use(env(options))
+  }
+
+  if (options?.injectBase) {
+    app.use(base(options))
   }
 
   app.use(files(options))

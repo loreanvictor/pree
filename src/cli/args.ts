@@ -47,6 +47,7 @@ export function args(): Args {
     port: parsed['port'] as number | undefined,
     prod: parsed['prod'] as boolean | undefined,
     base: parsed['base'] as string | undefined,
+    injectBase: parsed['inject-base'] as boolean | undefined,
     include: parsed['include'] ? earr(parsed['include'] as string) : undefined,
     exclude: parsed['exclude'] ? earr(parsed['exclude'] as string) : undefined,
     logLevel,

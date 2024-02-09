@@ -13,6 +13,7 @@
 }
 
 a:not([role]) {
+  cursor: pointer;
   text-decoration: underline;
   text-decoration-color: color-mix(in srgb, var(--primary-color) 35%, var(--background-color));
   transition: text-decoration-color .15s;
