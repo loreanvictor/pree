@@ -23,7 +23,7 @@
     <script type="module" src="./.components/prev-next.js"></script>
   <title>pree: publishing components</title>
           
-        <link rel="prefetch" href="components/build-env"></head>
+        <link rel="prefetch" href="components/build-env"><link rel="prefetch" href="api"></head>
   <body><aside aria-hidden="true">
       <use-html src="./_toc.html"><style>
   #toc {
@@ -37,11 +37,15 @@
   }
 
 </style>
+
 <m-d id="toc" onparse="document.querySelector('prev-next').controls?.load()"><p><a href="index">Home</a> <br><a href="motivation">Motivation</a> <br><a href="install">Installation</a></p>
 <hr>
 <p><a href="usage/index"><strong>Usage</strong></a> <br>  <a href="usage/meta-layout">Metadata &amp; Layouts</a> <br>  <a href="usage/build-only-scripts">Build-Only Scripts</a> <br>  <a href="usage/config">Configuration</a></p>
 <hr>
 <p><a href="components/index"><strong>Using Components</strong></a> <br>  <a href="components/ssr">Server Side Rendering</a> <br>  <a href="components/build-env">Build Environment</a> <br>  <a href="components/publish">Publishing Components</a></p>
+<hr>
+<p><a href="api">JavaScript API</a></p>
+<p><br><br></p>
 <template shadowrootmode="open"><slot></slot></template></m-d>
 <template shadowrootmode="open"><slot></slot></template></use-html>
     </aside>
@@ -174,6 +178,14 @@ they can use your components.</p>
           </article>
           
         
+          <article class="next">
+            <a href="api">
+              <small>Up Next</small><br>
+              JavaScript API
+            </a>
+            <i>➡</i>
+          </article>
+          
       </section></template></prev-next>
     </main>
     <footer>
@@ -181,7 +193,7 @@ they can use your components.</p>
 
 
 
-<div style="display: flex" class="local-style-mo43bk5dau"><style>.local-style-mo43bk5dau { 
+<div style="display: flex" class="local-style-ychipjkcer"><style>.local-style-ychipjkcer { 
  
     b {
       opacity: .35;

@@ -1,0 +1,418 @@
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <base href="/pree/">
+
+    
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon.ico">
+
+    <link rel="stylesheet" href="https://unpkg.com/nokss">
+    <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://esm.sh/graphis/font/graphis.css">
+    <link rel="stylesheet" href="./theme.css">
+    
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/highlight.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github-dark.min.css">
+
+    
+    
+    
+    
+    
+
+    <script src="./.components/emo-li.js" type="module"></script>
+    <script type="module" src="./.components/prev-next.js"></script>
+  <title>pree: javascript api</title>
+          
+        <link rel="prefetch" href="components/publish"></head>
+  <body><aside aria-hidden="true">
+      <use-html src="./_toc.html"><style>
+  #toc {
+    a:not(:hover) {
+      text-decoration-color: transparent;
+    }
+
+    hr {
+      margin: 0;
+    }
+  }
+
+</style>
+
+<m-d id="toc" onparse="document.querySelector('prev-next').controls?.load()"><p><a href="index">Home</a> <br><a href="motivation">Motivation</a> <br><a href="install">Installation</a></p>
+<hr>
+<p><a href="usage/index"><strong>Usage</strong></a> <br>  <a href="usage/meta-layout">Metadata &amp; Layouts</a> <br>  <a href="usage/build-only-scripts">Build-Only Scripts</a> <br>  <a href="usage/config">Configuration</a></p>
+<hr>
+<p><a href="components/index"><strong>Using Components</strong></a> <br>  <a href="components/ssr">Server Side Rendering</a> <br>  <a href="components/build-env">Build Environment</a> <br>  <a href="components/publish">Publishing Components</a></p>
+<hr>
+<p><a href="api">JavaScript API</a></p>
+<p><br><br></p>
+<template shadowrootmode="open"><slot></slot></template></m-d>
+<template shadowrootmode="open"><slot></slot></template></use-html>
+    </aside>
+    <main>
+      <m-d><h1 id="javascript-api">JavaScript API<menu role="toolbar"><button ref="?" aria-label="copy link" class="icon">🔗</button></menu></h1>
+<p>You can use <code>pree</code> programmatically in <a href="https://nodejs.org/">Node.js</a> or some compatible runtime. Locally install the package to get started:</p>
+<pre><code class="language-bash hljs" data-highlighted="yes">npm i pree
+</code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
+<br>
+
+<p>There are three main functions exposed by <code>pree</code> that you can use:</p>
+<template shadowrootmode="open"><slot></slot></template></m-d>
+
+<emo-li>
+  <span slot="emo">🫕</span>
+  <m-d><p><a href="api#serve"><strong><code>serve()</code></strong></a> serves local files,
+<a href="usage/meta-layout">handles layout</a>,
+provides <a href="components/build-env">build-env APIs</a>.</p>
+<template shadowrootmode="open"><slot></slot></template></m-d>
+<template shadowrootmode="open">
+  <style>
+  .holder {
+    display: flex;
+    gap: 1rem;
+    align-items: baseline;
+  }
+
+  </style>
+  <div class="holder">
+    <span><slot name="emo"></slot></span>
+    <div><slot></slot></div>
+  </div>
+</template></emo-li>
+<emo-li>
+  <span slot="emo">🏗️</span>
+  <m-d><p><a href="api#build"><strong><code>build()</code></strong></a> calls <code>serve()</code>, then pre-renders HTML files and removes <a href="usage/build-only-scripts">build-only scripts</a>,</p>
+<template shadowrootmode="open"><slot></slot></template></m-d>
+<template shadowrootmode="open">
+  <style>
+  .holder {
+    display: flex;
+    gap: 1rem;
+    align-items: baseline;
+  }
+
+  </style>
+  <div class="holder">
+    <span><slot name="emo"></slot></span>
+    <div><slot></slot></div>
+  </div>
+</template></emo-li>
+<emo-li>
+  <span slot="emo">👀</span>
+  <m-d><p><a href="api#view"><strong><code>view()</code></strong></a> calls <code>serve()</code> with live-reloading.</p>
+<template shadowrootmode="open"><slot></slot></template></m-d>
+<template shadowrootmode="open">
+  <style>
+  .holder {
+    display: flex;
+    gap: 1rem;
+    align-items: baseline;
+  }
+
+  </style>
+  <div class="holder">
+    <span><slot name="emo"></slot></span>
+    <div><slot></slot></div>
+  </div>
+</template></emo-li>
+
+<m-d><hr>
+<h3 id="serve"><code>serve()</code><menu role="toolbar"><button ref="?" aria-label="copy link" class="icon">🔗</button></menu></h3>
+<p>The core of <code>pree</code> is the <code>serve()</code> function. It will serve local files, handle <a href="usage/meta-layout">meta data and layout</a> and provide <a href="components/build-env">build-env APIs</a>. It also provides a nice interface for navigating directories.</p>
+<pre><code class="language-js hljs language-javascript" data-highlighted="yes"><span class="hljs-keyword">import</span> { serve } <span class="hljs-keyword">from</span> <span class="hljs-string">'pree'</span>
+
+<span class="hljs-keyword">const</span> { port, server } = <span class="hljs-keyword">await</span> <span class="hljs-title function_">serve</span>({ <span class="hljs-attr">root</span>: <span class="hljs-string">'docs'</span> })
+</code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
+<br>
+
+<p>Type signature &amp; options:</p>
+<pre><code class="language-ts hljs language-typescript" data-highlighted="yes"><span class="hljs-keyword">function</span> <span class="hljs-title function_">serve</span>(<span class="hljs-params">options?: ServeOptions</span>): <span class="hljs-title class_">Promise</span>&lt;<span class="hljs-title class_">RunningServer</span>&gt;
+</code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
+<pre><code class="language-ts hljs language-typescript" data-highlighted="yes"><span class="hljs-keyword">interface</span> <span class="hljs-title class_">ServeOptions</span> {
+  <span class="hljs-comment">// 📁 were should we look for files to serve. defaults to cwd.</span>
+  root?: <span class="hljs-built_in">string</span>
+
+  <span class="hljs-comment">// 📍 base URL for your site.</span>
+  base?: <span class="hljs-built_in">string</span>
+
+  <span class="hljs-comment">// 🔌 port to serve on. defaults to 3000.</span>
+  port?: <span class="hljs-built_in">number</span>
+
+  <span class="hljs-comment">// 📦 loaders to use to load various files (see below).</span>
+  loaders?: <span class="hljs-title class_">Loader</span>[]
+
+  <span class="hljs-comment">// 🚀 whether to serve in production mode (no env APIs). defaults to false.</span>
+  prod?: <span class="hljs-built_in">boolean</span>
+
+  <span class="hljs-comment">// ✅ which files to inject build-env info into.</span>
+  include?: <span class="hljs-built_in">string</span>[]
+
+  <span class="hljs-comment">// ❌ which files to exclude from build-env injection.</span>
+  exclude?: <span class="hljs-built_in">string</span>[]
+
+  <span class="hljs-comment">// 🔗 base URL for build-env APIs. defaults to `@env`</span>
+  buildEnvPrefix?: <span class="hljs-built_in">string</span>
+
+  <span class="hljs-comment">// 📣 log level:</span>
+  <span class="hljs-comment">// 0: no logs (silent)</span>
+  <span class="hljs-comment">// 1: errors only</span>
+  <span class="hljs-comment">// 2: errors and warnings</span>
+  <span class="hljs-comment">// 3: errors, warnings and info</span>
+  <span class="hljs-comment">// 4: errors, warnings, info and debug</span>
+  logLevel?: <span class="hljs-built_in">number</span>
+}
+</code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
+<pre><code class="language-ts hljs language-typescript" data-highlighted="yes"><span class="hljs-keyword">type</span> <span class="hljs-title class_">RunningServer</span> = {
+  <span class="hljs-attr">port</span>: <span class="hljs-built_in">number</span>
+  <span class="hljs-attr">server</span>: http.<span class="hljs-property">Server</span>
+}
+</code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
+<br>
+
+<h4 id="custom-loaders">Custom Loaders<menu role="toolbar"><button ref="?" aria-label="copy link" class="icon">🔗</button></menu></h4>
+<p>Use custom loaders to change how specific file types are loaded. For example, you can use a markdown loader to convert <code>.md</code> files to HTML. This means your markdown files will be served as HTML, and they will be built into HTML files during build.</p>
+<pre><code class="language-js hljs language-javascript" data-highlighted="yes"><span class="hljs-keyword">import</span> { serve } <span class="hljs-keyword">from</span> <span class="hljs-string">'pree'</span>
+<span class="hljs-keyword">import</span> { marked } <span class="hljs-keyword">from</span> <span class="hljs-string">'marked'</span>
+
+<span class="hljs-keyword">await</span> <span class="hljs-title function_">serve</span>({
+  <span class="hljs-attr">root</span>: <span class="hljs-string">'docs'</span>,
+  <span class="hljs-attr">loaders</span>: [<span class="hljs-function">(<span class="hljs-params">ctx, next</span>) =&gt;</span> {
+    <span class="hljs-keyword">if</span> (ctx.<span class="hljs-property">path</span>.<span class="hljs-title function_">endsWith</span>(<span class="hljs-string">'.md'</span>)) {
+      <span class="hljs-keyword">const</span> raw = <span class="hljs-keyword">await</span> <span class="hljs-title function_">readFile</span>(ctx.<span class="hljs-property">path</span>, <span class="hljs-string">'utf8'</span>)
+
+      <span class="hljs-keyword">return</span> {
+        <span class="hljs-attr">content</span>: <span class="hljs-title function_">marked</span>(raw),
+        <span class="hljs-attr">type</span>: <span class="hljs-string">'text/html'</span>
+      }
+    } <span class="hljs-keyword">else</span> {
+      <span class="hljs-keyword">return</span> <span class="hljs-keyword">await</span> <span class="hljs-title function_">next</span>()
+    }
+  }]
+})
+</code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
+<hr>
+<h3 id="build"><code>build()</code><menu role="toolbar"><button ref="?" aria-label="copy link" class="icon">🔗</button></menu></h3>
+<p>Calls <a href="api#serve"><code>serve()</code></a>, then fetches all given HTML files with a headless browser and prebuilds them to given directory. Also removes all <a href="usage/build-only-scripts">build-only scripts</a> from the prebuilt files.</p>
+<pre><code class="language-js hljs language-javascript" data-highlighted="yes"><span class="hljs-keyword">import</span> { build } <span class="hljs-keyword">from</span> <span class="hljs-string">'pree'</span>
+
+<span class="hljs-keyword">await</span> <span class="hljs-title function_">build</span>({
+  <span class="hljs-attr">root</span>: <span class="hljs-string">'docs'</span>,
+  <span class="hljs-attr">dir</span>: <span class="hljs-string">'docs'</span>,
+  <span class="hljs-attr">target</span>: <span class="hljs-string">'site'</span>
+})
+</code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
+<br>
+
+<p>Type signature &amp; options:</p>
+<pre><code class="language-ts hljs language-typescript" data-highlighted="yes"><span class="hljs-keyword">function</span> <span class="hljs-title function_">build</span>(<span class="hljs-params">options?: BuildOptions</span>): <span class="hljs-title class_">Promise</span>&lt;<span class="hljs-built_in">void</span>&gt;
+</code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
+<pre><code class="language-ts hljs language-typescript" data-highlighted="yes"><span class="hljs-keyword">interface</span> <span class="hljs-title class_">BuildOptions</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">ServeOptions</span> {
+  <span class="hljs-comment">// 📜 which file to build. either one of `file` or `dir` should be given.</span>
+  file?: <span class="hljs-built_in">string</span>
+
+  <span class="hljs-comment">// 📁 which directory to build. either one of `file` or `dir` should be given.</span>
+  dir?: <span class="hljs-built_in">string</span>
+
+  <span class="hljs-comment">// 🚚 where to put the built files. defaults to `dist`.</span>
+  target?: <span class="hljs-built_in">string</span>
+
+  <span class="hljs-comment">// ✅ which files to build.</span>
+  include?: <span class="hljs-built_in">string</span>[]
+
+  <span class="hljs-comment">// ❌ which files to exclude building.</span>
+  exclude?: <span class="hljs-built_in">string</span>[]
+
+  <span class="hljs-comment">// 🔀 how many pages to build concurrently. defaults to 16.</span>
+  concurrency?: <span class="hljs-built_in">number</span>
+}
+</code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
+<hr>
+<h3 id="view"><code>view()</code><menu role="toolbar"><button ref="?" aria-label="copy link" class="icon">🔗</button></menu></h3>
+<p>Calls <a href="api#serve"><code>serve()</code></a>, but also watches given files and automatically reloads the browser whenever there is a change.
+Takes the same options as <code>serve()</code>.</p>
+<pre><code class="language-js hljs language-javascript" data-highlighted="yes"><span class="hljs-keyword">import</span> { view } <span class="hljs-keyword">from</span> <span class="hljs-string">'pree'</span>
+
+<span class="hljs-keyword">await</span> <span class="hljs-title function_">view</span>({ <span class="hljs-attr">root</span>: <span class="hljs-string">'docs'</span> })
+</code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
+<hr>
+<h3 id="proper-use-cases">Proper Use Cases<menu role="toolbar"><button ref="?" aria-label="copy link" class="icon">🔗</button></menu></h3>
+<p>JavaScript APIs are provided to make it easy to build on top of <code>pree</code> or customise it for various use cases. For example, you can use custom loaders to prebuild markdown files that utilise web components instead of custom markdown syntax.</p>
+<p>That said, <code>pree</code> is optimised for robustness in what it is designed for, building static HTML files, and not performance. Specifically, the <code>build()</code> function starts a local server, then launches a headless browser and loads pages to prebuild them, particularly waiting for scripts and components to load and run. Scripts and components
+might in-turn load and run other scripts and components, and so on. <code>pree</code> needs to do this because prebuilding correctly means behaving as closely as possible to a real browser.</p>
+<p>In case of prebuilding a bunch of HTML files, cost of launching a server is acceptable and multiple pages can be prebuilt concurrently, speeding up the process to usable levels. These optimisations don't necessarily work in other contexts though: for example, if you have a web server that creates HTML files based on user requests (e.g. most e-commerce websites), then <code>pree</code>'s process will be painfully slow and resource intensive for your use-case, and you might want to use another solution (or combine another solution with <code>pree</code>).</p>
+<template shadowrootmode="open"><slot></slot></template></m-d>
+
+<br>
+<change-history><template shadowrootmode="open"><style>a {
+        display: block;
+        text-align: right;
+        opacity:.35;
+        font-size: 0.8rem;
+        font-style: italic;
+        text-decoration: none;
+        color: inherit;
+      }</style><a ref="?" target="_blank" href="https://github.com/loreanvictor/pree/commit/927e5d70f2b69c8014da470413a76845a9aaa4ca">Updated at <span ref="?">Feb 09, 2024</span> <br>for <span ref="?">pree</span> version <span ref="?">0.1.14</span></a></template></change-history>
+<br>
+
+
+      <prev-next><template shadowrootmode="open"><link rel="stylesheet" href="https://unpkg.com/nokss"><link rel="stylesheet" href="https://unpkg.com/graphis/font/graphis.css"><style>i {
+      font-family: 'graphis', sans-serif;
+      font-style: normal;
+      font-size: 2rem;
+      opacity: .25;
+    }
+
+    section[role="feed"] {
+      flex-direction: row;
+      &[aria-hidden] {
+        opacity: 0;
+      }
+
+      opacity: 1;
+      transition: opacity .5s;
+
+      article {
+        flex-grow: 1;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 1rem;
+
+        & > a {
+          display: block;
+          flex-grow: 1;
+          text-decoration: none!important;
+        }
+
+        &.next {
+          flex-basis: flex-end;
+          text-align: right;
+        }
+
+        @media (max-width: 480px) {
+          &:first-child:not(:last-child) {
+            display: none;
+          }
+        }
+      }
+
+      margin-bottom: 4rem;
+    }</style><section role="feed" ref="?">        
+        
+          <article>
+            <i>⬅</i>
+            <a href="components/publish">
+              <small>Previosly</small><br>
+              Publishing Components
+            </a>
+          </article>
+          
+        
+      </section></template></prev-next>
+    </main>
+    <footer>
+      <use-html src="./_footer.html"><script type="module" src="./.components/menu-toggle.js"></script>
+
+
+
+<div style="display: flex" class="local-style-5nazadh2nw6"><style>.local-style-5nazadh2nw6 { 
+ 
+    b {
+      opacity: .35;
+      font-weight: normal;
+      display: inline-block;
+      transform: scaleY(2);
+      margin: 0 .35rem;
+    }
+   
+ }</style>
+  
+
+  <menu-toggle><template shadowrootmode="open"><link rel="stylesheet" href="https://unpkg.com/nokss"><link rel="stylesheet" href="https://unpkg.com/graphis/font/graphis.css"><style>.icon {
+      font-family: 'graphis', sans-serif;
+      font-style: normal;
+      font-size: 1.2rem;
+    }
+
+    button[role="switch"][aria-checked="true"]>span{
+      color: var(--background-color);
+    }</style><button ref="?" role="switch" aria-label="toggle sidebar" aria-checked="true"><span class="icon">❌</span><span class="icon">⩧</span></button></template></menu-toggle>
+  <div style="flex-grow: 1"></div>
+  <div align="right">
+    <small-device>
+      <gh-link no-label="">pree<template shadowrootmode="open"><link rel="stylesheet" href="https://unpkg.com/nokss/dist/bundles/md.css"><style>octo-icon { opacity: .45; transition: opacity .15s; }
+      a:not([role]) {
+        filter: none;
+        color: var(--text-color);
+        &:hover octo-icon { opacity: 1; }
+      }</style><a ref="?" target="_blank" href="https://github.com/loreanvictor/pree"><octo-icon style=""><template shadowrootmode="open">
+  <style>
+    svg {
+      width: 1.2rem;
+      vertical-align: -.65rem;
+      margin-right: .15rem;
+    }
+  </style>
+  <svg width="32" height="32" viewBox="0 0 98 96" xmlns="http://www.w3.org/2000/svg"> <path fill-rule="evenodd" clip-rule="evenodd" d="M48.854 0C21.839 0 0 22 0 49.217c0 21.756 13.993 40.172 33.405 46.69 2.427.49 3.316-1.059 3.316-2.362 0-1.141-.08-5.052-.08-9.127-13.59 2.934-16.42-5.867-16.42-5.867-2.184-5.704-5.42-7.17-5.42-7.17-4.448-3.015.324-3.015.324-3.015 4.934.326 7.523 5.052 7.523 5.052 4.367 7.496 11.404 5.378 14.235 4.074.404-3.178 1.699-5.378 3.074-6.6-10.839-1.141-22.243-5.378-22.243-24.283 0-5.378 1.94-9.778 5.014-13.2-.485-1.222-2.184-6.275.486-13.038 0 0 4.125-1.304 13.426 5.052a46.97 46.97 0 0 1 12.214-1.63c4.125 0 8.33.571 12.213 1.63 9.302-6.356 13.427-5.052 13.427-5.052 2.67 6.763.97 11.816.485 13.038 3.155 3.422 5.015 7.822 5.015 13.2 0 18.905-11.404 23.06-22.324 24.283 1.78 1.548 3.316 4.481 3.316 9.126 0 6.6-.08 11.897-.08 13.526 0 1.304.89 2.853 3.316 2.364 19.412-6.52 33.405-24.935 33.405-46.691C97.707 22 75.788 0 48.854 0z" fill="currentColor"></path> </svg>
+</template></octo-icon><slot ref="?" style="display: none">GitHub</slot></a></template></gh-link>  
+      <npm-badge no-label="">pree<template shadowrootmode="open"><link rel="stylesheet" href="https://unpkg.com/nokss/dist/bundles/md.css"><style>a:not([role]) {
+        filter: none;
+        color: var(--text-color);
+      }
+      img {
+        vertical-align: middle;
+        margin-left: 0.5rem;
+      }</style><a ref="?" target="_blank" href="https://www.npmjs.com/package/pree"><slot ref="?" style="display: none">NPM</slot><img alt="npm" ref="?" src="https://img.shields.io/npm/v/pree.svg?label=&amp;style=normal"></a></template></npm-badge>
+    <template shadowrootmode="open">
+  <style>
+    @media (min-width: 768px) {
+      :host {
+        display: none;
+      }
+    }
+  </style>
+  <slot></slot>
+</template></small-device>
+    <large-device>
+      <gh-link>github<template shadowrootmode="open"><link rel="stylesheet" href="https://unpkg.com/nokss/dist/bundles/md.css"><style>octo-icon { opacity: .45; transition: opacity .15s; }
+      a:not([role]) {
+        filter: none;
+        color: var(--text-color);
+        &:hover octo-icon { opacity: 1; }
+      }</style><a ref="?" target="_blank" href="https://github.com/loreanvictor/pree"><octo-icon style=""><template shadowrootmode="open">
+  <style>
+    svg {
+      width: 1.2rem;
+      vertical-align: -.65rem;
+      margin-right: .15rem;
+    }
+  </style>
+  <svg width="32" height="32" viewBox="0 0 98 96" xmlns="http://www.w3.org/2000/svg"> <path fill-rule="evenodd" clip-rule="evenodd" d="M48.854 0C21.839 0 0 22 0 49.217c0 21.756 13.993 40.172 33.405 46.69 2.427.49 3.316-1.059 3.316-2.362 0-1.141-.08-5.052-.08-9.127-13.59 2.934-16.42-5.867-16.42-5.867-2.184-5.704-5.42-7.17-5.42-7.17-4.448-3.015.324-3.015.324-3.015 4.934.326 7.523 5.052 7.523 5.052 4.367 7.496 11.404 5.378 14.235 4.074.404-3.178 1.699-5.378 3.074-6.6-10.839-1.141-22.243-5.378-22.243-24.283 0-5.378 1.94-9.778 5.014-13.2-.485-1.222-2.184-6.275.486-13.038 0 0 4.125-1.304 13.426 5.052a46.97 46.97 0 0 1 12.214-1.63c4.125 0 8.33.571 12.213 1.63 9.302-6.356 13.427-5.052 13.427-5.052 2.67 6.763.97 11.816.485 13.038 3.155 3.422 5.015 7.822 5.015 13.2 0 18.905-11.404 23.06-22.324 24.283 1.78 1.548 3.316 4.481 3.316 9.126 0 6.6-.08 11.897-.08 13.526 0 1.304.89 2.853 3.316 2.364 19.412-6.52 33.405-24.935 33.405-46.691C97.707 22 75.788 0 48.854 0z" fill="currentColor"></path> </svg>
+</template></octo-icon><slot ref="?" style="">GitHub</slot></a></template></gh-link>
+      <b>|</b>
+      <npm-badge>npm<template shadowrootmode="open"><link rel="stylesheet" href="https://unpkg.com/nokss/dist/bundles/md.css"><style>a:not([role]) {
+        filter: none;
+        color: var(--text-color);
+      }
+      img {
+        vertical-align: middle;
+        margin-left: 0.5rem;
+      }</style><a ref="?" target="_blank" href="https://www.npmjs.com/package/pree"><slot ref="?" style="">NPM</slot><img alt="npm" ref="?" src="https://img.shields.io/npm/v/pree.svg?label=&amp;style=normal"></a></template></npm-badge>
+    <template shadowrootmode="open">
+  <style>
+    @media (max-width: 767px) {
+      :host {
+        display: none;
+      }
+    }
+  </style>
+  <slot></slot>
+</template></large-device>
+  </div>
+</div><template shadowrootmode="open"><slot></slot></template></use-html>
+    </footer>
+    
+    <script type="module" src="copy.js"></script>
+  
+
+</body></html>
