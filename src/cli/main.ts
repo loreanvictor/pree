@@ -16,48 +16,53 @@ export async function main(command: Command, options: Options) {
 
   logger.info(LOGO)
 
-  if (command === 'build') {
-    const src = options.src
-    const dest = options.dest
+  try {
+    if (command === 'build') {
+      const src = options.src
+      const dest = options.dest
 
-    if (!src) {
-      logger.error('missing source path')
-      logger.info(
-        THEME.secondary('👉 pree build <src> <dest> \n\n') +
-        'Run ' + THEME.highlight('pree help') + ' for more information.'
-      )
-      throw new Error('missing source path')
-    }
+      if (!src) {
+        logger.error('missing source path')
+        logger.info(
+          THEME.secondary('👉 pree build <src> <dest> \n\n') +
+          'Run ' + THEME.highlight('pree help') + ' for more information.'
+        )
+        throw new Error('missing source path')
+      }
 
-    if (!dest) {
-      logger.error('missing destination path')
-      logger.info(
-        THEME.secondary('👉 pree build <src> <dest> \n\n') +
-        'Run ' + THEME.highlight('pree help') + ' for more information.'
-      )
-      throw new Error('missing destination path')
-    }
+      if (!dest) {
+        logger.error('missing destination path')
+        logger.info(
+          THEME.secondary('👉 pree build <src> <dest> \n\n') +
+          'Run ' + THEME.highlight('pree help') + ' for more information.'
+        )
+        throw new Error('missing destination path')
+      }
 
-    if (!extname(src)) {
-      await build({ ...options, dir: src, target: dest })
-    } else {
-      await build({
+      if (!extname(src)) {
+        await build({ ...options, dir: src, target: dest })
+      } else {
+        await build({
+          ...options,
+          file: src,
+          target: extname(dest) ? dest : join(dest, basename(src)),
+        })
+      }
+    } else if (command === 'view') {
+      await view(options)
+    } else if (command === 'check') {
+      await view({
         ...options,
-        file: src,
-        target: extname(dest) ? dest : join(dest, basename(src)),
+        root: options.dest ?? options.root,
+        prod: true,
       })
+    } else if (command === 'version') {
+      await version(options)
+    } else {
+      await help(options)
     }
-  } else if (command === 'view') {
-    await view(options)
-  } else if (command === 'check') {
-    await view({
-      ...options,
-      root: options.dest ?? options.root,
-      prod: true,
-    })
-  } else if (command === 'version') {
-    await version(options)
-  } else {
-    await help(options)
+  } catch (error) {
+    logger.error((error as Error).message)
+    throw error
   }
 }
