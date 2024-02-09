@@ -1,0 +1,206 @@
+---
+title: "pree: javascript api"
+layout: ./_layout.html
+---
+
+<m-d>
+
+# JavaScript API
+
+You can use `pree` programmatically in [Node.js](https://nodejs.org/) or some compatible runtime. Locally install the package to get started:
+
+```bash
+npm i pree
+```
+
+<br>
+
+There are three main functions exposed by `pree` that you can use:
+
+</m-d>
+
+<emo-li>
+  <span slot="emo">🫕</span>
+  <m-d>
+    [**`serve()`**](api#serve) serves local files,
+    [handles layout](usage/meta-layout),
+    provides [build-env APIs](components/build-env).
+  </m-d>
+</emo-li>
+<emo-li>
+  <span slot="emo">🏗️</span>
+  <m-d>
+    [**`build()`**](api#build) calls `serve()`, then pre-renders HTML files and removes [build-only scripts](usage/build-only-scripts),
+  </m-d>
+</emo-li>
+<emo-li>
+  <span slot="emo">👀</span>
+  <m-d>
+    [**`view()`**](api#view) calls `serve()` with live-reloading.
+  </m-d>
+</emo-li>
+
+<m-d>
+
+---
+
+### `serve()`
+
+The core of `pree` is the `serve()` function. It will serve local files, handle [meta data and layout](usage/meta-layout) and provide [build-env APIs](components/build-env). It also provides a nice interface for navigating directories.
+
+```js
+  import { serve } from 'pree'
+
+  const { port, server } = await serve({ root: 'docs' })
+```
+
+<br>
+
+Type signature & options:
+
+```ts
+function serve(options?: ServeOptions): Promise&lt;RunningServer&gt;
+```
+```ts
+  interface ServeOptions {
+    // 📁 were should we look for files to serve. defaults to cwd.
+    root?: string
+
+    // 📍 base URL for your site.
+    base?: string
+
+    // 🔌 port to serve on. defaults to 3000.
+    port?: number
+
+    // 📦 loaders to use to load various files (see below).
+    loaders?: Loader[]
+
+    // 🚀 whether to serve in production mode (no env APIs). defaults to false.
+    prod?: boolean
+
+    // ✅ which files to inject build-env info into.
+    include?: string[]
+
+    // ❌ which files to exclude from build-env injection.
+    exclude?: string[]
+
+    // 🔗 base URL for build-env APIs. defaults to `@env`
+    buildEnvPrefix?: string
+
+    // 📣 log level:
+    // 0: no logs (silent)
+    // 1: errors only
+    // 2: errors and warnings
+    // 3: errors, warnings and info
+    // 4: errors, warnings, info and debug
+    logLevel?: number
+  }
+```
+```ts
+  type RunningServer = {
+    port: number
+    server: http.Server
+  }
+```
+
+<br>
+
+#### Custom Loaders
+
+Use custom loaders to change how specific file types are loaded. For example, you can use a markdown loader to convert `.md` files to HTML. This means your markdown files will be served as HTML, and they will be built into HTML files during build.
+
+```js
+  import { serve } from 'pree'
+  import { marked } from 'marked'
+
+  await serve({
+    root: 'docs',
+    loaders: [(ctx, next) => {
+      if (ctx.path.endsWith('.md')) {
+        const raw = await readFile(ctx.path, 'utf8')
+
+        return {
+          content: marked(raw),
+          type: 'text/html'
+        }
+      } else {
+        return await next()
+      }
+    }]
+  })
+```
+
+---
+
+### `build()`
+
+Calls [`serve()`](api#serve), then fetches all given HTML files with a headless browser and prebuilds them to given directory. Also removes all [build-only scripts](usage/build-only-scripts) from the prebuilt files.
+```js
+  import { build } from 'pree'
+
+  await build({
+    root: 'docs',
+    dir: 'docs',
+    target: 'site'
+  })
+``` 
+
+<br>
+
+Type signature & options:
+
+```ts
+function build(options?: BuildOptions): Promise<void>
+```
+```ts
+  interface BuildOptions extends ServeOptions {
+    // 📜 which file to build. either one of `file` or `dir` should be given.
+    file?: string
+
+    // 📁 which directory to build. either one of `file` or `dir` should be given.
+    dir?: string
+
+    // 🚚 where to put the built files. defaults to `dist`.
+    target?: string
+
+    // ✅ which files to build.
+    include?: string[]
+
+    // ❌ which files to exclude building.
+    exclude?: string[]
+
+    // 🔀 how many pages to build concurrently. defaults to 16.
+    concurrency?: number
+  }
+```
+
+---
+
+### `view()`
+
+Calls [`serve()`](api#serve), but also watches given files and automatically reloads the browser whenever there is a change.
+Takes the same options as `serve()`.
+
+```js
+  import { view } from 'pree'
+
+  await view({ root: 'docs' })
+```
+
+---
+
+### Proper Use Cases
+
+JavaScript APIs are provided to make it easy to build on top of `pree` or customise it for various use cases. For example, you can use custom loaders to prebuild markdown files that utilise web components instead of custom markdown syntax.
+
+That said, `pree` is optimised for robustness in what it is designed for, building static HTML files, and not performance. Specifically, the `build()` function starts a local server, then launches a headless browser and loads pages to prebuild them, particularly waiting for scripts and components to load and run. Scripts and components
+might in-turn load and run other scripts and components, and so on. `pree` needs to do this because prebuilding correctly means behaving as closely as possible to a real browser.
+
+In case of prebuilding a bunch of HTML files, cost of launching a server is acceptable and multiple pages can be prebuilt concurrently, speeding up the process to usable levels. These optimisations don't necessarily work in other contexts though: for example, if you have a web server that creates HTML files based on user requests (e.g. most e-commerce websites), then `pree`'s process will be painfully slow and resource intensive for your use-case, and you might want to use another solution (or combine another solution with `pree`).
+
+</m-d>
+
+<br>
+<change-history></change-history>
+<br>
+

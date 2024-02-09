@@ -3,7 +3,7 @@ import { template, ref, html } from 'https://esm.sh/rehtm'
 
 
 function whoAmI() {
-  const path = location.href
+  const path = location.href.split('#')[0]
   const candidates = [ path ]
   if (path.endsWith('/') || path === '') {
     candidates.push(path.slice(0, -1))
