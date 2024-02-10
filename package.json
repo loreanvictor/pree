@@ -15,6 +15,9 @@
     "build-commonjs": "tsc -p conf/typescript/commonjs.json",
     "build-es": "tsc -p conf/typescript/es.json",
     "build": "npm run build-commonjs && npm run build-es",
+    "build:docs": "pree build",
+    "build:docs:vercel": "vercel build --prod && vercel deploy --prebuilt --prod",
+    "build:docs:surge": "pree build -c .pree.surge.yml && cd .surge && echo \"!.*\" > .surgeignore && surge --domain https://pree.surge.sh",
     "prepack": "npm run build"
   },
   "files": [

@@ -115,6 +115,38 @@ is treated as a convenient default, any options provided to the CLI will overrid
       </td>
     </tr>
     <tr>
+      <td><m-d>`inject base`</m-d></td>
+      <td><m-d>`--inject-base`</m-d></td>
+      <td><m-d>
+        Automatically inject the [base path](usage/index#asset-management) into HTML files. \
+        Defaults to `false`.
+
+        > Only use this options if you want to deploy \
+        > your website to multiple hosts with different \
+        > base paths. Otherwise explicitly include a \
+        > `&lt;base&gt;` tag in your HTML files.
+      </m-d></td>
+      <td>
+        <details>
+          <summary>CLI Example</summary>
+          <m-d>
+            ```bash
+            pree build docs site -b repo --inject-base
+            ```
+          </m-d>
+        </details>
+        <details>
+          <summary>Config Example</summary>
+          <m-d>
+            ```yaml
+            base: repo
+            inject base: true
+            ```
+          </m-d>
+        </details>
+      </td>
+    </tr>
+    <tr>
       <td><m-d>`include`</m-d></td>
       <td><m-d>`-i`, `--include`</m-d></td>
       <td><m-d>
