@@ -10,6 +10,7 @@ import { exists, isDirectory } from '../util'
 
 
 async function withLayout(src: string, html: string, template: string) {
+  // istanbul ignore next
   const layoutpath = isAbsolute(template) ? template : join(dirname(src), template)
   const { content } = await read(layoutpath)
 

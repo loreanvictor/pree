@@ -28,7 +28,7 @@ async function renderDirectory(path: string, root: string, base: string) {
   }
 
   return {
-    type: '.html',
+    type: 'text/html',
     content: `
     <html>
       <head>

@@ -10,7 +10,7 @@ export const notFound: Loader = async (ctx: LoadingContext) => {
   ctx.logger.error(`Not found: ${els(rel)}`)
 
   return {
-    type: '.html',
+    type: 'text/html',
     status: 404,
     content: `
       <html>

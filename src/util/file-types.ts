@@ -44,9 +44,9 @@ export const CONFIG_FILE = [
 ]
 
 export const LICENSE_FILE = [
-  /^LICENSE$/,
-  /^LICENCE$/,
-  /^COPYING$/,
+  /^LICENSE$/i,
+  /^LICENCE$/i,
+  /^COPYING$/i,
 ]
 
 export const IMAGE = [

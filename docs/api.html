@@ -115,7 +115,7 @@ Use custom loaders to change how specific file types are loaded. For example, yo
 
   await serve({
     root: 'docs',
-    loaders: [(ctx, next) => {
+    loaders: [async (ctx, next) => {
       if (ctx.path.endsWith('.md')) {
         const raw = await readFile(ctx.path, 'utf8')
 

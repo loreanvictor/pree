@@ -36,5 +36,5 @@ export function response(body: string, type: string, status = 200): CustomRespon
 }
 
 export function isCustomResponse(value: any): value is CustomResponse {
-  return value && value[_CustomResponse]
+  return !!value && !!value[_CustomResponse]
 }

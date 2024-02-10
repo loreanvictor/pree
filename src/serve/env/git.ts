@@ -43,7 +43,7 @@ async function allCommits(path: string) {
 }
 
 async function show(object: string) {
-  return response(await instance.show([object]), mimetype(object) ?? 'text/plain')
+  return response(await instance.show([object]), mimetype(object))
 }
 
 export const git = router({

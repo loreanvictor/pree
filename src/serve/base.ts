@@ -12,8 +12,8 @@ const _DefaultOptions = {
   base: '',
 }
 
-export function base(options?: BaseOptions) {
-  const url = ets(els(options?.base ?? _DefaultOptions.base))
+export function base(options: BaseOptions = {}) {
+  const url = ets(els(options.base ?? _DefaultOptions.base))
 
   return async (ctx: Context, next: Next) => {
     await next()
@@ -26,4 +26,3 @@ export function base(options?: BaseOptions) {
     }
   }
 }
-
