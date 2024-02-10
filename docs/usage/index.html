@@ -78,17 +78,19 @@ pree view docs
 
 `pree` is NOT an asset manager. It will copy the content of the directory it builds, so you can conveniently include your assets using relative paths:
 
-```
-/docs/
-  /assets/
-    /styles.css
-    /logo.png
-  /my-page.html
+```text
+  docs/
+   ├─ assets/
+   │   ├─ styles.css
+   │   └─ logo.png
+   └─ my-page.html
 ```
 ```html
 &lt;link rel="stylesheet" href="assets/styles.css"&gt;
 &lt;img src="assets/logo.png"&gt;
 ```
+
+<br>
 
 In some cases the base URL for your website is not the root of your domain. For example, in [GitHub Pages](https://pages.github.com/), without a custom domain, your website will be hosted at `https://username.github.io/repo/`. In this case, you can set the base URL in the `head` of your HTML files:
 
@@ -101,6 +103,30 @@ And specify a _base_ option to `pree`:
 ```bash
 pree build docs site -b repo
 ```
+
+<blockquote>
+
+  💡 **IMPORTANT**
+
+`&lt;base&gt;` tag doesn't play nice with relative paths in subdirectories. For example, for a project like this:
+
+```text
+ blog
+  └─ post-1/
+      ├─ index.html
+      └─ figure.png
+```
+
+If you set the base URL to `/blog/`, the following relative path in `post-1/index.html` will NOT work:
+
+```html
+<!-- ❌ this is mapped to /blog/figure.png and won't load -->
+&lt;img src="./figure.png"&gt;
+```
+
+If you want to use relative paths like this, DO NOT use the `&lt;base&gt;` tag. You can still provide the _base_ option to `pree` so that it emulates your hosting environment.
+
+</blockquote>
 
 ---
 

@@ -15,10 +15,31 @@ layout: ./_layout.html
 
 TLDR:
 
-- for building websites, we spend too much time wrestling with toolchains
-- we can go _no build_ with modern web features (ESM, Web Components, etc.)
-- there are a few fundamental gaps though (e.g. web components render on client)
-- `pree` fills these gaps as leanly as possible
+</m-d>
+
+<style>
+  emo-li p {
+    margin-bottom: 0;
+  }
+</style>
+<emo-li>
+  <span slot="emo">🛠️</span>
+  for building websites, we spend too much time wrestling with tools.
+</emo-li>
+<emo-li>
+  <span slot="emo">☕</span>
+  <m-d>we can go [no build](https://world.hey.com/dhh/once-1-is-entirely-nobuild-for-the-front-end-ce56f6d7) with modern web features ([ESM](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules), [Web Components](https://developer.mozilla.org/en-US/docs/Web/API/Web_components), etc.).</m-d>
+</emo-li>
+<emo-li>
+  <span slot="emo">🚧</span>
+  there are a few fundamental gaps though (e.g. web components render on client).
+</emo-li>
+<emo-li>
+  <span slot="emo">🧩</span>
+  <m-d>`pree` fills these gaps as leanly as possible.</m-d>
+</emo-li>
+
+<m-d>
 
 ---
 
@@ -76,7 +97,7 @@ Except for the front matter, with `pree` you will be writing HTML, CSS and JavaS
 
 ##### Q: Isn't this just another build tool?
 
-**A**: It is, but a really thin and invisible one. With the exception of layouting, using and not using `pree` gets you basically the same website. `pree` just speeds the website up by pre-rendering it.
+**A**: It is, but a really thin and invisible one. With the exception of layouting, it virtually ships your code as is. No need for bundlers, transpilers, sourcemaps, or other devtools. Your plain code is enough.
 
 ##### Q: What if I want to write Markdown?
 
