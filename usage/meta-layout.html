@@ -77,14 +77,21 @@ layout: ./_layout.html
 <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>My Page<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Some Content<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
 </code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
-<br>
+<p>🖕 When prebuilding this HTML, <code>pree</code> will:</p>
+<ol>
+<li>Resolve and load <code>./_layout.html</code>,</li>
+<li>Insert content of the page into the <code>&lt;slot&gt;</code> element in the layout,</li>
+<li>Override metadata that is provided in the front matter.</li>
+</ol>
+<br><template shadowrootmode="open"><slot></slot></template></m-d>
 
-<p><strong>Front matter</strong> is a <a href="https://yaml.org/">YAML</a> block at the top of a file, specifying title of the page, layout of the page, or any other page-specific metadata. If some metadata is provided in the front matter and the layout, the one in the front matter is used.</p>
+<blockquote>
+  <m-d><p><strong>Front matter</strong> is a <a href="https://yaml.org/">YAML</a> block at the top of a file, specifying title of the page, layout of the page, or any other page-specific metadata. If some metadata is provided in the front matter and the layout, the one in the front matter is used.</p>
 <template shadowrootmode="open"><slot></slot></template></m-d>
 
-<emo-li>
-  <span slot="emo">⚖️</span> Front matter MUST be the first string in your file,
-<template shadowrootmode="open">
+  <emo-li>
+    <span slot="emo">⚖️</span> Front matter MUST be the first string in your file,
+  <template shadowrootmode="open">
   <style>
   .holder {
     display: flex;
@@ -104,9 +111,9 @@ layout: ./_layout.html
     <div><slot></slot></div>
   </div>
 </template></emo-li>
-<emo-li>
-  <span slot="emo">⚖️</span> Front matter MUST be valid YAML,
-<template shadowrootmode="open">
+  <emo-li>
+    <span slot="emo">⚖️</span> Front matter MUST be valid YAML,
+  <template shadowrootmode="open">
   <style>
   .holder {
     display: flex;
@@ -126,9 +133,9 @@ layout: ./_layout.html
     <div><slot></slot></div>
   </div>
 </template></emo-li>
-<emo-li>
-  <span slot="emo">⚖️</span> Front matter must be set between tripple-dashed lines.
-<template shadowrootmode="open">
+  <emo-li>
+    <span slot="emo">⚖️</span> Front matter must be set between tripple-dashed lines.
+  <template shadowrootmode="open">
   <style>
   .holder {
     display: flex;
@@ -148,6 +155,8 @@ layout: ./_layout.html
     <div><slot></slot></div>
   </div>
 </template></emo-li>
+  <br>
+</blockquote>
 
 <m-d><hr>
 <h3 id="named-slots">Named Slots<menu role="toolbar"><button ref="?" aria-label="copy link" class="icon">🔗</button></menu></h3>
@@ -188,7 +197,7 @@ layout: ./_layout.html
         font-style: italic;
         text-decoration: none;
         color: inherit;
-      }</style><a ref="?" target="_blank" href="https://github.com/loreanvictor/pree/commit/f1bde2096973806bae13525ce558c1a08bac9adf">Updated at <span ref="?">Feb 07, 2024</span> <br>for <span ref="?">pree</span> version <span ref="?">0.1.13</span></a></template></change-history>
+      }</style><a ref="?" target="_blank" href="https://github.com/loreanvictor/pree/commit/14abafc35bec79d293ed681c5e7b17ea4f7ede1b">Updated at <span ref="?">Feb 10, 2024</span> <br>for <span ref="?">pree</span> version <span ref="?">0.1.18</span></a></template></change-history>
 
 <br>
       <prev-next><template shadowrootmode="open"><link rel="stylesheet" href="https://unpkg.com/nokss"><link rel="stylesheet" href="https://unpkg.com/graphis/font/graphis.css"><style>i {
@@ -259,7 +268,7 @@ layout: ./_layout.html
 
 
 
-<div style="display: flex" class="local-style-nx07lzq9b2h" data-local-style="local-style-nx07lzq9b2h"><style>.local-style-nx07lzq9b2h[data-local-style=local-style-nx07lzq9b2h] { 
+<div style="display: flex" class="local-style-us48rzcaqs" data-local-style="local-style-us48rzcaqs"><style>.local-style-us48rzcaqs[data-local-style=local-style-us48rzcaqs] { 
  
     b {
       opacity: .35;
