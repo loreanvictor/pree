@@ -7,13 +7,26 @@ layout: ./_layout.html
 
 ## Deploying Your Website
 
-Websites built with `pree` are static files without any specific server requirements. Host them anywhere you can host static files. It is customary to incorporate the build step into your deployment process as well. Here are some examples of popular deployment providers and how you can integrate `pree` into their deployment process.
+`pree` simplifies website deployment by generating static files, eliminating the need for specific server setups (thats the benefit of going no-build in general). This allows for deployment on any platform that supports static file hosting. For efficiency, it's practical to include the build step within your deployment process. Below are guides for integrating `pree` with several common static hosting platforms.
+
+<emo-li>
+  <span slot="emo">🚀</span>
+  <m-d>[GitHub Pages](deploy#github-pages)</m-d>
+</emo-li>
+<emo-li>
+  <span slot="emo">🐙</span>
+  <m-d>[Surge](deploy#surge)</m-d>
+</emo-li>
+<emo-li>
+  <span slot="emo" style="font-size: 1.2rem">▲</span>
+  <m-d>[Vercel](deploy#vercel)</m-d>
+</emo-li>
 
 ---
 
 ### GitHub Pages
 
-[GitHub Pages](https://pages.github.com/) are one of the easiest methods of deploying a static website, specifically for personal or open-source projects. You can use [GitHub Actions](https://github.com/features/actions) to automatically prebuild and deploy your website upon commits.
+[GitHub Pages](https://pages.github.com/) is one of the easiest methods of deploying a static website, specifically for personal or open-source projects. Use it with [GitHub Actions](https://github.com/features/actions) to automatically prebuild and deploy your website upon commits.
 
 <emo-li>
   <span slot="emo">📜</span>
@@ -69,11 +82,19 @@ Websites built with `pree` are static files without any specific server requirem
 
 > You must have Github Pages configured on your repository. [Check this guide](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site) on how to do it.
 
+<blockquote>
+  <emo-li>
+  <span slot="emo">✨</span>
+  <m-d>This website is hosted on GitHub Pages using [a similar workflow](https://github.com/loreanvictor/pree/blob/main/.github/workflows/docs.yml).
+  </m-d>
+  </emo-li>
+</blockquote>
+
 ---
 
 ### Surge
 
-[Surge](https://surge.sh/) is an extremely easy methods of deploying a static website.
+[Surge](https://surge.sh/) is another easy method of deploying a static website.
 
 
 <emo-li>
@@ -105,9 +126,15 @@ surge --domain https://my-website.surge.sh
 
 <br>
 
-> 😎 &ensp; [This copy](https://pree.surge.sh) of this website is built and deployed to Surge using the same method.
-
 > Surge ignores .\* and _\* files by default (among other files and paths). Add a [`.surgeignore`](https://surge.sh/help/ignoring-files-and-directories) file to your project to customize this behavior.
+
+<blockquote>
+  <emo-li>
+  <span slot="emo">✨</span>
+  <m-d>This website is also [deployed to Surge using this method](https://github.com/loreanvictor/pree/blob/d6c44c9a349dde326654ac9e77a7a7ad7d1c1f75/package.json#L20) ([https://pree.surge.sh](https://pree.surge.sh)).
+  </m-d>
+  </emo-li>
+</blockquote>
 
 ---
 
@@ -116,14 +143,13 @@ surge --domain https://my-website.surge.sh
 `pree` uses [Puppeteer](https://pptr.dev/) to generate the static files. Vercel has a [known issue](https://pptr.dev/troubleshooting#running-puppeteer-on-aws-lambda) with Puppeteer (as well as all AWS powered build pipelines), so you need to prebuild the site in another environment, for example your own machine, before deploying it to Vercel.
 
 
-Configure your project to build with `pree`. Either go the your Vercel dashboard project setting at
-`Projects &gt; Settings &gt; General` and set the following configuration:
+Configure your project to build with `pree`. Either go the your Vercel dashboard project setting and set the build configuration similar to the following:
 
 <img src=".images/vercel-config.png" alt="vercel config screenshot" width="100%"/>
 
 <br>
 
-Or, in your Vercel config files, ensue the following:
+Or, in your Vercel config files, add a config like this:
 
 ```json
   {
@@ -137,7 +163,7 @@ Or, in your Vercel config files, ensue the following:
 
 <emo-li>
   <span slot="emo">👀</span>
-  Execute the following to deploy:
+  Execute the following to deploy a preview:
 </emo-li>
 
 ```bash
@@ -163,7 +189,13 @@ vercel deploy --prebuilt --prod
 
 <br>
 
-> 😎 &ensp; [This copy](https://pree-view.vercel.app) of this website is built and deployed to Vercel using the same method.
+<blockquote>
+  <emo-li>
+  <span slot="emo">✨</span>
+  <m-d>This website is also [deployed to Vercel using this method](https://github.com/loreanvictor/pree/blob/d6c44c9a349dde326654ac9e77a7a7ad7d1c1f75/package.json#L19) ([https://pree-view.vercel.app](https://pree-view.vercel.app)).
+  </m-d>
+  </emo-li>
+</blockquote>
 
 </m-d>
 

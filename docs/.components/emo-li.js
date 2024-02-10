@@ -7,6 +7,12 @@ define('emo-li', () => `
     display: flex;
     gap: 1rem;
     align-items: baseline;
+
+    & > span {
+      width: 1.2rem;
+      text-align: center;
+      display: inline-block;
+    }
   }
 
   </style>
