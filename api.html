@@ -194,7 +194,7 @@ provides <a href="components/build-env">build-env APIs</a>.</p>
 
 <span class="hljs-keyword">await</span> <span class="hljs-title function_">serve</span>({
   <span class="hljs-attr">root</span>: <span class="hljs-string">'docs'</span>,
-  <span class="hljs-attr">loaders</span>: [<span class="hljs-function">(<span class="hljs-params">ctx, next</span>) =&gt;</span> {
+  <span class="hljs-attr">loaders</span>: [<span class="hljs-keyword">async</span> (ctx, next) =&gt; {
     <span class="hljs-keyword">if</span> (ctx.<span class="hljs-property">path</span>.<span class="hljs-title function_">endsWith</span>(<span class="hljs-string">'.md'</span>)) {
       <span class="hljs-keyword">const</span> raw = <span class="hljs-keyword">await</span> <span class="hljs-title function_">readFile</span>(ctx.<span class="hljs-property">path</span>, <span class="hljs-string">'utf8'</span>)
 
@@ -268,7 +268,7 @@ Takes the same options as <code>serve()</code>.</p>
         font-style: italic;
         text-decoration: none;
         color: inherit;
-      }</style><a ref="?" target="_blank" href="https://github.com/loreanvictor/pree/commit/46f9c554902a8ac3b925ba076e3a0036b48622e8">Updated at <span ref="?">Feb 09, 2024</span> <br>for <span ref="?">pree</span> version <span ref="?">0.1.15</span></a></template></change-history>
+      }</style><a ref="?" target="_blank" href="https://github.com/loreanvictor/pree/commit/861d32fc80024e7587f7d41e1a1d332f314c9507">Updated at <span ref="?">Feb 10, 2024</span> <br>for <span ref="?">pree</span> version <span ref="?">0.1.18</span></a></template></change-history>
 <br>
 
 
@@ -340,7 +340,7 @@ Takes the same options as <code>serve()</code>.</p>
 
 
 
-<div style="display: flex" class="local-style-1l0gq3v5o3i" data-local-style="local-style-1l0gq3v5o3i"><style>.local-style-1l0gq3v5o3i[data-local-style=local-style-1l0gq3v5o3i] { 
+<div style="display: flex" class="local-style-i4s359djzs" data-local-style="local-style-i4s359djzs"><style>.local-style-i4s359djzs[data-local-style=local-style-i4s359djzs] { 
  
     b {
       opacity: .35;
