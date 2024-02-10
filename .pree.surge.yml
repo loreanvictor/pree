@@ -1,2 +1,2 @@
 src: docs
-dest: .surge/
+dest: site

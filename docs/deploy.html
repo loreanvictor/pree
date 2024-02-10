@@ -9,6 +9,7 @@ layout: ./_layout.html
 
 `pree` simplifies website deployment by generating static files, eliminating the need for specific server setups (thats the benefit of going no-build in general). This allows for deployment on any platform that supports static file hosting. For efficiency, it's practical to include the build step within your deployment process. Below are guides for integrating `pree` with several common static hosting platforms.
 
+<!--
 <emo-li>
   <span slot="emo">🚀</span>
   <m-d>[GitHub Pages](deploy#github-pages)</m-d>
@@ -21,6 +22,47 @@ layout: ./_layout.html
   <span slot="emo" style="font-size: 1.2rem">▲</span>
   <m-d>[Vercel](deploy#vercel)</m-d>
 </emo-li>
+-->
+</m-d>
+
+<section role="feed" aria-orientation="horizontal">
+  <local-style>
+    @media (max-width: 800px) {
+      & {
+        display: block;
+      }
+    }
+
+    img {
+      background: #fffdf9;
+      border: .2rem solid #fffdf9;
+    }
+
+     a {
+      text-decoration: none !important;
+     }
+  </local-style>
+  <article>
+    <address>
+      <img src="https://www.svgrepo.com/show/512317/github-142.svg">
+      <a href="deploy.html#github-pages">GitHub Pages</a>
+    </address>
+  </article>
+  <article>
+    <address>
+      <img src="https://www.svgrepo.com/show/354411/surge.svg">
+      <a href="deploy.html#surge">Surge</a>
+    </address>
+  </article>
+  <article>
+    <address>
+      <img src="https://www.svgrepo.com/show/327408/logo-vercel.svg">
+      <a href="deploy.html#vercel">Vercel</a>
+    </address>
+  </article>
+</section>
+
+<m-d>
 
 ---
 
@@ -140,8 +182,7 @@ surge --domain https://my-website.surge.sh
 
 ### Vercel
 
-`pree` uses [Puppeteer](https://pptr.dev/) to generate the static files. Vercel has a [known issue](https://pptr.dev/troubleshooting#running-puppeteer-on-aws-lambda) with Puppeteer (as well as all AWS powered build pipelines), so you need to prebuild the site in another environment, for example your own machine, before deploying it to Vercel.
-
+[Vercel](https://vercel.com/) is another popular platform for deploying static websites. Unfortunately, its build pipleline has a [known issue](https://pptr.dev/troubleshooting#running-puppeteer-on-aws-lambda) with [Puppeteer](https://pptr.dev), so you need to prebuild the site in another environment like your own machine or within GitHub Actions, before deploying it to Vercel.
 
 Configure your project to build with `pree`. Either go the your Vercel dashboard project setting and set the build configuration similar to the following:
 
