@@ -1,7 +1,7 @@
-<!DOCTYPE html><html lang="en"><head>
+<!DOCTYPE html><html lang="en"><head><base href="/pree/">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <base href="/pree/">
+    
 
     
     <link rel="icon" type="image/png" sizes="32x32" href="favicon.ico">
@@ -25,7 +25,7 @@
           
         <link rel="prefetch" href="usage/build-only-scripts.html"><link rel="prefetch" href="components/index.html"></head>
   <body><aside aria-hidden="true">
-      <use-html src="./_toc.html"><style>
+      <use-html src="./_toc.html"><base href="/pree/"><style>
   #toc {
     a:not(:hover) {
       text-decoration-color: transparent;
@@ -44,7 +44,7 @@
 <hr>
 <p><a href="components/index.html"><strong>Using Components</strong></a> <br>  <a href="components/ssr.html">Server Side Rendering</a> <br>  <a href="components/build-env.html">Build Environment</a> <br>  <a href="components/publish.html">Publishing Components</a></p>
 <hr>
-<p><a href="api.html">JavaScript API</a> <br><a href="credits.html">Credits</a></p>
+<p><a href="deploy.html">Deploy</a> <br><a href="api.html">JavaScript API</a> <br><a href="credits.html">Credits</a></p>
 <p><br><br></p>
 <template shadowrootmode="open"><slot></slot></template></m-d>
 <template shadowrootmode="open"><slot></slot></template></use-html>
@@ -144,6 +144,32 @@ is treated as a convenient default, any options provided to the CLI will overrid
         <details>
           <summary>Config Example</summary>
           <m-d><pre><code class="language-yaml hljs" data-highlighted="yes"><span class="hljs-attr">base:</span> <span class="hljs-string">repo</span>
+</code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
+<template shadowrootmode="open"><slot></slot></template></m-d>
+        </details>
+      </td>
+    </tr>
+    <tr>
+      <td><m-d><p><code>inject base</code></p>
+<template shadowrootmode="open"><slot></slot></template></m-d></td>
+      <td><m-d><p><code>--inject-base</code></p>
+<template shadowrootmode="open"><slot></slot></template></m-d></td>
+      <td><m-d><p>Automatically inject the <a href="usage/index#asset-management">base path</a> into HTML files. <br>Defaults to <code>false</code>.</p>
+<blockquote>
+<p>Only use this options if you want to deploy <br>your website to multiple hosts with different <br>base paths. Otherwise explicitly include a <br><code>&lt;base&gt;</code> tag in your HTML files.</p>
+</blockquote>
+<template shadowrootmode="open"><slot></slot></template></m-d></td>
+      <td>
+        <details>
+          <summary>CLI Example</summary>
+          <m-d><pre><code class="language-bash hljs" data-highlighted="yes">pree build docs site -b repo --inject-base
+</code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
+<template shadowrootmode="open"><slot></slot></template></m-d>
+        </details>
+        <details>
+          <summary>Config Example</summary>
+          <m-d><pre><code class="language-yaml hljs" data-highlighted="yes"><span class="hljs-attr">base:</span> <span class="hljs-string">repo</span>
+<span class="hljs-attr">inject base:</span> <span class="hljs-literal">true</span>
 </code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
 <template shadowrootmode="open"><slot></slot></template></m-d>
         </details>
@@ -368,7 +394,7 @@ Use multiple times to silence more.</p>
         font-style: italic;
         text-decoration: none;
         color: inherit;
-      }</style><a ref="?" target="_blank" href="https://github.com/loreanvictor/pree/commit/d05b49dc100d65af1efe2651be5c93c16d62e549">Updated at <span ref="?">Feb 08, 2024</span> <br>for <span ref="?">pree</span> version <span ref="?">0.1.13</span></a></template></change-history>
+      }</style><a ref="?" target="_blank" href="https://github.com/loreanvictor/pree/commit/d6c44c9a349dde326654ac9e77a7a7ad7d1c1f75">Updated at <span ref="?">Feb 10, 2024</span> <br>for <span ref="?">pree</span> version <span ref="?">0.1.17</span></a></template></change-history>
 <br>
       <prev-next><template shadowrootmode="open"><link rel="stylesheet" href="https://unpkg.com/nokss"><link rel="stylesheet" href="https://unpkg.com/graphis/font/graphis.css"><style>i {
       font-family: 'graphis', sans-serif;
@@ -434,11 +460,11 @@ Use multiple times to silence more.</p>
       </section></template></prev-next>
     </main>
     <footer>
-      <use-html src="./_footer.html"><script type="module" src="./.components/menu-toggle.js"></script>
+      <use-html src="./_footer.html"><base href="/pree/"><script type="module" src="./.components/menu-toggle.js"></script>
 
 
 
-<div style="display: flex" class="local-style-6ca0lp9k3uf"><style>.local-style-6ca0lp9k3uf { 
+<div style="display: flex" class="local-style-1fpovpl7i4r"><style>.local-style-1fpovpl7i4r { 
  
     b {
       opacity: .35;

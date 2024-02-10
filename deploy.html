@@ -21,9 +21,9 @@
 
     <script src="./.components/emo-li.js" type="module"></script>
     <script type="module" src="./.components/prev-next.js"></script>
-  <title>pree: usage</title>
+  <title>pree: deploy</title>
           
-        <link rel="prefetch" href="install.html"><link rel="prefetch" href="usage/meta-layout.html"></head>
+        <link rel="prefetch" href="components/publish.html"><link rel="prefetch" href="api.html"></head>
   <body><aside aria-hidden="true">
       <use-html src="./_toc.html"><base href="/pree/"><style>
   #toc {
@@ -50,47 +50,15 @@
 <template shadowrootmode="open"><slot></slot></template></use-html>
     </aside>
     <main>
-      <m-d><h2 id="usage">Usage<menu role="toolbar"><button ref="?" aria-label="copy link" class="icon">🔗</button></menu></h2>
-<p>👉 Prebuild a single HTML file:</p>
-<pre><code class="language-bash hljs" data-highlighted="yes">pree build docs/my-page.html site/my-page.html
-</code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
-<p>This prebuilds <code>docs/my-page.html</code> into <code>site/my-page.html</code>:</p>
+      <m-d><h2 id="deploying-your-website">Deploying Your Website<menu role="toolbar"><button ref="?" aria-label="copy link" class="icon">🔗</button></menu></h2>
+<p>Websites built with <code>pree</code> are static files without any specific server requirements. Host them anywhere you can host static files. It is customary to incorporate the build step into your deployment process as well. Here are some examples of popular deployment providers and how you can integrate <code>pree</code> into their deployment process.</p>
+<hr>
+<h3 id="github-pages">GitHub Pages<menu role="toolbar"><button ref="?" aria-label="copy link" class="icon">🔗</button></menu></h3>
+<p><a href="https://pages.github.com/">GitHub Pages</a> are one of the easiest methods of deploying a static website, specifically for personal or open-source projects. You can use <a href="https://github.com/features/actions">GitHub Actions</a> to automatically prebuild and deploy your website upon commits.</p>
+<emo-li>
+ <span slot="emo">📜</span>
+ <m-d><p><strong>STEP 1</strong>: Add a <code>.github/workflows/docs.yml</code> file to your project.</p>
 <template shadowrootmode="open"><slot></slot></template></m-d>
-
-<emo-li>
-  <span slot="emo">🧬</span> pre-renders web components,
-<template shadowrootmode="open">
-  <style>
-  .holder {
-    display: flex;
-    gap: 1rem;
-    align-items: baseline;
-  }
-
-  </style>
-  <div class="holder">
-    <span><slot name="emo"></slot></span>
-    <div><slot></slot></div>
-  </div>
-</template></emo-li>
-<emo-li>
-  <span slot="emo">🏗️</span> resolves <a href="usage/meta-layout">metadata and layouts</a>,
-<template shadowrootmode="open">
-  <style>
-  .holder {
-    display: flex;
-    gap: 1rem;
-    align-items: baseline;
-  }
-
-  </style>
-  <div class="holder">
-    <span><slot name="emo"></slot></span>
-    <div><slot></slot></div>
-  </div>
-</template></emo-li>
-<emo-li>
-  <span slot="emo">👻</span>removes <a href="usage/build-only-scripts">build-only scripts and components</a>.
 <template shadowrootmode="open">
   <style>
   .holder {
@@ -106,69 +74,10 @@
   </div>
 </template></emo-li>
 
-<br>
-
-<m-d><p>👉 Prebuild an entire directory:</p>
-<pre><code class="language-bash hljs" data-highlighted="yes">pree build docs site
-</code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
-<p>This will copy over all the content of <code>docs</code> into <code>site</code> and prebuild all HTML files, except the ones excluded by CLI options or configuration. You can also specify include options (in config or CLI options), and then only the specified files will be prebuilt.</p>
-<br>
-
-<p>👉 Preview your website:</p>
-<pre><code class="language-bash hljs" data-highlighted="yes">pree view docs
-</code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
+<emo-li>
+<span slot="emo">⚙️</span>
+ <m-d><p><strong>STEP 2</strong>: Fill the workflow file as follows:</p>
 <template shadowrootmode="open"><slot></slot></template></m-d>
-
-<emo-li>
-  <span slot="emo">👀</span> it loads your website without prebuilding it,
-<template shadowrootmode="open">
-  <style>
-  .holder {
-    display: flex;
-    gap: 1rem;
-    align-items: baseline;
-  }
-
-  </style>
-  <div class="holder">
-    <span><slot name="emo"></slot></span>
-    <div><slot></slot></div>
-  </div>
-</template></emo-li>
-<emo-li>
-  <span slot="emo">🏗️</span> it still resolves <a href="usage/meta-layout">metadata and layouts</a>,
-<template shadowrootmode="open">
-  <style>
-  .holder {
-    display: flex;
-    gap: 1rem;
-    align-items: baseline;
-  }
-
-  </style>
-  <div class="holder">
-    <span><slot name="emo"></slot></span>
-    <div><slot></slot></div>
-  </div>
-</template></emo-li>
-<emo-li>
-  <span slot="emo">🔃</span> it live reloads on change,
-<template shadowrootmode="open">
-  <style>
-  .holder {
-    display: flex;
-    gap: 1rem;
-    align-items: baseline;
-  }
-
-  </style>
-  <div class="holder">
-    <span><slot name="emo"></slot></span>
-    <div><slot></slot></div>
-  </div>
-</template></emo-li>
-<emo-li>
-  <span slot="emo">📁</span> it also lists directory content for easy navigation.
 <template shadowrootmode="open">
   <style>
   .holder {
@@ -184,57 +93,209 @@
   </div>
 </template></emo-li>
 
-<m-d><blockquote>
-<p>Performance of your pages in preview mode is much slower than in production mode, since
-the content is not prebuilt. To double check the performance of your prebuilt website, first build it:</p>
-<pre><code class="language-bash hljs" data-highlighted="yes">pree build docs site
+<pre><code class="language-yml hljs language-yaml" data-highlighted="yes"> <span class="hljs-attr">name:</span> <span class="hljs-string">docs</span>
+ <span class="hljs-attr">on:</span>
+   <span class="hljs-attr">push:</span>
+     <span class="hljs-attr">branches:</span>
+       <span class="hljs-bullet">-</span> <span class="hljs-string">main</span>
+ <span class="hljs-attr">permissions:</span>
+   <span class="hljs-attr">contents:</span> <span class="hljs-string">write</span>
+ <span class="hljs-attr">jobs:</span>
+   <span class="hljs-attr">run:</span>
+     <span class="hljs-attr">runs-on:</span> <span class="hljs-string">ubuntu-latest</span>
+     <span class="hljs-attr">steps:</span>
+       <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Checkout</span>
+         <span class="hljs-attr">uses:</span> <span class="hljs-string">actions/checkout@v2</span>
+         <span class="hljs-attr">with:</span>
+           <span class="hljs-attr">fetch-depth:</span> <span class="hljs-number">0</span>
+
+       <span class="hljs-bullet">-</span> <span class="hljs-attr">uses:</span> <span class="hljs-string">actions/setup-node@v2</span>
+         <span class="hljs-attr">with:</span>
+           <span class="hljs-attr">node-version:</span> <span class="hljs-string">'16'</span>
+
+       <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Install</span> <span class="hljs-string">pree</span>
+         <span class="hljs-attr">run:</span> <span class="hljs-string">npm</span> <span class="hljs-string">i</span> <span class="hljs-string">-g</span> <span class="hljs-string">pree</span>
+
+       <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Build</span> <span class="hljs-string">docs</span>
+         <span class="hljs-attr">run:</span> <span class="hljs-string">pree</span> <span class="hljs-string">build</span>
+
+       <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-literal">No</span> <span class="hljs-string">Jekyll</span>
+         <span class="hljs-attr">run:</span> <span class="hljs-string">touch</span> <span class="hljs-string">docs/.nojekyll</span>
+       
+       <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Deploy</span> <span class="hljs-string">🚀</span>
+         <span class="hljs-attr">uses:</span> <span class="hljs-string">JamesIves/github-pages-deploy-action@v4</span>
+         <span class="hljs-attr">with:</span>
+           <span class="hljs-attr">folder:</span> <span class="hljs-string">site</span>
 </code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
-<p>Then check the prebuilt website in production mode:</p>
-<pre><code class="language-bash hljs" data-highlighted="yes">pree check site
-</code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
+<emo-li>
+ <span slot="emo">🚀</span>
+ <m-d><p><strong>STEP 3</strong>: Commit and push the workflow file to your repository.</p>
+<template shadowrootmode="open"><slot></slot></template></m-d>
+<template shadowrootmode="open">
+  <style>
+  .holder {
+    display: flex;
+    gap: 1rem;
+    align-items: baseline;
+  }
+
+  </style>
+  <div class="holder">
+    <span><slot name="emo"></slot></span>
+    <div><slot></slot></div>
+  </div>
+</template></emo-li>
+
+<blockquote>
+<p>You must have Github Pages configured on your repository. <a href="https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site">Check this guide</a> on how to do it.</p>
 </blockquote>
 <hr>
-<h3 id="asset-management">Asset Management<menu role="toolbar"><button ref="?" aria-label="copy link" class="icon">🔗</button></menu></h3>
-<p><code>pree</code> is NOT an asset manager. It will copy the content of a directory when you copy it, so you can conveniently include your assets using relative paths:</p>
-<pre><code data-highlighted="yes" class="hljs language-bash">/docs/
-/assets/
-  /styles.css
-  /logo.png
-/my-page.html
+<h3 id="surge">Surge<menu role="toolbar"><button ref="?" aria-label="copy link" class="icon">🔗</button></menu></h3>
+<p><a href="https://surge.sh/">Surge</a> is an extremely easy methods of deploying a static website.</p>
+<emo-li>
+ <span slot="emo">🏗️</span>
+ <m-d><p><strong>STEP 1</strong>: build with <code>pree</code>:</p>
+<template shadowrootmode="open"><slot></slot></template></m-d>
+<template shadowrootmode="open">
+  <style>
+  .holder {
+    display: flex;
+    gap: 1rem;
+    align-items: baseline;
+  }
+
+  </style>
+  <div class="holder">
+    <span><slot name="emo"></slot></span>
+    <div><slot></slot></div>
+  </div>
+</template></emo-li>
+
+<pre><code class="language-bash hljs" data-highlighted="yes">pree build docs site
 </code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
-<pre><code class="language-html hljs language-xml" data-highlighted="yes"><span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">"stylesheet"</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"assets/styles.css"</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"assets/logo.png"</span>&gt;</span>
+<emo-li>
+ <span slot="emo">👉</span>
+ <m-d><p><strong>STEP 2</strong>: go to the built directory:</p>
+<template shadowrootmode="open"><slot></slot></template></m-d>
+<template shadowrootmode="open">
+  <style>
+  .holder {
+    display: flex;
+    gap: 1rem;
+    align-items: baseline;
+  }
+
+  </style>
+  <div class="holder">
+    <span><slot name="emo"></slot></span>
+    <div><slot></slot></div>
+  </div>
+</template></emo-li>
+
+<pre><code class="language-bash hljs" data-highlighted="yes"><span class="hljs-built_in">cd</span> site
 </code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
-<p>In some cases the base URL for your website is not the root of your domain. For example, in <a href="https://pages.github.com/">GitHub Pages</a>, without a custom domain, your website will be hosted at <code>https://username.github.io/repo/</code>. In this case, you can set the base URL in the <code>head</code> of your HTML files:</p>
-<pre><code class="language-html hljs language-xml" data-highlighted="yes"><span class="hljs-tag">&lt;<span class="hljs-name">base</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"/repo/"</span>&gt;</span>
-</code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
-<p>And specify a <em>base</em> option to <code>pree</code>:</p>
-<pre><code class="language-bash hljs" data-highlighted="yes">pree build docs site -b repo
-</code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
-<hr>
-<h3 id="config-file">Config File<menu role="toolbar"><button ref="?" aria-label="copy link" class="icon">🔗</button></menu></h3>
-<p>For more convenient usage of <code>pree</code>, you can create a config file to specify <code>pree</code>'s options:</p>
-<pre><code class="language-yaml hljs" data-highlighted="yes"><span class="hljs-comment"># .pree.yml</span>
-<span class="hljs-attr">base:</span> <span class="hljs-string">repo</span>
-<span class="hljs-attr">src:</span> <span class="hljs-string">docs</span>
-<span class="hljs-attr">dest:</span> <span class="hljs-string">site</span>
-</code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
-<p><code>pree</code> will look for <code>.pree.yml</code> in the current working directory, and use it as the default configuration:</p>
-<pre><code class="language-bash hljs" data-highlighted="yes">pree view          <span class="hljs-comment"># 👈 this is equal to `pree view docs`</span>
-</code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
-<pre><code class="language-bash hljs" data-highlighted="yes">pree build         <span class="hljs-comment"># 👈 this is equal to `pree view build`</span>
-</code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
-<pre><code class="language-bash hljs" data-highlighted="yes">pree check         <span class="hljs-comment"># 👈 this is equal to `pree check site`</span>
+<emo-li>
+ <span slot="emo">🚀</span>
+ <m-d><p><strong>STEP 3</strong>: deploy with surge</p>
+<template shadowrootmode="open"><slot></slot></template></m-d>
+<template shadowrootmode="open">
+  <style>
+  .holder {
+    display: flex;
+    gap: 1rem;
+    align-items: baseline;
+  }
+
+  </style>
+  <div class="holder">
+    <span><slot name="emo"></slot></span>
+    <div><slot></slot></div>
+  </div>
+</template></emo-li>
+
+<pre><code class="language-bash hljs" data-highlighted="yes">surge --domain https://my-website.surge.sh
 </code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
 <br>
 
 <blockquote>
-<p>📖 <a href="usage/config">Read this</a> for a comprehensive list of options.</p>
+<p>😎   <a href="https://pree.surge.sh">This copy</a> of this website is built and deployed to Surge using the same method.</p>
+</blockquote>
+<blockquote>
+<p>Surge ignores .* and _* files by default (among other files and paths). Add a <a href="https://surge.sh/help/ignoring-files-and-directories"><code>.surgeignore</code></a> file to your project to customize this behavior.</p>
+</blockquote>
+<hr>
+<h3 id="vercel">Vercel<menu role="toolbar"><button ref="?" aria-label="copy link" class="icon">🔗</button></menu></h3>
+<p><code>pree</code> uses <a href="https://pptr.dev/">Puppeteer</a> to generate the static files. Vercel has a <a href="https://pptr.dev/troubleshooting#running-puppeteer-on-aws-lambda">known issue</a> with Puppeteer (as well as all AWS powered build pipelines), so you need to prebuild the site in another environment, for example your own machine, before deploying it to Vercel.</p>
+<p>Configure your project to build with <code>pree</code>. Either go the your Vercel dashboard project setting at
+<code>Projects &gt; Settings &gt; General</code> and set the following configuration:</p>
+<img src=".images/vercel-config.png" alt="vercel config screenshot" width="100%">
+
+<br>
+
+<p>Or, in your Vercel config files, ensue the following:</p>
+<pre><code class="language-json hljs" data-highlighted="yes"> <span class="hljs-punctuation">{</span>
+   <span class="hljs-attr">"installCommand"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"npm i -g pree@latest"</span><span class="hljs-punctuation">,</span>
+   <span class="hljs-attr">"buildCommand"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"pree build"</span><span class="hljs-punctuation">,</span>
+   <span class="hljs-attr">"outputDirectory"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"site"</span>
+ <span class="hljs-punctuation">}</span>
+</code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
+<br>
+
+<emo-li>
+ <span slot="emo">👀</span>
+ Execute the following to deploy:
+<template shadowrootmode="open">
+  <style>
+  .holder {
+    display: flex;
+    gap: 1rem;
+    align-items: baseline;
+  }
+
+  </style>
+  <div class="holder">
+    <span><slot name="emo"></slot></span>
+    <div><slot></slot></div>
+  </div>
+</template></emo-li>
+
+<pre><code class="language-bash hljs" data-highlighted="yes">vercel build
+</code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
+<pre><code class="language-bash hljs" data-highlighted="yes">vercel deploy --prebuilt
+</code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
+<br>
+
+<emo-li>
+ <span slot="emo">🚀</span>
+ <m-d><p>Execute the following to deploy to production:</p>
+<template shadowrootmode="open"><slot></slot></template></m-d>
+<template shadowrootmode="open">
+  <style>
+  .holder {
+    display: flex;
+    gap: 1rem;
+    align-items: baseline;
+  }
+
+  </style>
+  <div class="holder">
+    <span><slot name="emo"></slot></span>
+    <div><slot></slot></div>
+  </div>
+</template></emo-li>
+
+<pre><code class="language-bash hljs" data-highlighted="yes">vercel build --prod
+</code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
+<pre><code class="language-bash hljs" data-highlighted="yes">vercel deploy --prebuilt --prod
+</code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
+<br>
+
+<blockquote>
+<p>😎   <a href="https://pree-view.vercel.app">This copy</a> of this website is built and deployed to Vercel using the same method.</p>
 </blockquote>
 <template shadowrootmode="open"><slot></slot></template></m-d>
 
 <br>
-
 <change-history><template shadowrootmode="open"><style>a {
         display: block;
         text-align: right;
@@ -243,10 +304,8 @@ the content is not prebuilt. To double check the performance of your prebuilt we
         font-style: italic;
         text-decoration: none;
         color: inherit;
-      }</style><a ref="?" target="_blank" href="https://github.com/loreanvictor/pree/commit/f1bde2096973806bae13525ce558c1a08bac9adf">Updated at <span ref="?">Feb 07, 2024</span> <br>for <span ref="?">pree</span> version <span ref="?">0.1.13</span></a></template></change-history>
-
+      }</style><a ref="?" target="_blank" href="https://github.com/loreanvictor/pree/commit/d6c44c9a349dde326654ac9e77a7a7ad7d1c1f75">Updated at <span ref="?">Feb 10, 2024</span> <br>for <span ref="?">pree</span> version <span ref="?">0.1.17</span></a></template></change-history>
 <br>
-
       <prev-next><template shadowrootmode="open"><link rel="stylesheet" href="https://unpkg.com/nokss"><link rel="stylesheet" href="https://unpkg.com/graphis/font/graphis.css"><style>i {
       font-family: 'graphis', sans-serif;
       font-style: normal;
@@ -293,17 +352,17 @@ the content is not prebuilt. To double check the performance of your prebuilt we
         
           <article>
             <i>⬅</i>
-            <a href="install.html">
+            <a href="components/publish.html">
               <small>Previosly</small><br>
-              Installation
+              Publishing Components
             </a>
           </article>
           
         
           <article class="next">
-            <a href="usage/meta-layout.html">
+            <a href="api.html">
               <small>Up Next</small><br>
-              Metadata &amp; Layouts
+              JavaScript API
             </a>
             <i>➡</i>
           </article>
@@ -315,7 +374,7 @@ the content is not prebuilt. To double check the performance of your prebuilt we
 
 
 
-<div style="display: flex" class="local-style-3jhgw5nme36"><style>.local-style-3jhgw5nme36 { 
+<div style="display: flex" class="local-style-ebo3n0iycu"><style>.local-style-ebo3n0iycu { 
  
     b {
       opacity: .35;
