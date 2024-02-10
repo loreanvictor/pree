@@ -238,21 +238,39 @@ the content is not prebuilt. To double check the performance of your prebuilt we
 <hr>
 <h3 id="asset-management">Asset Management<menu role="toolbar"><button ref="?" aria-label="copy link" class="icon">🔗</button></menu></h3>
 <p><code>pree</code> is NOT an asset manager. It will copy the content of the directory it builds, so you can conveniently include your assets using relative paths:</p>
-<pre><code data-highlighted="yes" class="hljs language-bash">/docs/
-/assets/
-  /styles.css
-  /logo.png
-/my-page.html
+<pre><code class="language-text hljs language-plaintext" data-highlighted="yes"> docs/
+  ├─ assets/
+  │   ├─ styles.css
+  │   └─ logo.png
+  └─ my-page.html
 </code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
 <pre><code class="language-html hljs language-xml" data-highlighted="yes"><span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">"stylesheet"</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"assets/styles.css"</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"assets/logo.png"</span>&gt;</span>
 </code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
+<br>
+
 <p>In some cases the base URL for your website is not the root of your domain. For example, in <a href="https://pages.github.com/">GitHub Pages</a>, without a custom domain, your website will be hosted at <code>https://username.github.io/repo/</code>. In this case, you can set the base URL in the <code>head</code> of your HTML files:</p>
 <pre><code class="language-html hljs language-xml" data-highlighted="yes"><span class="hljs-tag">&lt;<span class="hljs-name">base</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"/repo/"</span>&gt;</span>
 </code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
 <p>And specify a <em>base</em> option to <code>pree</code>:</p>
 <pre><code class="language-bash hljs" data-highlighted="yes">pree build docs site -b repo
 </code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
+<blockquote>
+
+<p> 💡 <strong>IMPORTANT</strong></p>
+<p><code>&lt;base&gt;</code> tag doesn't play nice with relative paths in subdirectories. For example, for a project like this:</p>
+<pre><code class="language-text hljs language-plaintext" data-highlighted="yes">blog
+ └─ post-1/
+     ├─ index.html
+     └─ figure.png
+</code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
+<p>If you set the base URL to <code>/blog/</code>, the following relative path in <code>post-1/index.html</code> will NOT work:</p>
+<pre><code class="language-html hljs language-xml" data-highlighted="yes"><span class="hljs-comment">&lt;!-- ❌ this is mapped to /blog/figure.png and won't load --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"./figure.png"</span>&gt;</span>
+</code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
+<p>If you want to use relative paths like this, DO NOT use the <code>&lt;base&gt;</code> tag. You can still provide the <em>base</em> option to <code>pree</code> so that it emulates your hosting environment.</p>
+</blockquote>
+
 <hr>
 <h3 id="config-file">Config File<menu role="toolbar"><button ref="?" aria-label="copy link" class="icon">🔗</button></menu></h3>
 <p>For more convenient usage of <code>pree</code>, you can create a config file to specify <code>pree</code>'s options:</p>
@@ -308,7 +326,7 @@ the content is not prebuilt. To double check the performance of your prebuilt we
         font-style: italic;
         text-decoration: none;
         color: inherit;
-      }</style><a ref="?" target="_blank" href="https://github.com/loreanvictor/pree/commit/458b73cd5c6ba7c2250037beab8b0da83b9ee0a7">Updated at <span ref="?">Feb 10, 2024</span> <br>for <span ref="?">pree</span> version <span ref="?">0.1.17</span></a></template></change-history>
+      }</style><a ref="?" target="_blank" href="https://github.com/loreanvictor/pree/commit/57926e262578ae0603d1002c8ad44c45e35c75cb">Updated at <span ref="?">Feb 10, 2024</span> <br>for <span ref="?">pree</span> version <span ref="?">0.1.18</span></a></template></change-history>
 
 <br>
 
@@ -380,7 +398,7 @@ the content is not prebuilt. To double check the performance of your prebuilt we
 
 
 
-<div style="display: flex" class="local-style-ow291f33ahd" data-local-style="local-style-ow291f33ahd"><style>.local-style-ow291f33ahd[data-local-style=local-style-ow291f33ahd] { 
+<div style="display: flex" class="local-style-sc1b5rzpjnm" data-local-style="local-style-sc1b5rzpjnm"><style>.local-style-sc1b5rzpjnm[data-local-style=local-style-sc1b5rzpjnm] { 
  
     b {
       opacity: .35;

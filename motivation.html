@@ -58,13 +58,109 @@
 
 <m-d><h2 id="why-pree">Why <code>pree</code>?<menu role="toolbar"><button ref="?" aria-label="copy link" class="icon">🔗</button></menu></h2>
 <p>TLDR:</p>
-<ul>
-<li>for building websites, we spend too much time wrestling with toolchains</li>
-<li>we can go <em>no build</em> with modern web features (ESM, Web Components, etc.)</li>
-<li>there are a few fundamental gaps though (e.g. web components render on client)</li>
-<li><code>pree</code> fills these gaps as leanly as possible</li>
-</ul>
-<hr>
+<template shadowrootmode="open"><slot></slot></template></m-d>
+
+<style>
+  emo-li p {
+    margin-bottom: 0;
+  }
+</style>
+<emo-li>
+  <span slot="emo">🛠️</span>
+  for building websites, we spend too much time wrestling with tools.
+<template shadowrootmode="open">
+  <style>
+  .holder {
+    display: flex;
+    gap: 1rem;
+    align-items: baseline;
+
+    & > span {
+      width: 1.2rem;
+      text-align: center;
+      display: inline-block;
+    }
+  }
+
+  </style>
+  <div class="holder">
+    <span><slot name="emo"></slot></span>
+    <div><slot></slot></div>
+  </div>
+</template></emo-li>
+<emo-li>
+  <span slot="emo">☕</span>
+  <m-d><p>we can go <a href="https://world.hey.com/dhh/once-1-is-entirely-nobuild-for-the-front-end-ce56f6d7">no build</a> with modern web features (<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules">ESM</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_components">Web Components</a>, etc.).</p>
+<template shadowrootmode="open"><slot></slot></template></m-d>
+<template shadowrootmode="open">
+  <style>
+  .holder {
+    display: flex;
+    gap: 1rem;
+    align-items: baseline;
+
+    & > span {
+      width: 1.2rem;
+      text-align: center;
+      display: inline-block;
+    }
+  }
+
+  </style>
+  <div class="holder">
+    <span><slot name="emo"></slot></span>
+    <div><slot></slot></div>
+  </div>
+</template></emo-li>
+<emo-li>
+  <span slot="emo">🚧</span>
+  there are a few fundamental gaps though (e.g. web components render on client).
+<template shadowrootmode="open">
+  <style>
+  .holder {
+    display: flex;
+    gap: 1rem;
+    align-items: baseline;
+
+    & > span {
+      width: 1.2rem;
+      text-align: center;
+      display: inline-block;
+    }
+  }
+
+  </style>
+  <div class="holder">
+    <span><slot name="emo"></slot></span>
+    <div><slot></slot></div>
+  </div>
+</template></emo-li>
+<emo-li>
+  <span slot="emo">🧩</span>
+  <m-d><p><code>pree</code> fills these gaps as leanly as possible.</p>
+<template shadowrootmode="open"><slot></slot></template></m-d>
+<template shadowrootmode="open">
+  <style>
+  .holder {
+    display: flex;
+    gap: 1rem;
+    align-items: baseline;
+
+    & > span {
+      width: 1.2rem;
+      text-align: center;
+      display: inline-block;
+    }
+  }
+
+  </style>
+  <div class="holder">
+    <span><slot name="emo"></slot></span>
+    <div><slot></slot></div>
+  </div>
+</template></emo-li>
+
+<m-d><hr>
 <p>A ton of modern web development is wrestling with build tools. Transpilers, bundlers, runtimes, test runners, devtools, packages with various module formats, frameworks with custom syntax and custom devtools, all need to play nice together. In the end, more time is spent configuring build tools instead of building stuff.</p>
 <p>Should we keep torturing ourselves though? Modern web features such as <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules">ESM</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script/type/importmap">import maps</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/Web_Components">Web Components</a>, <a href="https://developer.chrome.com/docs/css-ui/declarative-shadow-dom">declarative shadow DOM</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_nesting/Using_CSS_nesting">nested styles</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties">CSS variables</a>, etc. enable building nice smooth experiences by writing plain HTML, CSS and JavaScript, no build tools involved. Perhaps its time to adopt a <a href="https://world.hey.com/dhh/you-can-t-get-faster-than-no-build-7a44131c">"no build"</a> approach, embracing the simplicity and speed of the modern web.</p>
 <hr>
@@ -166,7 +262,7 @@ h5 + p {
 </style>
 
 <h5 id="q-isnt-this-just-another-build-tool">Q: Isn't this just another build tool?<menu role="toolbar"><button ref="?" aria-label="copy link" class="icon">🔗</button></menu></h5>
-<p><strong>A</strong>: It is, but a really thin and invisible one. With the exception of layouting, using and not using <code>pree</code> gets you basically the same website. <code>pree</code> just speeds the website up by pre-rendering it.</p>
+<p><strong>A</strong>: It is, but a really thin and invisible one. With the exception of layouting, it virtually ships your code as is. No need for bundlers, transpilers, sourcemaps, or other devtools. Your plain code is enough.</p>
 <h5 id="q-what-if-i-want-to-write-markdown">Q: What if I want to write Markdown?<menu role="toolbar"><button ref="?" aria-label="copy link" class="icon">🔗</button></menu></h5>
 <p><strong>A</strong>: You can. Just use a web components like <a href="https://zerodevx.github.io/zero-md/">zero-md</a>. Load it <code>build-only</code> so that your users get prebuilt HTML and dont have to download a markdown parser.</p>
 <pre><code class="language-html hljs language-xml" data-highlighted="yes"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">build-only</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"module"</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"https://esm.sh/zero-md"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
@@ -226,7 +322,7 @@ TLDR:
         font-style: italic;
         text-decoration: none;
         color: inherit;
-      }</style><a ref="?" target="_blank" href="https://github.com/loreanvictor/pree/commit/0069d5ede3f090e9c885d2a7614b4aa5df641dbf">Updated at <span ref="?">Feb 04, 2024</span> <br>for <span ref="?">pree</span> version <span ref="?">0.1.9</span></a></template></change-history>
+      }</style><a ref="?" target="_blank" href="https://github.com/loreanvictor/pree/commit/57926e262578ae0603d1002c8ad44c45e35c75cb">Updated at <span ref="?">Feb 10, 2024</span> <br>for <span ref="?">pree</span> version <span ref="?">0.1.18</span></a></template></change-history>
 
 <br>
 
@@ -298,7 +394,7 @@ TLDR:
 
 
 
-<div style="display: flex" class="local-style-0922um15533u" data-local-style="local-style-0922um15533u"><style>.local-style-0922um15533u[data-local-style=local-style-0922um15533u] { 
+<div style="display: flex" class="local-style-6siq3m8plnw" data-local-style="local-style-6siq3m8plnw"><style>.local-style-6siq3m8plnw[data-local-style=local-style-6siq3m8plnw] { 
  
     b {
       opacity: .35;
