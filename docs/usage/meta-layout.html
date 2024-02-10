@@ -39,21 +39,31 @@ layout: ./_layout.html
 <p>Some Content</p>
 ```
 
-<br>
+🖕 When prebuilding this HTML, `pree` will:
+1. Resolve and load `./_layout.html`,
+2. Insert content of the page into the `&lt;slot&gt;` element in the layout,
+3. Override metadata that is provided in the front matter.
 
-**Front matter** is a [YAML](https://yaml.org/) block at the top of a file, specifying title of the page, layout of the page, or any other page-specific metadata. If some metadata is provided in the front matter and the layout, the one in the front matter is used.
+<br>
 
 </m-d>
 
-<emo-li>
-  <span slot="emo">⚖️</span> Front matter MUST be the first string in your file,
-</emo-li>
-<emo-li>
-  <span slot="emo">⚖️</span> Front matter MUST be valid YAML,
-</emo-li>
-<emo-li>
-  <span slot="emo">⚖️</span> Front matter must be set between tripple-dashed lines.
-</emo-li>
+<blockquote>
+  <m-d>
+**Front matter** is a [YAML](https://yaml.org/) block at the top of a file, specifying title of the page, layout of the page, or any other page-specific metadata. If some metadata is provided in the front matter and the layout, the one in the front matter is used.
+  </m-d>
+
+  <emo-li>
+    <span slot="emo">⚖️</span> Front matter MUST be the first string in your file,
+  </emo-li>
+  <emo-li>
+    <span slot="emo">⚖️</span> Front matter MUST be valid YAML,
+  </emo-li>
+  <emo-li>
+    <span slot="emo">⚖️</span> Front matter must be set between tripple-dashed lines.
+  </emo-li>
+  <br>
+</blockquote>
 
 <m-d>
 
