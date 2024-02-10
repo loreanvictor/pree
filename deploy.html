@@ -51,10 +51,83 @@
     </aside>
     <main>
       <m-d><h2 id="deploying-your-website">Deploying Your Website<menu role="toolbar"><button ref="?" aria-label="copy link" class="icon">🔗</button></menu></h2>
-<p>Websites built with <code>pree</code> are static files without any specific server requirements. Host them anywhere you can host static files. It is customary to incorporate the build step into your deployment process as well. Here are some examples of popular deployment providers and how you can integrate <code>pree</code> into their deployment process.</p>
+<p><code>pree</code> simplifies website deployment by generating static files, eliminating the need for specific server setups (thats the benefit of going no-build in general). This allows for deployment on any platform that supports static file hosting. For efficiency, it's practical to include the build step within your deployment process. Below are guides for integrating <code>pree</code> with several common static hosting platforms.</p>
+<emo-li>
+ <span slot="emo">🚀</span>
+ <m-d><p><a href="deploy#github-pages">GitHub Pages</a></p>
+<template shadowrootmode="open"><slot></slot></template></m-d>
+<template shadowrootmode="open">
+  <style>
+  .holder {
+    display: flex;
+    gap: 1rem;
+    align-items: baseline;
+
+    & > span {
+      width: 1.2rem;
+      text-align: center;
+      display: inline-block;
+    }
+  }
+
+  </style>
+  <div class="holder">
+    <span><slot name="emo"></slot></span>
+    <div><slot></slot></div>
+  </div>
+</template></emo-li>
+<emo-li>
+ <span slot="emo">🐙</span>
+ <m-d><p><a href="deploy#surge">Surge</a></p>
+<template shadowrootmode="open"><slot></slot></template></m-d>
+<template shadowrootmode="open">
+  <style>
+  .holder {
+    display: flex;
+    gap: 1rem;
+    align-items: baseline;
+
+    & > span {
+      width: 1.2rem;
+      text-align: center;
+      display: inline-block;
+    }
+  }
+
+  </style>
+  <div class="holder">
+    <span><slot name="emo"></slot></span>
+    <div><slot></slot></div>
+  </div>
+</template></emo-li>
+<emo-li>
+ <span slot="emo" style="font-size: 1.2rem">▲</span>
+ <m-d><p><a href="deploy#vercel">Vercel</a></p>
+<template shadowrootmode="open"><slot></slot></template></m-d>
+<template shadowrootmode="open">
+  <style>
+  .holder {
+    display: flex;
+    gap: 1rem;
+    align-items: baseline;
+
+    & > span {
+      width: 1.2rem;
+      text-align: center;
+      display: inline-block;
+    }
+  }
+
+  </style>
+  <div class="holder">
+    <span><slot name="emo"></slot></span>
+    <div><slot></slot></div>
+  </div>
+</template></emo-li>
+
 <hr>
 <h3 id="github-pages">GitHub Pages<menu role="toolbar"><button ref="?" aria-label="copy link" class="icon">🔗</button></menu></h3>
-<p><a href="https://pages.github.com/">GitHub Pages</a> are one of the easiest methods of deploying a static website, specifically for personal or open-source projects. You can use <a href="https://github.com/features/actions">GitHub Actions</a> to automatically prebuild and deploy your website upon commits.</p>
+<p><a href="https://pages.github.com/">GitHub Pages</a> is one of the easiest methods of deploying a static website, specifically for personal or open-source projects. Use it with <a href="https://github.com/features/actions">GitHub Actions</a> to automatically prebuild and deploy your website upon commits.</p>
 <emo-li>
  <span slot="emo">📜</span>
  <m-d><p><strong>STEP 1</strong>: Add a <code>.github/workflows/docs.yml</code> file to your project.</p>
@@ -65,6 +138,12 @@
     display: flex;
     gap: 1rem;
     align-items: baseline;
+
+    & > span {
+      width: 1.2rem;
+      text-align: center;
+      display: inline-block;
+    }
   }
 
   </style>
@@ -84,6 +163,12 @@
     display: flex;
     gap: 1rem;
     align-items: baseline;
+
+    & > span {
+      width: 1.2rem;
+      text-align: center;
+      display: inline-block;
+    }
   }
 
   </style>
@@ -137,6 +222,12 @@
     display: flex;
     gap: 1rem;
     align-items: baseline;
+
+    & > span {
+      width: 1.2rem;
+      text-align: center;
+      display: inline-block;
+    }
   }
 
   </style>
@@ -149,9 +240,36 @@
 <blockquote>
 <p>You must have Github Pages configured on your repository. <a href="https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site">Check this guide</a> on how to do it.</p>
 </blockquote>
+<blockquote>
+ <emo-li>
+ <span slot="emo">✨</span>
+ <m-d><p>This website is hosted on GitHub Pages using <a href="https://github.com/loreanvictor/pree/blob/main/.github/workflows/docs.yml">a similar workflow</a>.</p>
+<template shadowrootmode="open"><slot></slot></template></m-d>
+ <template shadowrootmode="open">
+  <style>
+  .holder {
+    display: flex;
+    gap: 1rem;
+    align-items: baseline;
+
+    & > span {
+      width: 1.2rem;
+      text-align: center;
+      display: inline-block;
+    }
+  }
+
+  </style>
+  <div class="holder">
+    <span><slot name="emo"></slot></span>
+    <div><slot></slot></div>
+  </div>
+</template></emo-li>
+</blockquote>
+
 <hr>
 <h3 id="surge">Surge<menu role="toolbar"><button ref="?" aria-label="copy link" class="icon">🔗</button></menu></h3>
-<p><a href="https://surge.sh/">Surge</a> is an extremely easy methods of deploying a static website.</p>
+<p><a href="https://surge.sh/">Surge</a> is another easy method of deploying a static website.</p>
 <emo-li>
  <span slot="emo">🏗️</span>
  <m-d><p><strong>STEP 1</strong>: build with <code>pree</code>:</p>
@@ -162,6 +280,12 @@
     display: flex;
     gap: 1rem;
     align-items: baseline;
+
+    & > span {
+      width: 1.2rem;
+      text-align: center;
+      display: inline-block;
+    }
   }
 
   </style>
@@ -183,6 +307,12 @@
     display: flex;
     gap: 1rem;
     align-items: baseline;
+
+    & > span {
+      width: 1.2rem;
+      text-align: center;
+      display: inline-block;
+    }
   }
 
   </style>
@@ -204,6 +334,12 @@
     display: flex;
     gap: 1rem;
     align-items: baseline;
+
+    & > span {
+      width: 1.2rem;
+      text-align: center;
+      display: inline-block;
+    }
   }
 
   </style>
@@ -218,21 +354,44 @@
 <br>
 
 <blockquote>
-<p>😎   <a href="https://pree.surge.sh">This copy</a> of this website is built and deployed to Surge using the same method.</p>
-</blockquote>
-<blockquote>
 <p>Surge ignores .* and _* files by default (among other files and paths). Add a <a href="https://surge.sh/help/ignoring-files-and-directories"><code>.surgeignore</code></a> file to your project to customize this behavior.</p>
 </blockquote>
+<blockquote>
+ <emo-li>
+ <span slot="emo">✨</span>
+ <m-d><p>This website is also <a href="https://github.com/loreanvictor/pree/blob/d6c44c9a349dde326654ac9e77a7a7ad7d1c1f75/package.json#L20">deployed to Surge using this method</a> (<a href="https://pree.surge.sh">https://pree.surge.sh</a>).</p>
+<template shadowrootmode="open"><slot></slot></template></m-d>
+ <template shadowrootmode="open">
+  <style>
+  .holder {
+    display: flex;
+    gap: 1rem;
+    align-items: baseline;
+
+    & > span {
+      width: 1.2rem;
+      text-align: center;
+      display: inline-block;
+    }
+  }
+
+  </style>
+  <div class="holder">
+    <span><slot name="emo"></slot></span>
+    <div><slot></slot></div>
+  </div>
+</template></emo-li>
+</blockquote>
+
 <hr>
 <h3 id="vercel">Vercel<menu role="toolbar"><button ref="?" aria-label="copy link" class="icon">🔗</button></menu></h3>
 <p><code>pree</code> uses <a href="https://pptr.dev/">Puppeteer</a> to generate the static files. Vercel has a <a href="https://pptr.dev/troubleshooting#running-puppeteer-on-aws-lambda">known issue</a> with Puppeteer (as well as all AWS powered build pipelines), so you need to prebuild the site in another environment, for example your own machine, before deploying it to Vercel.</p>
-<p>Configure your project to build with <code>pree</code>. Either go the your Vercel dashboard project setting at
-<code>Projects &gt; Settings &gt; General</code> and set the following configuration:</p>
+<p>Configure your project to build with <code>pree</code>. Either go the your Vercel dashboard project setting and set the build configuration similar to the following:</p>
 <img src=".images/vercel-config.png" alt="vercel config screenshot" width="100%">
 
 <br>
 
-<p>Or, in your Vercel config files, ensue the following:</p>
+<p>Or, in your Vercel config files, add a config like this:</p>
 <pre><code class="language-json hljs" data-highlighted="yes"> <span class="hljs-punctuation">{</span>
    <span class="hljs-attr">"installCommand"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"npm i -g pree@latest"</span><span class="hljs-punctuation">,</span>
    <span class="hljs-attr">"buildCommand"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"pree build"</span><span class="hljs-punctuation">,</span>
@@ -243,13 +402,19 @@
 
 <emo-li>
  <span slot="emo">👀</span>
- Execute the following to deploy:
+ Execute the following to deploy a preview:
 <template shadowrootmode="open">
   <style>
   .holder {
     display: flex;
     gap: 1rem;
     align-items: baseline;
+
+    & > span {
+      width: 1.2rem;
+      text-align: center;
+      display: inline-block;
+    }
   }
 
   </style>
@@ -275,6 +440,12 @@
     display: flex;
     gap: 1rem;
     align-items: baseline;
+
+    & > span {
+      width: 1.2rem;
+      text-align: center;
+      display: inline-block;
+    }
   }
 
   </style>
@@ -291,9 +462,31 @@
 <br>
 
 <blockquote>
-<p>😎   <a href="https://pree-view.vercel.app">This copy</a> of this website is built and deployed to Vercel using the same method.</p>
-</blockquote>
+ <emo-li>
+ <span slot="emo">✨</span>
+ <m-d><p>This website is also <a href="https://github.com/loreanvictor/pree/blob/d6c44c9a349dde326654ac9e77a7a7ad7d1c1f75/package.json#L19">deployed to Vercel using this method</a> (<a href="https://pree-view.vercel.app">https://pree-view.vercel.app</a>).</p>
 <template shadowrootmode="open"><slot></slot></template></m-d>
+ <template shadowrootmode="open">
+  <style>
+  .holder {
+    display: flex;
+    gap: 1rem;
+    align-items: baseline;
+
+    & > span {
+      width: 1.2rem;
+      text-align: center;
+      display: inline-block;
+    }
+  }
+
+  </style>
+  <div class="holder">
+    <span><slot name="emo"></slot></span>
+    <div><slot></slot></div>
+  </div>
+</template></emo-li>
+</blockquote><template shadowrootmode="open"><slot></slot></template></m-d>
 
 <br>
 <change-history><template shadowrootmode="open"><style>a {
@@ -304,7 +497,7 @@
         font-style: italic;
         text-decoration: none;
         color: inherit;
-      }</style><a ref="?" target="_blank" href="https://github.com/loreanvictor/pree/commit/d6c44c9a349dde326654ac9e77a7a7ad7d1c1f75">Updated at <span ref="?">Feb 10, 2024</span> <br>for <span ref="?">pree</span> version <span ref="?">0.1.17</span></a></template></change-history>
+      }</style><a ref="?" target="_blank" href="https://github.com/loreanvictor/pree/commit/5474512088dada9ca9b425834d49edd9bd241abb">Updated at <span ref="?">Feb 10, 2024</span> <br>for <span ref="?">pree</span> version <span ref="?">0.1.17</span></a></template></change-history>
 <br>
       <prev-next><template shadowrootmode="open"><link rel="stylesheet" href="https://unpkg.com/nokss"><link rel="stylesheet" href="https://unpkg.com/graphis/font/graphis.css"><style>i {
       font-family: 'graphis', sans-serif;
@@ -374,7 +567,7 @@
 
 
 
-<div style="display: flex" class="local-style-ebo3n0iycu"><style>.local-style-ebo3n0iycu { 
+<div style="display: flex" class="local-style-270w8s26inu"><style>.local-style-270w8s26inu { 
  
     b {
       opacity: .35;

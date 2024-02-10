@@ -65,6 +65,12 @@
     display: flex;
     gap: 1rem;
     align-items: baseline;
+
+    & > span {
+      width: 1.2rem;
+      text-align: center;
+      display: inline-block;
+    }
   }
 
   </style>
@@ -81,6 +87,12 @@
     display: flex;
     gap: 1rem;
     align-items: baseline;
+
+    & > span {
+      width: 1.2rem;
+      text-align: center;
+      display: inline-block;
+    }
   }
 
   </style>
@@ -97,6 +109,12 @@
     display: flex;
     gap: 1rem;
     align-items: baseline;
+
+    & > span {
+      width: 1.2rem;
+      text-align: center;
+      display: inline-block;
+    }
   }
 
   </style>
@@ -127,6 +145,12 @@
     display: flex;
     gap: 1rem;
     align-items: baseline;
+
+    & > span {
+      width: 1.2rem;
+      text-align: center;
+      display: inline-block;
+    }
   }
 
   </style>
@@ -143,6 +167,12 @@
     display: flex;
     gap: 1rem;
     align-items: baseline;
+
+    & > span {
+      width: 1.2rem;
+      text-align: center;
+      display: inline-block;
+    }
   }
 
   </style>
@@ -159,6 +189,12 @@
     display: flex;
     gap: 1rem;
     align-items: baseline;
+
+    & > span {
+      width: 1.2rem;
+      text-align: center;
+      display: inline-block;
+    }
   }
 
   </style>
@@ -175,6 +211,12 @@
     display: flex;
     gap: 1rem;
     align-items: baseline;
+
+    & > span {
+      width: 1.2rem;
+      text-align: center;
+      display: inline-block;
+    }
   }
 
   </style>
@@ -226,12 +268,35 @@ the content is not prebuilt. To double check the performance of your prebuilt we
 </code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
 <pre><code class="language-bash hljs" data-highlighted="yes">pree check         <span class="hljs-comment"># 👈 this is equal to `pree check site`</span>
 </code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
-<br>
+<br><template shadowrootmode="open"><slot></slot></template></m-d>
 
 <blockquote>
-<p>📖 <a href="usage/config">Read this</a> for a comprehensive list of options.</p>
-</blockquote>
+  <emo-li>
+    <span slot="emo">📖</span>
+    <m-d><p><a href="usage/config">Read this</a> for a comprehensive list of options.</p>
 <template shadowrootmode="open"><slot></slot></template></m-d>
+  <template shadowrootmode="open">
+  <style>
+  .holder {
+    display: flex;
+    gap: 1rem;
+    align-items: baseline;
+
+    & > span {
+      width: 1.2rem;
+      text-align: center;
+      display: inline-block;
+    }
+  }
+
+  </style>
+  <div class="holder">
+    <span><slot name="emo"></slot></span>
+    <div><slot></slot></div>
+  </div>
+</template></emo-li>
+</blockquote>
+
 
 <br>
 
@@ -243,7 +308,7 @@ the content is not prebuilt. To double check the performance of your prebuilt we
         font-style: italic;
         text-decoration: none;
         color: inherit;
-      }</style><a ref="?" target="_blank" href="https://github.com/loreanvictor/pree/commit/f1bde2096973806bae13525ce558c1a08bac9adf">Updated at <span ref="?">Feb 07, 2024</span> <br>for <span ref="?">pree</span> version <span ref="?">0.1.13</span></a></template></change-history>
+      }</style><a ref="?" target="_blank" href="https://github.com/loreanvictor/pree/commit/5474512088dada9ca9b425834d49edd9bd241abb">Updated at <span ref="?">Feb 10, 2024</span> <br>for <span ref="?">pree</span> version <span ref="?">0.1.17</span></a></template></change-history>
 
 <br>
 
@@ -315,7 +380,7 @@ the content is not prebuilt. To double check the performance of your prebuilt we
 
 
 
-<div style="display: flex" class="local-style-3jhgw5nme36"><style>.local-style-3jhgw5nme36 { 
+<div style="display: flex" class="local-style-phljc1wkemi"><style>.local-style-phljc1wkemi { 
  
     b {
       opacity: .35;

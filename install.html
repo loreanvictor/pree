@@ -52,16 +52,78 @@
     <main>
       <m-d><h2 id="installation">Installation<menu role="toolbar"><button ref="?" aria-label="copy link" class="icon">🔗</button></menu></h2>
 <p><em>You need <a href="https://nodejs.org/en/">Node.js</a> to run <code>pree</code>.</em></p>
-<p>⬇️ Install <code>pree</code>:</p>
+<p><emo-li><span slot="emo">⬇️</span> Install <code>pree</code>:<template shadowrootmode="open">
+  <style>
+  .holder {
+    display: flex;
+    gap: 1rem;
+    align-items: baseline;
+
+    & > span {
+      width: 1.2rem;
+      text-align: center;
+      display: inline-block;
+    }
+  }
+
+  </style>
+  <div class="holder">
+    <span><slot name="emo"></slot></span>
+    <div><slot></slot></div>
+  </div>
+</template></emo-li></p>
 <pre><code class="language-bash hljs" data-highlighted="yes">npm i -g pree
 </code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
-<p>📦 Check for updates:</p>
+<p><emo-li><span slot="emo">📦</span> Check for updates:<template shadowrootmode="open">
+  <style>
+  .holder {
+    display: flex;
+    gap: 1rem;
+    align-items: baseline;
+
+    & > span {
+      width: 1.2rem;
+      text-align: center;
+      display: inline-block;
+    }
+  }
+
+  </style>
+  <div class="holder">
+    <span><slot name="emo"></slot></span>
+    <div><slot></slot></div>
+  </div>
+</template></emo-li></p>
 <pre><code class="language-bash hljs" data-highlighted="yes">pree version          <span class="hljs-comment"># tells you if you need to update</span>
 </code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
 <pre><code class="language-bash hljs" data-highlighted="yes">npm i -g pree@latest
 </code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
 <hr>
-<p>🚀 You can also use <a href="https://www.npmjs.com/package/npx">npx</a> to run <code>pree</code> without installing it:</p>
+<emo-li>
+  <span slot="emo">🚀</span>
+  <m-d><p>You can also use <a href="https://www.npmjs.com/package/npx">npx</a> to run <code>pree</code> without installing it:</p>
+<template shadowrootmode="open"><slot></slot></template></m-d>
+<template shadowrootmode="open">
+  <style>
+  .holder {
+    display: flex;
+    gap: 1rem;
+    align-items: baseline;
+
+    & > span {
+      width: 1.2rem;
+      text-align: center;
+      display: inline-block;
+    }
+  }
+
+  </style>
+  <div class="holder">
+    <span><slot name="emo"></slot></span>
+    <div><slot></slot></div>
+  </div>
+</template></emo-li>
+
 <pre><code class="language-bash hljs" data-highlighted="yes">npx pree view
 </code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
 <br><template shadowrootmode="open"><slot></slot></template></m-d>
@@ -74,7 +136,7 @@
         font-style: italic;
         text-decoration: none;
         color: inherit;
-      }</style><a ref="?" target="_blank" href="https://github.com/loreanvictor/pree/commit/0069d5ede3f090e9c885d2a7614b4aa5df641dbf">Updated at <span ref="?">Feb 04, 2024</span> <br>for <span ref="?">pree</span> version <span ref="?">0.1.9</span></a></template></change-history>
+      }</style><a ref="?" target="_blank" href="https://github.com/loreanvictor/pree/commit/5474512088dada9ca9b425834d49edd9bd241abb">Updated at <span ref="?">Feb 10, 2024</span> <br>for <span ref="?">pree</span> version <span ref="?">0.1.17</span></a></template></change-history>
 
 <br>
       <prev-next><template shadowrootmode="open"><link rel="stylesheet" href="https://unpkg.com/nokss"><link rel="stylesheet" href="https://unpkg.com/graphis/font/graphis.css"><style>i {
@@ -145,7 +207,7 @@
 
 
 
-<div style="display: flex" class="local-style-p7lldgy82g"><style>.local-style-p7lldgy82g { 
+<div style="display: flex" class="local-style-uxkup7zmwr"><style>.local-style-uxkup7zmwr { 
  
     b {
       opacity: .35;

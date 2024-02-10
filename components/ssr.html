@@ -65,6 +65,12 @@
     display: flex;
     gap: 1rem;
     align-items: baseline;
+
+    & > span {
+      width: 1.2rem;
+      text-align: center;
+      display: inline-block;
+    }
   }
 
   </style>
@@ -81,6 +87,12 @@
     display: flex;
     gap: 1rem;
     align-items: baseline;
+
+    & > span {
+      width: 1.2rem;
+      text-align: center;
+      display: inline-block;
+    }
   }
 
   </style>
@@ -138,12 +150,36 @@
 
 customElements.<span class="hljs-title function_">define</span>(<span class="hljs-string">'a-button'</span>, <span class="hljs-title class_">AButton</span>)
 </code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
-<br>
+<br><template shadowrootmode="open"><slot></slot></template></m-d>
 
 <blockquote>
-<p>📖 <a href="https://developer.chrome.com/docs/css-ui/declarative-shadow-dom#component_hydration">Read this</a> for more info on hydration with declarative shadow DOM.</p>
-</blockquote>
+
+<emo-li>
+  <span slot="emo">📖</span>
+  <m-d><p><a href="https://developer.chrome.com/docs/css-ui/declarative-shadow-dom#component_hydration">Read this</a> for more info on hydration with declarative shadow DOM.</p>
 <template shadowrootmode="open"><slot></slot></template></m-d>
+<template shadowrootmode="open">
+  <style>
+  .holder {
+    display: flex;
+    gap: 1rem;
+    align-items: baseline;
+
+    & > span {
+      width: 1.2rem;
+      text-align: center;
+      display: inline-block;
+    }
+  }
+
+  </style>
+  <div class="holder">
+    <span><slot name="emo"></slot></span>
+    <div><slot></slot></div>
+  </div>
+</template></emo-li>
+
+</blockquote>
 
 <br>
 <change-history><template shadowrootmode="open"><style>a {
@@ -154,7 +190,7 @@ customElements.<span class="hljs-title function_">define</span>(<span class="hlj
         font-style: italic;
         text-decoration: none;
         color: inherit;
-      }</style><a ref="?" target="_blank" href="https://github.com/loreanvictor/pree/commit/f1bde2096973806bae13525ce558c1a08bac9adf">Updated at <span ref="?">Feb 07, 2024</span> <br>for <span ref="?">pree</span> version <span ref="?">0.1.13</span></a></template></change-history>
+      }</style><a ref="?" target="_blank" href="https://github.com/loreanvictor/pree/commit/5474512088dada9ca9b425834d49edd9bd241abb">Updated at <span ref="?">Feb 10, 2024</span> <br>for <span ref="?">pree</span> version <span ref="?">0.1.17</span></a></template></change-history>
 <br>
       <prev-next><template shadowrootmode="open"><link rel="stylesheet" href="https://unpkg.com/nokss"><link rel="stylesheet" href="https://unpkg.com/graphis/font/graphis.css"><style>i {
       font-family: 'graphis', sans-serif;
@@ -224,7 +260,7 @@ customElements.<span class="hljs-title function_">define</span>(<span class="hlj
 
 
 
-<div style="display: flex" class="local-style-6jiwm096vih"><style>.local-style-6jiwm096vih { 
+<div style="display: flex" class="local-style-mistddtc79o"><style>.local-style-mistddtc79o { 
  
     b {
       opacity: .35;
