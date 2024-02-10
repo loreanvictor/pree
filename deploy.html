@@ -52,80 +52,61 @@
     <main>
       <m-d><h2 id="deploying-your-website">Deploying Your Website<menu role="toolbar"><button ref="?" aria-label="copy link" class="icon">🔗</button></menu></h2>
 <p><code>pree</code> simplifies website deployment by generating static files, eliminating the need for specific server setups (thats the benefit of going no-build in general). This allows for deployment on any platform that supports static file hosting. For efficiency, it's practical to include the build step within your deployment process. Below are guides for integrating <code>pree</code> with several common static hosting platforms.</p>
+<!--
 <emo-li>
- <span slot="emo">🚀</span>
- <m-d><p><a href="deploy#github-pages">GitHub Pages</a></p>
-<template shadowrootmode="open"><slot></slot></template></m-d>
-<template shadowrootmode="open">
-  <style>
-  .holder {
-    display: flex;
-    gap: 1rem;
-    align-items: baseline;
-
-    & > span {
-      width: 1.2rem;
-      text-align: center;
-      display: inline-block;
-    }
-  }
-
-  </style>
-  <div class="holder">
-    <span><slot name="emo"></slot></span>
-    <div><slot></slot></div>
-  </div>
-</template></emo-li>
+<span slot="emo">🚀</span>
+<m-d>[GitHub Pages](deploy#github-pages)</m-d>
+</emo-li>
 <emo-li>
- <span slot="emo">🐙</span>
- <m-d><p><a href="deploy#surge">Surge</a></p>
-<template shadowrootmode="open"><slot></slot></template></m-d>
-<template shadowrootmode="open">
-  <style>
-  .holder {
-    display: flex;
-    gap: 1rem;
-    align-items: baseline;
-
-    & > span {
-      width: 1.2rem;
-      text-align: center;
-      display: inline-block;
-    }
-  }
-
-  </style>
-  <div class="holder">
-    <span><slot name="emo"></slot></span>
-    <div><slot></slot></div>
-  </div>
-</template></emo-li>
+<span slot="emo">🐙</span>
+<m-d>[Surge](deploy#surge)</m-d>
+</emo-li>
 <emo-li>
- <span slot="emo" style="font-size: 1.2rem">▲</span>
- <m-d><p><a href="deploy#vercel">Vercel</a></p>
-<template shadowrootmode="open"><slot></slot></template></m-d>
-<template shadowrootmode="open">
-  <style>
-  .holder {
-    display: flex;
-    gap: 1rem;
-    align-items: baseline;
+<span slot="emo" style="font-size: 1.2rem">▲</span>
+<m-d>[Vercel](deploy#vercel)</m-d>
+</emo-li>
+--><template shadowrootmode="open"><slot></slot></template></m-d>
 
-    & > span {
-      width: 1.2rem;
-      text-align: center;
-      display: inline-block;
+<section role="feed" aria-orientation="horizontal" class="local-style-4xby9qlzic6" data-local-style="local-style-4xby9qlzic6"><style>.local-style-4xby9qlzic6[data-local-style=local-style-4xby9qlzic6] { 
+ 
+    @media (max-width: 800px) {
+      & {
+        display: block;
+      }
     }
-  }
 
-  </style>
-  <div class="holder">
-    <span><slot name="emo"></slot></span>
-    <div><slot></slot></div>
-  </div>
-</template></emo-li>
+    img {
+      background: #fffdf9;
+      border: .2rem solid #fffdf9;
+    }
 
-<hr>
+     a {
+      text-decoration: none !important;
+     }
+   
+ }</style>
+  
+  <article>
+    <address>
+      <img src="https://www.svgrepo.com/show/512317/github-142.svg">
+      <a href="deploy.html#github-pages">GitHub Pages</a>
+    </address>
+  </article>
+  <article>
+    <address>
+      <img src="https://www.svgrepo.com/show/354411/surge.svg">
+      <a href="deploy.html#surge">Surge</a>
+    </address>
+  </article>
+  <article>
+    <address>
+      <img src="https://www.svgrepo.com/show/327408/logo-vercel.svg">
+      <a href="deploy.html#vercel">Vercel</a>
+    </address>
+  </article>
+</section>
+
+<m-d><hr>
 <h3 id="github-pages">GitHub Pages<menu role="toolbar"><button ref="?" aria-label="copy link" class="icon">🔗</button></menu></h3>
 <p><a href="https://pages.github.com/">GitHub Pages</a> is one of the easiest methods of deploying a static website, specifically for personal or open-source projects. Use it with <a href="https://github.com/features/actions">GitHub Actions</a> to automatically prebuild and deploy your website upon commits.</p>
 <emo-li>
@@ -385,7 +366,7 @@
 
 <hr>
 <h3 id="vercel">Vercel<menu role="toolbar"><button ref="?" aria-label="copy link" class="icon">🔗</button></menu></h3>
-<p><code>pree</code> uses <a href="https://pptr.dev/">Puppeteer</a> to generate the static files. Vercel has a <a href="https://pptr.dev/troubleshooting#running-puppeteer-on-aws-lambda">known issue</a> with Puppeteer (as well as all AWS powered build pipelines), so you need to prebuild the site in another environment, for example your own machine, before deploying it to Vercel.</p>
+<p><a href="https://vercel.com/">Vercel</a> is another popular platform for deploying static websites. Unfortunately, its build pipleline has a <a href="https://pptr.dev/troubleshooting#running-puppeteer-on-aws-lambda">known issue</a> with <a href="https://pptr.dev">Puppeteer</a>, so you need to prebuild the site in another environment like your own machine or within GitHub Actions, before deploying it to Vercel.</p>
 <p>Configure your project to build with <code>pree</code>. Either go the your Vercel dashboard project setting and set the build configuration similar to the following:</p>
 <img src=".images/vercel-config.png" alt="vercel config screenshot" width="100%">
 
@@ -497,7 +478,7 @@
         font-style: italic;
         text-decoration: none;
         color: inherit;
-      }</style><a ref="?" target="_blank" href="https://github.com/loreanvictor/pree/commit/5474512088dada9ca9b425834d49edd9bd241abb">Updated at <span ref="?">Feb 10, 2024</span> <br>for <span ref="?">pree</span> version <span ref="?">0.1.17</span></a></template></change-history>
+      }</style><a ref="?" target="_blank" href="https://github.com/loreanvictor/pree/commit/5e7349f69265196f006945efef692ad67bfd1baf">Updated at <span ref="?">Feb 10, 2024</span> <br>for <span ref="?">pree</span> version <span ref="?">0.1.17</span></a></template></change-history>
 <br>
       <prev-next><template shadowrootmode="open"><link rel="stylesheet" href="https://unpkg.com/nokss"><link rel="stylesheet" href="https://unpkg.com/graphis/font/graphis.css"><style>i {
       font-family: 'graphis', sans-serif;
@@ -567,7 +548,7 @@
 
 
 
-<div style="display: flex" class="local-style-270w8s26inu"><style>.local-style-270w8s26inu { 
+<div style="display: flex" class="local-style-024r42xx3xya" data-local-style="local-style-024r42xx3xya"><style>.local-style-024r42xx3xya[data-local-style=local-style-024r42xx3xya] { 
  
     b {
       opacity: .35;
