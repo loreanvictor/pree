@@ -111,3 +111,6 @@ site
 .surge
 
 **/test/__tmp__
+
+# Local Netlify folder
+.netlify
