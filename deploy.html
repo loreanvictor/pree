@@ -8,7 +8,7 @@
 
     <link rel="stylesheet" href="https://unpkg.com/nokss">
     <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://esm.sh/graphis/font/graphis.css">
-    <link rel="stylesheet" href="./theme.css">
+    <link rel="stylesheet" href="./assets/styles/theme.css">
     
     <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/highlight.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github-dark.min.css">
@@ -19,8 +19,8 @@
     
     
 
-    <script src="./.components/emo-li.js" type="module"></script>
-    <script type="module" src="./.components/prev-next.js"></script>
+    <script src="./assets/components/emo-li.js" type="module"></script>
+    <script type="module" src="./assets/components/prev-next.js"></script>
   <title>pree: deploy</title>
           
         <link rel="prefetch" href="components/publish.html"><link rel="prefetch" href="api.html"></head>
@@ -54,7 +54,7 @@
 <p><code>pree</code> simplifies website deployment by generating static files, eliminating the need for specific server setups (thats the benefit of going no-build in general). This allows for deployment on any platform that supports static file hosting. For efficiency, it's practical to include the build step within your deployment process. Below are guides for integrating <code>pree</code> with several common static hosting platforms.</p>
 <template shadowrootmode="open"><slot></slot></template></m-d>
 
-<section role="feed" aria-orientation="horizontal" class="local-style-e50jmqyiv0e" data-local-style="local-style-e50jmqyiv0e"><style>.local-style-e50jmqyiv0e[data-local-style=local-style-e50jmqyiv0e] { 
+<section role="feed" aria-orientation="horizontal" class="local-style-1eq2zas8y1z" data-local-style="local-style-1eq2zas8y1z"><style>.local-style-1eq2zas8y1z[data-local-style=local-style-1eq2zas8y1z] { 
  
     @media (max-width: 800px) {
       & {
@@ -64,161 +64,136 @@
 
     img {
       border-radius: 0;
-    }
 
-    @media (prefers-color-scheme: dark) {
-      img {
-        filter: invert(1);
+      @media (prefers-color-scheme: dark) {
+        & {
+          filter: invert(1);
+        }
       }
     }
 
-     a {
+    a {
       text-decoration: none !important;
-     }
+    }
+
+    article {
+      border: 1px solid color-mix(in srgb, var(--text-color) 10%, var(--background-color));
+
+      address {
+        margin: .5rem;
+  
+        img {
+          width: 32px;
+          height: 32px;
+        }
+      }
+  
+      [role="toolbar"] {
+        top: 0; bottom: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+    }
    
  }</style>
   
   <article>
-    <address>
-      <img src="https://www.svgrepo.com/show/512317/github-142.svg">
-      <a href="deploy.html#github-pages">GitHub Pages</a>
-    </address>
+    <header>
+      <address>
+        <img src="https://www.svgrepo.com/show/512317/github-142.svg">
+        <a href="deploy.html#github-pages">GitHub Pages</a>
+      </address>
+      <menu role="toolbar">
+        <a role="button" href="https://pages.github.com/" target="_blank" aria-label="open">🔗</a>
+      </menu>
+    </header>
   </article>
   <article>
-    <address>
-      <img src="https://www.svgrepo.com/show/354411/surge.svg">
-      <a href="deploy.html#surge">Surge</a>
-    </address>
+    <header>
+      <address>
+        <img src="https://www.svgrepo.com/show/354411/surge.svg">
+        <a href="deploy.html#surge">Surge</a>
+      </address>
+      <menu role="toolbar">
+        <a role="button" href="https://www.surge.sh/" target="_blank" aria-label="open">🔗</a>
+      </menu>
+    </header>
   </article>
   <article>
-    <address>
-      <img src="https://www.svgrepo.com/show/327408/logo-vercel.svg">
-      <a href="deploy.html#vercel">Vercel</a>
-    </address>
+    <header>
+      <address>
+        <img src="https://www.svgrepo.com/show/327408/logo-vercel.svg">
+        <a href="deploy.html#vercel">Vercel</a>
+      </address>
+      <menu role="toolbar">
+        <a role="button" href="https://www.vercel.com/" target="_blank" aria-label="open">🔗</a>
+      </menu>
+    </header>
+  </article>
+  <article>
+    <header>
+      <address>
+        <img src="https://www.svgrepo.com/show/354110/netlify.svg">
+        <a href="deploy.html#netlify">Netlify</a>
+      </address>
+      <menu role="toolbar">
+        <a role="button" href="https://www.netlify.com/" target="_blank" aria-label="open">🔗</a>
+      </menu>
+    </header>
   </article>
 </section>
 
 <m-d><hr>
 <h3 id="github-pages">GitHub Pages<menu role="toolbar"><button ref="?" aria-label="copy link" class="icon">🔗</button></menu></h3>
-<p><a href="https://pages.github.com/">GitHub Pages</a> is one of the easiest methods of deploying a static website, specifically for personal or open-source projects. Use it with <a href="https://github.com/features/actions">GitHub Actions</a> to automatically prebuild and deploy your website upon commits.</p>
-<emo-li>
- <span slot="emo">📜</span>
- <m-d><p><strong>STEP 1</strong>: Add a <code>.github/workflows/docs.yml</code> file to your project.</p>
-<template shadowrootmode="open"><slot></slot></template></m-d>
-<template shadowrootmode="open">
-  <style>
-  .holder {
-    display: flex;
-    gap: 1rem;
-    align-items: baseline;
+<p><a href="https://pages.github.com/">GitHub Pages</a> is a great choice if your code is hosted on GitHub.</p>
+<p>👉 Add a workflow like this for automatic deployment to GitHub Pages on commit.</p>
+<pre><code class="language-yml hljs language-yaml" data-highlighted="yes"><span class="hljs-comment"># .github/workflows/docs.yml</span>
+<span class="hljs-attr">name:</span> <span class="hljs-string">docs</span>
+<span class="hljs-attr">on:</span>
+  <span class="hljs-attr">push:</span>
+    <span class="hljs-attr">branches:</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-string">main</span>
+<span class="hljs-attr">permissions:</span>
+  <span class="hljs-attr">contents:</span> <span class="hljs-string">write</span>
+<span class="hljs-attr">jobs:</span>
+  <span class="hljs-attr">run:</span>
+    <span class="hljs-attr">runs-on:</span> <span class="hljs-string">ubuntu-latest</span>
+    <span class="hljs-attr">steps:</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Checkout</span>
+        <span class="hljs-attr">uses:</span> <span class="hljs-string">actions/checkout@v2</span>
+        <span class="hljs-attr">with:</span>
+          <span class="hljs-attr">fetch-depth:</span> <span class="hljs-number">0</span>
 
-    & > span {
-      width: 1.2rem;
-      text-align: center;
-      display: inline-block;
-    }
-  }
+      <span class="hljs-bullet">-</span> <span class="hljs-attr">uses:</span> <span class="hljs-string">actions/setup-node@v2</span>
+        <span class="hljs-attr">with:</span>
+          <span class="hljs-attr">node-version:</span> <span class="hljs-string">'16'</span>
 
-  </style>
-  <div class="holder">
-    <span><slot name="emo"></slot></span>
-    <div><slot></slot></div>
-  </div>
-</template></emo-li>
+      <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Install</span> <span class="hljs-string">pree</span>
+        <span class="hljs-attr">run:</span> <span class="hljs-string">npm</span> <span class="hljs-string">i</span> <span class="hljs-string">-g</span> <span class="hljs-string">pree</span>
 
-<emo-li>
-<span slot="emo">⚙️</span>
- <m-d><p><strong>STEP 2</strong>: Fill the workflow file as follows:</p>
-<template shadowrootmode="open"><slot></slot></template></m-d>
-<template shadowrootmode="open">
-  <style>
-  .holder {
-    display: flex;
-    gap: 1rem;
-    align-items: baseline;
+      <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Build</span> <span class="hljs-string">docs</span>
+        <span class="hljs-attr">run:</span> <span class="hljs-string">pree</span> <span class="hljs-string">build</span>
 
-    & > span {
-      width: 1.2rem;
-      text-align: center;
-      display: inline-block;
-    }
-  }
-
-  </style>
-  <div class="holder">
-    <span><slot name="emo"></slot></span>
-    <div><slot></slot></div>
-  </div>
-</template></emo-li>
-
-<pre><code class="language-yml hljs language-yaml" data-highlighted="yes"> <span class="hljs-attr">name:</span> <span class="hljs-string">docs</span>
- <span class="hljs-attr">on:</span>
-   <span class="hljs-attr">push:</span>
-     <span class="hljs-attr">branches:</span>
-       <span class="hljs-bullet">-</span> <span class="hljs-string">main</span>
- <span class="hljs-attr">permissions:</span>
-   <span class="hljs-attr">contents:</span> <span class="hljs-string">write</span>
- <span class="hljs-attr">jobs:</span>
-   <span class="hljs-attr">run:</span>
-     <span class="hljs-attr">runs-on:</span> <span class="hljs-string">ubuntu-latest</span>
-     <span class="hljs-attr">steps:</span>
-       <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Checkout</span>
-         <span class="hljs-attr">uses:</span> <span class="hljs-string">actions/checkout@v2</span>
-         <span class="hljs-attr">with:</span>
-           <span class="hljs-attr">fetch-depth:</span> <span class="hljs-number">0</span>
-
-       <span class="hljs-bullet">-</span> <span class="hljs-attr">uses:</span> <span class="hljs-string">actions/setup-node@v2</span>
-         <span class="hljs-attr">with:</span>
-           <span class="hljs-attr">node-version:</span> <span class="hljs-string">'16'</span>
-
-       <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Install</span> <span class="hljs-string">pree</span>
-         <span class="hljs-attr">run:</span> <span class="hljs-string">npm</span> <span class="hljs-string">i</span> <span class="hljs-string">-g</span> <span class="hljs-string">pree</span>
-
-       <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Build</span> <span class="hljs-string">docs</span>
-         <span class="hljs-attr">run:</span> <span class="hljs-string">pree</span> <span class="hljs-string">build</span>
-
-       <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-literal">No</span> <span class="hljs-string">Jekyll</span>
-         <span class="hljs-attr">run:</span> <span class="hljs-string">touch</span> <span class="hljs-string">docs/.nojekyll</span>
-       
-       <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Deploy</span> <span class="hljs-string">🚀</span>
-         <span class="hljs-attr">uses:</span> <span class="hljs-string">JamesIves/github-pages-deploy-action@v4</span>
-         <span class="hljs-attr">with:</span>
-           <span class="hljs-attr">folder:</span> <span class="hljs-string">site</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-literal">No</span> <span class="hljs-string">Jekyll</span>
+        <span class="hljs-attr">run:</span> <span class="hljs-string">touch</span> <span class="hljs-string">docs/.nojekyll</span>
+      
+      <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Deploy</span> <span class="hljs-string">🚀</span>
+        <span class="hljs-attr">uses:</span> <span class="hljs-string">JamesIves/github-pages-deploy-action@v4</span>
+        <span class="hljs-attr">with:</span>
+          <span class="hljs-attr">folder:</span> <span class="hljs-string">site</span>
 </code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
-<emo-li>
- <span slot="emo">🚀</span>
- <m-d><p><strong>STEP 3</strong>: Commit and push the workflow file to your repository.</p>
-<template shadowrootmode="open"><slot></slot></template></m-d>
-<template shadowrootmode="open">
-  <style>
-  .holder {
-    display: flex;
-    gap: 1rem;
-    align-items: baseline;
-
-    & > span {
-      width: 1.2rem;
-      text-align: center;
-      display: inline-block;
-    }
-  }
-
-  </style>
-  <div class="holder">
-    <span><slot name="emo"></slot></span>
-    <div><slot></slot></div>
-  </div>
-</template></emo-li>
+<br>
 
 <blockquote>
 <p>You must have Github Pages configured on your repository. <a href="https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site">Check this guide</a> on how to do it.</p>
 </blockquote>
 <blockquote>
- <emo-li>
- <span slot="emo">✨</span>
- <m-d><p>This website is hosted on GitHub Pages using <a href="https://github.com/loreanvictor/pree/blob/main/.github/workflows/docs.yml">a similar workflow</a>.</p>
+<emo-li>
+<span slot="emo">✨</span>
+<m-d><p>This website is hosted on GitHub Pages using <a href="https://github.com/loreanvictor/pree/blob/main/.github/workflows/docs.yml">a similar workflow</a>.</p>
 <template shadowrootmode="open"><slot></slot></template></m-d>
- <template shadowrootmode="open">
+<template shadowrootmode="open">
   <style>
   .holder {
     display: flex;
@@ -243,71 +218,16 @@
 <hr>
 <h3 id="surge">Surge<menu role="toolbar"><button ref="?" aria-label="copy link" class="icon">🔗</button></menu></h3>
 <p><a href="https://surge.sh/">Surge</a> is another easy method of deploying a static website.</p>
-<emo-li>
- <span slot="emo">🏗️</span>
- <m-d><p><strong>STEP 1</strong>: build with <code>pree</code>:</p>
-<template shadowrootmode="open"><slot></slot></template></m-d>
-<template shadowrootmode="open">
-  <style>
-  .holder {
-    display: flex;
-    gap: 1rem;
-    align-items: baseline;
-
-    & > span {
-      width: 1.2rem;
-      text-align: center;
-      display: inline-block;
-    }
-  }
-
-  </style>
-  <div class="holder">
-    <span><slot name="emo"></slot></span>
-    <div><slot></slot></div>
-  </div>
-</template></emo-li>
-
-<pre><code class="language-bash hljs" data-highlighted="yes">pree build docs site
+<pre><code class="language-bash hljs" data-highlighted="yes">pree build docs site                                  <span class="hljs-comment"># 🏗️ build</span>
 </code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
-<emo-li>
- <span slot="emo">🚀</span>
- <m-d><p><strong>STEP 2</strong>: deploy with surge</p>
-<template shadowrootmode="open"><slot></slot></template></m-d>
-<template shadowrootmode="open">
-  <style>
-  .holder {
-    display: flex;
-    gap: 1rem;
-    align-items: baseline;
-
-    & > span {
-      width: 1.2rem;
-      text-align: center;
-      display: inline-block;
-    }
-  }
-
-  </style>
-  <div class="holder">
-    <span><slot name="emo"></slot></span>
-    <div><slot></slot></div>
-  </div>
-</template></emo-li>
-
-<pre><code class="language-bash hljs" data-highlighted="yes">surge site --domain https://my-website.surge.sh
+<pre><code class="language-bash hljs" data-highlighted="yes">surge site --domain https://my-website.surge.sh       <span class="hljs-comment"># 🚀 deploy</span>
 </code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
-<br>
+<br><template shadowrootmode="open"><slot></slot></template></m-d>
 
 <blockquote>
-<p>Surge ignores .* and _* files by default (among other files and paths). Add a <a href="https://surge.sh/help/ignoring-files-and-directories"><code>.surgeignore</code></a> file to your project to customize this behavior.</p>
-</blockquote>
-<blockquote>
- <emo-li>
- <span slot="emo">✨</span>
- <m-d><p>This website is also <a href="https://github.com/loreanvictor/pree/blob/d6c44c9a349dde326654ac9e77a7a7ad7d1c1f75/package.json#L20">deployed to Surge using this method</a> (<a href="https://pree.surge.sh">https://pree.surge.sh</a>).</p>
+  <emo-li><span slot="emo">💡</span> <m-d><p>Surge ignores <code>.*</code> and <code>_*</code> files by default. Add a <a href="https://surge.sh/help/ignoring-files-and-directories"><code>.surgeignore</code></a> file to your project to customize this behavior.</p>
 <template shadowrootmode="open"><slot></slot></template></m-d>
- <template shadowrootmode="open">
+  <template shadowrootmode="open">
   <style>
   .holder {
     display: flex;
@@ -329,26 +249,78 @@
 </template></emo-li>
 </blockquote>
 
-<hr>
+<blockquote>
+  <emo-li><span slot="emo">🤖</span> <m-d><p>To deploy to Surge from a CI/CD pipeline, you need to provide <code>SURGE_LOGIN</code> (your email) and <code>SURGE_TOKEN</code> (obtained with <code>surge token</code> command) as environment variables. <a href="https://surge.sh/help/integrating-with-travis-ci">Check this guide</a> for more info.</p>
+<template shadowrootmode="open"><slot></slot></template></m-d>
+  <template shadowrootmode="open">
+  <style>
+  .holder {
+    display: flex;
+    gap: 1rem;
+    align-items: baseline;
+
+    & > span {
+      width: 1.2rem;
+      text-align: center;
+      display: inline-block;
+    }
+  }
+
+  </style>
+  <div class="holder">
+    <span><slot name="emo"></slot></span>
+    <div><slot></slot></div>
+  </div>
+</template></emo-li>
+</blockquote>
+
+<blockquote>
+  <emo-li>
+  <span slot="emo">✨</span>
+  <m-d><p>This website is also <a href="https://github.com/loreanvictor/pree/blob/d6c44c9a349dde326654ac9e77a7a7ad7d1c1f75/package.json#L20">deployed to Surge using this method</a> (<a href="https://pree.surge.sh">https://pree.surge.sh</a>).</p>
+<template shadowrootmode="open"><slot></slot></template></m-d>
+  <template shadowrootmode="open">
+  <style>
+  .holder {
+    display: flex;
+    gap: 1rem;
+    align-items: baseline;
+
+    & > span {
+      width: 1.2rem;
+      text-align: center;
+      display: inline-block;
+    }
+  }
+
+  </style>
+  <div class="holder">
+    <span><slot name="emo"></slot></span>
+    <div><slot></slot></div>
+  </div>
+</template></emo-li>
+</blockquote>
+
+<m-d><hr>
 <h3 id="vercel">Vercel<menu role="toolbar"><button ref="?" aria-label="copy link" class="icon">🔗</button></menu></h3>
-<p><a href="https://vercel.com/">Vercel</a> is another popular platform for deploying static websites. Unfortunately, its build pipleline has a <a href="https://pptr.dev/troubleshooting#running-puppeteer-on-aws-lambda">known issue</a> with <a href="https://pptr.dev">Puppeteer</a>, so you need to prebuild the site in another environment like your own machine or within GitHub Actions, before deploying it to Vercel.</p>
+<p><a href="https://vercel.com/">Vercel</a> is a popular platform for deploying websites. Unfortunately, its build pipleline has a <a href="https://pptr.dev/troubleshooting#running-puppeteer-on-aws-lambda">known issue</a> with <a href="https://pptr.dev">Puppeteer</a>, and <code>pree</code> uses Puppeteer under the hood, so you need to prebuild the site in another environment like your own machine or within GitHub Actions, before deploying it to Vercel.</p>
 <p>Configure your project to build with <code>pree</code>. Either go the your Vercel dashboard project setting and set the build configuration similar to the following:</p>
-<img src=".images/vercel-config.png" alt="vercel config screenshot" width="100%">
+<img src="assets/images/vercel-config.png" alt="vercel config screenshot" width="100%">
 
 <br>
 
 <p>Or, in your Vercel config files, add a config like this:</p>
-<pre><code class="language-json hljs" data-highlighted="yes"> <span class="hljs-punctuation">{</span>
-   <span class="hljs-attr">"installCommand"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"npm i -g pree@latest"</span><span class="hljs-punctuation">,</span>
-   <span class="hljs-attr">"buildCommand"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"pree build"</span><span class="hljs-punctuation">,</span>
-   <span class="hljs-attr">"outputDirectory"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"site"</span>
- <span class="hljs-punctuation">}</span>
+<pre><code class="language-json hljs" data-highlighted="yes"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">"installCommand"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"npm i -g pree@latest"</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"buildCommand"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"pree build"</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"outputDirectory"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"site"</span>
+<span class="hljs-punctuation">}</span>
 </code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
 <br>
 
 <emo-li>
- <span slot="emo">👀</span>
- Execute the following to deploy a preview:
+<span slot="emo">👀</span>
+Execute the following to deploy a preview:
 <template shadowrootmode="open">
   <style>
   .holder {
@@ -377,8 +349,8 @@
 <br>
 
 <emo-li>
- <span slot="emo">🚀</span>
- <m-d><p>Execute the following to deploy to production:</p>
+<span slot="emo">🚀</span>
+<m-d><p>Execute the following to deploy to production:</p>
 <template shadowrootmode="open"><slot></slot></template></m-d>
 <template shadowrootmode="open">
   <style>
@@ -405,14 +377,14 @@
 </code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
 <pre><code class="language-bash hljs" data-highlighted="yes">vercel deploy --prebuilt --prod
 </code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
-<br>
+<br><template shadowrootmode="open"><slot></slot></template></m-d>
 
 <blockquote>
- <emo-li>
- <span slot="emo">✨</span>
- <m-d><p>This website is also <a href="https://github.com/loreanvictor/pree/blob/d6c44c9a349dde326654ac9e77a7a7ad7d1c1f75/package.json#L19">deployed to Vercel using this method</a> (<a href="https://pree-view.vercel.app">https://pree-view.vercel.app</a>).</p>
+  <emo-li>
+    <span slot="emo">🤖</span>
+    <m-d><p>To deploy to Vercel from a CI/CD pipeline, you need to provide <code>VERCEL_ORG_ID</code>, <code>VERCEL_PROJECT_ID</code>, and <code>VERCEL_TOKEN</code>. <a href="https://vercel.com/guides/how-can-i-use-github-actions-with-vercel">Read this guide</a> for more information.</p>
 <template shadowrootmode="open"><slot></slot></template></m-d>
- <template shadowrootmode="open">
+  <template shadowrootmode="open">
   <style>
   .holder {
     display: flex;
@@ -432,7 +404,120 @@
     <div><slot></slot></div>
   </div>
 </template></emo-li>
-</blockquote><template shadowrootmode="open"><slot></slot></template></m-d>
+</blockquote>
+
+<blockquote>
+  <emo-li>
+  <span slot="emo">✨</span>
+  <m-d><p>This website is also <a href="https://github.com/loreanvictor/pree/blob/d6c44c9a349dde326654ac9e77a7a7ad7d1c1f75/package.json#L19">deployed to Vercel using this method</a> (<a href="https://pree-view.vercel.app">https://pree-view.vercel.app</a>).</p>
+<template shadowrootmode="open"><slot></slot></template></m-d>
+  <template shadowrootmode="open">
+  <style>
+  .holder {
+    display: flex;
+    gap: 1rem;
+    align-items: baseline;
+
+    & > span {
+      width: 1.2rem;
+      text-align: center;
+      display: inline-block;
+    }
+  }
+
+  </style>
+  <div class="holder">
+    <span><slot name="emo"></slot></span>
+    <div><slot></slot></div>
+  </div>
+</template></emo-li>
+</blockquote>
+
+
+<m-d><hr>
+<h3 id="netlify">Netlify<menu role="toolbar"><button ref="?" aria-label="copy link" class="icon">🔗</button></menu></h3>
+<p><a href="https://netlify.com">Netlify</a> is another popular website hosting service. Similar to <a href="deploy.html#vercel">Vercel</a>, you need to prebuild the site before deploying it to Netlify, as its build pipeline can't run Puppeteer (and hence <code>pree build</code>).</p>
+<pre><code class="language-bash hljs" data-highlighted="yes">pree build docs site                                 <span class="hljs-comment"># 🏗️ build</span>
+</code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
+<pre><code class="language-bash hljs" data-highlighted="yes">netlify deploy --<span class="hljs-built_in">dir</span>=site --prod                     <span class="hljs-comment"># 🚀 deploy</span>
+</code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
+<br><template shadowrootmode="open"><slot></slot></template></m-d>
+
+<blockquote>
+  <emo-li><span slot="emo">😡</span><m-d><p>Netlify ignores <code>.*</code> files and there is, apparently, no way around it.</p>
+<template shadowrootmode="open"><slot></slot></template></m-d>
+  <template shadowrootmode="open">
+  <style>
+  .holder {
+    display: flex;
+    gap: 1rem;
+    align-items: baseline;
+
+    & > span {
+      width: 1.2rem;
+      text-align: center;
+      display: inline-block;
+    }
+  }
+
+  </style>
+  <div class="holder">
+    <span><slot name="emo"></slot></span>
+    <div><slot></slot></div>
+  </div>
+</template></emo-li>
+</blockquote>
+
+<blockquote>
+  <emo-li>
+  <span slot="emo">🤖</span><m-d><p>To deploy to Netlify from a CI/CD pipeline, you need to provide <code>NETLIFY_AUTH_TOKEN</code> as an environment variable. <a href="https://docs.netlify.com/cli/get-started/#obtain-a-token-in-the-netlify-ui">Read this guide</a> for more information.</p>
+<template shadowrootmode="open"><slot></slot></template></m-d>
+  <template shadowrootmode="open">
+  <style>
+  .holder {
+    display: flex;
+    gap: 1rem;
+    align-items: baseline;
+
+    & > span {
+      width: 1.2rem;
+      text-align: center;
+      display: inline-block;
+    }
+  }
+
+  </style>
+  <div class="holder">
+    <span><slot name="emo"></slot></span>
+    <div><slot></slot></div>
+  </div>
+</template></emo-li>
+</blockquote>
+
+<blockquote>
+  <emo-li>
+  <span slot="emo">✨</span>
+  <m-d><p>This website is also <a href="https://github.com/loreanvictor/pree/blob/d6c44c9a349dde326654ac9e77a7a7ad7d1c1f75/package.json#L21">deployed to Netlify using this method</a> (<a href="https://pree-view.netlify.app">https://pree-view.netlify.app</a>).</p>
+<template shadowrootmode="open"><slot></slot></template></m-d><template shadowrootmode="open">
+  <style>
+  .holder {
+    display: flex;
+    gap: 1rem;
+    align-items: baseline;
+
+    & > span {
+      width: 1.2rem;
+      text-align: center;
+      display: inline-block;
+    }
+  }
+
+  </style>
+  <div class="holder">
+    <span><slot name="emo"></slot></span>
+    <div><slot></slot></div>
+  </div>
+</template></emo-li></blockquote>
 
 <br>
 <change-history><template shadowrootmode="open"><style>a {
@@ -443,7 +528,7 @@
         font-style: italic;
         text-decoration: none;
         color: inherit;
-      }</style><a ref="?" target="_blank" href="https://github.com/loreanvictor/pree/commit/4169a54b8efd7f01a47c26cdb94975a3f9aae518">Updated at <span ref="?">Feb 11, 2024</span> <br>for <span ref="?">pree</span> version <span ref="?">0.1.19</span></a></template></change-history>
+      }</style><a ref="?" target="_blank" href="https://github.com/loreanvictor/pree/commit/b55c8c2cb0a9d8f2efe0573061e7b4dd2d485a6b">Updated at <span ref="?">Feb 11, 2024</span> <br>for <span ref="?">pree</span> version <span ref="?">0.1.19</span></a></template></change-history>
 <br>
       <prev-next><template shadowrootmode="open"><link rel="stylesheet" href="https://unpkg.com/nokss"><link rel="stylesheet" href="https://unpkg.com/graphis/font/graphis.css"><style>i {
       font-family: 'graphis', sans-serif;
@@ -509,11 +594,11 @@
       </section></template></prev-next>
     </main>
     <footer>
-      <use-html src="./_footer.html"><base href="/pree/"><script type="module" src="./.components/menu-toggle.js"></script>
+      <use-html src="./_footer.html"><base href="/pree/"><script type="module" src="./assets/components/menu-toggle.js"></script>
 
 
 
-<div style="display: flex" class="local-style-y71y5k4m8r" data-local-style="local-style-y71y5k4m8r"><style>.local-style-y71y5k4m8r[data-local-style=local-style-y71y5k4m8r] { 
+<div style="display: flex" class="local-style-ae0m60yyg3o" data-local-style="local-style-ae0m60yyg3o"><style>.local-style-ae0m60yyg3o[data-local-style=local-style-ae0m60yyg3o] { 
  
     b {
       opacity: .35;
@@ -610,7 +695,7 @@
 </div><template shadowrootmode="open"><slot></slot></template></use-html>
     </footer>
     
-    <script type="module" src="copy.js"></script>
+    <script type="module" src="./assets/scripts/copy.js"></script>
   
 
 </body></html>

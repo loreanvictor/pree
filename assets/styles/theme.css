@@ -50,7 +50,7 @@ body>aside:first-of-type {
   }
 }
 
-.icon {
+.icon, button[aria-label], [role="button"][aria-label] {
   font-family: graphis, sans-serif;
   font-size: 1rem;
 }
