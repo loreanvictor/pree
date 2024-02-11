@@ -183,6 +183,7 @@ provides <a href="components/build-env">build-env APIs</a>.</p>
 <pre><code class="language-ts hljs language-typescript" data-highlighted="yes"><span class="hljs-keyword">type</span> <span class="hljs-title class_">RunningServer</span> = {
   <span class="hljs-attr">port</span>: <span class="hljs-built_in">number</span>
   <span class="hljs-attr">server</span>: http.<span class="hljs-property">Server</span>
+  <span class="hljs-attr">close</span>: <span class="hljs-function">() =&gt;</span> <span class="hljs-title class_">Promise</span>&lt;<span class="hljs-built_in">void</span>&gt;
 }
 </code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
 <br>
@@ -252,11 +253,23 @@ Takes the same options as <code>serve()</code>.</p>
 
 <span class="hljs-keyword">await</span> <span class="hljs-title function_">view</span>({ <span class="hljs-attr">root</span>: <span class="hljs-string">'docs'</span> })
 </code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
+<br>
+
+<p>Type signature &amp; options:</p>
+<pre><code class="language-ts hljs language-typescript" data-highlighted="yes"><span class="hljs-keyword">function</span> <span class="hljs-title function_">view</span>(<span class="hljs-params">options?: ViewOptions</span>): <span class="hljs-title class_">Promise</span>&lt;<span class="hljs-title class_">RunningViewer</span>&gt;
+</code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
+<pre><code class="language-ts hljs language-typescript" data-highlighted="yes"><span class="hljs-keyword">type</span> <span class="hljs-title class_">ViewOptions</span> = <span class="hljs-title class_">ServeOptions</span>
+</code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
+<pre><code class="language-ts hljs language-typescript" data-highlighted="yes"><span class="hljs-keyword">type</span> <span class="hljs-title class_">RunningViewer</span> = <span class="hljs-title class_">RunningServer</span> &amp; {
+  <span class="hljs-attr">watcher</span>: chokidar.<span class="hljs-property">FSWatcher</span>
+  <span class="hljs-attr">ws</span>: <span class="hljs-title class_">WebSocketServer</span>
+}
+</code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
 <hr>
 <h3 id="proper-use-cases">Proper Use Cases<menu role="toolbar"><button ref="?" aria-label="copy link" class="icon">🔗</button></menu></h3>
-<p>The JavaScript API can be used to create other applications on top of / using <code>pree</code>. That said, <code>pree</code> is still built and optimized for a very specific use case: prebuilding a static collection of HTML files. It is NOT optimised for other use cases such as server-side rendering of dynamic content.</p>
-<p>To be more specific: <code>pree</code> takes a considerable amount of time to prebuild a single HTML page. Its pre-rendering needs to be as close as possible to a real initial load by a browser, which specifically means waiting for all scripts and components, and scripts and components loaded by them, so on, to finish.</p>
-<p>In case of a fixed set of HTML files this is easily offset by parallelisation: the same headless browser is used to load and prebuild multiple pages concurrently. However that optimisation might not work in other contexts and use cases, so take that into consideration when you are thinking about using <code>pree</code> in a different application.</p>
+<p>Using the JavaScript API you can build various applications on top of <code>pree</code>. That said, <code>pree</code> is still built and optimized for a prebuilding a static collection of HTML files. It is NOT optimised for other use cases such as server-side rendering of dynamic content.</p>
+<p>Specifically: <code>pree</code> prebuilds HTML files and speeds up loading by moving the wait time of the initial page load from client side to the build time. Based on the page, this can be pretty time consuming. In case of a fixed set of HTML files this overhead is resolved by prebuilding multiple pages concurrently. However that optimisation might not work in other contexts and use cases, so take that into consideration when you are using <code>pree</code>'s APIs.</p>
+<p></p>
 <template shadowrootmode="open"><slot></slot></template></m-d>
 
 <br>
@@ -268,7 +281,7 @@ Takes the same options as <code>serve()</code>.</p>
         font-style: italic;
         text-decoration: none;
         color: inherit;
-      }</style><a ref="?" target="_blank" href="https://github.com/loreanvictor/pree/commit/861d32fc80024e7587f7d41e1a1d332f314c9507">Updated at <span ref="?">Feb 10, 2024</span> <br>for <span ref="?">pree</span> version <span ref="?">0.1.18</span></a></template></change-history>
+      }</style><a ref="?" target="_blank" href="https://github.com/loreanvictor/pree/commit/94ea71a66b5b0631bbdf0c7effcb786b4f8b3991">Updated at <span ref="?">Feb 11, 2024</span> <br>for <span ref="?">pree</span> version <span ref="?">0.1.19</span></a></template></change-history>
 <br>
 
 
@@ -340,7 +353,7 @@ Takes the same options as <code>serve()</code>.</p>
 
 
 
-<div style="display: flex" class="local-style-i4s359djzs" data-local-style="local-style-i4s359djzs"><style>.local-style-i4s359djzs[data-local-style=local-style-i4s359djzs] { 
+<div style="display: flex" class="local-style-hlezph95ppn" data-local-style="local-style-hlezph95ppn"><style>.local-style-hlezph95ppn[data-local-style=local-style-hlezph95ppn] { 
  
     b {
       opacity: .35;
