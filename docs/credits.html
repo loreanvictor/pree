@@ -9,6 +9,8 @@ layout: ./_layout.html
 
 `pree` depends on the following open-source projects to work, so hats off to their creators and contributors:
 
+</m-d>
+
 <div style="overflow: auto; width: 100%">
 <table>
   <local-style>
@@ -25,84 +27,101 @@ layout: ./_layout.html
       p {
         margin-bottom: -0.5rem;
       }
+      img {
+        --color: color-mix(in srgb, var(--text-color) 10%, var(--background-color));
+
+        width: 2.5rem;
+        height: 2.5rem;
+        object-fit: contain;
+        vertical-align: -.75rem;
+        margin-right: .5rem;
+        background: var(--color);
+        border: .25rem solid var(--color);
+        border-radius: 3px;
+
+        @media (prefers-color-scheme: dark) {
+          &[inv] {
+            --color: #e5e5e5;
+            filter: invert(1);
+          }
+        }
+      }
     }
   </local-style>
   <tr>
-    <td>🪆&ensp;<a href="https://pptr.dev/" target="_blank">Puppeteer</a></td>
+    <td><img src="https://www.svgrepo.com/show/354228/puppeteer.svg" /><a href="https://pptr.dev/" target="_blank">Puppeteer</a></td>
     <td><m-d>Node.js API for Chrome. Used to prebuild HTML files and pre-render web components using [declarative shadow DOM](https://developer.chrome.com/docs/css-ui/declarative-shadow-dom).</m-d></td>
   </tr>
   <tr>
-    <td>🫕&ensp;<a href="https://koajs.com/" target="_blank">Koa</a></td>
+    <td><img src="https://www.svgrepo.com/show/353975/koa.svg" inv/><a href="https://koajs.com/" target="_blank">Koa</a></td>
     <td><m-d>Next generation web framework for Node.js. Used for serving files either in `pree view` or in `pree build`. Koa middlewares also handle [metadata and layouts](usage/meta-layout)</m-d></td>
   </tr>
   <tr>
-    <td>🖌️&ensp;<a href="https://cheerio.js.org/" target="_blank">Cheerio</a></td>
+    <td><img src="https://cheerio.js.org/img/orange-c.svg" /><a href="https://cheerio.js.org/" target="_blank">Cheerio</a></td>
     <td><m-d>The fast, flexible & elegant library for parsing and manipulating HTML and XML. Used for manipulating HTML files for [layouting](usage/meta-layout), [removing build-only scripts](usage/build-only-scripts), injecting code, etc.</m-d></td>
   </tr>
   <tr>
-    <td>🎭&ensp;<a href="https://github.com/broofa/mime" target="_blank">Mime</a></td>
+    <td><img src="https://www.svgrepo.com/show/452295/file-create.svg" inv/><a href="https://github.com/broofa/mime" target="_blank">Mime</a></td>
     <td><m-d>Mime types for JavaScript. Used for determining file types, proper response types, and detecting HTML files that need to be layouted / manipulated, etc.</m-d></td>
   </tr>
   <tr>
-    <td>🕵️&ensp;<a href="https://github.com/isaacs/minimatch" target="_blank">minimatch</a></td>
+    <td><img src="https://www.svgrepo.com/show/361284/regex.svg" inv/><a href="https://github.com/isaacs/minimatch" target="_blank">minimatch</a></td>
     <td><m-d>A glob matcher in javascript. Used for figuring out which files to build.</m-d></td>
   </tr>
   <tr>
-    <td>🎨&ensp;<a href="https://github.com/chalk/chalk" target="_blank">Chalk</a></td>
+    <td><img src="https://www.svgrepo.com/show/353545/chalk.svg" /><a href="https://github.com/chalk/chalk" target="_blank">Chalk</a></td>
     <td><m-d>Terminal string styling done right. Used to do right terminal styling.</m-d></td>
   </tr>
   <tr>
-    <td>⏱️&ensp;<a href="https://github.com/vercel/ms" target="_blank">ms</a></td>
+    <td><img src="https://www.svgrepo.com/show/361653/vercel-logo.svg" inv/><a href="https://github.com/vercel/ms" target="_blank">ms</a></td>
     <td><m-d>Tiny millisecond conversion utility. Used to display how long CLI tasks take.</m-d></td>
   </tr>
   <tr>
-    <td>☠️&ensp;<a href="https://yargs.js.org/" target="_blank">Yargs</a></td>
+    <td><img src="https://yargs.js.org/images/yargs-logo.png" inv /><a href="https://yargs.js.org/" target="_blank">Yargs</a></td>
     <td><m-d>Yargs be a node.js library fer hearties tryin' ter parse optstrings.</m-d></td>
   </tr>
   <tr>
-    <td>📙&ensp;<a href="https://eemeli.org/yaml/" target="_blank">YAML</a></td>
+    <td><img src="https://upload.wikimedia.org/wikipedia/commons/5/5a/Official_YAML_Logo.svg" inv/><a href="https://eemeli.org/yaml/" target="_blank">YAML</a></td>
     <td><m-d>YAML parser and stringifier for JavaScript. Used for parsing [config](usage/config).</m-d></td>
   </tr>
   <tr>
-    <td>💳&ensp;<a href="https://github.com/jonschlinkert/gray-matter" target="_blank">gray-matter</a></td>
+    <td><img src="https://www.svgrepo.com/show/373698/jekyll.svg" /><a href="https://github.com/jonschlinkert/gray-matter" target="_blank">gray-matter</a></td>
     <td><m-d>Smarter YAML front matter parser. Used for handling [metadata](usage/meta-layout)</m-d></td>
   </tr>
   <tr>
-    <td>🗄️&ensp;<a href="https://github.com/steveukx/git-js" target="_blank">Simple Git</a></td>
+    <td><img src="https://www.svgrepo.com/show/452210/git.svg" /><a href="https://github.com/steveukx/git-js" target="_blank">Simple Git</a></td>
     <td><m-d>A light weight interface for running git commands in any node.js application. Used for providing git related [build environment APIs](components/build-env).</m-d></td>
   </tr>
   <tr>
-    <td>🗺️&ensp;<a href="https://github.com/IonicaBizau/git-url-parse" target="_blank">git url parse</a></td>
+    <td><img src="https://www.svgrepo.com/show/505044/url-checker.svg" inv/><a href="https://github.com/IonicaBizau/git-url-parse" target="_blank">git url parse</a></td>
     <td><m-d>A high level git url parser for common git providers. Used for providing git related [build environment APIs](components/build-env).</m-d></td>
   </tr>
   <tr>
-    <td>💓&ensp;<a href="https://github.com/paulmillr/chokidar" target="_blank">Chokidar</a></td>
+    <td><img src="https://www.svgrepo.com/show/312534/man-guard.svg" /><a href="https://github.com/paulmillr/chokidar" target="_blank">Chokidar</a></td>
     <td><m-d>Minimal and efficient cross-platform file watching library. Used for live-reloading.</m-d></td>
   </tr>
   <tr>
-    <td>🔌&ensp;<a href="https://github.com/websockets/ws" target="_blank">ws</a></td>
+    <td><img src="https://www.svgrepo.com/show/354553/websocket.svg" inv/><a href="https://github.com/websockets/ws" target="_blank">ws</a></td>
     <td><m-d>Simple to use, blazing fast and thoroughly tested WebSocket client and server for Node.js. Used for live-reloading.</m-d></td>
   </tr>
   <tr>
-    <td>🔍&ensp;<a href="https://www.npmjs.com/package/libnpmsearch" target="_blank">libnpmsearch</a></td>
+    <td><img src="https://www.svgrepo.com/show/354126/npm-icon.svg" /><a href="https://www.npmjs.com/package/libnpmsearch" target="_blank">libnpmsearch</a></td>
     <td><m-d>Node.js library for programmatically accessing the npm search endpoint. Used to determine the latest published version of `pree` and if an update is required.</m-d></td>
   </tr>
   <tr>
-    <td>📦&ensp;<a href="https://github.com/3rd-Eden/find-package-json" target="_blank">find-package-json</a></td>
+    <td><img src="https://www.svgrepo.com/show/458759/json.svg" inv/><a href="https://github.com/3rd-Eden/find-package-json" target="_blank">find-package-json</a></td>
     <td><m-d>Easily find package.json files. Used to determine locally installed version of `pree` and if an update is required.</m-d></td>
   </tr>
   <tr>
-    <td>🏷️&ensp;<a href="https://github.com/npm/node-semver" target="_blank">semver</a></td>
+    <td><img src="https://www.svgrepo.com/show/486905/version-history.svg" inv/><a href="https://github.com/npm/node-semver" target="_blank">semver</a></td>
     <td><m-d>The semver parser for node (the one npm uses). Used to check whether an update for `pree` is required.</m-d></td>
   </tr>
   <tr>
-    <td>⚖️&ensp;<a href="https://filesizejs.com/" target="_blank">filesize.js</a></td>
+    <td><img src="https://www.svgrepo.com/show/482792/weight-scale-2.svg" inv/><a href="https://filesizejs.com/" target="_blank">filesize.js</a></td>
     <td><m-d>JavaScript library to generate a human-readable string describing the file size. Used to display file sizes in directory view.</m-d></td>
   </tr>
 </table>
 </div>
-
-</m-d>
 
 <br>
 <change-history></change-history>

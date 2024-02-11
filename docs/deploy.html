@@ -23,7 +23,7 @@ layout: ./_layout.html
       border-radius: 0;
 
       @media (prefers-color-scheme: dark) {
-        & {
+        &:not([no-inv]) {
           filter: invert(1);
         }
       }
@@ -89,7 +89,7 @@ layout: ./_layout.html
   <article>
     <header>
       <address>
-        <img src="https://www.svgrepo.com/show/354110/netlify.svg">
+        <img src="https://www.svgrepo.com/show/354110/netlify.svg" no-inv>
         <a href="deploy.html#netlify">Netlify</a>
       </address>
       <menu role="toolbar">
