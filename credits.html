@@ -52,118 +52,139 @@
     <main>
       <m-d><h2 id="credits">Credits<menu role="toolbar"><button ref="?" aria-label="copy link" class="icon">🔗</button></menu></h2>
 <p><code>pree</code> depends on the following open-source projects to work, so hats off to their creators and contributors:</p>
-<div style="overflow: auto; width: 100%" class="local-style-ckcp4caa29p" data-local-style="local-style-ckcp4caa29p"><style>.local-style-ckcp4caa29p[data-local-style=local-style-ckcp4caa29p] { 
+<template shadowrootmode="open"><slot></slot></template></m-d>
+
+<div style="overflow: auto; width: 100%" class="local-style-eldni8iw1y5" data-local-style="local-style-eldni8iw1y5"><style>.local-style-eldni8iw1y5[data-local-style=local-style-eldni8iw1y5] { 
  
-  tr {
-    filter: none;
-  }
-  td {
-    &:first-child {
-      padding-top: 1.5rem;
+    tr {
+      filter: none;
     }
-    &:not(:first-child) {
-      white-space: pre-wrap;
+    td {
+      &:first-child {
+        padding-top: 1.5rem;
+      }
+      &:not(:first-child) {
+        white-space: pre-wrap;
+      }
+      p {
+        margin-bottom: -0.5rem;
+      }
+      img {
+        --color: color-mix(in srgb, var(--text-color) 10%, var(--background-color));
+
+        width: 2.5rem;
+        height: 2.5rem;
+        object-fit: contain;
+        vertical-align: -.75rem;
+        margin-right: .5rem;
+        background: var(--color);
+        border: .25rem solid var(--color);
+        border-radius: 3px;
+
+        @media (prefers-color-scheme: dark) {
+          &[inv] {
+            --color: #e5e5e5;
+            filter: invert(1);
+          }
+        }
+      }
     }
-    p {
-      margin-bottom: -0.5rem;
-    }
-  }
- 
+   
  }</style>
 <table>
-
-<tbody><tr>
-  <td>🪆 <a href="https://pptr.dev/" target="_blank">Puppeteer</a></td>
-  <td><m-d><p>Node.js API for Chrome. Used to prebuild HTML files and pre-render web components using <a href="https://developer.chrome.com/docs/css-ui/declarative-shadow-dom">declarative shadow DOM</a>.</p>
+  
+  <tbody><tr>
+    <td><img src="https://www.svgrepo.com/show/354228/puppeteer.svg"><a href="https://pptr.dev/" target="_blank">Puppeteer</a></td>
+    <td><m-d><p>Node.js API for Chrome. Used to prebuild HTML files and pre-render web components using <a href="https://developer.chrome.com/docs/css-ui/declarative-shadow-dom">declarative shadow DOM</a>.</p>
 <template shadowrootmode="open"><slot></slot></template></m-d></td>
-</tr>
-<tr>
-  <td>🫕 <a href="https://koajs.com/" target="_blank">Koa</a></td>
-  <td><m-d><p>Next generation web framework for Node.js. Used for serving files either in <code>pree view</code> or in <code>pree build</code>. Koa middlewares also handle <a href="usage/meta-layout">metadata and layouts</a></p>
+  </tr>
+  <tr>
+    <td><img src="https://www.svgrepo.com/show/353975/koa.svg" inv=""><a href="https://koajs.com/" target="_blank">Koa</a></td>
+    <td><m-d><p>Next generation web framework for Node.js. Used for serving files either in <code>pree view</code> or in <code>pree build</code>. Koa middlewares also handle <a href="usage/meta-layout">metadata and layouts</a></p>
 <template shadowrootmode="open"><slot></slot></template></m-d></td>
-</tr>
-<tr>
-  <td>🖌️ <a href="https://cheerio.js.org/" target="_blank">Cheerio</a></td>
-  <td><m-d><p>The fast, flexible &amp; elegant library for parsing and manipulating HTML and XML. Used for manipulating HTML files for <a href="usage/meta-layout">layouting</a>, <a href="usage/build-only-scripts">removing build-only scripts</a>, injecting code, etc.</p>
+  </tr>
+  <tr>
+    <td><img src="https://cheerio.js.org/img/orange-c.svg"><a href="https://cheerio.js.org/" target="_blank">Cheerio</a></td>
+    <td><m-d><p>The fast, flexible &amp; elegant library for parsing and manipulating HTML and XML. Used for manipulating HTML files for <a href="usage/meta-layout">layouting</a>, <a href="usage/build-only-scripts">removing build-only scripts</a>, injecting code, etc.</p>
 <template shadowrootmode="open"><slot></slot></template></m-d></td>
-</tr>
-<tr>
-  <td>🎭 <a href="https://github.com/broofa/mime" target="_blank">Mime</a></td>
-  <td><m-d><p>Mime types for JavaScript. Used for determining file types, proper response types, and detecting HTML files that need to be layouted / manipulated, etc.</p>
+  </tr>
+  <tr>
+    <td><img src="https://www.svgrepo.com/show/452295/file-create.svg" inv=""><a href="https://github.com/broofa/mime" target="_blank">Mime</a></td>
+    <td><m-d><p>Mime types for JavaScript. Used for determining file types, proper response types, and detecting HTML files that need to be layouted / manipulated, etc.</p>
 <template shadowrootmode="open"><slot></slot></template></m-d></td>
-</tr>
-<tr>
-  <td>🕵️ <a href="https://github.com/isaacs/minimatch" target="_blank">minimatch</a></td>
-  <td><m-d><p>A glob matcher in javascript. Used for figuring out which files to build.</p>
+  </tr>
+  <tr>
+    <td><img src="https://www.svgrepo.com/show/361284/regex.svg" inv=""><a href="https://github.com/isaacs/minimatch" target="_blank">minimatch</a></td>
+    <td><m-d><p>A glob matcher in javascript. Used for figuring out which files to build.</p>
 <template shadowrootmode="open"><slot></slot></template></m-d></td>
-</tr>
-<tr>
-  <td>🎨 <a href="https://github.com/chalk/chalk" target="_blank">Chalk</a></td>
-  <td><m-d><p>Terminal string styling done right. Used to do right terminal styling.</p>
+  </tr>
+  <tr>
+    <td><img src="https://www.svgrepo.com/show/353545/chalk.svg"><a href="https://github.com/chalk/chalk" target="_blank">Chalk</a></td>
+    <td><m-d><p>Terminal string styling done right. Used to do right terminal styling.</p>
 <template shadowrootmode="open"><slot></slot></template></m-d></td>
-</tr>
-<tr>
-  <td>⏱️ <a href="https://github.com/vercel/ms" target="_blank">ms</a></td>
-  <td><m-d><p>Tiny millisecond conversion utility. Used to display how long CLI tasks take.</p>
+  </tr>
+  <tr>
+    <td><img src="https://www.svgrepo.com/show/361653/vercel-logo.svg" inv=""><a href="https://github.com/vercel/ms" target="_blank">ms</a></td>
+    <td><m-d><p>Tiny millisecond conversion utility. Used to display how long CLI tasks take.</p>
 <template shadowrootmode="open"><slot></slot></template></m-d></td>
-</tr>
-<tr>
-  <td>☠️ <a href="https://yargs.js.org/" target="_blank">Yargs</a></td>
-  <td><m-d><p>Yargs be a node.js library fer hearties tryin' ter parse optstrings.</p>
+  </tr>
+  <tr>
+    <td><img src="https://yargs.js.org/images/yargs-logo.png" inv=""><a href="https://yargs.js.org/" target="_blank">Yargs</a></td>
+    <td><m-d><p>Yargs be a node.js library fer hearties tryin' ter parse optstrings.</p>
 <template shadowrootmode="open"><slot></slot></template></m-d></td>
-</tr>
-<tr>
-  <td>📙 <a href="https://eemeli.org/yaml/" target="_blank">YAML</a></td>
-  <td><m-d><p>YAML parser and stringifier for JavaScript. Used for parsing <a href="usage/config">config</a>.</p>
+  </tr>
+  <tr>
+    <td><img src="https://upload.wikimedia.org/wikipedia/commons/5/5a/Official_YAML_Logo.svg" inv=""><a href="https://eemeli.org/yaml/" target="_blank">YAML</a></td>
+    <td><m-d><p>YAML parser and stringifier for JavaScript. Used for parsing <a href="usage/config">config</a>.</p>
 <template shadowrootmode="open"><slot></slot></template></m-d></td>
-</tr>
-<tr>
-  <td>💳 <a href="https://github.com/jonschlinkert/gray-matter" target="_blank">gray-matter</a></td>
-  <td><m-d><p>Smarter YAML front matter parser. Used for handling <a href="usage/meta-layout">metadata</a></p>
+  </tr>
+  <tr>
+    <td><img src="https://www.svgrepo.com/show/373698/jekyll.svg"><a href="https://github.com/jonschlinkert/gray-matter" target="_blank">gray-matter</a></td>
+    <td><m-d><p>Smarter YAML front matter parser. Used for handling <a href="usage/meta-layout">metadata</a></p>
 <template shadowrootmode="open"><slot></slot></template></m-d></td>
-</tr>
-<tr>
-  <td>🗄️ <a href="https://github.com/steveukx/git-js" target="_blank">Simple Git</a></td>
-  <td><m-d><p>A light weight interface for running git commands in any node.js application. Used for providing git related <a href="components/build-env">build environment APIs</a>.</p>
+  </tr>
+  <tr>
+    <td><img src="https://www.svgrepo.com/show/452210/git.svg"><a href="https://github.com/steveukx/git-js" target="_blank">Simple Git</a></td>
+    <td><m-d><p>A light weight interface for running git commands in any node.js application. Used for providing git related <a href="components/build-env">build environment APIs</a>.</p>
 <template shadowrootmode="open"><slot></slot></template></m-d></td>
-</tr>
-<tr>
-  <td>🗺️ <a href="https://github.com/IonicaBizau/git-url-parse" target="_blank">git url parse</a></td>
-  <td><m-d><p>A high level git url parser for common git providers. Used for providing git related <a href="components/build-env">build environment APIs</a>.</p>
+  </tr>
+  <tr>
+    <td><img src="https://www.svgrepo.com/show/505044/url-checker.svg" inv=""><a href="https://github.com/IonicaBizau/git-url-parse" target="_blank">git url parse</a></td>
+    <td><m-d><p>A high level git url parser for common git providers. Used for providing git related <a href="components/build-env">build environment APIs</a>.</p>
 <template shadowrootmode="open"><slot></slot></template></m-d></td>
-</tr>
-<tr>
-  <td>💓 <a href="https://github.com/paulmillr/chokidar" target="_blank">Chokidar</a></td>
-  <td><m-d><p>Minimal and efficient cross-platform file watching library. Used for live-reloading.</p>
+  </tr>
+  <tr>
+    <td><img src="https://www.svgrepo.com/show/312534/man-guard.svg"><a href="https://github.com/paulmillr/chokidar" target="_blank">Chokidar</a></td>
+    <td><m-d><p>Minimal and efficient cross-platform file watching library. Used for live-reloading.</p>
 <template shadowrootmode="open"><slot></slot></template></m-d></td>
-</tr>
-<tr>
-  <td>🔌 <a href="https://github.com/websockets/ws" target="_blank">ws</a></td>
-  <td><m-d><p>Simple to use, blazing fast and thoroughly tested WebSocket client and server for Node.js. Used for live-reloading.</p>
+  </tr>
+  <tr>
+    <td><img src="https://www.svgrepo.com/show/354553/websocket.svg" inv=""><a href="https://github.com/websockets/ws" target="_blank">ws</a></td>
+    <td><m-d><p>Simple to use, blazing fast and thoroughly tested WebSocket client and server for Node.js. Used for live-reloading.</p>
 <template shadowrootmode="open"><slot></slot></template></m-d></td>
-</tr>
-<tr>
-  <td>🔍 <a href="https://www.npmjs.com/package/libnpmsearch" target="_blank">libnpmsearch</a></td>
-  <td><m-d><p>Node.js library for programmatically accessing the npm search endpoint. Used to determine the latest published version of <code>pree</code> and if an update is required.</p>
+  </tr>
+  <tr>
+    <td><img src="https://www.svgrepo.com/show/354126/npm-icon.svg"><a href="https://www.npmjs.com/package/libnpmsearch" target="_blank">libnpmsearch</a></td>
+    <td><m-d><p>Node.js library for programmatically accessing the npm search endpoint. Used to determine the latest published version of <code>pree</code> and if an update is required.</p>
 <template shadowrootmode="open"><slot></slot></template></m-d></td>
-</tr>
-<tr>
-  <td>📦 <a href="https://github.com/3rd-Eden/find-package-json" target="_blank">find-package-json</a></td>
-  <td><m-d><p>Easily find package.json files. Used to determine locally installed version of <code>pree</code> and if an update is required.</p>
+  </tr>
+  <tr>
+    <td><img src="https://www.svgrepo.com/show/458759/json.svg" inv=""><a href="https://github.com/3rd-Eden/find-package-json" target="_blank">find-package-json</a></td>
+    <td><m-d><p>Easily find package.json files. Used to determine locally installed version of <code>pree</code> and if an update is required.</p>
 <template shadowrootmode="open"><slot></slot></template></m-d></td>
-</tr>
-<tr>
-  <td>🏷️ <a href="https://github.com/npm/node-semver" target="_blank">semver</a></td>
-  <td><m-d><p>The semver parser for node (the one npm uses). Used to check whether an update for <code>pree</code> is required.</p>
+  </tr>
+  <tr>
+    <td><img src="https://www.svgrepo.com/show/486905/version-history.svg" inv=""><a href="https://github.com/npm/node-semver" target="_blank">semver</a></td>
+    <td><m-d><p>The semver parser for node (the one npm uses). Used to check whether an update for <code>pree</code> is required.</p>
 <template shadowrootmode="open"><slot></slot></template></m-d></td>
-</tr>
-<tr>
-  <td>⚖️ <a href="https://filesizejs.com/" target="_blank">filesize.js</a></td>
-  <td><m-d><p>JavaScript library to generate a human-readable string describing the file size. Used to display file sizes in directory view.</p>
+  </tr>
+  <tr>
+    <td><img src="https://www.svgrepo.com/show/482792/weight-scale-2.svg" inv=""><a href="https://filesizejs.com/" target="_blank">filesize.js</a></td>
+    <td><m-d><p>JavaScript library to generate a human-readable string describing the file size. Used to display file sizes in directory view.</p>
 <template shadowrootmode="open"><slot></slot></template></m-d></td>
-</tr>
+  </tr>
 </tbody></table>
-</div><template shadowrootmode="open"><slot></slot></template></m-d>
+</div>
 
 <br>
 <change-history><template shadowrootmode="open"><style>a {
@@ -174,7 +195,7 @@
         font-style: italic;
         text-decoration: none;
         color: inherit;
-      }</style><a ref="?" target="_blank" href="https://github.com/loreanvictor/pree/commit/46f9c554902a8ac3b925ba076e3a0036b48622e8">Updated at <span ref="?">Feb 09, 2024</span> <br>for <span ref="?">pree</span> version <span ref="?">0.1.15</span></a></template></change-history>
+      }</style><a ref="?" target="_blank" href="https://github.com/loreanvictor/pree/commit/b7f9e2930d9833b3f080a7595606eea5ada26430">Updated at <span ref="?">Feb 11, 2024</span> <br>for <span ref="?">pree</span> version <span ref="?">0.1.20</span></a></template></change-history>
 <br>
 
       <prev-next><template shadowrootmode="open"><link rel="stylesheet" href="https://unpkg.com/nokss"><link rel="stylesheet" href="https://unpkg.com/graphis/font/graphis.css"><style>i {
@@ -237,7 +258,7 @@
 
 
 
-<div style="display: flex" class="local-style-ov4yuh02iac" data-local-style="local-style-ov4yuh02iac"><style>.local-style-ov4yuh02iac[data-local-style=local-style-ov4yuh02iac] { 
+<div style="display: flex" class="local-style-x5t5h4no4a" data-local-style="local-style-x5t5h4no4a"><style>.local-style-x5t5h4no4a[data-local-style=local-style-x5t5h4no4a] { 
  
     b {
       opacity: .35;
