@@ -17,7 +17,8 @@
     "build": "npm run build-commonjs && npm run build-es",
     "build:docs": "pree build",
     "build:docs:vercel": "vercel build --prod && vercel deploy --prebuilt --prod",
-    "build:docs:surge": "pree build -c .pree.surge.yml && echo \"!.*\" > site/.surgeignore && surge site --domain https://pree.surge.sh",
+    "build:docs:surge": "pree build -c .pree.surge.yml && surge site --domain https://pree.surge.sh",
+    "build:docs:netlify": "pree build -c .pree.netlify.yml && netlify deploy --dir=site --prod",
     "prepack": "npm run build"
   },
   "files": [

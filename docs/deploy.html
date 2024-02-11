@@ -21,35 +21,81 @@ layout: ./_layout.html
 
     img {
       border-radius: 0;
-    }
 
-    @media (prefers-color-scheme: dark) {
-      img {
-        filter: invert(1);
+      @media (prefers-color-scheme: dark) {
+        & {
+          filter: invert(1);
+        }
       }
     }
 
-     a {
+    a {
       text-decoration: none !important;
-     }
+    }
+
+    article {
+      border: 1px solid color-mix(in srgb, var(--text-color) 10%, var(--background-color));
+
+      address {
+        margin: .5rem;
+  
+        img {
+          width: 32px;
+          height: 32px;
+        }
+      }
+  
+      [role="toolbar"] {
+        top: 0; bottom: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+    }
   </local-style>
   <article>
-    <address>
-      <img src="https://www.svgrepo.com/show/512317/github-142.svg">
-      <a href="deploy.html#github-pages">GitHub Pages</a>
-    </address>
+    <header>
+      <address>
+        <img src="https://www.svgrepo.com/show/512317/github-142.svg">
+        <a href="deploy.html#github-pages">GitHub Pages</a>
+      </address>
+      <menu role="toolbar">
+        <a role="button" href="https://pages.github.com/" target="_blank" aria-label="open">🔗</a>
+      </menu>
+    </header>
   </article>
   <article>
-    <address>
-      <img src="https://www.svgrepo.com/show/354411/surge.svg">
-      <a href="deploy.html#surge">Surge</a>
-    </address>
+    <header>
+      <address>
+        <img src="https://www.svgrepo.com/show/354411/surge.svg">
+        <a href="deploy.html#surge">Surge</a>
+      </address>
+      <menu role="toolbar">
+        <a role="button" href="https://www.surge.sh/" target="_blank" aria-label="open">🔗</a>
+      </menu>
+    </header>
   </article>
   <article>
-    <address>
-      <img src="https://www.svgrepo.com/show/327408/logo-vercel.svg">
-      <a href="deploy.html#vercel">Vercel</a>
-    </address>
+    <header>
+      <address>
+        <img src="https://www.svgrepo.com/show/327408/logo-vercel.svg">
+        <a href="deploy.html#vercel">Vercel</a>
+      </address>
+      <menu role="toolbar">
+        <a role="button" href="https://www.vercel.com/" target="_blank" aria-label="open">🔗</a>
+      </menu>
+    </header>
+  </article>
+  <article>
+    <header>
+      <address>
+        <img src="https://www.svgrepo.com/show/354110/netlify.svg">
+        <a href="deploy.html#netlify">Netlify</a>
+      </address>
+      <menu role="toolbar">
+        <a role="button" href="https://www.netlify.com/" target="_blank" aria-label="open">🔗</a>
+      </menu>
+    </header>
   </article>
 </section>
 
@@ -59,19 +105,12 @@ layout: ./_layout.html
 
 ### GitHub Pages
 
-[GitHub Pages](https://pages.github.com/) is one of the easiest methods of deploying a static website, specifically for personal or open-source projects. Use it with [GitHub Actions](https://github.com/features/actions) to automatically prebuild and deploy your website upon commits.
+[GitHub Pages](https://pages.github.com/) is a great choice if your code is hosted on GitHub.
 
-<emo-li>
-  <span slot="emo">📜</span>
-  <m-d>**STEP 1**: Add a `.github/workflows/docs.yml` file to your project.</m-d>
-</emo-li>
-
-<emo-li>
- <span slot="emo">⚙️</span>
-  <m-d>**STEP 2**: Fill the workflow file as follows:</m-d>
-</emo-li>
+👉 Add a workflow like this for automatic deployment to GitHub Pages on commit.
 
 ```yml
+  # .github/workflows/docs.yml
   name: docs
   on:
     push:
@@ -107,11 +146,7 @@ layout: ./_layout.html
             folder: site
 ```
 
-
-<emo-li>
-  <span slot="emo">🚀</span>
-  <m-d>**STEP 3**: Commit and push the workflow file to your repository.</m-d>
-</emo-li>
+<br>
 
 > You must have Github Pages configured on your repository. [Check this guide](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site) on how to do it.
 
@@ -130,27 +165,26 @@ layout: ./_layout.html
 [Surge](https://surge.sh/) is another easy method of deploying a static website.
 
 
-<emo-li>
-  <span slot="emo">🏗️</span>
-  <m-d>**STEP 1**: build with `pree`:</m-d>
-</emo-li>
-
 ```bash
-pree build docs site
+pree build docs site                                  # 🏗️ build
 ```
-
-<emo-li>
-  <span slot="emo">🚀</span>
-  <m-d>**STEP 2**: deploy with surge</m-d>
-</emo-li>
-
 ```bash
-surge site --domain https://my-website.surge.sh
+surge site --domain https://my-website.surge.sh       # 🚀 deploy
 ```
 
 <br>
 
-> Surge ignores .\* and _\* files by default (among other files and paths). Add a [`.surgeignore`](https://surge.sh/help/ignoring-files-and-directories) file to your project to customize this behavior.
+</m-d>
+
+<blockquote>
+  <emo-li><span slot="emo">💡</span> <m-d>Surge ignores `.*` and `_*` files by default. Add a [`.surgeignore`](https://surge.sh/help/ignoring-files-and-directories) file to your project to customize this behavior.</m-d>
+  </emo-li>
+</blockquote>
+
+<blockquote>
+  <emo-li><span slot="emo">🤖</span> <m-d>To deploy to Surge from a CI/CD pipeline, you need to provide `SURGE_LOGIN` (your email) and `SURGE_TOKEN` (obtained with `surge token` command) as environment variables. [Check this guide](https://surge.sh/help/integrating-with-travis-ci) for more info.</m-d>
+  </emo-li>
+</blockquote>
 
 <blockquote>
   <emo-li>
@@ -160,15 +194,17 @@ surge site --domain https://my-website.surge.sh
   </emo-li>
 </blockquote>
 
+<m-d>
+
 ---
 
 ### Vercel
 
-[Vercel](https://vercel.com/) is another popular platform for deploying static websites. Unfortunately, its build pipleline has a [known issue](https://pptr.dev/troubleshooting#running-puppeteer-on-aws-lambda) with [Puppeteer](https://pptr.dev), so you need to prebuild the site in another environment like your own machine or within GitHub Actions, before deploying it to Vercel.
+[Vercel](https://vercel.com/) is a popular platform for deploying websites. Unfortunately, its build pipleline has a [known issue](https://pptr.dev/troubleshooting#running-puppeteer-on-aws-lambda) with [Puppeteer](https://pptr.dev), and `pree` uses Puppeteer under the hood, so you need to prebuild the site in another environment like your own machine or within GitHub Actions, before deploying it to Vercel.
 
 Configure your project to build with `pree`. Either go the your Vercel dashboard project setting and set the build configuration similar to the following:
 
-<img src=".images/vercel-config.png" alt="vercel config screenshot" width="100%"/>
+<img src="assets/images/vercel-config.png" alt="vercel config screenshot" width="100%"/>
 
 <br>
 
@@ -212,6 +248,17 @@ vercel deploy --prebuilt --prod
 
 <br>
 
+</m-d>
+
+<blockquote>
+  <emo-li>
+    <span slot="emo">🤖</span>
+    <m-d>
+      To deploy to Vercel from a CI/CD pipeline, you need to provide `VERCEL_ORG_ID`, `VERCEL_PROJECT_ID`, and `VERCEL_TOKEN`. [Read this guide](https://vercel.com/guides/how-can-i-use-github-actions-with-vercel) for more information.
+    </m-d>
+  </emo-li>
+</blockquote>
+
 <blockquote>
   <emo-li>
   <span slot="emo">✨</span>
@@ -220,7 +267,43 @@ vercel deploy --prebuilt --prod
   </emo-li>
 </blockquote>
 
+
+<m-d>
+
+---
+
+### Netlify
+
+[Netlify](https://netlify.com) is another popular website hosting service. Similar to [Vercel](deploy.html#vercel), you need to prebuild the site before deploying it to Netlify, as its build pipeline can't run Puppeteer (and hence `pree build`).
+
+```bash
+pree build docs site                                 # 🏗️ build
+```
+```bash
+netlify deploy --dir=site --prod                     # 🚀 deploy
+```
+
+<br>
+
 </m-d>
+
+<blockquote>
+  <emo-li><span slot="emo">😡</span><m-d>Netlify ignores `.*` files and there is, apparently, no way around it.</m-d>
+  </emo-li>
+</blockquote>
+
+<blockquote>
+  <emo-li>
+  <span slot="emo">🤖</span><m-d>To deploy to Netlify from a CI/CD pipeline, you need to provide `NETLIFY_AUTH_TOKEN` as an environment variable. [Read this guide](https://docs.netlify.com/cli/get-started/#obtain-a-token-in-the-netlify-ui) for more information.
+  </m-d>
+  </emo-li>
+</blockquote>
+
+<blockquote>
+  <emo-li>
+  <span slot="emo">✨</span>
+  <m-d>This website is also [deployed to Netlify using this method](https://github.com/loreanvictor/pree/blob/d6c44c9a349dde326654ac9e77a7a7ad7d1c1f75/package.json#L21) ([https://pree-view.netlify.app](https://pree-view.netlify.app)).
+</blockquote>
 
 <br>
 <change-history></change-history>

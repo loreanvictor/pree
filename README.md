@@ -8,8 +8,8 @@
 
 <br>
 
-<img src="./docs/.images/logo-dark.svg#gh-dark-mode-only" width="192px"/>
-<img src="./docs/.images/logo-light.svg#gh-light-mode-only" width="192px"/>
+<img src="./docs/assets/images/logo-dark.svg#gh-dark-mode-only" width="192px"/>
+<img src="./docs/assets/images/logo-light.svg#gh-light-mode-only" width="192px"/>
 
 <br>
 
@@ -102,6 +102,6 @@ npm run typecheck
 <br>
 
 <div align="center">
-  <img src="docs/.images/watermark-light.svg#gh-light-mode-only" width="480px"/>
-  <img src="docs/.images/watermark-dark.svg#gh-dark-mode-only" width="480px" />
+  <img src="docs/assets/images/watermark-light.svg#gh-light-mode-only" width="480px"/>
+  <img src="docs/assets/images/watermark-dark.svg#gh-dark-mode-only" width="480px" />
 </div>
