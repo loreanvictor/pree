@@ -18,7 +18,8 @@ export async function help(options: HelpOptions = {}) {
     THEME.secondary('   -S, --silent\n') +
     THEME.secondary('   -b, --base <path>\n') +
     THEME.secondary('   -i, --include <glob>\n') +
-    THEME.secondary('   -e, --exclude <glob>\n\n') +
-    '📖 Read more at ' + THEME.highlight('https://github.com/loreanvictor/pree')
+    THEME.secondary('   -e, --exclude <glob>\n') +
+    THEME.secondary('   -c, --config <config file>\n\n') +
+    '📖 Read more at ' + THEME.highlight('https://loreanvictor.github.io/pree')
   )
 }

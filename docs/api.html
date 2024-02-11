@@ -100,6 +100,7 @@ function serve(options?: ServeOptions): Promise&lt;RunningServer&gt;
   type RunningServer = {
     port: number
     server: http.Server
+    close: () => Promise<void>
   }
 ```
 
@@ -187,15 +188,30 @@ Takes the same options as `serve()`.
   await view({ root: 'docs' })
 ```
 
+<br>
+
+Type signature & options:
+
+```ts
+function view(options?: ViewOptions): Promise&lt;RunningViewer&gt;
+```
+```ts
+type ViewOptions = ServeOptions
+```
+```ts
+  type RunningViewer = RunningServer & {
+    watcher: chokidar.FSWatcher
+    ws: WebSocketServer
+  }
+```
+
 ---
 
 ### Proper Use Cases
 
-The JavaScript API can be used to create other applications on top of / using `pree`. That said, `pree` is still built and optimized for a very specific use case: prebuilding a static collection of HTML files. It is NOT optimised for other use cases such as server-side rendering of dynamic content.
+Using the JavaScript API you can build various applications on top of `pree`. That said, `pree` is still built and optimized for a prebuilding a static collection of HTML files. It is NOT optimised for other use cases such as server-side rendering of dynamic content.
 
-To be more specific: `pree` takes a considerable amount of time to prebuild a single HTML page. Its pre-rendering needs to be as close as possible to a real initial load by a browser, which specifically means waiting for all scripts and components, and scripts and components loaded by them, so on, to finish.
-
-In case of a fixed set of HTML files this is easily offset by parallelisation: the same headless browser is used to load and prebuild multiple pages concurrently. However that optimisation might not work in other contexts and use cases, so take that into consideration when you are thinking about using `pree` in a different application.
+Specifically: `pree` prebuilds HTML files and speeds up loading by moving the wait time of the initial page load from client side to the build time. Based on the page, this can be pretty time consuming. In case of a fixed set of HTML files this overhead is resolved by prebuilding multiple pages concurrently. However that optimisation might not work in other contexts and use cases, so take that into consideration when you are using `pree`'s APIs.
 
 </m-d>
 

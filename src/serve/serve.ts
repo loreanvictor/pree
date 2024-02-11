@@ -16,6 +16,7 @@ export const _DefaultServeOptions = {
 export interface RunningServer {
   port: number
   server: Server
+  close: () => Promise<void>
 }
 
 export function serve(options?: ServeOptions) {
@@ -34,6 +35,7 @@ export function serve(options?: ServeOptions) {
       resolve({
         port,
         server,
+        close: async () => { await server.close() }
       })
     })
   })

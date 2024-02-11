@@ -13,7 +13,7 @@ export function injector(options: ViewOptions = {}): Loader {
     const port = options.port ?? _DefaultServeOptions.port
 
     if (
-      (res.type === '.html' || res.type === 'text/html')
+      res.type === 'text/html'
       && (!res.status || res.status === 200)
       && match(ctx.path, options)
     ) {

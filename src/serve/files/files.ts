@@ -19,11 +19,11 @@ export const _DefaultFilesOptions = {
   root: process.cwd()
 }
 
-export function files(options?: FilesOptions) {
-  const root = options?.root || _DefaultFilesOptions.root
-  const base = options?.base ?? ''
+export function files(options: FilesOptions = {}) {
+  const root = options.root || _DefaultFilesOptions.root
+  const base = options.base ?? ''
   const logger = createLogger({ ...options, name: 'files' })
-  const loader = run(...(options?.loaders ?? []), file, dir, notFound)
+  const loader = run(...(options.loaders ?? []), file, dir, notFound)
 
   return async (ctx: Context, next: Next) => {
     if (ctx.method === 'GET' && ctx.path.startsWith('/' + base)) {

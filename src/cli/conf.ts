@@ -13,8 +13,8 @@ const _DefaultOptions = {
   config: '.pree.yml'
 }
 
-export async function conf(options?: ConfigOptions) {
-  const config = options?.config ?? _DefaultOptions.config
+export async function conf(options: ConfigOptions = {}) {
+  const config = options.config ?? _DefaultOptions.config
 
   const logger = createLogger({ ...options, name: 'conf.' })
 

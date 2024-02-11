@@ -23,6 +23,7 @@ export async function version(options?: VersionOptions) {
     }
 
   } catch (error) {
+    console.log(error)
     logger.warn('could not fetch the latest version.')
   }
 }
