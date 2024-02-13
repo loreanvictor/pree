@@ -9,6 +9,10 @@ describe('fs', () => {
     expect(res.body).toMatch(/"name": "pree"/)
   })
 
+  test('throws not found for non-existent file.', async () => {
+    await expect(() => fs('/read/non-existent')).rejects.toThrow('Not Found')
+  })
+
   test('it lists files.', async () => {
     const res = await fs('/list/**/*.ts')
     expect(res).toContain('src/serve/env/fs.ts')

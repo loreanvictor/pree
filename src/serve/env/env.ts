@@ -20,8 +20,8 @@ const _DefaultOptions = {
   buildEnvPrefix: '@env',
 }
 
-export function env(options?: EnvOptions) {
-  const prefix = options?.buildEnvPrefix ?? _DefaultOptions.buildEnvPrefix
+export function env(options: EnvOptions = {}) {
+  const prefix = options.buildEnvPrefix ?? _DefaultOptions.buildEnvPrefix
   const slashed = els(ets(prefix))
   const logger = createLogger({ ...options, name: '@env.' })
   const handle = router({
@@ -42,22 +42,22 @@ export function env(options?: EnvOptions) {
         const res = await handle(path)
         if (isCustomResponse(res)) {
           ctx.type = res.type
-          ctx.status = res.status ?? 200
+          ctx.status = res.status
           ctx.body = res.body
         } else {
           ctx.type = 'application/json'
           ctx.body = JSON.stringify(res)
         }
 
-      } catch(err) {
-        ctx.status = 404
-        ctx.body = (err as Error).message
-        logger.error((err as Error).message)
+      } catch(err: any) {
+        ctx.status = err.status ?? 500
+        ctx.body = err.message
+        logger.error(err.message)
       }
     } else {
       await next()
 
-      if (ctx.type.match(/html/) && match(ctx.path, options ?? {})) {
+      if (ctx.type?.match(/html/) && match(ctx.path, options)) {
         const $ = load(ctx.body as string)
         $('head').append(`
           <script build-only>

@@ -1,3 +1,5 @@
+import { NotFound } from 'http-errors'
+
 import { router, response, isCustomResponse } from '../router'
 
 
@@ -21,6 +23,6 @@ describe(router, () => {
     expect(isCustomResponse(res2)).toBe(false)
     expect(isCustomResponse(res3)).toBe(false)
 
-    expect(() => handler('/no-route')).rejects.toThrow()
+    expect(() => handler('/no-route')).rejects.toThrow(NotFound)
   })
 })

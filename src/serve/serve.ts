@@ -19,7 +19,7 @@ export interface RunningServer {
   close: () => Promise<void>
 }
 
-export function serve(options?: ServeOptions) {
+export function serve(options: ServeOptions = {}) {
   return new Promise<RunningServer>((resolve) => {
     const port = options?.port || _DefaultServeOptions.port
     const logger = createLogger({ ...options, name: 'serve' })
@@ -29,7 +29,7 @@ export function serve(options?: ServeOptions) {
       logger.info('server up on ' + THEME.secondary(
         'http://localhost:'
         + port
-        + (options?.base ? els(options.base) : '')
+        + (options.base ? els(options.base) : '')
         + '/'
       ))
       resolve({

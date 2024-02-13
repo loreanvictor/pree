@@ -1,3 +1,5 @@
+import { NotFound } from 'http-errors'
+
 import { els } from '../../util/ensure-slash'
 
 
@@ -7,7 +9,7 @@ export type CustomResponse = {
   [_CustomResponse]: true
   body: string
   type: string
-  status?: number
+  status: number
 }
 
 export type Handler = (path: string) => Promise<any>
@@ -22,7 +24,7 @@ export function router(routes: {[path: string]: Handler}): Handler {
       }
     }
 
-    throw new Error('no route matched: ' + path)
+    throw new NotFound()
   }
 }
 
