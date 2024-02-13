@@ -64,45 +64,49 @@ define('change-history', () => {
       div {
         display: flex;
         flex-direction: row-reverse;
-        align-items: top;
         gap: 1rem;
-      }
-      a {
-        display: block;
-        text-align: right;
-        opacity:.35;
-        font-size: 0.8rem;
-        font-style: italic;
-        text-decoration: none;
-        color: inherit;
 
-        &.code {
-          --bg: var(--background-color, #fff);
-          --fg: var(--text-color, #000);
-          --r: var(--roundness, 3px);
+        --bg: var(--background-color, #fff);
+        --fg: var(--text-color, #000);
+        --r: var(--roundness, 3px);
+        
+        background: linear-gradient(to left, color-mix(in srgb, var(--bg) 97%, var(--fg)), transparent);
+        padding: 0.5rem;
+        border-radius: calc(var(--r) + .25rem);
+        color: color-mix(in srgb, var(--bg) 70%, var(--fg));
 
-          font-style: normal;
-          font-weight: bold;
-          font-family: monospace;
-          background: color-mix(in srgb, var(--bg) 75%, var(--fg));
-          font-size: 1.2rem;
-          width: 2rem;
-          height: 2rem;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          border-radius: var(--r);
-          transition: color .15s, background .15s;
+        a {
+          display: block;
+          text-align: right;
+          font-size: 0.8rem;
+          font-style: italic;
+          text-decoration: none;
+          color: inherit;
 
-          &:hover {
-            color: var(--bg);
-            background: color-mix(in srgb, var(--bg) 25%, var(--fg));
+          &.code {
+            font-style: normal;
+            font-weight: bold;
+            font-family: monospace;
+            background: color-mix(in srgb, var(--bg) 85%, var(--fg));
+            font-size: 1.5rem;
+            width: 2rem;
+            height: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: var(--r);
+            transition: color .15s, background .15s;
+
+            &:hover {
+              color: var(--bg);
+              background: color-mix(in srgb, var(--bg) 15%, var(--fg));
+            }
           }
         }
       }
     </style>
     <div>
-      <a ref=${code} target="_blank" class="code">∴</a>
+      <a ref=${code} target="_blank" class="code" aria-label="edit">✎</a>
       <a ref=${link} target="_blank">
         Updated at <span ref=${date}>??</span> <br />
         for <span ref=${name}>??</span> version <span ref=${version}>??</span>
