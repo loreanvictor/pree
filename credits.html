@@ -54,7 +54,7 @@
 <p><code>pree</code> depends on the following open-source projects to work, so hats off to their creators and contributors:</p>
 <template shadowrootmode="open"><slot></slot></template></m-d>
 
-<div style="overflow: auto; width: 100%" class="local-style-eldni8iw1y5" data-local-style="local-style-eldni8iw1y5"><style>.local-style-eldni8iw1y5[data-local-style=local-style-eldni8iw1y5] { 
+<div style="overflow: auto; width: 100%" class="local-style-cllg64o0ty" data-local-style="local-style-cllg64o0ty"><style>.local-style-cllg64o0ty[data-local-style=local-style-cllg64o0ty] { 
  
     tr {
       filter: none;
@@ -187,7 +187,13 @@
 </div>
 
 <br>
-<change-history><template shadowrootmode="open"><style>a {
+<change-history><template shadowrootmode="open"><style>div {
+        display: flex;
+        flex-direction: row-reverse;
+        align-items: top;
+        gap: 1rem;
+      }
+      a {
         display: block;
         text-align: right;
         opacity:.35;
@@ -195,7 +201,30 @@
         font-style: italic;
         text-decoration: none;
         color: inherit;
-      }</style><a ref="?" target="_blank" href="https://github.com/loreanvictor/pree/commit/b7f9e2930d9833b3f080a7595606eea5ada26430">Updated at <span ref="?">Feb 11, 2024</span> <br>for <span ref="?">pree</span> version <span ref="?">0.1.20</span></a></template></change-history>
+
+        &.code {
+          --bg: var(--background-color, #fff);
+          --fg: var(--text-color, #000);
+          --r: var(--roundness, 3px);
+
+          font-style: normal;
+          font-weight: bold;
+          font-family: monospace;
+          background: color-mix(in srgb, var(--bg) 75%, var(--fg));
+          width: 2rem;
+          height: 2rem;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border-radius: var(--r);
+          transition: color .15s, background .15s;
+
+          &:hover {
+            color: var(--bg);
+            background: color-mix(in srgb, var(--bg) 25%, var(--fg));
+          }
+        }
+      }</style><div><a ref="?" target="_blank" class="code" href="https://github.com/loreanvictor/pree/blob/main/docs/credits.html">&lt;_&gt;&lt;/&gt;<!--_--></a><a ref="?" target="_blank" href="https://github.com/loreanvictor/pree/commit/b7f9e2930d9833b3f080a7595606eea5ada26430">Updated at <span ref="?">Feb 11, 2024</span> <br>for <span ref="?">pree</span> version <span ref="?">0.1.20</span></a></div></template></change-history>
 <br>
 
       <prev-next><template shadowrootmode="open"><link rel="stylesheet" href="https://unpkg.com/nokss"><link rel="stylesheet" href="https://unpkg.com/graphis/font/graphis.css"><style>i {
@@ -258,7 +287,7 @@
 
 
 
-<div style="display: flex" class="local-style-x5t5h4no4a" data-local-style="local-style-x5t5h4no4a"><style>.local-style-x5t5h4no4a[data-local-style=local-style-x5t5h4no4a] { 
+<div style="display: flex" class="local-style-d4192jn36i" data-local-style="local-style-d4192jn36i"><style>.local-style-d4192jn36i[data-local-style=local-style-d4192jn36i] { 
  
     b {
       opacity: .35;

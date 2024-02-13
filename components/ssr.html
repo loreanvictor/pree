@@ -182,7 +182,13 @@ customElements.<span class="hljs-title function_">define</span>(<span class="hlj
 </blockquote>
 
 <br>
-<change-history><template shadowrootmode="open"><style>a {
+<change-history><template shadowrootmode="open"><style>div {
+        display: flex;
+        flex-direction: row-reverse;
+        align-items: top;
+        gap: 1rem;
+      }
+      a {
         display: block;
         text-align: right;
         opacity:.35;
@@ -190,7 +196,30 @@ customElements.<span class="hljs-title function_">define</span>(<span class="hlj
         font-style: italic;
         text-decoration: none;
         color: inherit;
-      }</style><a ref="?" target="_blank" href="https://github.com/loreanvictor/pree/commit/5474512088dada9ca9b425834d49edd9bd241abb">Updated at <span ref="?">Feb 10, 2024</span> <br>for <span ref="?">pree</span> version <span ref="?">0.1.17</span></a></template></change-history>
+
+        &.code {
+          --bg: var(--background-color, #fff);
+          --fg: var(--text-color, #000);
+          --r: var(--roundness, 3px);
+
+          font-style: normal;
+          font-weight: bold;
+          font-family: monospace;
+          background: color-mix(in srgb, var(--bg) 75%, var(--fg));
+          width: 2rem;
+          height: 2rem;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border-radius: var(--r);
+          transition: color .15s, background .15s;
+
+          &:hover {
+            color: var(--bg);
+            background: color-mix(in srgb, var(--bg) 25%, var(--fg));
+          }
+        }
+      }</style><div><a ref="?" target="_blank" class="code" href="https://github.com/loreanvictor/pree/blob/main/docs/components/ssr.html">&lt;_&gt;&lt;/&gt;<!--_--></a><a ref="?" target="_blank" href="https://github.com/loreanvictor/pree/commit/5474512088dada9ca9b425834d49edd9bd241abb">Updated at <span ref="?">Feb 10, 2024</span> <br>for <span ref="?">pree</span> version <span ref="?">0.1.17</span></a></div></template></change-history>
 <br>
       <prev-next><template shadowrootmode="open"><link rel="stylesheet" href="https://unpkg.com/nokss"><link rel="stylesheet" href="https://unpkg.com/graphis/font/graphis.css"><style>i {
       font-family: 'graphis', sans-serif;
@@ -260,7 +289,7 @@ customElements.<span class="hljs-title function_">define</span>(<span class="hlj
 
 
 
-<div style="display: flex" class="local-style-ayyzfcw4swk" data-local-style="local-style-ayyzfcw4swk"><style>.local-style-ayyzfcw4swk[data-local-style=local-style-ayyzfcw4swk] { 
+<div style="display: flex" class="local-style-7h5mb499ozk" data-local-style="local-style-7h5mb499ozk"><style>.local-style-7h5mb499ozk[data-local-style=local-style-7h5mb499ozk] { 
  
     b {
       opacity: .35;

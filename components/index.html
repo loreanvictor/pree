@@ -182,7 +182,13 @@
 </template></emo-li>
 
 <br>
-<change-history><template shadowrootmode="open"><style>a {
+<change-history><template shadowrootmode="open"><style>div {
+        display: flex;
+        flex-direction: row-reverse;
+        align-items: top;
+        gap: 1rem;
+      }
+      a {
         display: block;
         text-align: right;
         opacity:.35;
@@ -190,7 +196,30 @@
         font-style: italic;
         text-decoration: none;
         color: inherit;
-      }</style><a ref="?" target="_blank" href="https://github.com/loreanvictor/pree/commit/d6c44c9a349dde326654ac9e77a7a7ad7d1c1f75">Updated at <span ref="?">Feb 10, 2024</span> <br>for <span ref="?">pree</span> version <span ref="?">0.1.17</span></a></template></change-history>
+
+        &.code {
+          --bg: var(--background-color, #fff);
+          --fg: var(--text-color, #000);
+          --r: var(--roundness, 3px);
+
+          font-style: normal;
+          font-weight: bold;
+          font-family: monospace;
+          background: color-mix(in srgb, var(--bg) 75%, var(--fg));
+          width: 2rem;
+          height: 2rem;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border-radius: var(--r);
+          transition: color .15s, background .15s;
+
+          &:hover {
+            color: var(--bg);
+            background: color-mix(in srgb, var(--bg) 25%, var(--fg));
+          }
+        }
+      }</style><div><a ref="?" target="_blank" class="code" href="https://github.com/loreanvictor/pree/blob/main/docs/components/index.html">&lt;_&gt;&lt;/&gt;<!--_--></a><a ref="?" target="_blank" href="https://github.com/loreanvictor/pree/commit/d6c44c9a349dde326654ac9e77a7a7ad7d1c1f75">Updated at <span ref="?">Feb 10, 2024</span> <br>for <span ref="?">pree</span> version <span ref="?">0.1.17</span></a></div></template></change-history>
 <br>
       <prev-next><template shadowrootmode="open"><link rel="stylesheet" href="https://unpkg.com/nokss"><link rel="stylesheet" href="https://unpkg.com/graphis/font/graphis.css"><style>i {
       font-family: 'graphis', sans-serif;
@@ -260,7 +289,7 @@
 
 
 
-<div style="display: flex" class="local-style-4i7fl0qta3v" data-local-style="local-style-4i7fl0qta3v"><style>.local-style-4i7fl0qta3v[data-local-style=local-style-4i7fl0qta3v] { 
+<div style="display: flex" class="local-style-u78d3epkoo8" data-local-style="local-style-u78d3epkoo8"><style>.local-style-u78d3epkoo8[data-local-style=local-style-u78d3epkoo8] { 
  
     b {
       opacity: .35;

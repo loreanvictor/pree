@@ -4,6 +4,7 @@ import { html, ref } from 'https://esm.sh/rehtm'
 
 define('change-history', () => {
   const link = ref()
+  const code = ref()
   const date = ref()
   const name = ref()
   const version = ref()
@@ -27,8 +28,10 @@ define('change-history', () => {
     }
 
     const git = await (await fetch(`${window.BUILD_ENV_API.baseURL}git/remote/info`)).json()
-    const commit = await (await fetch(`${window.BUILD_ENV_API.baseURL}git/commits/last/${path}`)).json()
 
+    code.current.href = `https://${git.host}/${git.full_name}/blob/main/${path}`
+
+    const commit = await (await fetch(`${window.BUILD_ENV_API.baseURL}git/commits/last/${path}`)).json()
     if (!commit) {
       return
     }
@@ -58,6 +61,12 @@ define('change-history', () => {
 
   return html`
     <style>
+      div {
+        display: flex;
+        flex-direction: row-reverse;
+        align-items: top;
+        gap: 1rem;
+      }
       a {
         display: block;
         text-align: right;
@@ -66,11 +75,37 @@ define('change-history', () => {
         font-style: italic;
         text-decoration: none;
         color: inherit;
+
+        &.code {
+          --bg: var(--background-color, #fff);
+          --fg: var(--text-color, #000);
+          --r: var(--roundness, 3px);
+
+          font-style: normal;
+          font-weight: bold;
+          font-family: monospace;
+          background: color-mix(in srgb, var(--bg) 75%, var(--fg));
+          width: 2rem;
+          height: 2rem;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border-radius: var(--r);
+          transition: color .15s, background .15s;
+
+          &:hover {
+            color: var(--bg);
+            background: color-mix(in srgb, var(--bg) 25%, var(--fg));
+          }
+        }
       }
     </style>
-    <a ref=${link} target="_blank">
-      Updated at <span ref=${date}>??</span> <br />
-      for <span ref=${name}>??</span> version <span ref=${version}>??</span>
-    </a>
+    <div>
+      <a ref=${code} target="_blank" class="code">${'</>'}</a>
+      <a ref=${link} target="_blank">
+        Updated at <span ref=${date}>??</span> <br />
+        for <span ref=${name}>??</span> version <span ref=${version}>??</span>
+      </a>
+    </div>
   `
 })

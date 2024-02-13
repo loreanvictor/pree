@@ -314,7 +314,13 @@ TLDR:
 <p><strong>A</strong>: I'm salty about this, but I couldn't come close to the developer experience of layouting with front matter using web components. As powerful as they are, they are about <em>isolation</em>, which isn't what you want with layouting.</p>
 <br><template shadowrootmode="open"><slot></slot></template></m-d>
 
-<change-history><template shadowrootmode="open"><style>a {
+<change-history><template shadowrootmode="open"><style>div {
+        display: flex;
+        flex-direction: row-reverse;
+        align-items: top;
+        gap: 1rem;
+      }
+      a {
         display: block;
         text-align: right;
         opacity:.35;
@@ -322,7 +328,30 @@ TLDR:
         font-style: italic;
         text-decoration: none;
         color: inherit;
-      }</style><a ref="?" target="_blank" href="https://github.com/loreanvictor/pree/commit/57926e262578ae0603d1002c8ad44c45e35c75cb">Updated at <span ref="?">Feb 10, 2024</span> <br>for <span ref="?">pree</span> version <span ref="?">0.1.18</span></a></template></change-history>
+
+        &.code {
+          --bg: var(--background-color, #fff);
+          --fg: var(--text-color, #000);
+          --r: var(--roundness, 3px);
+
+          font-style: normal;
+          font-weight: bold;
+          font-family: monospace;
+          background: color-mix(in srgb, var(--bg) 75%, var(--fg));
+          width: 2rem;
+          height: 2rem;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border-radius: var(--r);
+          transition: color .15s, background .15s;
+
+          &:hover {
+            color: var(--bg);
+            background: color-mix(in srgb, var(--bg) 25%, var(--fg));
+          }
+        }
+      }</style><div><a ref="?" target="_blank" class="code" href="https://github.com/loreanvictor/pree/blob/main/docs/motivation.html">&lt;_&gt;&lt;/&gt;<!--_--></a><a ref="?" target="_blank" href="https://github.com/loreanvictor/pree/commit/57926e262578ae0603d1002c8ad44c45e35c75cb">Updated at <span ref="?">Feb 10, 2024</span> <br>for <span ref="?">pree</span> version <span ref="?">0.1.18</span></a></div></template></change-history>
 
 <br>
 
@@ -394,7 +423,7 @@ TLDR:
 
 
 
-<div style="display: flex" class="local-style-jwmdqc9921" data-local-style="local-style-jwmdqc9921"><style>.local-style-jwmdqc9921[data-local-style=local-style-jwmdqc9921] { 
+<div style="display: flex" class="local-style-5bap1oafqy9" data-local-style="local-style-5bap1oafqy9"><style>.local-style-5bap1oafqy9[data-local-style=local-style-5bap1oafqy9] { 
  
     b {
       opacity: .35;
