@@ -85,6 +85,7 @@ define('change-history', () => {
           font-weight: bold;
           font-family: monospace;
           background: color-mix(in srgb, var(--bg) 75%, var(--fg));
+          font-size: 1.2rem;
           width: 2rem;
           height: 2rem;
           display: flex;
@@ -101,7 +102,7 @@ define('change-history', () => {
       }
     </style>
     <div>
-      <a ref=${code} target="_blank" class="code">${'</>'}</a>
+      <a ref=${code} target="_blank" class="code">∴</a>
       <a ref=${link} target="_blank">
         Updated at <span ref=${date}>??</span> <br />
         for <span ref=${name}>??</span> version <span ref=${version}>??</span>
