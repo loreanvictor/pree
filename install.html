@@ -26,7 +26,8 @@
   <title>pree: installation</title>
           
         <link rel="prefetch" href="motivation.html"><link rel="prefetch" href="usage/index.html"></head>
-  <body><aside aria-hidden="true">
+  <body><slot name="background"></slot>
+    <aside aria-hidden="true">
       <use-html src="./_toc.html"><base href="/pree/"><style>
   #toc {
     a:not(:hover) {
@@ -237,13 +238,31 @@
           </article>
           
       </section></template></prev-next>
+      <slot name="watermark">
+        <use-html src="./_watermark.html"><base href="/pree/"><picture class="local-style-opn65gp6vgl" data-local-style="local-style-opn65gp6vgl"><style>.local-style-opn65gp6vgl[data-local-style=local-style-opn65gp6vgl] { 
+ 
+    img {
+      display: block;
+      margin: 0 auto;
+      width: 128px;
+    }
+   
+ }</style>
+  
+  <source srcset="./assets/images/watermark-dark.svg" media="(prefers-color-scheme: dark)">
+  <img width="192px" src="./assets/images/watermark-light.svg" alt="pree logo">
+</picture>
+<br><br><template shadowrootmode="open"><slot></slot></template></use-html>
+      </slot>
     </main>
+
     <footer>
       <use-html src="./_footer.html"><base href="/pree/"><script type="module" src="./assets/components/menu-toggle.js"></script>
 
 
+<script type="module" src="./assets/components/finde-btn.js"></script>
 
-<div style="display: flex" class="local-style-efqfpfjiwzw" data-local-style="local-style-efqfpfjiwzw"><style>.local-style-efqfpfjiwzw[data-local-style=local-style-efqfpfjiwzw] { 
+<div style="display: flex" class="local-style-v0xbe3n3du" data-local-style="local-style-v0xbe3n3du"><style>.local-style-v0xbe3n3du[data-local-style=local-style-v0xbe3n3du] { 
  
     b {
       opacity: .35;
@@ -256,7 +275,8 @@
  }</style>
   
 
-  <menu-toggle><template shadowrootmode="open"><link rel="stylesheet" href="https://unpkg.com/nokss"><link rel="stylesheet" href="https://unpkg.com/graphis/font/graphis.css"><style>.icon {
+  <div>
+    <menu-toggle><template shadowrootmode="open"><link rel="stylesheet" href="https://unpkg.com/nokss"><link rel="stylesheet" href="https://unpkg.com/graphis/font/graphis.css"><style>.icon {
       font-family: 'graphis', sans-serif;
       font-style: normal;
       font-size: 1.2rem;
@@ -265,6 +285,98 @@
     button[role="switch"][aria-checked="true"]>span{
       color: var(--background-color);
     }</style><button ref="?" role="switch" aria-label="toggle sidebar" aria-checked="true"><span class="icon">❌</span><span class="icon">⩧</span></button></template></menu-toggle>
+    <finde-btn><template shadowrootmode="open"><style>@import 'https://unpkg.com/nokss' layer(base);
+      @import 'https://unpkg.com/graphis/font/graphis.css';
+
+      menu {
+        display: inline-flex;
+        button {
+          font-family: 'graphis', sans-serif;
+          font-style: normal;
+          font-size: 1.2em;
+        }
+      }
+
+      dialog {
+        border-radius: calc(var(--roundness) * 4);
+        --border-color: color-mix(
+          in srgb,
+          var(--text-color) calc(var(--hr-expression) * 100%),
+          var(--background-color)
+        );
+
+        position: fixed;
+        top: 20vh;
+        margin: 0 auto;
+
+        input {
+          background: none;
+          border: none;
+          font-size: 1.5rem;
+        }
+
+        div {
+          max-height: calc(60vh - 2rem - calc(var(--spacing) * 4) - var(--button-height));
+          overflow: auto;
+
+          nav {
+            a {
+              padding: var(--spacing);
+              display: block;
+              transition: background .1s ease;
+
+              &:focus, &:hover {
+                background: var(--border-color);
+                border-radius: var(--roundness);
+                outline: none;
+              }
+
+              small {
+                opacity: .5;
+                display: block;
+
+                &:empty, &:has(:empty) {
+                  display: none;
+                }
+              }
+
+              &:not(:last-child) {
+                border-bottom: 1px solid var(--border-color);
+              }
+
+              kbd {
+                float: right;
+                opacity: 0;
+
+                transition: opacity .1s ease;
+
+                :focus & {
+                  opacity: 1;
+                }
+              }
+            }
+          }
+        }
+
+        kbd {
+          height: 1.5rem;
+        }
+
+        form {
+          display: none;
+        }
+
+        @media (any-hover: none) {
+          form {
+            display: block;
+          }
+
+          footer small, kbd {
+            display: none;
+          }
+        }
+      }</style><menu role="toolbar"><button aria-label="search">🔍</button></menu><dialog ref="?"><input ref="?" type="text" placeholder="Type to search ..."><div ref="?"></div><footer align="right"><small><kbd>↑</kbd><kbd>↓</kbd> to navigate,<kbd>ESC</kbd> to close</small><form method="dialog"><button>Close</button></form></footer></dialog></template></finde-btn>
+  </div>
   <div style="flex-grow: 1"></div>
   <div align="right">
     <small-device>
