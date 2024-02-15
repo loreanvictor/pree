@@ -169,6 +169,20 @@ define('finde-btn', ({ base, src, shortcut = '/' }) => {
         kbd {
           height: 1.5rem;
         }
+
+        form {
+          display: none;
+        }
+
+        @media (any-hover: none) {
+          form {
+            display: block;
+          }
+
+          footer small, kbd {
+            display: none;
+          }
+        }
       }
     </style>
     <menu role="toolbar">
@@ -181,6 +195,7 @@ define('finde-btn', ({ base, src, shortcut = '/' }) => {
         <small><kbd>↑</kbd><kbd>↓</kbd> to navigate, 
           <kbd>ESC</kbd> to close
         </small>
+        <form method="dialog"><button>Close</button></form>
       </footer>
     </dialog>
   `
