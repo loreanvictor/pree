@@ -6,7 +6,9 @@
     
     <link rel="icon" type="image/png" sizes="32x32" href="favicon.ico">
 
-    <link rel="stylesheet" href="https://unpkg.com/nokss">
+    <style>
+      @import 'https://unpkg.com/nokss' layer(base);
+    </style>
     <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://esm.sh/graphis/font/graphis.css">
     <link rel="stylesheet" href="./assets/styles/theme.css">
     
@@ -161,15 +163,16 @@
 </template></emo-li>
 
 <m-d><hr>
-<p>A ton of modern web development is wrestling with build tools. Transpilers, bundlers, runtimes, test runners, devtools, packages with various module formats, frameworks with custom syntax and custom devtools, all need to play nice together. In the end, more time is spent configuring build tools instead of building stuff.</p>
-<p>Should we keep torturing ourselves though? Modern web features such as <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules">ESM</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script/type/importmap">import maps</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/Web_Components">Web Components</a>, <a href="https://developer.chrome.com/docs/css-ui/declarative-shadow-dom">declarative shadow DOM</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_nesting/Using_CSS_nesting">nested styles</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties">CSS variables</a>, etc. enable building nice smooth experiences by writing plain HTML, CSS and JavaScript, no build tools involved. Perhaps its time to adopt a <a href="https://world.hey.com/dhh/you-can-t-get-faster-than-no-build-7a44131c">"no build"</a> approach, embracing the simplicity and speed of the modern web.</p>
+<p>A ton of modern web development is wrestling with build tools. A package has a new module format, your transpiler doesn't like that. The work-around pisses off the bundler. You fix that with a weird trick, but that messes up your test-runner, now your coverage reports are screwed up. You spend hours on getting your build tools to work, without having built anything.</p>
+<p>There is a chance that you don't need many of these tools anyways. Bundlers were designed to handle dependencies and <a href="https://hpbn.co/optimizing-application-delivery/#optimizing-for-http1x">optimize asset delivery</a>. Nowadays we can handle dependencies perfectly with <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules">ESM</a> and <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script/type/importmap">import maps</a>, and with <a href="https://web.dev/articles/performance-http2#request_and_response_multiplexing">HTTP/2 multiplexing</a>, in a lot of cases bundling doesn't optimise anything, sometimes even <a href="https://hpbn.co/optimizing-application-delivery/#minimize-concatenation-and-image-spriting">lowering the performance</a>. Modern CSS with its <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_nesting/Using_CSS_nesting">nested styles</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties">CSS variables</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@layer">CSS layers</a>, etc. has filled the gaps that likes of <a href="https://sass-lang.com/">Sass</a> and <a href="http://lesscss.org/">Less</a> were designed to fill. We got <a href="https://reactjs.org/">React</a>, <a href="https://angular.io/">Angular</a>, <a href="https://en.wikipedia.org/wiki/Single-page_application#JavaScript_frameworks">and others</a>, to break our websites into isolated, reusable nuggets of logic, style and layout (i.e. components), but <a href="https://developer.mozilla.org/en-US/docs/Web/Web_Components">Web Components</a> do provide all of that, alongside <a href="https://developer.chrome.com/docs/css-ui/declarative-shadow-dom">the possibility of server-side rendering</a>, in an interoperable standard  manner (e.g. you can use any web component anywhere without having to care about the framework it was built with). </p>
+<p>So can't we just shed all that weight and build websites using <a href="https://world.hey.com/dhh/you-can-t-get-faster-than-no-build-7a44131c">no build tools</a> at all? <em>Well ...</em></p>
 <hr>
-<p>As great as that sounds, in practice, there are still gaps. Even for smaller projects like documentation sites or blogs, which have fewer moving parts and require less logic on the client, there are fundamental shortcomings:</p>
+<p>As great as that sounds, in practice, there are still gaps. Even for smaller projects like documentation sites or blogs, which have fewer moving parts and require less logic on the client, there are few, but fundamental, shortcomings:</p>
 <template shadowrootmode="open"><slot></slot></template></m-d>
 
 <emo-li>
   <span slot="emo">🧬</span>
-  Web components render on client. This makes user experience janky and slow. You'd need a build step to pre-render them and get good perceived speed and performance.
+  Web components render on client by default. This makes user experience janky and slow. You can pre-render them, but that would require a build step.
 <template shadowrootmode="open">
   <style>
   .holder {
@@ -240,13 +243,13 @@
 </template></emo-li>
 
 <m-d><hr>
-<p><code>pree</code> aims to fill in these gaps as leanly as it can. It is designed for building static sites such as blogs or documentations. The goal is to provide a simple, straightforward and smooth developer experience, while being as "no build" as possible.</p>
+<p>This is where <code>pree</code> comes in. It is a little tiny tool that meerly fills those gaps, as simply as it can, without changing much. It is specifically designed for building static websites (websites with fixed pages), as conveniently as possible, while being as "no build" as possible:</p>
 <ul>
 <li>It <a href="usage/index">prebuilds HTML files</a>, pre-rendering all web components using <a href="https://developer.chrome.com/docs/css-ui/declarative-shadow-dom">declarative shadow DOM</a>.</li>
 <li>It <a href="usage/meta-layout">handles metadata and layout</a> with front matter.</li>
-<li>It <a href="usage/build-only-scripts">handles build-only components and scripts</a>, by simply removing <code>&lt;script build-only&gt;</code> tags.</li>
+<li>It <a href="usage/build-only-scripts">handles build-only components and scripts</a>.</li>
 </ul>
-<p>Except for the front matter, with <code>pree</code> you will be writing HTML, CSS and JavaScript that browsers could simply load. <code>pree</code> just makes stuff faster by pre-running some scripts and removing some others, resulting in an almost no-build developer experience that also rocks top-tier performance.</p>
+<p><code>pree</code> basically opens each HTML page as a client would, fetches necessary scripts and components and lets them populate the page, then saves the resulting HTML. Now when the clients get these pages, they are spared this initial wait time, as they get prebuilt HTML with pre-rendered components, and are also spared scripts, components and computation that were only needed for that initial rendering.</p>
 <hr>
 <style>
 h5 {
@@ -262,13 +265,17 @@ h5 + p {
 </style>
 
 <h5 id="q-isnt-this-just-another-build-tool">Q: Isn't this just another build tool?<menu role="toolbar"><button ref="?" aria-label="copy link" class="icon">🔗</button></menu></h5>
-<p><strong>A</strong>: It is, but a really thin and invisible one. With the exception of layouting, it virtually ships your code as is. No need for bundlers, transpilers, sourcemaps, or other devtools. Your plain code is enough.</p>
+<p><strong>A</strong>: It is, but a really thin and invisible one. With the exception of layouting, what you write is standard HTML/CSS/JS that browsers could execute without any build step, <code>pree</code> just makes them faster. Even after building, the client receives the exact same JavaScript, CSS and <em>almost</em> the same HTML that you wrote<sup>*</sup>.</p>
+<small>
+<sup>*</sup> Except, again, for a bit of layouting, and some pre-rendered web components.
+</small>
+
 <h5 id="q-what-if-i-want-to-write-markdown">Q: What if I want to write Markdown?<menu role="toolbar"><button ref="?" aria-label="copy link" class="icon">🔗</button></menu></h5>
-<p><strong>A</strong>: You can. Just use a web components like <a href="https://zerodevx.github.io/zero-md/">zero-md</a>. Load it <code>build-only</code> so that your users get prebuilt HTML and dont have to download a markdown parser.</p>
+<p><strong>A</strong>: You can. Just use a web component like <a href="https://zerodevx.github.io/zero-md/">zero-md</a>. <a href="usage/build-only-scripts.html">Load it <code>build-only</code></a> so that your users get prebuilt HTML and dont have to download a markdown parser.</p>
 <pre><code class="language-html hljs language-xml" data-highlighted="yes"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">build-only</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"module"</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"https://esm.sh/zero-md"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">zero-md</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"my-markdown.md"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">zero-md</span>&gt;</span>
 </code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
-<p>In fact, <a href="https://github.com/loreanvictor/pree/blob/main/docs/motivation.html">these docs are written</a> in markdown (with a <a href="https://github.com/loreanvictor/pree/blob/main/docs/components/m-d.js">custom component</a>) and built with <code>pree</code>:</p>
+<p>In fact, <a href="https://github.com/loreanvictor/pree/blob/main/docs/motivation.html">these docs are written</a> in markdown (with a <a href="https://github.com/loreanvictor/pree/blob/main/docs/assets/components/m-d.js">custom component</a>) and built with <code>pree</code>:</p>
 <pre><code class="language-md hljs language-markdown" data-highlighted="yes"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">m-d</span>&gt;</span></span>
 <span class="hljs-section">## Why `pree`?</span>
 
@@ -282,7 +289,7 @@ TLDR:
 <h5 id="q-what-if-i-want-to-split-html-files-into-parts">Q: What if I want to split HTML files into parts?<menu role="toolbar"><button ref="?" aria-label="copy link" class="icon">🔗</button></menu></h5>
 <p><strong>A</strong>: Web components can do that too. Web components are pretty powerful, becoming more powerful with <code>pree</code> as they can do magical stuff on build time without affecting client-side performance and user experience.</p>
 <p>For example, this is how splitting is handled in these docs:</p>
-<pre><code class="language-html hljs language-xml" data-highlighted="yes"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">build-only</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"module"</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"./components/use-html.js"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<pre><code class="language-html hljs language-xml" data-highlighted="yes"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">build-only</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"module"</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"./assets/components/use-html.js"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 <span class="hljs-comment">&lt;!-- 👇 this is the code for the side menu --&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">aside</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">use-html</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"./_toc.html"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">use-html</span>&gt;</span>
@@ -290,6 +297,7 @@ TLDR:
 </code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
 <h5 id="q-what-sort-of-websites-can-be-built-with-pree">Q: What sort of websites can be built with <code>pree</code>?<menu role="toolbar"><button ref="?" aria-label="copy link" class="icon">🔗</button></menu></h5>
 <p><strong>A</strong>: Static websites, like blogs, documentations, landing pages, etc. For dynamic pages (e.g. e-commerce), use another tool. Note that <em>static</em> doesn't mean <em>non-interactive</em>, just that you have fixed pages.</p>
+<p><code>pree</code> <a href="api.html">can be used</a> for more complex use-cases as well. However, its main responsibility is to wait for an initial page load so users don't have too, which puts a cap on how fast can it prebuild a single page. With a bunch of fixed pages, you can speed this up with parallelisation (which <code>pree</code> does), but that might not be feasible in other contexts.</p>
 <h5 id="q-what-kind-of-components-work-with-pree">Q: What kind of components work with <code>pree</code>?<menu role="toolbar"><button ref="?" aria-label="copy link" class="icon">🔗</button></menu></h5>
 <p><strong>A</strong>: ALL web components work with <code>pree</code>. Static ones that are loaded <em>build-only</em> will be faster, as will interactive ones supporting SSR through <a href="https://developer.chrome.com/docs/css-ui/declarative-shadow-dom">declarative shadow DOM</a>.</p>
 <h5 id="q-writing-web-components-is-hard-though-right">Q: Writing web components is hard though, right?<menu role="toolbar"><button ref="?" aria-label="copy link" class="icon">🔗</button></menu></h5>
@@ -311,7 +319,7 @@ TLDR:
 <h5 id="q-can-you-really-build-cool-stuff-without-a-build-tool">Q: Can you really build cool stuff without a build tool?<menu role="toolbar"><button ref="?" aria-label="copy link" class="icon">🔗</button></menu></h5>
 <p><strong>A</strong>: Judge for yourself. These docs are built with <code>pree</code> and no other tooling: check the <a href="https://github.com/loreanvictor/pree/tree/main/docs">source code</a>.</p>
 <h5 id="q-whats-with-the-front-matter-why-not-pure-html">Q: Whats with the front matter? Why not pure HTML?<menu role="toolbar"><button ref="?" aria-label="copy link" class="icon">🔗</button></menu></h5>
-<p><strong>A</strong>: I'm salty about this, but I couldn't come close to the developer experience of layouting with front matter using web components. As powerful as they are, they are about <em>isolation</em>, which isn't what you want with layouting.</p>
+<p><strong>A</strong>: I'm salty about this, but I couldn't come close to the developer experience of layouting with front matter using web components. As powerful as they are, web components are about <em>isolation</em>, which isn't what you want with layouting.</p>
 <br><template shadowrootmode="open"><slot></slot></template></m-d>
 
 <change-history><template shadowrootmode="open"><style>div {
@@ -356,7 +364,7 @@ TLDR:
             }
           }
         }
-      }</style><div><a ref="?" target="_blank" class="code" aria-label="edit" href="https://github.com/loreanvictor/pree/blob/main/docs/motivation.html">✎</a><a ref="?" target="_blank" href="https://github.com/loreanvictor/pree/commit/57926e262578ae0603d1002c8ad44c45e35c75cb">Updated at <span ref="?">Feb 10, 2024</span> <br>for <span ref="?">pree</span> version <span ref="?">0.1.18</span></a></div></template></change-history>
+      }</style><div><a ref="?" target="_blank" class="code" aria-label="edit" href="https://github.com/loreanvictor/pree/blob/main/docs/motivation.html">✎</a><a ref="?" target="_blank" href="https://github.com/loreanvictor/pree/commit/1b333d35d8b458ef257c1e5bbd26e44abc29e0f3">Updated at <span ref="?">Feb 15, 2024</span> <br>for <span ref="?">pree</span> version <span ref="?">0.1.20</span></a></div></template></change-history>
 
 <br>
 
@@ -428,7 +436,7 @@ TLDR:
 
 
 
-<div style="display: flex" class="local-style-ud0g484nvin" data-local-style="local-style-ud0g484nvin"><style>.local-style-ud0g484nvin[data-local-style=local-style-ud0g484nvin] { 
+<div style="display: flex" class="local-style-xqerl2p3gjm" data-local-style="local-style-xqerl2p3gjm"><style>.local-style-xqerl2p3gjm[data-local-style=local-style-xqerl2p3gjm] { 
  
     b {
       opacity: .35;
@@ -468,7 +476,9 @@ TLDR:
   </style>
   <svg width="32" height="32" viewBox="0 0 98 96" xmlns="http://www.w3.org/2000/svg"> <path fill-rule="evenodd" clip-rule="evenodd" d="M48.854 0C21.839 0 0 22 0 49.217c0 21.756 13.993 40.172 33.405 46.69 2.427.49 3.316-1.059 3.316-2.362 0-1.141-.08-5.052-.08-9.127-13.59 2.934-16.42-5.867-16.42-5.867-2.184-5.704-5.42-7.17-5.42-7.17-4.448-3.015.324-3.015.324-3.015 4.934.326 7.523 5.052 7.523 5.052 4.367 7.496 11.404 5.378 14.235 4.074.404-3.178 1.699-5.378 3.074-6.6-10.839-1.141-22.243-5.378-22.243-24.283 0-5.378 1.94-9.778 5.014-13.2-.485-1.222-2.184-6.275.486-13.038 0 0 4.125-1.304 13.426 5.052a46.97 46.97 0 0 1 12.214-1.63c4.125 0 8.33.571 12.213 1.63 9.302-6.356 13.427-5.052 13.427-5.052 2.67 6.763.97 11.816.485 13.038 3.155 3.422 5.015 7.822 5.015 13.2 0 18.905-11.404 23.06-22.324 24.283 1.78 1.548 3.316 4.481 3.316 9.126 0 6.6-.08 11.897-.08 13.526 0 1.304.89 2.853 3.316 2.364 19.412-6.52 33.405-24.935 33.405-46.691C97.707 22 75.788 0 48.854 0z" fill="currentColor"></path> </svg>
 </template></octo-icon><slot ref="?" style="display: none">GitHub</slot></a></template></gh-link>  
-      <npm-badge no-label="">pree<template shadowrootmode="open"><link rel="stylesheet" href="https://unpkg.com/nokss/dist/bundles/md.css"><style>a:not([role]) {
+      <npm-badge no-label="">pree<template shadowrootmode="open"><style>@import 'https://unpkg.com/nokss/dist/bundles/md.css' layer(base);
+
+      a {
         filter: none;
         color: var(--text-color);
       }
@@ -503,7 +513,9 @@ TLDR:
   <svg width="32" height="32" viewBox="0 0 98 96" xmlns="http://www.w3.org/2000/svg"> <path fill-rule="evenodd" clip-rule="evenodd" d="M48.854 0C21.839 0 0 22 0 49.217c0 21.756 13.993 40.172 33.405 46.69 2.427.49 3.316-1.059 3.316-2.362 0-1.141-.08-5.052-.08-9.127-13.59 2.934-16.42-5.867-16.42-5.867-2.184-5.704-5.42-7.17-5.42-7.17-4.448-3.015.324-3.015.324-3.015 4.934.326 7.523 5.052 7.523 5.052 4.367 7.496 11.404 5.378 14.235 4.074.404-3.178 1.699-5.378 3.074-6.6-10.839-1.141-22.243-5.378-22.243-24.283 0-5.378 1.94-9.778 5.014-13.2-.485-1.222-2.184-6.275.486-13.038 0 0 4.125-1.304 13.426 5.052a46.97 46.97 0 0 1 12.214-1.63c4.125 0 8.33.571 12.213 1.63 9.302-6.356 13.427-5.052 13.427-5.052 2.67 6.763.97 11.816.485 13.038 3.155 3.422 5.015 7.822 5.015 13.2 0 18.905-11.404 23.06-22.324 24.283 1.78 1.548 3.316 4.481 3.316 9.126 0 6.6-.08 11.897-.08 13.526 0 1.304.89 2.853 3.316 2.364 19.412-6.52 33.405-24.935 33.405-46.691C97.707 22 75.788 0 48.854 0z" fill="currentColor"></path> </svg>
 </template></octo-icon><slot ref="?" style="">GitHub</slot></a></template></gh-link>
       <b>|</b>
-      <npm-badge design="flat-square">npm<template shadowrootmode="open"><link rel="stylesheet" href="https://unpkg.com/nokss/dist/bundles/md.css"><style>a:not([role]) {
+      <npm-badge design="flat-square">npm<template shadowrootmode="open"><style>@import 'https://unpkg.com/nokss/dist/bundles/md.css' layer(base);
+
+      a {
         filter: none;
         color: var(--text-color);
       }
