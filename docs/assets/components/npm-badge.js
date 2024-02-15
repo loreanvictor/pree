@@ -12,8 +12,8 @@ define('npm-badge', (params) => {
 
   const load = async () => {
     const res = await fetch(`${window.BUILD_ENV_API.baseURL}files/read/package.json`)
-    const pkg = await res.json()
-    update(pkg.name)
+    const _pkg = await res.json()
+    update(_pkg.name)
   }
 
   const update = pkgName => {
@@ -33,9 +33,10 @@ define('npm-badge', (params) => {
   }
 
   return template`
-    <link rel="stylesheet" href="https://unpkg.com/nokss/dist/bundles/md.css" />
     <style>
-      a:not([role]) {
+      @import 'https://unpkg.com/nokss/dist/bundles/md.css' layer(base);
+
+      a {
         filter: none;
         color: var(--text-color);
       }

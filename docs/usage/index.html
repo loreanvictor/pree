@@ -18,13 +18,13 @@ This prebuilds `docs/my-page.html` into `site/my-page.html`:
 </m-d>
 
 <emo-li>
-  <span slot="emo">🧬</span> pre-renders web components,
+  <span slot="emo">🧬</span><m-d>Pre-renders web components, using [declarative shadow DOM](https://developer.chrome.com/docs/css-ui/declarative-shadow-dom).</m-d>
 </emo-li>
 <emo-li>
-  <span slot="emo">🏗️</span> resolves <a href="usage/meta-layout">metadata and layouts</a>,
+  <span slot="emo">🏗️</span> Resolves <a href="usage/meta-layout">metadata and layouts</a>,
 </emo-li>
 <emo-li>
-  <span slot="emo">👻</span>removes <a href="usage/build-only-scripts">build-only scripts and components</a>.
+  <span slot="emo">👻</span>Removes <a href="usage/build-only-scripts">build-only scripts and components</a>.
 </emo-li>
 
 <br>
@@ -36,7 +36,7 @@ This prebuilds `docs/my-page.html` into `site/my-page.html`:
 ```bash
 pree build docs site
 ```
-This will copy over all the content of `docs` into `site` and prebuild all HTML files, except the ones excluded by CLI options or configuration. You can also specify include options (in config or CLI options), and then only the specified files will be prebuilt.
+Copies over the contents of `docs` into `site`, then prebuilds all HTML files, except the ones excluded by [CLI options or configuration](usage/config.html). Files beginning with an underline (e.g. `_layout.html`) are excluded by default.
 
 <br>
 
@@ -48,16 +48,16 @@ pree view docs
 </m-d>
 
 <emo-li>
-  <span slot="emo">👀</span> it loads your website without prebuilding it,
+  <span slot="emo">👀</span>Loads your website without prebuilding it,
 </emo-li>
 <emo-li>
-  <span slot="emo">🏗️</span> it still resolves <a href="usage/meta-layout">metadata and layouts</a>,
+  <span slot="emo">🏗️</span>Still resolves <a href="usage/meta-layout">metadata and layouts</a>,
 </emo-li>
 <emo-li>
-  <span slot="emo">🔃</span> it live reloads on change,
+  <span slot="emo">🔃</span>Live reloads on change,
 </emo-li>
 <emo-li>
-  <span slot="emo">📁</span> it also lists directory content for easy navigation.
+  <span slot="emo">📁</span>Also lists directory content for easy navigation.
 </emo-li>
 
 <m-d>
@@ -67,7 +67,7 @@ pree view docs
 > ```bash
 > pree build docs site
 > ``` 
-> Then check the prebuilt website in production mode:
+> Then check the prebuilt website:
 > ```bash
 > pree check site
 > ```
@@ -76,7 +76,7 @@ pree view docs
 
 ### Asset Management
 
-`pree` is NOT an asset manager. It will copy the content of the directory it builds, so you can conveniently include your assets using relative paths:
+`pree` is NOT an asset manager. It copies the contents of the directory it should build, so assets located in that directory can safely be referenced in your HTML files:
 
 ```text
   docs/
@@ -92,7 +92,7 @@ pree view docs
 
 <br>
 
-In some cases the base URL for your website is not the root of your domain. For example, in [GitHub Pages](https://pages.github.com/), without a custom domain, your website will be hosted at `https://username.github.io/repo/`. In this case, you can set the base URL in the `head` of your HTML files:
+Sometimes the base URL for your website is not the root of your domain. For example, in [GitHub Pages](https://pages.github.com/), without a custom domain, your website will be hosted at `https://username.github.io/repo/`. In this case, you can set the base URL in the `head` of your HTML files:
 
 ```html
 &lt;base href="/repo/"&gt;
@@ -117,11 +117,20 @@ pree build docs site -b repo
       └─ figure.png
 ```
 
-If you set the base URL to `/blog/`, the following relative path in `post-1/index.html` will NOT work:
+If you set the base URL to `/blog/`, the following won't work:
 
 ```html
-<!-- ❌ this is mapped to /blog/figure.png and won't load -->
+<!-- blog/post-1/index.html -->
+
+&lt;base href="/blog/"&gt;
+
+...
+
 &lt;img src="./figure.png"&gt;
+
+<!-- ❌ Here, ./figure.png is not resolved relative to index.html.
+      It is resolved relative to /blog/, which is the base URL.
+      i.e., it becomes /blog/figure.png, which is WRONG. -->
 ```
 
 If you want to use relative paths like this, DO NOT use the `&lt;base&gt;` tag. You can still provide the _base_ option to `pree` so that it emulates your hosting environment.
@@ -132,7 +141,7 @@ If you want to use relative paths like this, DO NOT use the `&lt;base&gt;` tag. 
 
 ### Config File
 
-For more convenient usage of `pree`, you can create a config file to specify `pree`'s options:
+👉 Create a config file so you don't have to specify `pree`'s options everytime:
 
 ```yaml
 # .pree.yml

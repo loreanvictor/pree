@@ -47,7 +47,7 @@ For example, [this custom component](https://github.com/loreanvictor/pree/blob/m
 
 ### Provided APIs
 
-Note that these APIs are only available during pre-rendering, i.e. during execution of `pree build` or `pree view` commands. They should not be invoked in the final website: either load components and scripts using them as `build-only` ([see this](/usage/build-only-scripts)), or check for their availability via `window.BUILD_ENV_API` variable:
+Build-env APIs are only available during pre-rendering, i.e. during execution of `pree build` or `pree view` commands. They should not be invoked in the final website: either load components and scripts using them as `build-only` ([see this](/usage/build-only-scripts)), or check for their availability via `window.BUILD_ENV_API` variable:
 
 ```js
   if (window.BUILD_ENV_API) {
