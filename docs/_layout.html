@@ -36,7 +36,11 @@
     <main>
       <slot></slot>
       <prev-next></prev-next>
+      <slot name="watermark">
+        <use-html src="./_watermark.html"></use-html>
+      </slot>
     </main>
+
     <footer>
       <use-html src="./_footer.html"></use-html>
     </footer>

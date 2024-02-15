@@ -114,3 +114,5 @@ site
 
 # Local Netlify folder
 .netlify
+
+**/search-index.json

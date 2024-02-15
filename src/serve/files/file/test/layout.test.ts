@@ -7,7 +7,7 @@ describe(layout, () => {
   test('layouts the page.', () => {
     const template = `
       <main><slot></slot></main>
-      <footer><slot name="footer"></slot></footer>
+      <footer><slot name="footer">Bobby</slot></footer>
       <slot name="trash">Trash</slot>
     `
 
@@ -21,6 +21,7 @@ describe(layout, () => {
 
     expect($('main').text().trim()).toBe('Hellow World!')
     expect($('footer').text().trim()).toBe('Footer')
-    expect($.html()).not.toMatch(/Trash/)
+    expect($.html()).not.toMatch(/Bobby/)
+    expect($.html()).toMatch(/Trash/)
   })
 })

@@ -24,6 +24,9 @@ jobs:
       - name: Build docs
         run: pree build
 
+      - name: Index docs
+        run: npm run index
+
       - name: No Jekyll
         run: touch docs/.nojekyll
       

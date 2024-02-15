@@ -102,6 +102,6 @@ npm run typecheck
 <br>
 
 <div align="center">
-  <img src="docs/assets/images/watermark-light.svg#gh-light-mode-only" width="480px"/>
-  <img src="docs/assets/images/watermark-dark.svg#gh-dark-mode-only" width="480px" />
+  <img src="docs/assets/images/watermark-light.svg#gh-light-mode-only" width="128px"/>
+  <img src="docs/assets/images/watermark-dark.svg#gh-dark-mode-only" width="128px" />
 </div>
