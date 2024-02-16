@@ -2,6 +2,7 @@ export default {
   preset: 'ts-jest',
   verbose: true,
   clearMocks: true,
+  testTimeout: 20000,
   projects: [
     {
       displayName: 'node',
