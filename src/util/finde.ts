@@ -15,7 +15,7 @@ interface IndexOptions extends FilterFilesOptions {
 }
 
 const _DefaultOptions = {
-  contentQuery: 'main :is(h1, h2, h3, h4, h5, p, code, td)'
+  contentQuery: 'main :is(h1, h2, h3, h4, h5, p, li, pre code, td)'
 }
 
 async function index(options: IndexOptions) {
