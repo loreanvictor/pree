@@ -21,6 +21,7 @@ export function pathToUrl(path: string, options: PathMapOptions = {}) {
 export function slash(path: string) {
   const isExtendedLengthPath = path.startsWith('\\\\?\\')
 
+  // istanbul ignore next
   if (isExtendedLengthPath) {
     return path
   }

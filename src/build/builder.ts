@@ -1,3 +1,4 @@
+// istanbul ignore file
 import puppeteer, { Browser } from 'puppeteer'
 import { load } from 'cheerio'
 

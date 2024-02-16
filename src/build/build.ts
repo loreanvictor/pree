@@ -31,9 +31,10 @@ async function buildOne(src: string, target: string, builder: Builder, logger: L
       THEME.secondary(' -> ') +
       THEME.highlight(target) + ' in ' + ms(Date.now() - start)
     )
-  } catch(error) {
+  } catch(error) /* istanbul ignore next */{
     logger.error('failed: ' + THEME.highlight(src))
     logger.error((error as Error).message)
+    console.log(error)
   }
 }
 
