@@ -20,7 +20,7 @@ describe(view, () => {
   test('it watches files.', async () => {
     await writeFile(join(root, 'index.html'), 'hello world')
 
-    const viewer = await view({ root })
+    const viewer = await view({ root, port: 3001 })
     const ws = new WebSocket(`ws://localhost:${viewer.port}`)
 
     await new Promise((resolve) => {
@@ -36,7 +36,7 @@ describe(view, () => {
   test('it does not watch in prod mode.', async () => {
     await writeFile(join(root, 'index.html'), 'hello world')
 
-    const viewer = await view({ root, prod: true })
+    const viewer = await view({ root, prod: true, port: 3002 })
 
     expect(viewer.watcher).toBeUndefined()
     expect(viewer.ws).toBeUndefined()
