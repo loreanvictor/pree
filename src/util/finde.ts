@@ -1,3 +1,4 @@
+// istanbul ignore file
 // TODO: this should become an independent package.
 
 import lunr from 'lunr'

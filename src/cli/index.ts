@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// istanbul ignore file
 
 import { main } from './main'
 import { args } from './args'

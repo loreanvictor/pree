@@ -37,7 +37,7 @@ export function files(options: FilesOptions = {}) {
         ctx.type = type
         ctx.body = content
         ctx.status = status ?? 200
-      } catch(error) {
+      } catch(error) /* istanbul ignore next */ {
         logger.error((error as Error).message)
         ctx.body = 'Something went terribly wrong.'
         ctx.status = 500

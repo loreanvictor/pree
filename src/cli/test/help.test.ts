@@ -16,4 +16,8 @@ describe(help, () => {
     expect(msg).toMatch(/--port/)
     expect(msg).toContain('https://loreanvictor.github.io/pree')
   })
+
+  test('without options, does nothing.', () => {
+    help()
+  })
 })

@@ -1,0 +1,35 @@
+import { merge } from '../types'
+
+
+describe(merge, () => {
+  test('merges configs.', () => {
+
+    expect(merge({src: 'A'}, {src: 'B'}).src).toBe('A')
+    expect(merge({}, {src: 'B'}).src).toBe('B')
+    expect(merge({dest: 'A'}, {dest: 'B'}).dest).toBe('A')
+    expect(merge({}, {dest: 'B'}).dest).toBe('B')
+    expect(merge({logLevel: 2}, {logLevel: 1}).logLevel).toBe(2)
+    expect(merge({}, {logLevel: 1}).logLevel).toBe(1)
+    expect(merge({logLevel: 2}, {}).logLevel).toBe(2)
+    expect(merge({base: 'A'}, {base: 'B'}).base).toBe('A')
+    expect(merge({}, {base: 'B'}).base).toBe('B')
+    expect(merge({injectBase: true}, {injectBase: false}).injectBase).toBe(true)
+    expect(merge({}, {injectBase: false}).injectBase).toBe(false)
+    expect(merge({root: 'A'}, {root: 'B'}).root).toBe('A')
+    expect(merge({}, {root: 'B'}).root).toBe('B')
+    expect(merge({prod: true}, {prod: false}).prod).toBe(true)
+    expect(merge({}, {prod: false}).prod).toBe(false)
+    expect(merge({port: 1}, {port: 2}).port).toBe(1)
+    expect(merge({}, {port: 2}).port).toBe(2)
+    expect(merge({include: ['A']}, {include: ['B']}).include).toEqual(['A'])
+    expect(merge({}, {include: ['B']}).include).toEqual(['B'])
+    expect(merge({exclude: ['A']}, {exclude: ['B']}).exclude).toEqual(['A', 'B'])
+    expect(merge({}, {exclude: ['B']}).exclude).toEqual(['B'])
+    expect(merge({exclude: ['A']}, {}).exclude).toEqual(['A'])
+    expect(merge({}, {}).exclude).toBeUndefined()
+    expect(merge({config: 'A'}, {config: 'B'}).config).toBe('A')
+    expect(merge({}, {config: 'B'}).config).toBe('B')
+    expect(merge({concurrency: 1}, {concurrency: 2}).concurrency).toBe(1)
+    expect(merge({}, {concurrency: 2}).concurrency).toBe(2)
+  })
+})

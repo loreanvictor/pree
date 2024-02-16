@@ -1,3 +1,4 @@
+import sleep from 'sleep-promise'
 import WebSocket from 'ws'
 import { join } from 'path/posix'
 import { rm, mkdir, writeFile } from 'fs/promises'
@@ -19,6 +20,7 @@ describe(view, () => {
   })
 
   test('it watches files.', async () => {
+    await sleep(100)
     await writeFile(join(root, 'index.html'), 'hello world')
 
     const viewer = await view({ root })
@@ -35,6 +37,7 @@ describe(view, () => {
   })
 
   test('it does not watch in prod mode.', async () => {
+    await sleep(100)
     await writeFile(join(root, 'index.html'), 'hello world')
 
     const viewer = await view({ root, prod: true })
@@ -46,6 +49,7 @@ describe(view, () => {
   })
 
   test('without options, watches EVERYTHING.', async () => {
+    await sleep(100)
     await writeFile(join(root, 'index.html'), 'hello world')
 
     const viewer = await view()

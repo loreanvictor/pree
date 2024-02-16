@@ -4,19 +4,10 @@ export default {
   clearMocks: true,
   projects: [
     {
-      displayName: 'browser',
-      preset: 'ts-jest',
-      testEnvironment: 'jsdom',
-      testEnvironmentOptions: {
-        url: 'http://localhost',
-      },
-      testMatch: ['**/test/**/*.test.[jt]s?(x)'],
-    },
-    {
       displayName: 'node',
       preset: 'ts-jest',
       testEnvironment: 'node',
-      testMatch: ['**/test/**/*.ssr-test.[jt]s?(x)'],
+      testMatch: ['**/test/**/*.test.[jt]s?(x)'],
     }
   ],
   collectCoverageFrom: [

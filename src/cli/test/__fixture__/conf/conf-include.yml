@@ -1,0 +1,5 @@
+src: apostacy
+include: stuff
+exclude:
+  - other
+  - things
