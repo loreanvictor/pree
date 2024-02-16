@@ -9,10 +9,10 @@
   "scripts": {
     "start": "ts-node src/cli",
     "index": "ts-node src/util/finde.ts",
-    "test": "jest",
+    "test": "jest -i",
     "lint": "eslint .",
     "typecheck": "tsc -p conf/typescript/es.json --noEmit",
-    "coverage": "jest --coverage",
+    "coverage": "jest -i --coverage",
     "build-commonjs": "tsc -p conf/typescript/commonjs.json",
     "build-es": "tsc -p conf/typescript/es.json",
     "build": "npm run build-commonjs && npm run build-es",
