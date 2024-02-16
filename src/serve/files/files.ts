@@ -33,7 +33,7 @@ export function files(options: FilesOptions = {}) {
       const path = ctx.path === '/' ? ets(join(root, target)) : join(root, target)
 
       try {
-        const { type, content, status } = await loader({ path, root, base, logger })
+        const { type, content, status } = await loader({ path, root, base, logger, host: ctx.host })
         ctx.type = type
         ctx.body = content
         ctx.status = status ?? 200

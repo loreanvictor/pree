@@ -17,7 +17,7 @@ describe(notFound, () => {
   test('returns a 404 HTML page.', async () => {
     const res = await notFound({
       path: '/not/exist',
-      root: '', base: undefined as any, logger
+      root: '', base: undefined as any, logger, host: '',
     }, jest.fn())
 
     expect(res.type).toBe('text/html')
@@ -27,7 +27,7 @@ describe(notFound, () => {
   test('includes given base in the HTML page.', async () => {
     const res = await notFound({
       path: '/not/exist',
-      root: '', base: 'base', logger
+      root: '', base: 'base', logger, host: '',
     }, jest.fn())
 
     const $ = load(res.content)

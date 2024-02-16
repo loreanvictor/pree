@@ -26,11 +26,11 @@ describe(run, () => {
       },
     )
 
-    const resA = await loader({ path: '/a', root: '', base: '', logger })
-    const resB = await loader({ path: '/b', root: '', base: '', logger })
-    const resC = await loader({ path: '/c', root: '', base: '', logger })
-    const resD = await loader({ path: '/d', root: '', base: '', logger })
-    const resE = await loader({ path: '/e', root: '', base: '', logger })
+    const resA = await loader({ path: '/a', root: '', base: '', logger, host: '' })
+    const resB = await loader({ path: '/b', root: '', base: '', logger, host: '' })
+    const resC = await loader({ path: '/c', root: '', base: '', logger, host: '' })
+    const resD = await loader({ path: '/d', root: '', base: '', logger, host: '' })
+    const resE = await loader({ path: '/e', root: '', base: '', logger, host: '' })
 
     expect(resA).toEqual({ type: 'text/plain', content: 'a' })
     expect(resB).toEqual({ type: 'text/plain', content: 'b' })

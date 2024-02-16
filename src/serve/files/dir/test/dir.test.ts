@@ -17,7 +17,7 @@ describe(dir, () => {
   test('it previews given directory.', async () => {
     const res = await dir({
       path: join(__dirname, '../../../../../'),
-      root: '', base: '', logger
+      root: '', base: '', logger, host: '',
     }, jest.fn())
 
     expect(res.type).toBe('text/html')
@@ -30,7 +30,7 @@ describe(dir, () => {
     const next = jest.fn()
     await dir({
       path: join(__dirname, '../../../../../not-exist'),
-      root: '', base: '', logger
+      root: '', base: '', logger, host: '',
     }, next)
 
     expect(next).toBeCalled()
@@ -40,7 +40,7 @@ describe(dir, () => {
     const next = jest.fn()
     await dir({
       path: join(__dirname, '../../../../../package.json'),
-      root: '', base: '', logger
+      root: '', base: '', logger, host: '',
     }, next)
 
     expect(next).toBeCalled()

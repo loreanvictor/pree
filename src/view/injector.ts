@@ -3,14 +3,13 @@ import { load } from 'cheerio'
 import { Loader } from '../serve/files/loader'
 import { match } from '../util/file-match'
 import { ViewOptions } from './types'
-import { _DefaultServeOptions } from '../serve'
 import { COLORS } from '../util/logger'
 
 
 export function injector(options: ViewOptions = {}): Loader {
   return async (ctx, next) => {
     const res = await next()
-    const port = options.port ?? _DefaultServeOptions.port
+    const port = ctx.host.split(':')[1]
 
     if (
       res.type === 'text/html'

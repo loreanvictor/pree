@@ -14,7 +14,7 @@ describe(injector, () => {
   test('injects live reload script.', async () => {
     const loader = injector()
     const res = await loader({
-      path: 'some.html', root: '', base: '', logger,
+      path: 'some.html', root: '', base: '', logger, host: 'localhost:3000'
     }, async () => ({
       type: 'text/html',
       content: '<p>Hellow World!</p>'
@@ -28,11 +28,11 @@ describe(injector, () => {
     const loader = injector()
     const ctx = { root: '', base: '', logger }
 
-    const resA = await loader({ ...ctx, path: '_some.html' },
+    const resA = await loader({ ...ctx, path: '_some.html', host: 'localhost:3000' },
       async () => ({ type: 'text/html', content: 'Jackson!' }))
-    const resB = await loader({ ...ctx, path: 'some.css' },
+    const resB = await loader({ ...ctx, path: 'some.css', host: 'localhost:3000' },
       async () => ({ type: 'text/css', content: 'Jackson!', status: 200 }))
-    const resC = await loader({ ...ctx, path: 'some.html' },
+    const resC = await loader({ ...ctx, path: 'some.html', host: 'localhost:3000' },
       async () => ({ type: 'text/html', status: 404, content: 'Jackson!' }))
 
     expect(resA.content).toBe('Jackson!')

@@ -12,6 +12,7 @@ export interface LoadingContext {
   root: string,
   base: string,
   logger: Logger,
+  host: string,
 }
 
 export type NextLoader = () => Promise<LoaderResponse>

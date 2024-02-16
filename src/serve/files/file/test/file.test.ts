@@ -21,6 +21,7 @@ describe(file, () => {
       root: '',
       base: '',
       logger,
+      host: '',
     }, jest.fn())
 
     expect(res.type).toBe('text/html')
@@ -34,6 +35,7 @@ describe(file, () => {
       root: '',
       base: '',
       logger,
+      host: '',
     }, jest.fn())
 
     expect(res.type).toBe('text/html')
@@ -47,6 +49,7 @@ describe(file, () => {
       root: '',
       base: '',
       logger,
+      host: '',
     }, jest.fn())
 
     expect(res.type).toBe('text/html')
@@ -60,6 +63,7 @@ describe(file, () => {
       root: '',
       base: '',
       logger,
+      host: '',
     }, jest.fn())
 
     const $ = load(res.content)
@@ -75,6 +79,7 @@ describe(file, () => {
       root: '',
       base: '',
       logger,
+      host: '',
     }, next)
 
     expect(next).toBeCalled()
@@ -86,6 +91,7 @@ describe(file, () => {
       root: '',
       base: '',
       logger,
+      host: '',
     }, jest.fn())
 
     expect(res.type).toBe('text/plain')

@@ -1,4 +1,5 @@
 import { createServer, Server } from 'http'
+import { AddressInfo } from 'net'
 
 import { createApp, AppOptions } from './app'
 import { createLogger, THEME } from '../util/logger'
@@ -6,11 +7,7 @@ import { els } from '../util/ensure-slash'
 
 
 export interface ServeOptions extends AppOptions {
-  port?: number
-}
-
-export const _DefaultServeOptions = {
-  port: 3000
+  port?: number | undefined
 }
 
 export interface RunningServer {
@@ -21,19 +18,21 @@ export interface RunningServer {
 
 export function serve(options: ServeOptions = {}) {
   return new Promise<RunningServer>((resolve) => {
-    const port = options?.port || _DefaultServeOptions.port
+    const port = options?.port
     const logger = createLogger({ ...options, name: 'serve' })
     const app = createApp(options)
 
     const server = createServer(app).listen(port, () => {
+      const addr = server.address() as AddressInfo
       logger.info('server up on ' + THEME.secondary(
         'http://localhost:'
-        + port
+        + addr.port
         + (options.base ? els(options.base) : '')
         + '/'
       ))
+
       resolve({
-        port,
+        port: addr.port,
         server,
         close: async () => { await server.close() }
       })
