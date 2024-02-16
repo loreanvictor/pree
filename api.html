@@ -50,6 +50,7 @@
 <p><a href="deploy.html">Deploy</a> <br><a href="api.html">JavaScript API</a> <br><a href="credits.html">Credits</a></p>
 <p><br><br></p>
 <template shadowrootmode="open"><slot></slot></template></m-d>
+
 <template shadowrootmode="open"><slot></slot></template></use-html>
     </aside>
     <main>
@@ -139,7 +140,7 @@ provides <a href="components/build-env">build-env APIs</a>.</p>
 
 <m-d><hr>
 <h3 id="serve"><code>serve()</code><menu role="toolbar"><button ref="?" aria-label="copy link" class="icon">🔗</button></menu></h3>
-<p>The core of <code>pree</code> is the <code>serve()</code> function. It will serve local files, handle <a href="usage/meta-layout">meta data and layout</a> and provide <a href="components/build-env">build-env APIs</a>. It also provides a nice interface for navigating directories.</p>
+<p>The core of <code>pree</code> is the <code>serve()</code> function. It will serve local files, handle <a href="usage/meta-layout">metadata and layout</a> and provide <a href="components/build-env">build-env APIs</a>. It also provides a nice interface for navigating directories.</p>
 <pre><code class="language-js hljs language-javascript" data-highlighted="yes"><span class="hljs-keyword">import</span> { serve } <span class="hljs-keyword">from</span> <span class="hljs-string">'pree'</span>
 
 <span class="hljs-keyword">const</span> { port, server } = <span class="hljs-keyword">await</span> <span class="hljs-title function_">serve</span>({ <span class="hljs-attr">root</span>: <span class="hljs-string">'docs'</span> })
@@ -318,7 +319,7 @@ Takes the same options as <code>serve()</code>.</p>
             }
           }
         }
-      }</style><div><a ref="?" target="_blank" class="code" aria-label="edit" href="https://github.com/loreanvictor/pree/blob/main/docs/api.html">✎</a><a ref="?" target="_blank" href="https://github.com/loreanvictor/pree/commit/94ea71a66b5b0631bbdf0c7effcb786b4f8b3991">Updated at <span ref="?">Feb 11, 2024</span> <br>for <span ref="?">pree</span> version <span ref="?">0.1.19</span></a></div></template></change-history>
+      }</style><div><a ref="?" target="_blank" class="code" aria-label="edit" href="https://github.com/loreanvictor/pree/blob/main/docs/api.html">✎</a><a ref="?" target="_blank" href="https://github.com/loreanvictor/pree/commit/f4134b7df10b21c9ba8fce02c2652ed0df114e5b">Updated at <span ref="?">Feb 16, 2024</span> <br>for <span ref="?">pree</span> version <span ref="?">0.1.21</span></a></div></template></change-history>
 <br>
 
 
@@ -385,7 +386,7 @@ Takes the same options as <code>serve()</code>.</p>
           
       </section></template></prev-next>
       <slot name="watermark">
-        <use-html src="./_watermark.html"><base href="/pree/"><picture class="local-style-y8ttleruk4" data-local-style="local-style-y8ttleruk4"><style>.local-style-y8ttleruk4[data-local-style=local-style-y8ttleruk4] { 
+        <use-html src="./_watermark.html"><base href="/pree/"><picture class="local-style-ol87f8jyl3" data-local-style="local-style-ol87f8jyl3"><style>.local-style-ol87f8jyl3[data-local-style=local-style-ol87f8jyl3] { 
  
     img {
       display: block;
@@ -408,7 +409,7 @@ Takes the same options as <code>serve()</code>.</p>
 
 <script type="module" src="./assets/components/finde-btn.js"></script>
 
-<div style="display: flex" class="local-style-wx6ocl9mebi" data-local-style="local-style-wx6ocl9mebi"><style>.local-style-wx6ocl9mebi[data-local-style=local-style-wx6ocl9mebi] { 
+<div style="display: flex" class="local-style-wl4xtjclv8s" data-local-style="local-style-wl4xtjclv8s"><style>.local-style-wl4xtjclv8s[data-local-style=local-style-wl4xtjclv8s] { 
  
     b {
       opacity: .35;
@@ -421,7 +422,7 @@ Takes the same options as <code>serve()</code>.</p>
  }</style>
   
 
-  <div>
+  <div style="display: flex; gap: var(--spacing)">
     <menu-toggle><template shadowrootmode="open"><link rel="stylesheet" href="https://unpkg.com/nokss"><link rel="stylesheet" href="https://unpkg.com/graphis/font/graphis.css"><style>.icon {
       font-family: 'graphis', sans-serif;
       font-style: normal;
@@ -434,20 +435,21 @@ Takes the same options as <code>serve()</code>.</p>
     <finde-btn><template shadowrootmode="open"><style>@import 'https://unpkg.com/nokss' layer(base);
       @import 'https://unpkg.com/graphis/font/graphis.css';
 
-      menu {
-        display: inline-flex;
-        button {
-          font-family: 'graphis', sans-serif;
-          font-style: normal;
-          font-size: 1.2em;
-        }
+      [aria-label] {
+        font-family: 'graphis', sans-serif;
+        font-style: normal;
+        font-size: 1.2em;
       }
 
       dialog {
-        border-radius: calc(var(--roundness) * 4);
+        @media(min-width: 512px) {
+          --modal-width: calc(var(--main-content-max-width, 60vw) * .75);
+        }
+
+        border-radius: calc(var(--roundness) * 2);
         --border-color: color-mix(
           in srgb,
-          var(--text-color) calc(var(--hr-expression) * 100%),
+          var(--text-color) calc(var(--hr-expression) * 50%),
           var(--background-color)
         );
 
@@ -468,13 +470,19 @@ Takes the same options as <code>serve()</code>.</p>
           nav {
             a {
               padding: var(--spacing);
-              display: block;
+              display: flex;
+              min-height: 4rem;
+              align-items: center;
               transition: background .1s ease;
 
               &:focus, &:hover {
-                background: var(--border-color);
+                background: color-mix(in srgb, var(--background-color) 90%, var(--primary-color));
                 border-radius: var(--roundness);
                 outline: none;
+              }
+
+              &>div {
+                flex-grow: 1;
               }
 
               small {
@@ -496,7 +504,7 @@ Takes the same options as <code>serve()</code>.</p>
 
                 transition: opacity .1s ease;
 
-                :focus & {
+                :focus>& {
                   opacity: 1;
                 }
               }

@@ -50,11 +50,12 @@
 <p><a href="deploy.html">Deploy</a> <br><a href="api.html">JavaScript API</a> <br><a href="credits.html">Credits</a></p>
 <p><br><br></p>
 <template shadowrootmode="open"><slot></slot></template></m-d>
+
 <template shadowrootmode="open"><slot></slot></template></use-html>
     </aside>
     <main>
       <m-d><h2 id="metadata--layouts">Metadata &amp; Layouts<menu role="toolbar"><button ref="?" aria-label="copy link" class="icon">🔗</button></menu></h2>
-<p>Websites typically have multiple pages, which generally follow the same layout, and share most of their assets and metadata. Each page might also have its own unique metadata, such as its title or description. Use <code>pree</code>'s front matter and layouting to manage this shared metadata and layout.</p>
+<p>Websites typically have multiple pages, which generally follow the same layout, and share most of their assets and metadata (e.g. <code>&lt;meta&gt;</code> tags). Each page might also have its own unique metadata, such as its title or description. Use <code>pree</code>'s front matter and layouting to manage this shared metadata and layout.</p>
 <br>
 
 <p>👉 <strong>STEP 1</strong>: Create a layout page:</p>
@@ -302,7 +303,7 @@ layout: ./_layout.html
             }
           }
         }
-      }</style><div><a ref="?" target="_blank" class="code" aria-label="edit" href="https://github.com/loreanvictor/pree/blob/main/docs/usage/meta-layout.html">✎</a><a ref="?" target="_blank" href="https://github.com/loreanvictor/pree/commit/1b333d35d8b458ef257c1e5bbd26e44abc29e0f3">Updated at <span ref="?">Feb 15, 2024</span> <br>for <span ref="?">pree</span> version <span ref="?">0.1.20</span></a></div></template></change-history>
+      }</style><div><a ref="?" target="_blank" class="code" aria-label="edit" href="https://github.com/loreanvictor/pree/blob/main/docs/usage/meta-layout.html">✎</a><a ref="?" target="_blank" href="https://github.com/loreanvictor/pree/commit/f4134b7df10b21c9ba8fce02c2652ed0df114e5b">Updated at <span ref="?">Feb 16, 2024</span> <br>for <span ref="?">pree</span> version <span ref="?">0.1.21</span></a></div></template></change-history>
 
 <br>
       <prev-next><template shadowrootmode="open"><link rel="stylesheet" href="https://unpkg.com/nokss"><link rel="stylesheet" href="https://unpkg.com/graphis/font/graphis.css"><style>i {
@@ -368,7 +369,7 @@ layout: ./_layout.html
           
       </section></template></prev-next>
       <slot name="watermark">
-        <use-html src="./_watermark.html"><base href="/pree/"><picture class="local-style-i4k9u5pjr2" data-local-style="local-style-i4k9u5pjr2"><style>.local-style-i4k9u5pjr2[data-local-style=local-style-i4k9u5pjr2] { 
+        <use-html src="./_watermark.html"><base href="/pree/"><picture class="local-style-txvcb1u815" data-local-style="local-style-txvcb1u815"><style>.local-style-txvcb1u815[data-local-style=local-style-txvcb1u815] { 
  
     img {
       display: block;
@@ -391,7 +392,7 @@ layout: ./_layout.html
 
 <script type="module" src="./assets/components/finde-btn.js"></script>
 
-<div style="display: flex" class="local-style-irl3vn7whh" data-local-style="local-style-irl3vn7whh"><style>.local-style-irl3vn7whh[data-local-style=local-style-irl3vn7whh] { 
+<div style="display: flex" class="local-style-hhuhalfc774" data-local-style="local-style-hhuhalfc774"><style>.local-style-hhuhalfc774[data-local-style=local-style-hhuhalfc774] { 
  
     b {
       opacity: .35;
@@ -404,7 +405,7 @@ layout: ./_layout.html
  }</style>
   
 
-  <div>
+  <div style="display: flex; gap: var(--spacing)">
     <menu-toggle><template shadowrootmode="open"><link rel="stylesheet" href="https://unpkg.com/nokss"><link rel="stylesheet" href="https://unpkg.com/graphis/font/graphis.css"><style>.icon {
       font-family: 'graphis', sans-serif;
       font-style: normal;
@@ -417,20 +418,21 @@ layout: ./_layout.html
     <finde-btn><template shadowrootmode="open"><style>@import 'https://unpkg.com/nokss' layer(base);
       @import 'https://unpkg.com/graphis/font/graphis.css';
 
-      menu {
-        display: inline-flex;
-        button {
-          font-family: 'graphis', sans-serif;
-          font-style: normal;
-          font-size: 1.2em;
-        }
+      [aria-label] {
+        font-family: 'graphis', sans-serif;
+        font-style: normal;
+        font-size: 1.2em;
       }
 
       dialog {
-        border-radius: calc(var(--roundness) * 4);
+        @media(min-width: 512px) {
+          --modal-width: calc(var(--main-content-max-width, 60vw) * .75);
+        }
+
+        border-radius: calc(var(--roundness) * 2);
         --border-color: color-mix(
           in srgb,
-          var(--text-color) calc(var(--hr-expression) * 100%),
+          var(--text-color) calc(var(--hr-expression) * 50%),
           var(--background-color)
         );
 
@@ -451,13 +453,19 @@ layout: ./_layout.html
           nav {
             a {
               padding: var(--spacing);
-              display: block;
+              display: flex;
+              min-height: 4rem;
+              align-items: center;
               transition: background .1s ease;
 
               &:focus, &:hover {
-                background: var(--border-color);
+                background: color-mix(in srgb, var(--background-color) 90%, var(--primary-color));
                 border-radius: var(--roundness);
                 outline: none;
+              }
+
+              &>div {
+                flex-grow: 1;
               }
 
               small {
@@ -479,7 +487,7 @@ layout: ./_layout.html
 
                 transition: opacity .1s ease;
 
-                :focus & {
+                :focus>& {
                   opacity: 1;
                 }
               }

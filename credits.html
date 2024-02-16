@@ -50,6 +50,7 @@
 <p><a href="deploy.html">Deploy</a> <br><a href="api.html">JavaScript API</a> <br><a href="credits.html">Credits</a></p>
 <p><br><br></p>
 <template shadowrootmode="open"><slot></slot></template></m-d>
+
 <template shadowrootmode="open"><slot></slot></template></use-html>
     </aside>
     <main>
@@ -57,7 +58,7 @@
 <p><code>pree</code> depends on the following open-source projects to work, so hats off to their creators and contributors:</p>
 <template shadowrootmode="open"><slot></slot></template></m-d>
 
-<div style="overflow: auto; width: 100%" class="local-style-ene8rmjo3r4" data-local-style="local-style-ene8rmjo3r4"><style>.local-style-ene8rmjo3r4[data-local-style=local-style-ene8rmjo3r4] { 
+<div style="overflow: auto; width: 100%" class="local-style-ci0su6hn81r" data-local-style="local-style-ci0su6hn81r"><style>.local-style-ci0su6hn81r[data-local-style=local-style-ci0su6hn81r] { 
  
     tr {
       filter: none;
@@ -295,7 +296,7 @@
         
       </section></template></prev-next>
       <slot name="watermark">
-        <use-html src="./_watermark.html"><base href="/pree/"><picture class="local-style-n293gxy4zhn" data-local-style="local-style-n293gxy4zhn"><style>.local-style-n293gxy4zhn[data-local-style=local-style-n293gxy4zhn] { 
+        <use-html src="./_watermark.html"><base href="/pree/"><picture class="local-style-9syxm68gkk" data-local-style="local-style-9syxm68gkk"><style>.local-style-9syxm68gkk[data-local-style=local-style-9syxm68gkk] { 
  
     img {
       display: block;
@@ -318,7 +319,7 @@
 
 <script type="module" src="./assets/components/finde-btn.js"></script>
 
-<div style="display: flex" class="local-style-cdeadcv0pxm" data-local-style="local-style-cdeadcv0pxm"><style>.local-style-cdeadcv0pxm[data-local-style=local-style-cdeadcv0pxm] { 
+<div style="display: flex" class="local-style-d7cw3f44hkn" data-local-style="local-style-d7cw3f44hkn"><style>.local-style-d7cw3f44hkn[data-local-style=local-style-d7cw3f44hkn] { 
  
     b {
       opacity: .35;
@@ -331,7 +332,7 @@
  }</style>
   
 
-  <div>
+  <div style="display: flex; gap: var(--spacing)">
     <menu-toggle><template shadowrootmode="open"><link rel="stylesheet" href="https://unpkg.com/nokss"><link rel="stylesheet" href="https://unpkg.com/graphis/font/graphis.css"><style>.icon {
       font-family: 'graphis', sans-serif;
       font-style: normal;
@@ -344,20 +345,21 @@
     <finde-btn><template shadowrootmode="open"><style>@import 'https://unpkg.com/nokss' layer(base);
       @import 'https://unpkg.com/graphis/font/graphis.css';
 
-      menu {
-        display: inline-flex;
-        button {
-          font-family: 'graphis', sans-serif;
-          font-style: normal;
-          font-size: 1.2em;
-        }
+      [aria-label] {
+        font-family: 'graphis', sans-serif;
+        font-style: normal;
+        font-size: 1.2em;
       }
 
       dialog {
-        border-radius: calc(var(--roundness) * 4);
+        @media(min-width: 512px) {
+          --modal-width: calc(var(--main-content-max-width, 60vw) * .75);
+        }
+
+        border-radius: calc(var(--roundness) * 2);
         --border-color: color-mix(
           in srgb,
-          var(--text-color) calc(var(--hr-expression) * 100%),
+          var(--text-color) calc(var(--hr-expression) * 50%),
           var(--background-color)
         );
 
@@ -378,13 +380,19 @@
           nav {
             a {
               padding: var(--spacing);
-              display: block;
+              display: flex;
+              min-height: 4rem;
+              align-items: center;
               transition: background .1s ease;
 
               &:focus, &:hover {
-                background: var(--border-color);
+                background: color-mix(in srgb, var(--background-color) 90%, var(--primary-color));
                 border-radius: var(--roundness);
                 outline: none;
+              }
+
+              &>div {
+                flex-grow: 1;
               }
 
               small {
@@ -406,7 +414,7 @@
 
                 transition: opacity .1s ease;
 
-                :focus & {
+                :focus>& {
                   opacity: 1;
                 }
               }

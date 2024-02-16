@@ -50,6 +50,7 @@
 <p><a href="deploy.html">Deploy</a> <br><a href="api.html">JavaScript API</a> <br><a href="credits.html">Credits</a></p>
 <p><br><br></p>
 <template shadowrootmode="open"><slot></slot></template></m-d>
+
 <template shadowrootmode="open"><slot></slot></template></use-html>
     </aside>
     <main>
@@ -432,7 +433,7 @@ TLDR:
           
       </section></template></prev-next>
       <slot name="watermark">
-        <use-html src="./_watermark.html"><base href="/pree/"><picture class="local-style-wqbz3op2lcg" data-local-style="local-style-wqbz3op2lcg"><style>.local-style-wqbz3op2lcg[data-local-style=local-style-wqbz3op2lcg] { 
+        <use-html src="./_watermark.html"><base href="/pree/"><picture class="local-style-gkesiytvwwt" data-local-style="local-style-gkesiytvwwt"><style>.local-style-gkesiytvwwt[data-local-style=local-style-gkesiytvwwt] { 
  
     img {
       display: block;
@@ -455,7 +456,7 @@ TLDR:
 
 <script type="module" src="./assets/components/finde-btn.js"></script>
 
-<div style="display: flex" class="local-style-22x66xnkmq9" data-local-style="local-style-22x66xnkmq9"><style>.local-style-22x66xnkmq9[data-local-style=local-style-22x66xnkmq9] { 
+<div style="display: flex" class="local-style-e0ysui4g63i" data-local-style="local-style-e0ysui4g63i"><style>.local-style-e0ysui4g63i[data-local-style=local-style-e0ysui4g63i] { 
  
     b {
       opacity: .35;
@@ -468,7 +469,7 @@ TLDR:
  }</style>
   
 
-  <div>
+  <div style="display: flex; gap: var(--spacing)">
     <menu-toggle><template shadowrootmode="open"><link rel="stylesheet" href="https://unpkg.com/nokss"><link rel="stylesheet" href="https://unpkg.com/graphis/font/graphis.css"><style>.icon {
       font-family: 'graphis', sans-serif;
       font-style: normal;
@@ -481,20 +482,21 @@ TLDR:
     <finde-btn><template shadowrootmode="open"><style>@import 'https://unpkg.com/nokss' layer(base);
       @import 'https://unpkg.com/graphis/font/graphis.css';
 
-      menu {
-        display: inline-flex;
-        button {
-          font-family: 'graphis', sans-serif;
-          font-style: normal;
-          font-size: 1.2em;
-        }
+      [aria-label] {
+        font-family: 'graphis', sans-serif;
+        font-style: normal;
+        font-size: 1.2em;
       }
 
       dialog {
-        border-radius: calc(var(--roundness) * 4);
+        @media(min-width: 512px) {
+          --modal-width: calc(var(--main-content-max-width, 60vw) * .75);
+        }
+
+        border-radius: calc(var(--roundness) * 2);
         --border-color: color-mix(
           in srgb,
-          var(--text-color) calc(var(--hr-expression) * 100%),
+          var(--text-color) calc(var(--hr-expression) * 50%),
           var(--background-color)
         );
 
@@ -515,13 +517,19 @@ TLDR:
           nav {
             a {
               padding: var(--spacing);
-              display: block;
+              display: flex;
+              min-height: 4rem;
+              align-items: center;
               transition: background .1s ease;
 
               &:focus, &:hover {
-                background: var(--border-color);
+                background: color-mix(in srgb, var(--background-color) 90%, var(--primary-color));
                 border-radius: var(--roundness);
                 outline: none;
+              }
+
+              &>div {
+                flex-grow: 1;
               }
 
               small {
@@ -543,7 +551,7 @@ TLDR:
 
                 transition: opacity .1s ease;
 
-                :focus & {
+                :focus>& {
                   opacity: 1;
                 }
               }

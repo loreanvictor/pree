@@ -50,6 +50,7 @@
 <p><a href="deploy.html">Deploy</a> <br><a href="api.html">JavaScript API</a> <br><a href="credits.html">Credits</a></p>
 <p><br><br></p>
 <template shadowrootmode="open"><slot></slot></template></m-d>
+
 <template shadowrootmode="open"><slot></slot></template></use-html>
     </aside>
     <main>
@@ -57,7 +58,7 @@
 <p><code>pree</code> simplifies website deployment by generating static files, eliminating the need for specific server setups (thats the benefit of going no-build in general). This allows for deployment on any platform that supports static file hosting. For efficiency, it's practical to include the build step within your deployment process. Below are guides for integrating <code>pree</code> with several common static hosting platforms.</p>
 <template shadowrootmode="open"><slot></slot></template></m-d>
 
-<section role="feed" aria-orientation="horizontal" class="local-style-et7ys8eaq3i" data-local-style="local-style-et7ys8eaq3i"><style>.local-style-et7ys8eaq3i[data-local-style=local-style-et7ys8eaq3i] { 
+<section role="feed" aria-orientation="horizontal" class="local-style-mxycaqjby0c" data-local-style="local-style-mxycaqjby0c"><style>.local-style-mxycaqjby0c[data-local-style=local-style-mxycaqjby0c] { 
  
     @media (max-width: 800px) {
       & {
@@ -630,7 +631,7 @@ Execute the following to deploy a preview:
           
       </section></template></prev-next>
       <slot name="watermark">
-        <use-html src="./_watermark.html"><base href="/pree/"><picture class="local-style-3p0d13h995w" data-local-style="local-style-3p0d13h995w"><style>.local-style-3p0d13h995w[data-local-style=local-style-3p0d13h995w] { 
+        <use-html src="./_watermark.html"><base href="/pree/"><picture class="local-style-kw6optb6bd" data-local-style="local-style-kw6optb6bd"><style>.local-style-kw6optb6bd[data-local-style=local-style-kw6optb6bd] { 
  
     img {
       display: block;
@@ -653,7 +654,7 @@ Execute the following to deploy a preview:
 
 <script type="module" src="./assets/components/finde-btn.js"></script>
 
-<div style="display: flex" class="local-style-s5r1rwwfrll" data-local-style="local-style-s5r1rwwfrll"><style>.local-style-s5r1rwwfrll[data-local-style=local-style-s5r1rwwfrll] { 
+<div style="display: flex" class="local-style-lqvuhzx84ba" data-local-style="local-style-lqvuhzx84ba"><style>.local-style-lqvuhzx84ba[data-local-style=local-style-lqvuhzx84ba] { 
  
     b {
       opacity: .35;
@@ -666,7 +667,7 @@ Execute the following to deploy a preview:
  }</style>
   
 
-  <div>
+  <div style="display: flex; gap: var(--spacing)">
     <menu-toggle><template shadowrootmode="open"><link rel="stylesheet" href="https://unpkg.com/nokss"><link rel="stylesheet" href="https://unpkg.com/graphis/font/graphis.css"><style>.icon {
       font-family: 'graphis', sans-serif;
       font-style: normal;
@@ -679,20 +680,21 @@ Execute the following to deploy a preview:
     <finde-btn><template shadowrootmode="open"><style>@import 'https://unpkg.com/nokss' layer(base);
       @import 'https://unpkg.com/graphis/font/graphis.css';
 
-      menu {
-        display: inline-flex;
-        button {
-          font-family: 'graphis', sans-serif;
-          font-style: normal;
-          font-size: 1.2em;
-        }
+      [aria-label] {
+        font-family: 'graphis', sans-serif;
+        font-style: normal;
+        font-size: 1.2em;
       }
 
       dialog {
-        border-radius: calc(var(--roundness) * 4);
+        @media(min-width: 512px) {
+          --modal-width: calc(var(--main-content-max-width, 60vw) * .75);
+        }
+
+        border-radius: calc(var(--roundness) * 2);
         --border-color: color-mix(
           in srgb,
-          var(--text-color) calc(var(--hr-expression) * 100%),
+          var(--text-color) calc(var(--hr-expression) * 50%),
           var(--background-color)
         );
 
@@ -713,13 +715,19 @@ Execute the following to deploy a preview:
           nav {
             a {
               padding: var(--spacing);
-              display: block;
+              display: flex;
+              min-height: 4rem;
+              align-items: center;
               transition: background .1s ease;
 
               &:focus, &:hover {
-                background: var(--border-color);
+                background: color-mix(in srgb, var(--background-color) 90%, var(--primary-color));
                 border-radius: var(--roundness);
                 outline: none;
+              }
+
+              &>div {
+                flex-grow: 1;
               }
 
               small {
@@ -741,7 +749,7 @@ Execute the following to deploy a preview:
 
                 transition: opacity .1s ease;
 
-                :focus & {
+                :focus>& {
                   opacity: 1;
                 }
               }

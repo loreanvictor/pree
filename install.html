@@ -50,6 +50,7 @@
 <p><a href="deploy.html">Deploy</a> <br><a href="api.html">JavaScript API</a> <br><a href="credits.html">Credits</a></p>
 <p><br><br></p>
 <template shadowrootmode="open"><slot></slot></template></m-d>
+
 <template shadowrootmode="open"><slot></slot></template></use-html>
     </aside>
     <main>
@@ -239,7 +240,7 @@
           
       </section></template></prev-next>
       <slot name="watermark">
-        <use-html src="./_watermark.html"><base href="/pree/"><picture class="local-style-opn65gp6vgl" data-local-style="local-style-opn65gp6vgl"><style>.local-style-opn65gp6vgl[data-local-style=local-style-opn65gp6vgl] { 
+        <use-html src="./_watermark.html"><base href="/pree/"><picture class="local-style-a4vo07b6qpk" data-local-style="local-style-a4vo07b6qpk"><style>.local-style-a4vo07b6qpk[data-local-style=local-style-a4vo07b6qpk] { 
  
     img {
       display: block;
@@ -262,7 +263,7 @@
 
 <script type="module" src="./assets/components/finde-btn.js"></script>
 
-<div style="display: flex" class="local-style-v0xbe3n3du" data-local-style="local-style-v0xbe3n3du"><style>.local-style-v0xbe3n3du[data-local-style=local-style-v0xbe3n3du] { 
+<div style="display: flex" class="local-style-fje5qpk32x4" data-local-style="local-style-fje5qpk32x4"><style>.local-style-fje5qpk32x4[data-local-style=local-style-fje5qpk32x4] { 
  
     b {
       opacity: .35;
@@ -275,7 +276,7 @@
  }</style>
   
 
-  <div>
+  <div style="display: flex; gap: var(--spacing)">
     <menu-toggle><template shadowrootmode="open"><link rel="stylesheet" href="https://unpkg.com/nokss"><link rel="stylesheet" href="https://unpkg.com/graphis/font/graphis.css"><style>.icon {
       font-family: 'graphis', sans-serif;
       font-style: normal;
@@ -288,20 +289,21 @@
     <finde-btn><template shadowrootmode="open"><style>@import 'https://unpkg.com/nokss' layer(base);
       @import 'https://unpkg.com/graphis/font/graphis.css';
 
-      menu {
-        display: inline-flex;
-        button {
-          font-family: 'graphis', sans-serif;
-          font-style: normal;
-          font-size: 1.2em;
-        }
+      [aria-label] {
+        font-family: 'graphis', sans-serif;
+        font-style: normal;
+        font-size: 1.2em;
       }
 
       dialog {
-        border-radius: calc(var(--roundness) * 4);
+        @media(min-width: 512px) {
+          --modal-width: calc(var(--main-content-max-width, 60vw) * .75);
+        }
+
+        border-radius: calc(var(--roundness) * 2);
         --border-color: color-mix(
           in srgb,
-          var(--text-color) calc(var(--hr-expression) * 100%),
+          var(--text-color) calc(var(--hr-expression) * 50%),
           var(--background-color)
         );
 
@@ -322,13 +324,19 @@
           nav {
             a {
               padding: var(--spacing);
-              display: block;
+              display: flex;
+              min-height: 4rem;
+              align-items: center;
               transition: background .1s ease;
 
               &:focus, &:hover {
-                background: var(--border-color);
+                background: color-mix(in srgb, var(--background-color) 90%, var(--primary-color));
                 border-radius: var(--roundness);
                 outline: none;
+              }
+
+              &>div {
+                flex-grow: 1;
               }
 
               small {
@@ -350,7 +358,7 @@
 
                 transition: opacity .1s ease;
 
-                :focus & {
+                :focus>& {
                   opacity: 1;
                 }
               }

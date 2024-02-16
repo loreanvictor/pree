@@ -1,10 +1,11 @@
 import lunr from 'https://esm.sh/lunr'
+import hotkeys from 'https://esm.sh/hotkeys-js'
 import { define, onConnected } from 'https://esm.sh/minicomp'
 import { template, ref, html } from 'https://esm.sh/rehtm'
 
 
 // TODO: separate the dialog element into a new component
-define('finde-btn', ({ base, src, shortcut = '/' }) => {
+define('finde-btn', ({ base, src, shortcut = '/,cmd+k,ctrl+k' }) => {
   const baseURI = base ?? document.querySelector('base')?.href ?? '/'
   const srcURI = src ?? (baseURI + 'search-index.json')
 
@@ -42,8 +43,10 @@ define('finde-btn', ({ base, src, shortcut = '/' }) => {
 
               return html`
                 <a href="${baseURI + path}">
-                  <small>${parent ?? ''}</small>
-                  ${title}
+                  <div>
+                    <small>${parent ?? ''}</small>
+                    ${title}
+                  </div>
                   <kbd>↵</kbd>
                 </a>
               `
@@ -72,6 +75,13 @@ define('finde-btn', ({ base, src, shortcut = '/' }) => {
     }
   }
 
+  const click = (evt) => {
+    const rect = dialog.current.getBoundingClientRect()
+    if (evt.clientY < rect.top || evt.clientY > rect.bottom || evt.clientX < rect.left || evt.clientX > rect.right) {
+      dialog.current.close()
+    }
+  }
+
   onConnected(() => {
     query.current = localStorage.getItem('finde-query') ?? ''
     input.current.value = query.current
@@ -83,11 +93,9 @@ define('finde-btn', ({ base, src, shortcut = '/' }) => {
         search()
       })
 
-    document.addEventListener('keydown', (evt) => {
-      if (evt.key === shortcut) {
-        show()
-        evt.preventDefault()
-      }
+    hotkeys(shortcut, (evt) => {
+      evt.preventDefault()
+      show()
     })
   })
 
@@ -96,20 +104,21 @@ define('finde-btn', ({ base, src, shortcut = '/' }) => {
       @import 'https://unpkg.com/nokss' layer(base);
       @import 'https://unpkg.com/graphis/font/graphis.css';
 
-      menu {
-        display: inline-flex;
-        button {
-          font-family: 'graphis', sans-serif;
-          font-style: normal;
-          font-size: 1.2em;
-        }
+      [aria-label] {
+        font-family: 'graphis', sans-serif;
+        font-style: normal;
+        font-size: 1.2em;
       }
 
       dialog {
-        border-radius: calc(var(--roundness) * 4);
+        @media(min-width: 512px) {
+          --modal-width: calc(var(--main-content-max-width, 60vw) * .75);
+        }
+
+        border-radius: calc(var(--roundness) * 2);
         --border-color: color-mix(
           in srgb,
-          var(--text-color) calc(var(--hr-expression) * 100%),
+          var(--text-color) calc(var(--hr-expression) * 50%),
           var(--background-color)
         );
 
@@ -130,13 +139,19 @@ define('finde-btn', ({ base, src, shortcut = '/' }) => {
           nav {
             a {
               padding: var(--spacing);
-              display: block;
+              display: flex;
+              min-height: 4rem;
+              align-items: center;
               transition: background .1s ease;
 
               &:focus, &:hover {
-                background: var(--border-color);
+                background: color-mix(in srgb, var(--background-color) 90%, var(--primary-color));
                 border-radius: var(--roundness);
                 outline: none;
+              }
+
+              &>div {
+                flex-grow: 1;
               }
 
               small {
@@ -158,7 +173,7 @@ define('finde-btn', ({ base, src, shortcut = '/' }) => {
 
                 transition: opacity .1s ease;
 
-                :focus & {
+                :focus>& {
                   opacity: 1;
                 }
               }
@@ -185,10 +200,10 @@ define('finde-btn', ({ base, src, shortcut = '/' }) => {
         }
       }
     </style>
-    <menu role="toolbar">
-      <button onclick=${show} aria-label="search">🔍</button>
+    <menu onclick=${show} role="toolbar">
+      <button aria-label="search">🔍</button>
     </menu>
-    <dialog ref=${dialog} onkeydown=${keydown}>
+    <dialog ref=${dialog} onkeydown=${keydown} onclick=${click}>
       <input ref=${input} type="text" oninput=${update} placeholder="Type to search ..."/>
       <div ref=${res}></div>
       <footer align="right">
