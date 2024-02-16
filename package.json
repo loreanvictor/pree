@@ -9,10 +9,10 @@
   "scripts": {
     "start": "ts-node src/cli",
     "index": "ts-node src/util/finde.ts",
-    "test": "jest -i",
+    "test": "wait-on -r tcp:3000 && jest -i",
     "lint": "eslint .",
     "typecheck": "tsc -p conf/typescript/es.json --noEmit",
-    "coverage": "jest -i --coverage",
+    "coverage": "wait-on -r tcp:3000 && jest -i --coverage",
     "build-commonjs": "tsc -p conf/typescript/commonjs.json",
     "build-es": "tsc -p conf/typescript/es.json",
     "build": "npm run build-commonjs && npm run build-es",
@@ -65,7 +65,8 @@
     "ts-jest": "^29.1.1",
     "ts-node": "^10.9.1",
     "tslib": "^2.6.0",
-    "typescript": "^5.1.6"
+    "typescript": "^5.1.6",
+    "wait-on": "^7.2.0"
   },
   "dependencies": {
     "chalk": "^4.1.2",
