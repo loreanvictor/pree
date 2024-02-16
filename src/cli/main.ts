@@ -1,4 +1,4 @@
-
+// istanbul ignore file
 import { basename, extname, join } from 'path'
 
 import { build } from '../build'
