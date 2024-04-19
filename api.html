@@ -406,7 +406,7 @@ Takes the same options as <code>serve()</code>.</p>
           
       </section></template></prev-next>
         <slot name="watermark">
-          <use-html src="./_watermark.html"><base href="/pree/"><picture class="local-style-5n4xquylpwk" data-local-style="local-style-5n4xquylpwk"><style>.local-style-5n4xquylpwk[data-local-style=local-style-5n4xquylpwk] { 
+          <use-html src="./_watermark.html"><base href="/pree/"><picture class="local-style-bwhj5b7yvpi" data-local-style="local-style-bwhj5b7yvpi"><style>.local-style-bwhj5b7yvpi[data-local-style=local-style-bwhj5b7yvpi] { 
  
     img {
       display: block;
@@ -431,7 +431,7 @@ Takes the same options as <code>serve()</code>.</p>
 
 <script type="module" src="./assets/components/finde-btn.js"></script>
 
-<div style="display: flex" class="local-style-km09qjw0qps" data-local-style="local-style-km09qjw0qps"><style>.local-style-km09qjw0qps[data-local-style=local-style-km09qjw0qps] { 
+<div style="display: flex" class="local-style-cqck2a4l6ij" data-local-style="local-style-cqck2a4l6ij"><style>.local-style-cqck2a4l6ij[data-local-style=local-style-cqck2a4l6ij] { 
  
     b {
       opacity: .35;
@@ -647,10 +647,12 @@ Takes the same options as <code>serve()</code>.</p>
     </script>
     <script>
       const main = document.querySelector('main')
-      addEventListener('turbo:before-frame-render', (event) => {
+      addEventListener('turbo:click', () => {
         main.style.filter = 'blur(3px)'
         main.style.opacity = .5
         main.style.transition = 'filter .1s, opacity .1s'
+      })
+      addEventListener('turbo:before-frame-render', (event) => {
         event.preventDefault()
         setTimeout(() => {
           event.detail.resume()

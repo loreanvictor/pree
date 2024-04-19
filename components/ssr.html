@@ -313,7 +313,7 @@ customElements.<span class="hljs-title function_">define</span>(<span class="hlj
           
       </section></template></prev-next>
         <slot name="watermark">
-          <use-html src="./_watermark.html"><base href="/pree/"><picture class="local-style-tma51fafvnm" data-local-style="local-style-tma51fafvnm"><style>.local-style-tma51fafvnm[data-local-style=local-style-tma51fafvnm] { 
+          <use-html src="./_watermark.html"><base href="/pree/"><picture class="local-style-9xw8zwn252h" data-local-style="local-style-9xw8zwn252h"><style>.local-style-9xw8zwn252h[data-local-style=local-style-9xw8zwn252h] { 
  
     img {
       display: block;
@@ -338,7 +338,7 @@ customElements.<span class="hljs-title function_">define</span>(<span class="hlj
 
 <script type="module" src="./assets/components/finde-btn.js"></script>
 
-<div style="display: flex" class="local-style-7etqusxsxop" data-local-style="local-style-7etqusxsxop"><style>.local-style-7etqusxsxop[data-local-style=local-style-7etqusxsxop] { 
+<div style="display: flex" class="local-style-zqdh29ol27" data-local-style="local-style-zqdh29ol27"><style>.local-style-zqdh29ol27[data-local-style=local-style-zqdh29ol27] { 
  
     b {
       opacity: .35;
@@ -554,10 +554,12 @@ customElements.<span class="hljs-title function_">define</span>(<span class="hlj
     </script>
     <script>
       const main = document.querySelector('main')
-      addEventListener('turbo:before-frame-render', (event) => {
+      addEventListener('turbo:click', () => {
         main.style.filter = 'blur(3px)'
         main.style.opacity = .5
         main.style.transition = 'filter .1s, opacity .1s'
+      })
+      addEventListener('turbo:before-frame-render', (event) => {
         event.preventDefault()
         setTimeout(() => {
           event.detail.resume()

@@ -72,10 +72,12 @@
     </script>
     <script>
       const main = document.querySelector('main')
-      addEventListener('turbo:before-frame-render', (event) => {
+      addEventListener('turbo:click', () => {
         main.style.filter = 'blur(3px)'
         main.style.opacity = .5
         main.style.transition = 'filter .1s, opacity .1s'
+      })
+      addEventListener('turbo:before-frame-render', (event) => {
         event.preventDefault()
         setTimeout(() => {
           event.detail.resume()

@@ -246,7 +246,7 @@ they can use your components.</p>
           
       </section></template></prev-next>
         <slot name="watermark">
-          <use-html src="./_watermark.html"><base href="/pree/"><picture class="local-style-25x0sw8el9i" data-local-style="local-style-25x0sw8el9i"><style>.local-style-25x0sw8el9i[data-local-style=local-style-25x0sw8el9i] { 
+          <use-html src="./_watermark.html"><base href="/pree/"><picture class="local-style-vppxy1d38hf" data-local-style="local-style-vppxy1d38hf"><style>.local-style-vppxy1d38hf[data-local-style=local-style-vppxy1d38hf] { 
  
     img {
       display: block;
@@ -271,7 +271,7 @@ they can use your components.</p>
 
 <script type="module" src="./assets/components/finde-btn.js"></script>
 
-<div style="display: flex" class="local-style-upnawycj5eb" data-local-style="local-style-upnawycj5eb"><style>.local-style-upnawycj5eb[data-local-style=local-style-upnawycj5eb] { 
+<div style="display: flex" class="local-style-wvzk4hi5a3" data-local-style="local-style-wvzk4hi5a3"><style>.local-style-wvzk4hi5a3[data-local-style=local-style-wvzk4hi5a3] { 
  
     b {
       opacity: .35;
@@ -487,10 +487,12 @@ they can use your components.</p>
     </script>
     <script>
       const main = document.querySelector('main')
-      addEventListener('turbo:before-frame-render', (event) => {
+      addEventListener('turbo:click', () => {
         main.style.filter = 'blur(3px)'
         main.style.opacity = .5
         main.style.transition = 'filter .1s, opacity .1s'
+      })
+      addEventListener('turbo:before-frame-render', (event) => {
         event.preventDefault()
         setTimeout(() => {
           event.detail.resume()

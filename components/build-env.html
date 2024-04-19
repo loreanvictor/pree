@@ -541,7 +541,7 @@ layout: ./_layout.html
           
       </section></template></prev-next>
         <slot name="watermark">
-          <use-html src="./_watermark.html"><base href="/pree/"><picture class="local-style-56mwkxktn16" data-local-style="local-style-56mwkxktn16"><style>.local-style-56mwkxktn16[data-local-style=local-style-56mwkxktn16] { 
+          <use-html src="./_watermark.html"><base href="/pree/"><picture class="local-style-7idenp82v6u" data-local-style="local-style-7idenp82v6u"><style>.local-style-7idenp82v6u[data-local-style=local-style-7idenp82v6u] { 
  
     img {
       display: block;
@@ -566,7 +566,7 @@ layout: ./_layout.html
 
 <script type="module" src="./assets/components/finde-btn.js"></script>
 
-<div style="display: flex" class="local-style-yqeuocjsv9c" data-local-style="local-style-yqeuocjsv9c"><style>.local-style-yqeuocjsv9c[data-local-style=local-style-yqeuocjsv9c] { 
+<div style="display: flex" class="local-style-8a59mrcc1il" data-local-style="local-style-8a59mrcc1il"><style>.local-style-8a59mrcc1il[data-local-style=local-style-8a59mrcc1il] { 
  
     b {
       opacity: .35;
@@ -782,10 +782,12 @@ layout: ./_layout.html
     </script>
     <script>
       const main = document.querySelector('main')
-      addEventListener('turbo:before-frame-render', (event) => {
+      addEventListener('turbo:click', () => {
         main.style.filter = 'blur(3px)'
         main.style.opacity = .5
         main.style.transition = 'filter .1s, opacity .1s'
+      })
+      addEventListener('turbo:before-frame-render', (event) => {
         event.preventDefault()
         setTimeout(() => {
           event.detail.resume()

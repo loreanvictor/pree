@@ -461,7 +461,7 @@ the content is not prebuilt. To double check the performance of your prebuilt we
           
       </section></template></prev-next>
         <slot name="watermark">
-          <use-html src="./_watermark.html"><base href="/pree/"><picture class="local-style-gf6ubeo54tj" data-local-style="local-style-gf6ubeo54tj"><style>.local-style-gf6ubeo54tj[data-local-style=local-style-gf6ubeo54tj] { 
+          <use-html src="./_watermark.html"><base href="/pree/"><picture class="local-style-nq9jfem2sqe" data-local-style="local-style-nq9jfem2sqe"><style>.local-style-nq9jfem2sqe[data-local-style=local-style-nq9jfem2sqe] { 
  
     img {
       display: block;
@@ -486,7 +486,7 @@ the content is not prebuilt. To double check the performance of your prebuilt we
 
 <script type="module" src="./assets/components/finde-btn.js"></script>
 
-<div style="display: flex" class="local-style-f4gg65z4j5i" data-local-style="local-style-f4gg65z4j5i"><style>.local-style-f4gg65z4j5i[data-local-style=local-style-f4gg65z4j5i] { 
+<div style="display: flex" class="local-style-a8qht0apxqe" data-local-style="local-style-a8qht0apxqe"><style>.local-style-a8qht0apxqe[data-local-style=local-style-a8qht0apxqe] { 
  
     b {
       opacity: .35;
@@ -702,10 +702,12 @@ the content is not prebuilt. To double check the performance of your prebuilt we
     </script>
     <script>
       const main = document.querySelector('main')
-      addEventListener('turbo:before-frame-render', (event) => {
+      addEventListener('turbo:click', () => {
         main.style.filter = 'blur(3px)'
         main.style.opacity = .5
         main.style.transition = 'filter .1s, opacity .1s'
+      })
+      addEventListener('turbo:before-frame-render', (event) => {
         event.preventDefault()
         setTimeout(() => {
           event.detail.resume()

@@ -278,7 +278,7 @@ For example, you might want to write your pages using markdown. You could use co
           
       </section></template></prev-next>
         <slot name="watermark">
-          <use-html src="./_watermark.html"><base href="/pree/"><picture class="local-style-u136o7d98wg" data-local-style="local-style-u136o7d98wg"><style>.local-style-u136o7d98wg[data-local-style=local-style-u136o7d98wg] { 
+          <use-html src="./_watermark.html"><base href="/pree/"><picture class="local-style-d2gf4r4atb8" data-local-style="local-style-d2gf4r4atb8"><style>.local-style-d2gf4r4atb8[data-local-style=local-style-d2gf4r4atb8] { 
  
     img {
       display: block;
@@ -303,7 +303,7 @@ For example, you might want to write your pages using markdown. You could use co
 
 <script type="module" src="./assets/components/finde-btn.js"></script>
 
-<div style="display: flex" class="local-style-wxe0279kzmb" data-local-style="local-style-wxe0279kzmb"><style>.local-style-wxe0279kzmb[data-local-style=local-style-wxe0279kzmb] { 
+<div style="display: flex" class="local-style-4ka7zsbyecc" data-local-style="local-style-4ka7zsbyecc"><style>.local-style-4ka7zsbyecc[data-local-style=local-style-4ka7zsbyecc] { 
  
     b {
       opacity: .35;
@@ -519,10 +519,12 @@ For example, you might want to write your pages using markdown. You could use co
     </script>
     <script>
       const main = document.querySelector('main')
-      addEventListener('turbo:before-frame-render', (event) => {
+      addEventListener('turbo:click', () => {
         main.style.filter = 'blur(3px)'
         main.style.opacity = .5
         main.style.transition = 'filter .1s, opacity .1s'
+      })
+      addEventListener('turbo:before-frame-render', (event) => {
         event.preventDefault()
         setTimeout(() => {
           event.detail.resume()
