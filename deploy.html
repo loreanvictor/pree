@@ -1,4 +1,17 @@
-<!DOCTYPE html><html lang="en"><head><base href="/pree/">
+<!DOCTYPE html><html lang="en"><head><style type="text/css">.turbo-progress-bar {
+  position: fixed;
+  display: block;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: #0076ff;
+  z-index: 2147483647;
+  transition:
+    width 300ms ease-out,
+    opacity 150ms 150ms ease-in;
+  transform: translate3d(0, 0, 0);
+}
+</style><base href="/pree/">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
@@ -23,12 +36,17 @@
 
     <script src="./assets/components/emo-li.js" type="module"></script>
     <script type="module" src="./assets/components/prev-next.js"></script>
+
+    <script type="module">
+      import 'https://unpkg.com/@hotwired/turbo@8.0.4/dist/turbo.es2017-esm.js';
+    </script>
   <title>pree: deploy</title>
           
         <link rel="prefetch" href="components/publish.html"><link rel="prefetch" href="api.html"></head>
   <body><slot name="background"></slot>
     <aside aria-hidden="true">
-      <use-html src="./_toc.html"><base href="/pree/"><style>
+      <turbo-frame id="side-bar" target="main" data-turbo-action="advance">
+        <use-html src="./_toc.html"><base href="/pree/"><style>
   #toc {
     a:not(:hover) {
       text-decoration-color: transparent;
@@ -52,13 +70,15 @@
 <template shadowrootmode="open"><slot></slot></template></m-d>
 
 <template shadowrootmode="open"><slot></slot></template></use-html>
+      </turbo-frame>
     </aside>
     <main>
-      <m-d><h2 id="deploying-your-website">Deploying Your Website<menu role="toolbar"><button ref="?" aria-label="copy link" class="icon">🔗</button></menu></h2>
+      <turbo-frame id="main" data-turbo-action="advance">
+        <m-d><h2 id="deploying-your-website">Deploying Your Website<menu role="toolbar"><button ref="?" aria-label="copy link" class="icon">🔗</button></menu></h2>
 <p><code>pree</code> simplifies website deployment by generating static files, eliminating the need for specific server setups (thats the benefit of going no-build in general). This allows for deployment on any platform that supports static file hosting. For efficiency, it's practical to include the build step within your deployment process. Below are guides for integrating <code>pree</code> with several common static hosting platforms.</p>
 <template shadowrootmode="open"><slot></slot></template></m-d>
 
-<section role="feed" aria-orientation="horizontal" class="local-style-3rj6qldpelx" data-local-style="local-style-3rj6qldpelx"><style>.local-style-3rj6qldpelx[data-local-style=local-style-3rj6qldpelx] { 
+<section role="feed" aria-orientation="horizontal" class="local-style-l0fs821z0e" data-local-style="local-style-l0fs821z0e"><style>.local-style-l0fs821z0e[data-local-style=local-style-l0fs821z0e] { 
  
     @media (max-width: 800px) {
       & {
@@ -568,7 +588,7 @@ Execute the following to deploy a preview:
         }
       }</style><div><a ref="?" target="_blank" class="code" aria-label="edit" href="https://github.com/loreanvictor/pree/blob/main/docs/deploy.html">✎</a><a ref="?" target="_blank" href="https://github.com/loreanvictor/pree/commit/b7f9e2930d9833b3f080a7595606eea5ada26430">Updated at <span ref="?">Feb 11, 2024</span> <br>for <span ref="?">pree</span> version <span ref="?">0.1.20</span></a></div></template></change-history>
 <br>
-      <prev-next><template shadowrootmode="open"><link rel="stylesheet" href="https://unpkg.com/nokss"><link rel="stylesheet" href="https://unpkg.com/graphis/font/graphis.css"><style>i {
+        <prev-next><template shadowrootmode="open"><link rel="stylesheet" href="https://unpkg.com/nokss"><link rel="stylesheet" href="https://unpkg.com/graphis/font/graphis.css"><style>i {
       font-family: 'graphis', sans-serif;
       font-style: normal;
       font-size: 2rem;
@@ -630,8 +650,8 @@ Execute the following to deploy a preview:
           </article>
           
       </section></template></prev-next>
-      <slot name="watermark">
-        <use-html src="./_watermark.html"><base href="/pree/"><picture class="local-style-3wr2l6gyc9i" data-local-style="local-style-3wr2l6gyc9i"><style>.local-style-3wr2l6gyc9i[data-local-style=local-style-3wr2l6gyc9i] { 
+        <slot name="watermark">
+          <use-html src="./_watermark.html"><base href="/pree/"><picture class="local-style-d5lez8xhej4" data-local-style="local-style-d5lez8xhej4"><style>.local-style-d5lez8xhej4[data-local-style=local-style-d5lez8xhej4] { 
  
     img {
       display: block;
@@ -645,16 +665,18 @@ Execute the following to deploy a preview:
   <img width="192px" src="./assets/images/watermark-light.svg" alt="pree logo">
 </picture>
 <br><br><template shadowrootmode="open"><slot></slot></template></use-html>
-      </slot>
+        </slot>
+      </turbo-frame>
     </main>
 
     <footer>
-      <use-html src="./_footer.html"><base href="/pree/"><script type="module" src="./assets/components/menu-toggle.js"></script>
+      <turbo-frame id="footer" target="main" data-turbo-action="advance">
+        <use-html src="./_footer.html"><base href="/pree/"><script type="module" src="./assets/components/menu-toggle.js"></script>
 
 
 <script type="module" src="./assets/components/finde-btn.js"></script>
 
-<div style="display: flex" class="local-style-0k1nwk6x5b2v" data-local-style="local-style-0k1nwk6x5b2v"><style>.local-style-0k1nwk6x5b2v[data-local-style=local-style-0k1nwk6x5b2v] { 
+<div style="display: flex" class="local-style-aew4di9815h" data-local-style="local-style-aew4di9815h"><style>.local-style-aew4di9815h[data-local-style=local-style-aew4di9815h] { 
  
     b {
       opacity: .35;
@@ -853,9 +875,25 @@ Execute the following to deploy a preview:
 </template></large-device>
   </div>
 </div><template shadowrootmode="open"><slot></slot></template></use-html>
+      </turbo-frame>
     </footer>
     
-    <script type="module" src="./assets/scripts/copy.js"></script>
+    <script>
+      const main = document.querySelector('main')
+      addEventListener('turbo:before-frame-render', (event) => {
+        main.style.filter = 'blur(3px)'
+        main.style.opacity = .5
+        main.style.transition = 'filter .1s, opacity .1s'
+        event.preventDefault()
+        setTimeout(() => {
+          event.detail.resume()
+          scrollTo(0, 0)
+          main.style.transition = 'none'
+          main.style.filter = 'none'
+          main.style.opacity = 1
+        }, 100)
+      })
+    </script>
   
 
 </body></html>

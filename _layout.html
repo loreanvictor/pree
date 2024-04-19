@@ -27,26 +27,60 @@
 
     <script src="./assets/components/emo-li.js" type="module"></script>
     <script type="module" src="./assets/components/prev-next.js"></script>
+
+    <script type="module">
+      import 'https://unpkg.com/@hotwired/turbo@8.0.4/dist/turbo.es2017-esm.js';
+    </script>
   </head>
   <body>
     <slot name="background"></slot>
     <aside aria-hidden="true">
-      <use-html src="./_toc.html"></use-html>
+      <turbo-frame id="side-bar" target="main" data-turbo-action="advance">
+        <use-html src="./_toc.html"></use-html>
+      </turbo-frame>
     </aside>
     <main>
-      <slot></slot>
-      <prev-next></prev-next>
-      <slot name="watermark">
-        <use-html src="./_watermark.html"></use-html>
-      </slot>
+      <turbo-frame id="main" data-turbo-action="advance">
+        <slot></slot>
+        <prev-next></prev-next>
+        <slot name="watermark">
+          <use-html src="./_watermark.html"></use-html>
+        </slot>
+      </turbo-frame>
     </main>
 
     <footer>
-      <use-html src="./_footer.html"></use-html>
+      <turbo-frame id="footer" target="main" data-turbo-action="advance">
+        <use-html src="./_footer.html"></use-html>
+      </turbo-frame>
     </footer>
-    <script build-only>
-      hljs.highlightAll()
+    <script type="module" build-only>
+      import { addCopyButtons, addHeaderLinks } from './assets/scripts/copy.js'
+
+      const prep = () => {
+        hljs.highlightAll()
+        addCopyButtons()
+        addHeaderLinks()
+      }
+
+      addEventListener('turbo:load', prep)
+      addEventListener('turbo:click', prep)
     </script>
-    <script type="module" src="./assets/scripts/copy.js"></script>
+    <script>
+      const main = document.querySelector('main')
+      addEventListener('turbo:before-frame-render', (event) => {
+        main.style.filter = 'blur(3px)'
+        main.style.opacity = .5
+        main.style.transition = 'filter .1s, opacity .1s'
+        event.preventDefault()
+        setTimeout(() => {
+          event.detail.resume()
+          scrollTo(0, 0)
+          main.style.transition = 'none'
+          main.style.filter = 'none'
+          main.style.opacity = 1
+        }, 100)
+      })
+    </script>
   </body>
 </html>

@@ -1,4 +1,17 @@
-<!DOCTYPE html><html lang="en"><head><base href="/pree/">
+<!DOCTYPE html><html lang="en"><head><style type="text/css">.turbo-progress-bar {
+  position: fixed;
+  display: block;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: #0076ff;
+  z-index: 2147483647;
+  transition:
+    width 300ms ease-out,
+    opacity 150ms 150ms ease-in;
+  transform: translate3d(0, 0, 0);
+}
+</style><base href="/pree/">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
@@ -23,12 +36,17 @@
 
     <script src="./assets/components/emo-li.js" type="module"></script>
     <script type="module" src="./assets/components/prev-next.js"></script>
+
+    <script type="module">
+      import 'https://unpkg.com/@hotwired/turbo@8.0.4/dist/turbo.es2017-esm.js';
+    </script>
   <title>pree: build-only scripts</title>
           
         <link rel="prefetch" href="usage/meta-layout.html"><link rel="prefetch" href="usage/config.html"></head>
   <body><slot name="background"></slot>
     <aside aria-hidden="true">
-      <use-html src="./_toc.html"><base href="/pree/"><style>
+      <turbo-frame id="side-bar" target="main" data-turbo-action="advance">
+        <use-html src="./_toc.html"><base href="/pree/"><style>
   #toc {
     a:not(:hover) {
       text-decoration-color: transparent;
@@ -52,9 +70,11 @@
 <template shadowrootmode="open"><slot></slot></template></m-d>
 
 <template shadowrootmode="open"><slot></slot></template></use-html>
+      </turbo-frame>
     </aside>
     <main>
-      <m-d><h2 id="build-only-scripts">Build-Only Scripts<menu role="toolbar"><button ref="?" aria-label="copy link" class="icon">🔗</button></menu></h2>
+      <turbo-frame id="main" data-turbo-action="advance">
+        <m-d><h2 id="build-only-scripts">Build-Only Scripts<menu role="toolbar"><button ref="?" aria-label="copy link" class="icon">🔗</button></menu></h2>
 <p>Many components are static: they don't need to be shipped to or executed on the client after they've been pre-rendered.
 For example, you might want to write your pages using markdown. You could use components such as <a href="https://zerodevx.github.io/zero-md/">zero-md</a> to do that:</p>
 <pre><code class="language-html hljs language-xml" data-highlighted="yes"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"module"</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"https://esm.sh/zero-md"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
@@ -195,7 +215,7 @@ For example, you might want to write your pages using markdown. You could use co
       }</style><div><a ref="?" target="_blank" class="code" aria-label="edit" href="https://github.com/loreanvictor/pree/blob/main/docs/usage/build-only-scripts.html">✎</a><a ref="?" target="_blank" href="https://github.com/loreanvictor/pree/commit/f1bde2096973806bae13525ce558c1a08bac9adf">Updated at <span ref="?">Feb 07, 2024</span> <br>for <span ref="?">pree</span> version <span ref="?">0.1.13</span></a></div></template></change-history>
 
 <br>
-      <prev-next><template shadowrootmode="open"><link rel="stylesheet" href="https://unpkg.com/nokss"><link rel="stylesheet" href="https://unpkg.com/graphis/font/graphis.css"><style>i {
+        <prev-next><template shadowrootmode="open"><link rel="stylesheet" href="https://unpkg.com/nokss"><link rel="stylesheet" href="https://unpkg.com/graphis/font/graphis.css"><style>i {
       font-family: 'graphis', sans-serif;
       font-style: normal;
       font-size: 2rem;
@@ -257,8 +277,8 @@ For example, you might want to write your pages using markdown. You could use co
           </article>
           
       </section></template></prev-next>
-      <slot name="watermark">
-        <use-html src="./_watermark.html"><base href="/pree/"><picture class="local-style-fd9kle5pqfp" data-local-style="local-style-fd9kle5pqfp"><style>.local-style-fd9kle5pqfp[data-local-style=local-style-fd9kle5pqfp] { 
+        <slot name="watermark">
+          <use-html src="./_watermark.html"><base href="/pree/"><picture class="local-style-acof5yxmkkh" data-local-style="local-style-acof5yxmkkh"><style>.local-style-acof5yxmkkh[data-local-style=local-style-acof5yxmkkh] { 
  
     img {
       display: block;
@@ -272,16 +292,18 @@ For example, you might want to write your pages using markdown. You could use co
   <img width="192px" src="./assets/images/watermark-light.svg" alt="pree logo">
 </picture>
 <br><br><template shadowrootmode="open"><slot></slot></template></use-html>
-      </slot>
+        </slot>
+      </turbo-frame>
     </main>
 
     <footer>
-      <use-html src="./_footer.html"><base href="/pree/"><script type="module" src="./assets/components/menu-toggle.js"></script>
+      <turbo-frame id="footer" target="main" data-turbo-action="advance">
+        <use-html src="./_footer.html"><base href="/pree/"><script type="module" src="./assets/components/menu-toggle.js"></script>
 
 
 <script type="module" src="./assets/components/finde-btn.js"></script>
 
-<div style="display: flex" class="local-style-bkl5oexh2wt" data-local-style="local-style-bkl5oexh2wt"><style>.local-style-bkl5oexh2wt[data-local-style=local-style-bkl5oexh2wt] { 
+<div style="display: flex" class="local-style-wy3vtxdv55" data-local-style="local-style-wy3vtxdv55"><style>.local-style-wy3vtxdv55[data-local-style=local-style-wy3vtxdv55] { 
  
     b {
       opacity: .35;
@@ -480,9 +502,25 @@ For example, you might want to write your pages using markdown. You could use co
 </template></large-device>
   </div>
 </div><template shadowrootmode="open"><slot></slot></template></use-html>
+      </turbo-frame>
     </footer>
     
-    <script type="module" src="./assets/scripts/copy.js"></script>
+    <script>
+      const main = document.querySelector('main')
+      addEventListener('turbo:before-frame-render', (event) => {
+        main.style.filter = 'blur(3px)'
+        main.style.opacity = .5
+        main.style.transition = 'filter .1s, opacity .1s'
+        event.preventDefault()
+        setTimeout(() => {
+          event.detail.resume()
+          scrollTo(0, 0)
+          main.style.transition = 'none'
+          main.style.filter = 'none'
+          main.style.opacity = 1
+        }, 100)
+      })
+    </script>
   
 
 </body></html>

@@ -80,6 +80,10 @@ define('finde-btn', ({ base, src, shortcut = '/,cmd+k,ctrl+k' }) => {
     if (evt.clientY < rect.top || evt.clientY > rect.bottom || evt.clientX < rect.left || evt.clientX > rect.right) {
       dialog.current.close()
     }
+
+    if (evt.target.closest('a')) {
+      dialog.current.close()
+    }
   }
 
   onConnected(() => {

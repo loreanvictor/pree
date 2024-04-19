@@ -1,4 +1,17 @@
-<!DOCTYPE html><html lang="en"><head><base href="/pree/">
+<!DOCTYPE html><html lang="en"><head><style type="text/css">.turbo-progress-bar {
+  position: fixed;
+  display: block;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: #0076ff;
+  z-index: 2147483647;
+  transition:
+    width 300ms ease-out,
+    opacity 150ms 150ms ease-in;
+  transform: translate3d(0, 0, 0);
+}
+</style><base href="/pree/">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
@@ -23,12 +36,17 @@
 
     <script src="./assets/components/emo-li.js" type="module"></script>
     <script type="module" src="./assets/components/prev-next.js"></script>
+
+    <script type="module">
+      import 'https://unpkg.com/@hotwired/turbo@8.0.4/dist/turbo.es2017-esm.js';
+    </script>
   <title>pree: build environment</title>
           
         <link rel="prefetch" href="components/ssr.html"><link rel="prefetch" href="components/publish.html"></head>
   <body><slot name="background"></slot>
     <aside aria-hidden="true">
-      <use-html src="./_toc.html"><base href="/pree/"><style>
+      <turbo-frame id="side-bar" target="main" data-turbo-action="advance">
+        <use-html src="./_toc.html"><base href="/pree/"><style>
   #toc {
     a:not(:hover) {
       text-decoration-color: transparent;
@@ -52,9 +70,11 @@
 <template shadowrootmode="open"><slot></slot></template></m-d>
 
 <template shadowrootmode="open"><slot></slot></template></use-html>
+      </turbo-frame>
     </aside>
     <main>
-      <m-d><h2 id="build-environment">Build Environment<menu role="toolbar"><button ref="?" aria-label="copy link" class="icon">🔗</button></menu></h2>
+      <turbo-frame id="main" data-turbo-action="advance">
+        <m-d><h2 id="build-environment">Build Environment<menu role="toolbar"><button ref="?" aria-label="copy link" class="icon">🔗</button></menu></h2>
 <p>Access to build environment can help web components supercharge developer experience. For example, access to git history of HTML files allows web components to automatically deduce the author or publish date of a page. <code>pree</code> provides such access to web components during pre-rendering, through APIs accessible at <code>/@env/</code> path:</p>
 <pre><code class="language-js hljs language-javascript" data-highlighted="yes"><span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> <span class="hljs-title function_">fetch</span>(<span class="hljs-string">'/@env/git/commits/first/my-page.html'</span>)
 <span class="hljs-keyword">const</span> commit = <span class="hljs-keyword">await</span> res.<span class="hljs-title function_">json</span>()
@@ -458,7 +478,7 @@ layout: ./_layout.html
         }
       }</style><div><a ref="?" target="_blank" class="code" aria-label="edit" href="https://github.com/loreanvictor/pree/blob/main/docs/components/build-env.html">✎</a><a ref="?" target="_blank" href="https://github.com/loreanvictor/pree/commit/1b333d35d8b458ef257c1e5bbd26e44abc29e0f3">Updated at <span ref="?">Feb 15, 2024</span> <br>for <span ref="?">pree</span> version <span ref="?">0.1.20</span></a></div></template></change-history>
 <br>
-      <prev-next><template shadowrootmode="open"><link rel="stylesheet" href="https://unpkg.com/nokss"><link rel="stylesheet" href="https://unpkg.com/graphis/font/graphis.css"><style>i {
+        <prev-next><template shadowrootmode="open"><link rel="stylesheet" href="https://unpkg.com/nokss"><link rel="stylesheet" href="https://unpkg.com/graphis/font/graphis.css"><style>i {
       font-family: 'graphis', sans-serif;
       font-style: normal;
       font-size: 2rem;
@@ -520,8 +540,8 @@ layout: ./_layout.html
           </article>
           
       </section></template></prev-next>
-      <slot name="watermark">
-        <use-html src="./_watermark.html"><base href="/pree/"><picture class="local-style-t0rnw262cjs" data-local-style="local-style-t0rnw262cjs"><style>.local-style-t0rnw262cjs[data-local-style=local-style-t0rnw262cjs] { 
+        <slot name="watermark">
+          <use-html src="./_watermark.html"><base href="/pree/"><picture class="local-style-bbtg5993n5d" data-local-style="local-style-bbtg5993n5d"><style>.local-style-bbtg5993n5d[data-local-style=local-style-bbtg5993n5d] { 
  
     img {
       display: block;
@@ -535,16 +555,18 @@ layout: ./_layout.html
   <img width="192px" src="./assets/images/watermark-light.svg" alt="pree logo">
 </picture>
 <br><br><template shadowrootmode="open"><slot></slot></template></use-html>
-      </slot>
+        </slot>
+      </turbo-frame>
     </main>
 
     <footer>
-      <use-html src="./_footer.html"><base href="/pree/"><script type="module" src="./assets/components/menu-toggle.js"></script>
+      <turbo-frame id="footer" target="main" data-turbo-action="advance">
+        <use-html src="./_footer.html"><base href="/pree/"><script type="module" src="./assets/components/menu-toggle.js"></script>
 
 
 <script type="module" src="./assets/components/finde-btn.js"></script>
 
-<div style="display: flex" class="local-style-bzjynfeqn8d" data-local-style="local-style-bzjynfeqn8d"><style>.local-style-bzjynfeqn8d[data-local-style=local-style-bzjynfeqn8d] { 
+<div style="display: flex" class="local-style-kupyiw13x5" data-local-style="local-style-kupyiw13x5"><style>.local-style-kupyiw13x5[data-local-style=local-style-kupyiw13x5] { 
  
     b {
       opacity: .35;
@@ -743,9 +765,25 @@ layout: ./_layout.html
 </template></large-device>
   </div>
 </div><template shadowrootmode="open"><slot></slot></template></use-html>
+      </turbo-frame>
     </footer>
     
-    <script type="module" src="./assets/scripts/copy.js"></script>
+    <script>
+      const main = document.querySelector('main')
+      addEventListener('turbo:before-frame-render', (event) => {
+        main.style.filter = 'blur(3px)'
+        main.style.opacity = .5
+        main.style.transition = 'filter .1s, opacity .1s'
+        event.preventDefault()
+        setTimeout(() => {
+          event.detail.resume()
+          scrollTo(0, 0)
+          main.style.transition = 'none'
+          main.style.filter = 'none'
+          main.style.opacity = 1
+        }, 100)
+      })
+    </script>
   
 
 </body></html>

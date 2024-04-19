@@ -26,7 +26,7 @@ define('hex-line', () => {
       top = top + dt
       node.style.left = `${left}px`
       node.style.top = `${top}px`
-      node.style.opacity = .15
+      node.style.opacity = .07
       node.style.transform = `rotate(${rot}deg)`
       setTimeout(() => node.style.opacity = 0, T / 2)
     }, T)

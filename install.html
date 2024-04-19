@@ -1,4 +1,17 @@
-<!DOCTYPE html><html lang="en"><head><base href="/pree/">
+<!DOCTYPE html><html lang="en"><head><style type="text/css">.turbo-progress-bar {
+  position: fixed;
+  display: block;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: #0076ff;
+  z-index: 2147483647;
+  transition:
+    width 300ms ease-out,
+    opacity 150ms 150ms ease-in;
+  transform: translate3d(0, 0, 0);
+}
+</style><base href="/pree/">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
@@ -23,12 +36,17 @@
 
     <script src="./assets/components/emo-li.js" type="module"></script>
     <script type="module" src="./assets/components/prev-next.js"></script>
+
+    <script type="module">
+      import 'https://unpkg.com/@hotwired/turbo@8.0.4/dist/turbo.es2017-esm.js';
+    </script>
   <title>pree: installation</title>
           
         <link rel="prefetch" href="motivation.html"><link rel="prefetch" href="usage/index.html"></head>
   <body><slot name="background"></slot>
     <aside aria-hidden="true">
-      <use-html src="./_toc.html"><base href="/pree/"><style>
+      <turbo-frame id="side-bar" target="main" data-turbo-action="advance">
+        <use-html src="./_toc.html"><base href="/pree/"><style>
   #toc {
     a:not(:hover) {
       text-decoration-color: transparent;
@@ -52,9 +70,11 @@
 <template shadowrootmode="open"><slot></slot></template></m-d>
 
 <template shadowrootmode="open"><slot></slot></template></use-html>
+      </turbo-frame>
     </aside>
     <main>
-      <m-d><h2 id="installation">Installation<menu role="toolbar"><button ref="?" aria-label="copy link" class="icon">🔗</button></menu></h2>
+      <turbo-frame id="main" data-turbo-action="advance">
+        <m-d><h2 id="installation">Installation<menu role="toolbar"><button ref="?" aria-label="copy link" class="icon">🔗</button></menu></h2>
 <p><em>You need <a href="https://nodejs.org/en/">Node.js</a> to run <code>pree</code>.</em></p>
 <p><emo-li><span slot="emo">⬇️</span> Install <code>pree</code>:<template shadowrootmode="open">
   <style>
@@ -177,7 +197,7 @@
       }</style><div><a ref="?" target="_blank" class="code" aria-label="edit" href="https://github.com/loreanvictor/pree/blob/main/docs/install.html">✎</a><a ref="?" target="_blank" href="https://github.com/loreanvictor/pree/commit/5474512088dada9ca9b425834d49edd9bd241abb">Updated at <span ref="?">Feb 10, 2024</span> <br>for <span ref="?">pree</span> version <span ref="?">0.1.17</span></a></div></template></change-history>
 
 <br>
-      <prev-next><template shadowrootmode="open"><link rel="stylesheet" href="https://unpkg.com/nokss"><link rel="stylesheet" href="https://unpkg.com/graphis/font/graphis.css"><style>i {
+        <prev-next><template shadowrootmode="open"><link rel="stylesheet" href="https://unpkg.com/nokss"><link rel="stylesheet" href="https://unpkg.com/graphis/font/graphis.css"><style>i {
       font-family: 'graphis', sans-serif;
       font-style: normal;
       font-size: 2rem;
@@ -239,8 +259,8 @@
           </article>
           
       </section></template></prev-next>
-      <slot name="watermark">
-        <use-html src="./_watermark.html"><base href="/pree/"><picture class="local-style-nvbjgtpclec" data-local-style="local-style-nvbjgtpclec"><style>.local-style-nvbjgtpclec[data-local-style=local-style-nvbjgtpclec] { 
+        <slot name="watermark">
+          <use-html src="./_watermark.html"><base href="/pree/"><picture class="local-style-iy47654wy2a" data-local-style="local-style-iy47654wy2a"><style>.local-style-iy47654wy2a[data-local-style=local-style-iy47654wy2a] { 
  
     img {
       display: block;
@@ -254,16 +274,18 @@
   <img width="192px" src="./assets/images/watermark-light.svg" alt="pree logo">
 </picture>
 <br><br><template shadowrootmode="open"><slot></slot></template></use-html>
-      </slot>
+        </slot>
+      </turbo-frame>
     </main>
 
     <footer>
-      <use-html src="./_footer.html"><base href="/pree/"><script type="module" src="./assets/components/menu-toggle.js"></script>
+      <turbo-frame id="footer" target="main" data-turbo-action="advance">
+        <use-html src="./_footer.html"><base href="/pree/"><script type="module" src="./assets/components/menu-toggle.js"></script>
 
 
 <script type="module" src="./assets/components/finde-btn.js"></script>
 
-<div style="display: flex" class="local-style-7y4llkl4gh9" data-local-style="local-style-7y4llkl4gh9"><style>.local-style-7y4llkl4gh9[data-local-style=local-style-7y4llkl4gh9] { 
+<div style="display: flex" class="local-style-armii4z6lcp" data-local-style="local-style-armii4z6lcp"><style>.local-style-armii4z6lcp[data-local-style=local-style-armii4z6lcp] { 
  
     b {
       opacity: .35;
@@ -462,9 +484,25 @@
 </template></large-device>
   </div>
 </div><template shadowrootmode="open"><slot></slot></template></use-html>
+      </turbo-frame>
     </footer>
     
-    <script type="module" src="./assets/scripts/copy.js"></script>
+    <script>
+      const main = document.querySelector('main')
+      addEventListener('turbo:before-frame-render', (event) => {
+        main.style.filter = 'blur(3px)'
+        main.style.opacity = .5
+        main.style.transition = 'filter .1s, opacity .1s'
+        event.preventDefault()
+        setTimeout(() => {
+          event.detail.resume()
+          scrollTo(0, 0)
+          main.style.transition = 'none'
+          main.style.filter = 'none'
+          main.style.opacity = 1
+        }, 100)
+      })
+    </script>
   
 
 </body></html>

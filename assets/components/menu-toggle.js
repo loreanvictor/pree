@@ -5,13 +5,14 @@ import { template, ref } from 'https://esm.sh/rehtm'
 define('menu-toggle', ({ target }) => {
   const btn = ref()
   target ??= 'body > aside:first-of-type'
+  const isMobile = () => window.matchMedia('(max-width: 1024px)').matches
 
   const state = () => {
     const menu = document.querySelector(target)
     if (menu) {
       const hidden = menu.getAttribute('aria-hidden') === 'true'
       const visible = menu.getAttribute('aria-hidden') === 'false'
-      const assumeHidden = !hidden && !visible && window.matchMedia('(max-width: 1024px)').matches
+      const assumeHidden = !hidden && !visible && isMobile()
 
       return {
         menu, hidden: hidden || assumeHidden
@@ -31,6 +32,12 @@ define('menu-toggle', ({ target }) => {
     const curr = state()
     if (curr.menu) {
       btn.current.setAttribute('aria-checked', curr.hidden)
+
+      curr.menu.addEventListener('click', (evt) => {
+        if (isMobile() && evt.target.closest('a')) {
+          toggle()
+        }
+      })
     }
   }
 
