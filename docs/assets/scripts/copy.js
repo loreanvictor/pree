@@ -2,7 +2,7 @@ import select from 'https://esm.sh/select'
 import { ref, html } from 'https://esm.sh/rehtm'
 
 
-const addCopyButtons = () => {
+export const addCopyButtons = () => {
   document.querySelectorAll('pre').forEach(pre => {
     const btn = ref()
 
@@ -30,7 +30,7 @@ const copy = text => {
   el.current.remove()
 }
 
-const addHeaderLinks = () => {
+export const addHeaderLinks = () => {
   document.querySelectorAll('h1[id], h2[id], h3[id], h4[id], h5[id], h6[id]').forEach(h => {
     const id = h.id
     const btn = ref()
@@ -51,7 +51,4 @@ const addHeaderLinks = () => {
     `)
   })
 }
-
-addCopyButtons()
-addHeaderLinks()
 
