@@ -78,7 +78,7 @@
 <p><code>pree</code> simplifies website deployment by generating static files, eliminating the need for specific server setups (thats the benefit of going no-build in general). This allows for deployment on any platform that supports static file hosting. For efficiency, it's practical to include the build step within your deployment process. Below are guides for integrating <code>pree</code> with several common static hosting platforms.</p>
 <template shadowrootmode="open"><slot></slot></template></m-d>
 
-<section role="feed" aria-orientation="horizontal" class="local-style-3slv93kz5pd" data-local-style="local-style-3slv93kz5pd"><style>.local-style-3slv93kz5pd[data-local-style=local-style-3slv93kz5pd] { 
+<section role="feed" aria-orientation="horizontal" class="local-style-nnt7ii4jupf" data-local-style="local-style-nnt7ii4jupf"><style>.local-style-nnt7ii4jupf[data-local-style=local-style-nnt7ii4jupf] { 
  
     @media (max-width: 800px) {
       & {
@@ -651,7 +651,7 @@ Execute the following to deploy a preview:
           
       </section></template></prev-next>
         <slot name="watermark">
-          <use-html src="./_watermark.html"><base href="/pree/"><picture class="local-style-p61iofeqfzg" data-local-style="local-style-p61iofeqfzg"><style>.local-style-p61iofeqfzg[data-local-style=local-style-p61iofeqfzg] { 
+          <use-html src="./_watermark.html"><base href="/pree/"><picture class="local-style-qk0z1bfufcb" data-local-style="local-style-qk0z1bfufcb"><style>.local-style-qk0z1bfufcb[data-local-style=local-style-qk0z1bfufcb] { 
  
     img {
       display: block;
@@ -676,7 +676,7 @@ Execute the following to deploy a preview:
 
 <script type="module" src="./assets/components/finde-btn.js"></script>
 
-<div style="display: flex" class="local-style-eionpsm75m" data-local-style="local-style-eionpsm75m"><style>.local-style-eionpsm75m[data-local-style=local-style-eionpsm75m] { 
+<div style="display: flex" class="local-style-lwo783ubit" data-local-style="local-style-lwo783ubit"><style>.local-style-lwo783ubit[data-local-style=local-style-lwo783ubit] { 
  
     b {
       opacity: .35;
@@ -877,7 +877,19 @@ Execute the following to deploy a preview:
 </div><template shadowrootmode="open"><slot></slot></template></use-html>
       </turbo-frame>
     </footer>
+
     
+    <script type="module">
+      import { addCopyButtons, addHeaderLinks } from './assets/scripts/copy.js'
+
+      const prep = () => {        
+        addCopyButtons()
+        addHeaderLinks()
+      }
+
+      addEventListener('turbo:load', prep)
+      addEventListener('turbo:click', prep)
+    </script>
     <script>
       const main = document.querySelector('main')
       addEventListener('turbo:before-frame-render', (event) => {

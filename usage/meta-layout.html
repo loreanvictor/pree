@@ -389,7 +389,7 @@ layout: ./_layout.html
           
       </section></template></prev-next>
         <slot name="watermark">
-          <use-html src="./_watermark.html"><base href="/pree/"><picture class="local-style-cjji5y4kgq" data-local-style="local-style-cjji5y4kgq"><style>.local-style-cjji5y4kgq[data-local-style=local-style-cjji5y4kgq] { 
+          <use-html src="./_watermark.html"><base href="/pree/"><picture class="local-style-yb6psfjyz2" data-local-style="local-style-yb6psfjyz2"><style>.local-style-yb6psfjyz2[data-local-style=local-style-yb6psfjyz2] { 
  
     img {
       display: block;
@@ -414,7 +414,7 @@ layout: ./_layout.html
 
 <script type="module" src="./assets/components/finde-btn.js"></script>
 
-<div style="display: flex" class="local-style-hbfa0dgo4f" data-local-style="local-style-hbfa0dgo4f"><style>.local-style-hbfa0dgo4f[data-local-style=local-style-hbfa0dgo4f] { 
+<div style="display: flex" class="local-style-yy03yns91mt" data-local-style="local-style-yy03yns91mt"><style>.local-style-yy03yns91mt[data-local-style=local-style-yy03yns91mt] { 
  
     b {
       opacity: .35;
@@ -615,7 +615,19 @@ layout: ./_layout.html
 </div><template shadowrootmode="open"><slot></slot></template></use-html>
       </turbo-frame>
     </footer>
+
     
+    <script type="module">
+      import { addCopyButtons, addHeaderLinks } from './assets/scripts/copy.js'
+
+      const prep = () => {        
+        addCopyButtons()
+        addHeaderLinks()
+      }
+
+      addEventListener('turbo:load', prep)
+      addEventListener('turbo:click', prep)
+    </script>
     <script>
       const main = document.querySelector('main')
       addEventListener('turbo:before-frame-render', (event) => {

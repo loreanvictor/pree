@@ -278,7 +278,7 @@ For example, you might want to write your pages using markdown. You could use co
           
       </section></template></prev-next>
         <slot name="watermark">
-          <use-html src="./_watermark.html"><base href="/pree/"><picture class="local-style-1sdkczr6mwi" data-local-style="local-style-1sdkczr6mwi"><style>.local-style-1sdkczr6mwi[data-local-style=local-style-1sdkczr6mwi] { 
+          <use-html src="./_watermark.html"><base href="/pree/"><picture class="local-style-u136o7d98wg" data-local-style="local-style-u136o7d98wg"><style>.local-style-u136o7d98wg[data-local-style=local-style-u136o7d98wg] { 
  
     img {
       display: block;
@@ -303,7 +303,7 @@ For example, you might want to write your pages using markdown. You could use co
 
 <script type="module" src="./assets/components/finde-btn.js"></script>
 
-<div style="display: flex" class="local-style-t70wga4udj" data-local-style="local-style-t70wga4udj"><style>.local-style-t70wga4udj[data-local-style=local-style-t70wga4udj] { 
+<div style="display: flex" class="local-style-wxe0279kzmb" data-local-style="local-style-wxe0279kzmb"><style>.local-style-wxe0279kzmb[data-local-style=local-style-wxe0279kzmb] { 
  
     b {
       opacity: .35;
@@ -504,7 +504,19 @@ For example, you might want to write your pages using markdown. You could use co
 </div><template shadowrootmode="open"><slot></slot></template></use-html>
       </turbo-frame>
     </footer>
+
     
+    <script type="module">
+      import { addCopyButtons, addHeaderLinks } from './assets/scripts/copy.js'
+
+      const prep = () => {        
+        addCopyButtons()
+        addHeaderLinks()
+      }
+
+      addEventListener('turbo:load', prep)
+      addEventListener('turbo:click', prep)
+    </script>
     <script>
       const main = document.querySelector('main')
       addEventListener('turbo:before-frame-render', (event) => {

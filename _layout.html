@@ -54,11 +54,15 @@
         <use-html src="./_footer.html"></use-html>
       </turbo-frame>
     </footer>
+
     <script type="module" build-only>
+      addEventListener('turbo:load', () => hljs.highlightAll())
+      addEventListener('turbo:click', () => hljs.highlightAll())
+    </script>
+    <script type="module">
       import { addCopyButtons, addHeaderLinks } from './assets/scripts/copy.js'
 
-      const prep = () => {
-        hljs.highlightAll()
+      const prep = () => {        
         addCopyButtons()
         addHeaderLinks()
       }

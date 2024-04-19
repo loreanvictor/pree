@@ -406,7 +406,7 @@ Takes the same options as <code>serve()</code>.</p>
           
       </section></template></prev-next>
         <slot name="watermark">
-          <use-html src="./_watermark.html"><base href="/pree/"><picture class="local-style-9t0sgr9owp8" data-local-style="local-style-9t0sgr9owp8"><style>.local-style-9t0sgr9owp8[data-local-style=local-style-9t0sgr9owp8] { 
+          <use-html src="./_watermark.html"><base href="/pree/"><picture class="local-style-5n4xquylpwk" data-local-style="local-style-5n4xquylpwk"><style>.local-style-5n4xquylpwk[data-local-style=local-style-5n4xquylpwk] { 
  
     img {
       display: block;
@@ -431,7 +431,7 @@ Takes the same options as <code>serve()</code>.</p>
 
 <script type="module" src="./assets/components/finde-btn.js"></script>
 
-<div style="display: flex" class="local-style-gorojxkouqm" data-local-style="local-style-gorojxkouqm"><style>.local-style-gorojxkouqm[data-local-style=local-style-gorojxkouqm] { 
+<div style="display: flex" class="local-style-km09qjw0qps" data-local-style="local-style-km09qjw0qps"><style>.local-style-km09qjw0qps[data-local-style=local-style-km09qjw0qps] { 
  
     b {
       opacity: .35;
@@ -632,7 +632,19 @@ Takes the same options as <code>serve()</code>.</p>
 </div><template shadowrootmode="open"><slot></slot></template></use-html>
       </turbo-frame>
     </footer>
+
     
+    <script type="module">
+      import { addCopyButtons, addHeaderLinks } from './assets/scripts/copy.js'
+
+      const prep = () => {        
+        addCopyButtons()
+        addHeaderLinks()
+      }
+
+      addEventListener('turbo:load', prep)
+      addEventListener('turbo:click', prep)
+    </script>
     <script>
       const main = document.querySelector('main')
       addEventListener('turbo:before-frame-render', (event) => {
