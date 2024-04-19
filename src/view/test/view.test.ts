@@ -6,7 +6,7 @@ import { rm, mkdir, writeFile } from 'fs/promises'
 import { view } from '../view'
 
 
-const root = join(__dirname, '__tmp__')
+const root = join(__dirname, '__tmp_view__')
 
 
 describe(view, () => {
