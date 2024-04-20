@@ -36,7 +36,6 @@ const updateHeadOnLoad = () => {
   })
 }
 
-
 const executeScripts = (container) => {
   container.querySelectorAll('script').forEach(script => {
     const newScript = document.createElement('script')
@@ -59,17 +58,9 @@ function updateHead(doc) {
     oldTitle.innerText = newTitle.innerText
   }
 
-  // Remove/Add/Update meta tags
   updateElements(oldHead, newHead, 'meta',
     (oldEl, newEl) => oldEl.name === newEl.name || oldEl.property === newEl.property)
-
-  // Remove/Add/Update link tags (for stylesheets, icons, etc.)
-  updateElements(oldHead, newHead, 'link',
-    (oldEl, newEl) => oldEl.rel === newEl.rel && oldEl.href === newEl.href)
-
-  // Remove/Add/Update scripts
-  updateElements(oldHead, newHead, 'script',
-    (oldEl, newEl) => oldEl.src === newEl.src && oldEl.innerText === newEl.innerText)
+  updateElements(oldHead, newHead, 'base', () => true)
 }
 
 function updateElements(oldParent, newParent, selector, compare) {
