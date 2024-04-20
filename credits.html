@@ -1,17 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><style type="text/css">.turbo-progress-bar {
-  position: fixed;
-  display: block;
-  top: 0;
-  left: 0;
-  height: 3px;
-  background: #0076ff;
-  z-index: 2147483647;
-  transition:
-    width 300ms ease-out,
-    opacity 150ms 150ms ease-in;
-  transform: translate3d(0, 0, 0);
-}
-</style><base href="/pree/">
+<!DOCTYPE html><html lang="en"><head><base href="/pree/">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
@@ -33,20 +20,16 @@
     
     
     
+    
 
     <script src="./assets/components/emo-li.js" type="module"></script>
     <script type="module" src="./assets/components/prev-next.js"></script>
-
-    <script type="module">
-      import 'https://unpkg.com/@hotwired/turbo@8.0.4/dist/turbo.es2017-esm.js';
-    </script>
   <title>pree: credits</title><meta name="dont search" content="true">
           
         <link rel="prefetch" href="api.html"></head>
   <body><slot name="background"></slot>
     <aside aria-hidden="true">
-      <turbo-frame id="side-bar" target="main" data-turbo-action="advance">
-        <use-html src="./_toc.html"><base href="/pree/"><style>
+      <use-html src="./_toc.html"><base href="/pree/"><style>
   #toc {
     a:not(:hover) {
       text-decoration-color: transparent;
@@ -70,15 +53,14 @@
 <template shadowrootmode="open"><slot></slot></template></m-d>
 
 <template shadowrootmode="open"><slot></slot></template></use-html>
-      </turbo-frame>
     </aside>
     <main>
-      <turbo-frame id="main" data-turbo-action="advance">
+      <dans-floor>
         <m-d><h2 id="credits">Credits<menu role="toolbar"><button ref="?" aria-label="copy link" class="icon">🔗</button></menu></h2>
 <p><code>pree</code> depends on the following open-source projects to work, so hats off to their creators and contributors:</p>
 <template shadowrootmode="open"><slot></slot></template></m-d>
 
-<div style="overflow: auto; width: 100%" class="local-style-x7d06ypaig" data-local-style="local-style-x7d06ypaig"><style>.local-style-x7d06ypaig[data-local-style=local-style-x7d06ypaig] { 
+<div style="overflow: auto; width: 100%" class="local-style-sl4hdqplsyd" data-local-style="local-style-sl4hdqplsyd"><style>.local-style-sl4hdqplsyd[data-local-style=local-style-sl4hdqplsyd] { 
  
     tr {
       filter: none;
@@ -316,7 +298,7 @@
         
       </section></template></prev-next>
         <slot name="watermark">
-          <use-html src="./_watermark.html"><base href="/pree/"><picture class="local-style-yo9rkj3mx7" data-local-style="local-style-yo9rkj3mx7"><style>.local-style-yo9rkj3mx7[data-local-style=local-style-yo9rkj3mx7] { 
+          <use-html src="./_watermark.html"><base href="/pree/"><picture class="local-style-93390wx83xf" data-local-style="local-style-93390wx83xf"><style>.local-style-93390wx83xf[data-local-style=local-style-93390wx83xf] { 
  
     img {
       display: block;
@@ -331,17 +313,37 @@
 </picture>
 <br><br><template shadowrootmode="open"><slot></slot></template></use-html>
         </slot>
-      </turbo-frame>
+
+        
+        <script type="module">
+          import { addCopyButtons, addHeaderLinks } from './assets/scripts/copy.js'
+
+          addCopyButtons()
+          addHeaderLinks()
+        </script>
+      <template shadowrootmode="open"><slot></slot></template></dans-floor>
+      <style>
+        dans-floor {
+          opacity: 1;
+          filter: none;
+          transition: opacity .05s, filter .05s;
+
+          &[loading] {
+            opacity: .5;
+            filter: blur(5px);
+            transition: opacity .15s, filter .15s;
+          }
+        }
+      </style>
     </main>
 
     <footer>
-      <turbo-frame id="footer" target="main" data-turbo-action="advance">
-        <use-html src="./_footer.html"><base href="/pree/"><script type="module" src="./assets/components/menu-toggle.js"></script>
+      <use-html src="./_footer.html"><base href="/pree/"><script type="module" src="./assets/components/menu-toggle.js"></script>
 
 
 <script type="module" src="./assets/components/finde-btn.js"></script>
 
-<div style="display: flex" class="local-style-siqqdqi8yk" data-local-style="local-style-siqqdqi8yk"><style>.local-style-siqqdqi8yk[data-local-style=local-style-siqqdqi8yk] { 
+<div style="display: flex" class="local-style-t7vs7xgqocb" data-local-style="local-style-t7vs7xgqocb"><style>.local-style-t7vs7xgqocb[data-local-style=local-style-t7vs7xgqocb] { 
  
     b {
       opacity: .35;
@@ -540,39 +542,7 @@
 </template></large-device>
   </div>
 </div><template shadowrootmode="open"><slot></slot></template></use-html>
-      </turbo-frame>
     </footer>
-
-    
-    <script type="module">
-      import { addCopyButtons, addHeaderLinks } from './assets/scripts/copy.js'
-
-      const prep = () => {        
-        addCopyButtons()
-        addHeaderLinks()
-      }
-
-      addEventListener('turbo:load', prep)
-      addEventListener('turbo:click', prep)
-    </script>
-    <script>
-      const main = document.querySelector('main')
-      addEventListener('turbo:click', () => {
-        main.style.filter = 'blur(3px)'
-        main.style.opacity = .5
-        main.style.transition = 'filter .1s, opacity .1s'
-      })
-      addEventListener('turbo:before-frame-render', (event) => {
-        event.preventDefault()
-        setTimeout(() => {
-          event.detail.resume()
-          scrollTo(0, 0)
-          main.style.transition = 'filter .05s, opacity .05s'
-          main.style.filter = 'none'
-          main.style.opacity = 1
-        }, 100)
-      })
-    </script>
   
 
 </body></html>

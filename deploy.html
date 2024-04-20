@@ -1,17 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><style type="text/css">.turbo-progress-bar {
-  position: fixed;
-  display: block;
-  top: 0;
-  left: 0;
-  height: 3px;
-  background: #0076ff;
-  z-index: 2147483647;
-  transition:
-    width 300ms ease-out,
-    opacity 150ms 150ms ease-in;
-  transform: translate3d(0, 0, 0);
-}
-</style><base href="/pree/">
+<!DOCTYPE html><html lang="en"><head><base href="/pree/">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
@@ -33,20 +20,16 @@
     
     
     
+    
 
     <script src="./assets/components/emo-li.js" type="module"></script>
     <script type="module" src="./assets/components/prev-next.js"></script>
-
-    <script type="module">
-      import 'https://unpkg.com/@hotwired/turbo@8.0.4/dist/turbo.es2017-esm.js';
-    </script>
   <title>pree: deploy</title>
           
         <link rel="prefetch" href="components/publish.html"><link rel="prefetch" href="api.html"></head>
   <body><slot name="background"></slot>
     <aside aria-hidden="true">
-      <turbo-frame id="side-bar" target="main" data-turbo-action="advance">
-        <use-html src="./_toc.html"><base href="/pree/"><style>
+      <use-html src="./_toc.html"><base href="/pree/"><style>
   #toc {
     a:not(:hover) {
       text-decoration-color: transparent;
@@ -70,15 +53,14 @@
 <template shadowrootmode="open"><slot></slot></template></m-d>
 
 <template shadowrootmode="open"><slot></slot></template></use-html>
-      </turbo-frame>
     </aside>
     <main>
-      <turbo-frame id="main" data-turbo-action="advance">
+      <dans-floor>
         <m-d><h2 id="deploying-your-website">Deploying Your Website<menu role="toolbar"><button ref="?" aria-label="copy link" class="icon">🔗</button></menu></h2>
 <p><code>pree</code> simplifies website deployment by generating static files, eliminating the need for specific server setups (thats the benefit of going no-build in general). This allows for deployment on any platform that supports static file hosting. For efficiency, it's practical to include the build step within your deployment process. Below are guides for integrating <code>pree</code> with several common static hosting platforms.</p>
 <template shadowrootmode="open"><slot></slot></template></m-d>
 
-<section role="feed" aria-orientation="horizontal" class="local-style-5135j4m9pav" data-local-style="local-style-5135j4m9pav"><style>.local-style-5135j4m9pav[data-local-style=local-style-5135j4m9pav] { 
+<section role="feed" aria-orientation="horizontal" class="local-style-vst71ltbzig" data-local-style="local-style-vst71ltbzig"><style>.local-style-vst71ltbzig[data-local-style=local-style-vst71ltbzig] { 
  
     @media (max-width: 800px) {
       & {
@@ -126,7 +108,7 @@
     <header>
       <address>
         <img src="https://www.svgrepo.com/show/512317/github-142.svg">
-        <a href="deploy.html#github-pages" data-turbo="false">GitHub Pages</a>
+        <a href="deploy.html#github-pages">GitHub Pages</a>
       </address>
       <menu role="toolbar">
         <a role="button" href="https://pages.github.com/" target="_blank" aria-label="open">🔗</a>
@@ -137,7 +119,7 @@
     <header>
       <address>
         <img src="https://www.svgrepo.com/show/354411/surge.svg">
-        <a href="deploy.html#surge" data-turbo="false">Surge</a>
+        <a href="deploy.html#surge">Surge</a>
       </address>
       <menu role="toolbar">
         <a role="button" href="https://www.surge.sh/" target="_blank" aria-label="open">🔗</a>
@@ -148,7 +130,7 @@
     <header>
       <address>
         <img src="https://www.svgrepo.com/show/327408/logo-vercel.svg">
-        <a href="deploy.html#vercel" data-turbo="false">Vercel</a>
+        <a href="deploy.html#vercel">Vercel</a>
       </address>
       <menu role="toolbar">
         <a role="button" href="https://www.vercel.com/" target="_blank" aria-label="open">🔗</a>
@@ -159,7 +141,7 @@
     <header>
       <address>
         <img src="https://www.svgrepo.com/show/354110/netlify.svg" no-inv="">
-        <a href="deploy.html#netlify" data-turbo="false">Netlify</a>
+        <a href="deploy.html#netlify">Netlify</a>
       </address>
       <menu role="toolbar">
         <a role="button" href="https://www.netlify.com/" target="_blank" aria-label="open">🔗</a>
@@ -586,7 +568,7 @@ Execute the following to deploy a preview:
             }
           }
         }
-      }</style><div><a ref="?" target="_blank" class="code" aria-label="edit" href="https://github.com/loreanvictor/pree/blob/main/docs/deploy.html">✎</a><a ref="?" target="_blank" href="https://github.com/loreanvictor/pree/commit/7c81ef1e9368fb4454b4e065c8272254c3b3ab73">Updated at <span ref="?">Apr 19, 2024</span> <br>for <span ref="?">pree</span> version <span ref="?">0.2.0</span></a></div></template></change-history>
+      }</style><div><a ref="?" target="_blank" class="code" aria-label="edit" href="https://github.com/loreanvictor/pree/blob/main/docs/deploy.html">✎</a><a ref="?" target="_blank" href="https://github.com/loreanvictor/pree/commit/261667760526796f4f06e6fc31d39f5e6e85e834">Updated at <span ref="?">Apr 20, 2024</span> <br>for <span ref="?">pree</span> version <span ref="?">0.2.0</span></a></div></template></change-history>
 <br>
         <prev-next><template shadowrootmode="open"><link rel="stylesheet" href="https://unpkg.com/nokss"><link rel="stylesheet" href="https://unpkg.com/graphis/font/graphis.css"><style>i {
       font-family: 'graphis', sans-serif;
@@ -651,7 +633,7 @@ Execute the following to deploy a preview:
           
       </section></template></prev-next>
         <slot name="watermark">
-          <use-html src="./_watermark.html"><base href="/pree/"><picture class="local-style-ln09fpywyes" data-local-style="local-style-ln09fpywyes"><style>.local-style-ln09fpywyes[data-local-style=local-style-ln09fpywyes] { 
+          <use-html src="./_watermark.html"><base href="/pree/"><picture class="local-style-vcb2xwjdii" data-local-style="local-style-vcb2xwjdii"><style>.local-style-vcb2xwjdii[data-local-style=local-style-vcb2xwjdii] { 
  
     img {
       display: block;
@@ -666,17 +648,37 @@ Execute the following to deploy a preview:
 </picture>
 <br><br><template shadowrootmode="open"><slot></slot></template></use-html>
         </slot>
-      </turbo-frame>
+
+        
+        <script type="module">
+          import { addCopyButtons, addHeaderLinks } from './assets/scripts/copy.js'
+
+          addCopyButtons()
+          addHeaderLinks()
+        </script>
+      <template shadowrootmode="open"><slot></slot></template></dans-floor>
+      <style>
+        dans-floor {
+          opacity: 1;
+          filter: none;
+          transition: opacity .05s, filter .05s;
+
+          &[loading] {
+            opacity: .5;
+            filter: blur(5px);
+            transition: opacity .15s, filter .15s;
+          }
+        }
+      </style>
     </main>
 
     <footer>
-      <turbo-frame id="footer" target="main" data-turbo-action="advance">
-        <use-html src="./_footer.html"><base href="/pree/"><script type="module" src="./assets/components/menu-toggle.js"></script>
+      <use-html src="./_footer.html"><base href="/pree/"><script type="module" src="./assets/components/menu-toggle.js"></script>
 
 
 <script type="module" src="./assets/components/finde-btn.js"></script>
 
-<div style="display: flex" class="local-style-46fstxy1f2a" data-local-style="local-style-46fstxy1f2a"><style>.local-style-46fstxy1f2a[data-local-style=local-style-46fstxy1f2a] { 
+<div style="display: flex" class="local-style-gmmnw4jj3po" data-local-style="local-style-gmmnw4jj3po"><style>.local-style-gmmnw4jj3po[data-local-style=local-style-gmmnw4jj3po] { 
  
     b {
       opacity: .35;
@@ -875,39 +877,7 @@ Execute the following to deploy a preview:
 </template></large-device>
   </div>
 </div><template shadowrootmode="open"><slot></slot></template></use-html>
-      </turbo-frame>
     </footer>
-
-    
-    <script type="module">
-      import { addCopyButtons, addHeaderLinks } from './assets/scripts/copy.js'
-
-      const prep = () => {        
-        addCopyButtons()
-        addHeaderLinks()
-      }
-
-      addEventListener('turbo:load', prep)
-      addEventListener('turbo:click', prep)
-    </script>
-    <script>
-      const main = document.querySelector('main')
-      addEventListener('turbo:click', () => {
-        main.style.filter = 'blur(3px)'
-        main.style.opacity = .5
-        main.style.transition = 'filter .1s, opacity .1s'
-      })
-      addEventListener('turbo:before-frame-render', (event) => {
-        event.preventDefault()
-        setTimeout(() => {
-          event.detail.resume()
-          scrollTo(0, 0)
-          main.style.transition = 'filter .05s, opacity .05s'
-          main.style.filter = 'none'
-          main.style.opacity = 1
-        }, 100)
-      })
-    </script>
   
 
 </body></html>

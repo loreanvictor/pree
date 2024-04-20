@@ -1,17 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><style type="text/css">.turbo-progress-bar {
-  position: fixed;
-  display: block;
-  top: 0;
-  left: 0;
-  height: 3px;
-  background: #0076ff;
-  z-index: 2147483647;
-  transition:
-    width 300ms ease-out,
-    opacity 150ms 150ms ease-in;
-  transform: translate3d(0, 0, 0);
-}
-</style><base href="/pree/">
+<!DOCTYPE html><html lang="en"><head><base href="/pree/">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
@@ -33,20 +20,16 @@
     
     
     
+    
 
     <script src="./assets/components/emo-li.js" type="module"></script>
     <script type="module" src="./assets/components/prev-next.js"></script>
-
-    <script type="module">
-      import 'https://unpkg.com/@hotwired/turbo@8.0.4/dist/turbo.es2017-esm.js';
-    </script>
   <title>pree: javascript api</title>
           
         <link rel="prefetch" href="deploy.html"><link rel="prefetch" href="credits.html"></head>
   <body><slot name="background"></slot>
     <aside aria-hidden="true">
-      <turbo-frame id="side-bar" target="main" data-turbo-action="advance">
-        <use-html src="./_toc.html"><base href="/pree/"><style>
+      <use-html src="./_toc.html"><base href="/pree/"><style>
   #toc {
     a:not(:hover) {
       text-decoration-color: transparent;
@@ -70,10 +53,9 @@
 <template shadowrootmode="open"><slot></slot></template></m-d>
 
 <template shadowrootmode="open"><slot></slot></template></use-html>
-      </turbo-frame>
     </aside>
     <main>
-      <turbo-frame id="main" data-turbo-action="advance">
+      <dans-floor>
         <m-d><h1 id="javascript-api">JavaScript API<menu role="toolbar"><button ref="?" aria-label="copy link" class="icon">🔗</button></menu></h1>
 <p>You can use <code>pree</code> programmatically in <a href="https://nodejs.org/">Node.js</a> or some compatible runtime. Locally install the package to get started:</p>
 <pre><code class="language-bash hljs" data-highlighted="yes">npm i pree
@@ -406,7 +388,7 @@ Takes the same options as <code>serve()</code>.</p>
           
       </section></template></prev-next>
         <slot name="watermark">
-          <use-html src="./_watermark.html"><base href="/pree/"><picture class="local-style-qa79a10rgxf" data-local-style="local-style-qa79a10rgxf"><style>.local-style-qa79a10rgxf[data-local-style=local-style-qa79a10rgxf] { 
+          <use-html src="./_watermark.html"><base href="/pree/"><picture class="local-style-70vhl45h8w3" data-local-style="local-style-70vhl45h8w3"><style>.local-style-70vhl45h8w3[data-local-style=local-style-70vhl45h8w3] { 
  
     img {
       display: block;
@@ -421,17 +403,37 @@ Takes the same options as <code>serve()</code>.</p>
 </picture>
 <br><br><template shadowrootmode="open"><slot></slot></template></use-html>
         </slot>
-      </turbo-frame>
+
+        
+        <script type="module">
+          import { addCopyButtons, addHeaderLinks } from './assets/scripts/copy.js'
+
+          addCopyButtons()
+          addHeaderLinks()
+        </script>
+      <template shadowrootmode="open"><slot></slot></template></dans-floor>
+      <style>
+        dans-floor {
+          opacity: 1;
+          filter: none;
+          transition: opacity .05s, filter .05s;
+
+          &[loading] {
+            opacity: .5;
+            filter: blur(5px);
+            transition: opacity .15s, filter .15s;
+          }
+        }
+      </style>
     </main>
 
     <footer>
-      <turbo-frame id="footer" target="main" data-turbo-action="advance">
-        <use-html src="./_footer.html"><base href="/pree/"><script type="module" src="./assets/components/menu-toggle.js"></script>
+      <use-html src="./_footer.html"><base href="/pree/"><script type="module" src="./assets/components/menu-toggle.js"></script>
 
 
 <script type="module" src="./assets/components/finde-btn.js"></script>
 
-<div style="display: flex" class="local-style-v4p25bs973" data-local-style="local-style-v4p25bs973"><style>.local-style-v4p25bs973[data-local-style=local-style-v4p25bs973] { 
+<div style="display: flex" class="local-style-eoxz8g687c" data-local-style="local-style-eoxz8g687c"><style>.local-style-eoxz8g687c[data-local-style=local-style-eoxz8g687c] { 
  
     b {
       opacity: .35;
@@ -630,39 +632,7 @@ Takes the same options as <code>serve()</code>.</p>
 </template></large-device>
   </div>
 </div><template shadowrootmode="open"><slot></slot></template></use-html>
-      </turbo-frame>
     </footer>
-
-    
-    <script type="module">
-      import { addCopyButtons, addHeaderLinks } from './assets/scripts/copy.js'
-
-      const prep = () => {        
-        addCopyButtons()
-        addHeaderLinks()
-      }
-
-      addEventListener('turbo:load', prep)
-      addEventListener('turbo:click', prep)
-    </script>
-    <script>
-      const main = document.querySelector('main')
-      addEventListener('turbo:click', () => {
-        main.style.filter = 'blur(3px)'
-        main.style.opacity = .5
-        main.style.transition = 'filter .1s, opacity .1s'
-      })
-      addEventListener('turbo:before-frame-render', (event) => {
-        event.preventDefault()
-        setTimeout(() => {
-          event.detail.resume()
-          scrollTo(0, 0)
-          main.style.transition = 'filter .05s, opacity .05s'
-          main.style.filter = 'none'
-          main.style.opacity = 1
-        }, 100)
-      })
-    </script>
   
 
 </body></html>
