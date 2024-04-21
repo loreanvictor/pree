@@ -49,8 +49,10 @@ const executeScripts = (container) => {
 
 const activateDeclarativeShadowDOM = (container) => {
   container.querySelectorAll(':not(:defined)').forEach(elem => {
-    if (!elem.shadowRoot && elem.innerHTML.includes('<template shadowrootmode="open">')) {
-      const template = elem.querySelector('template[shadowrootmode="open"]')
+    if (!elem.shadowRoot) {
+      const template = Array.from(elem.children).find(
+        child => child.tagName === 'TEMPLATE' && child.getAttribute('shadowrootmode') === 'open'
+      )
       if (template) {
         const shadowRoot = elem.attachShadow({ mode: 'open' })
         shadowRoot.appendChild(template.content.cloneNode(true))
