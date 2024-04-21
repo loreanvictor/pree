@@ -31,7 +31,7 @@ function whoAmI() {
 
 
 // TODO: this should be an independent package
-const usePortal = (host) => {
+const useAttachedElement = (host) => {
   let child
 
   const attach = el => {
@@ -50,13 +50,10 @@ const usePortal = (host) => {
 }
 
 
-define('prev-next', ({ target, prevlabel, nextlabel }) => {
+define('prev-next', ({ target, prevlabel = 'Up Next', nextlabel = 'Previosly' }) => {
   const host = ref()
-  const prevPortal = usePortal(document.head)
-  const nextPortal = usePortal(document.head)
-
-  nextlabel ??= 'Up Next'
-  prevlabel ??= 'Previosly'
+  const prev$ = useAttachedElement(document.head)
+  const next$ = useAttachedElement(document.head)
 
   const load = () => {
     const el = document.querySelector(target ?? 'body > aside:first-of-type')
@@ -80,8 +77,8 @@ define('prev-next', ({ target, prevlabel, nextlabel }) => {
         text: links[index + 1].textContent
       } : undefined
 
-      prev && prevPortal.attach(html`<link rel="prefetch" href="${prev.href}" />`)
-      next && nextPortal.attach(html`<link rel="prefetch" href="${next.href}" />`)
+      prev && prev$.attach(html`<link rel="prefetch" href="${prev.href}" />`)
+      next && next$.attach(html`<link rel="prefetch" href="${next.href}" />`)
 
       host.current.innerHTML = `        
         ${prev ? `
@@ -106,8 +103,11 @@ define('prev-next', ({ target, prevlabel, nextlabel }) => {
 
       setTimeout(() => {
         host.current.style.display = 'flex'
-        host.current.style.opacity = 1
-      }, 500)
+        setTimeout(() => {
+          host.current.style.opacity = 1
+          host.current.style.maxHeight = '5rem'
+        }, 100)
+      }, 100)
     }
   }
 
@@ -127,7 +127,8 @@ define('prev-next', ({ target, prevlabel, nextlabel }) => {
 
     section[role="feed"] {
       flex-direction: row;
-      transition: opacity 1s;
+      transition: opacity .2s, max-height .2s;
+      overflow: hidden;
 
       article {
         flex-grow: 1;
@@ -157,7 +158,7 @@ define('prev-next', ({ target, prevlabel, nextlabel }) => {
       margin-bottom: 4rem;
     }
     </style>
-    <section role="feed" ref=${host} style="opacity: 0; display: none">
+    <section role="feed" ref=${host} style="opacity: 0; display: flex; max-height: 0">
     </section>
   `
 })
