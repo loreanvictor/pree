@@ -1,4 +1,4 @@
-import { define, onConnected, attachControls } from 'https://esm.sh/minicomp'
+import { define, onConnected, onDisconnected, attachControls } from 'https://esm.sh/minicomp'
 import { template, ref, html } from 'https://esm.sh/rehtm'
 
 
@@ -29,8 +29,31 @@ function whoAmI() {
   return candidates
 }
 
+
+// TODO: this should be an independent package
+const usePortal = (host) => {
+  let child
+
+  const attach = el => {
+    if (el instanceof DocumentFragment) {
+      el = el.firstElementChild
+    }
+
+    child && detach()
+    host.appendChild(child = el)
+  }
+  const detach = () => child && host.removeChild(child)
+
+  onDisconnected(() => detach())
+
+  return { attach, detach }
+}
+
+
 define('prev-next', ({ target, prevlabel, nextlabel }) => {
   const host = ref()
+  const prevPortal = usePortal(document.head)
+  const nextPortal = usePortal(document.head)
 
   nextlabel ??= 'Up Next'
   prevlabel ??= 'Previosly'
@@ -57,8 +80,8 @@ define('prev-next', ({ target, prevlabel, nextlabel }) => {
         text: links[index + 1].textContent
       } : undefined
 
-      prev && document.head.appendChild(html`<link rel="prefetch" href="${prev.href}" />`)
-      next && document.head.appendChild(html`<link rel="prefetch" href="${next.href}" />`)
+      prev && prevPortal.attach(html`<link rel="prefetch" href="${prev.href}" />`)
+      next && nextPortal.attach(html`<link rel="prefetch" href="${next.href}" />`)
 
       host.current.innerHTML = `        
         ${prev ? `
@@ -81,7 +104,10 @@ define('prev-next', ({ target, prevlabel, nextlabel }) => {
           ` : ''}
       `
 
-      host.current.removeAttribute('aria-hidden')
+      setTimeout(() => {
+        host.current.style.display = 'flex'
+        host.current.style.opacity = 1
+      }, 500)
     }
   }
 
@@ -101,12 +127,7 @@ define('prev-next', ({ target, prevlabel, nextlabel }) => {
 
     section[role="feed"] {
       flex-direction: row;
-      &[aria-hidden] {
-        opacity: 0;
-      }
-
-      opacity: 1;
-      transition: opacity .5s;
+      transition: opacity 1s;
 
       article {
         flex-grow: 1;
@@ -136,7 +157,7 @@ define('prev-next', ({ target, prevlabel, nextlabel }) => {
       margin-bottom: 4rem;
     }
     </style>
-    <section role="feed" ref=${host} aria-hidden="true">
+    <section role="feed" ref=${host} style="opacity: 0; display: none">
     </section>
   `
 })
