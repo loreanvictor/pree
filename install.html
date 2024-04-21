@@ -188,7 +188,8 @@
 
     section[role="feed"] {
       flex-direction: row;
-      transition: opacity 1s;
+      transition: opacity .2s, max-height .2s;
+      overflow: hidden;
 
       article {
         flex-grow: 1;
@@ -216,12 +217,12 @@
       }
 
       margin-bottom: 4rem;
-    }</style><section role="feed" ref="?" style="opacity: 1; display: flex;">        
+    }</style><section role="feed" ref="?" style="opacity: 1; display: flex; max-height: 5rem;">        
         
           <article>
             <i>⬅</i>
             <a href="motivation.html">
-              <small>Previosly</small><br>
+              <small>Up Next</small><br>
               Motivation
             </a>
           </article>
@@ -229,7 +230,7 @@
         
           <article class="next">
             <a href="usage/index.html">
-              <small>Up Next</small><br>
+              <small>Previosly</small><br>
               Usage
             </a>
             <i>➡</i>
@@ -237,7 +238,7 @@
           
       </section></template></prev-next>
         <slot name="watermark">
-          <use-html src="./_watermark.html"><base href="/pree/"><picture class="local-style-oemnr8d4xap" data-local-style="local-style-oemnr8d4xap"><style>.local-style-oemnr8d4xap[data-local-style=local-style-oemnr8d4xap] { 
+          <use-html src="./_watermark.html"><base href="/pree/"><picture class="local-style-031szj3exvuu" data-local-style="local-style-031szj3exvuu"><style>.local-style-031szj3exvuu[data-local-style=local-style-031szj3exvuu] { 
  
     img {
       display: block;
@@ -283,7 +284,7 @@
 
 <script type="module" src="./assets/components/finde-btn.js"></script>
 
-<div style="display: flex" class="local-style-hkgs17qg2q" data-local-style="local-style-hkgs17qg2q"><style>.local-style-hkgs17qg2q[data-local-style=local-style-hkgs17qg2q] { 
+<div style="display: flex" class="local-style-aw34bnsgmp" data-local-style="local-style-aw34bnsgmp"><style>.local-style-aw34bnsgmp[data-local-style=local-style-aw34bnsgmp] { 
  
     b {
       opacity: .35;

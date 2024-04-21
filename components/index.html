@@ -241,7 +241,8 @@
 
     section[role="feed"] {
       flex-direction: row;
-      transition: opacity 1s;
+      transition: opacity .2s, max-height .2s;
+      overflow: hidden;
 
       article {
         flex-grow: 1;
@@ -269,12 +270,12 @@
       }
 
       margin-bottom: 4rem;
-    }</style><section role="feed" ref="?" style="opacity: 1; display: flex;">        
+    }</style><section role="feed" ref="?" style="opacity: 1; display: flex; max-height: 5rem;">        
         
           <article>
             <i>⬅</i>
             <a href="usage/config.html">
-              <small>Previosly</small><br>
+              <small>Up Next</small><br>
               Configuration
             </a>
           </article>
@@ -282,7 +283,7 @@
         
           <article class="next">
             <a href="components/ssr.html">
-              <small>Up Next</small><br>
+              <small>Previosly</small><br>
               Server Side Rendering
             </a>
             <i>➡</i>
@@ -290,7 +291,7 @@
           
       </section></template></prev-next>
         <slot name="watermark">
-          <use-html src="./_watermark.html"><base href="/pree/"><picture class="local-style-exjczo4f59" data-local-style="local-style-exjczo4f59"><style>.local-style-exjczo4f59[data-local-style=local-style-exjczo4f59] { 
+          <use-html src="./_watermark.html"><base href="/pree/"><picture class="local-style-6xlxp5f1cn" data-local-style="local-style-6xlxp5f1cn"><style>.local-style-6xlxp5f1cn[data-local-style=local-style-6xlxp5f1cn] { 
  
     img {
       display: block;
@@ -336,7 +337,7 @@
 
 <script type="module" src="./assets/components/finde-btn.js"></script>
 
-<div style="display: flex" class="local-style-j8obvpmgh9" data-local-style="local-style-j8obvpmgh9"><style>.local-style-j8obvpmgh9[data-local-style=local-style-j8obvpmgh9] { 
+<div style="display: flex" class="local-style-zr1djzl3n58" data-local-style="local-style-zr1djzl3n58"><style>.local-style-zr1djzl3n58[data-local-style=local-style-zr1djzl3n58] { 
  
     b {
       opacity: .35;

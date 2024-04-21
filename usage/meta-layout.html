@@ -317,7 +317,8 @@ layout: ./_layout.html
 
     section[role="feed"] {
       flex-direction: row;
-      transition: opacity 1s;
+      transition: opacity .2s, max-height .2s;
+      overflow: hidden;
 
       article {
         flex-grow: 1;
@@ -345,12 +346,12 @@ layout: ./_layout.html
       }
 
       margin-bottom: 4rem;
-    }</style><section role="feed" ref="?" style="opacity: 1; display: flex;">        
+    }</style><section role="feed" ref="?" style="opacity: 1; display: flex; max-height: 5rem;">        
         
           <article>
             <i>⬅</i>
             <a href="usage/index.html">
-              <small>Previosly</small><br>
+              <small>Up Next</small><br>
               Usage
             </a>
           </article>
@@ -358,7 +359,7 @@ layout: ./_layout.html
         
           <article class="next">
             <a href="usage/build-only-scripts.html">
-              <small>Up Next</small><br>
+              <small>Previosly</small><br>
               Build-Only Scripts
             </a>
             <i>➡</i>
@@ -366,7 +367,7 @@ layout: ./_layout.html
           
       </section></template></prev-next>
         <slot name="watermark">
-          <use-html src="./_watermark.html"><base href="/pree/"><picture class="local-style-3muscvo9sko" data-local-style="local-style-3muscvo9sko"><style>.local-style-3muscvo9sko[data-local-style=local-style-3muscvo9sko] { 
+          <use-html src="./_watermark.html"><base href="/pree/"><picture class="local-style-r8gr4th0kha" data-local-style="local-style-r8gr4th0kha"><style>.local-style-r8gr4th0kha[data-local-style=local-style-r8gr4th0kha] { 
  
     img {
       display: block;
@@ -412,7 +413,7 @@ layout: ./_layout.html
 
 <script type="module" src="./assets/components/finde-btn.js"></script>
 
-<div style="display: flex" class="local-style-ru1eezhhc5" data-local-style="local-style-ru1eezhhc5"><style>.local-style-ru1eezhhc5[data-local-style=local-style-ru1eezhhc5] { 
+<div style="display: flex" class="local-style-j9gxrpc04d" data-local-style="local-style-j9gxrpc04d"><style>.local-style-j9gxrpc04d[data-local-style=local-style-j9gxrpc04d] { 
  
     b {
       opacity: .35;

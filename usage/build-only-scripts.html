@@ -206,7 +206,8 @@ For example, you might want to write your pages using markdown. You could use co
 
     section[role="feed"] {
       flex-direction: row;
-      transition: opacity 1s;
+      transition: opacity .2s, max-height .2s;
+      overflow: hidden;
 
       article {
         flex-grow: 1;
@@ -234,12 +235,12 @@ For example, you might want to write your pages using markdown. You could use co
       }
 
       margin-bottom: 4rem;
-    }</style><section role="feed" ref="?" style="opacity: 1; display: flex;">        
+    }</style><section role="feed" ref="?" style="opacity: 1; display: flex; max-height: 5rem;">        
         
           <article>
             <i>⬅</i>
             <a href="usage/meta-layout.html">
-              <small>Previosly</small><br>
+              <small>Up Next</small><br>
               Metadata &amp; Layouts
             </a>
           </article>
@@ -247,7 +248,7 @@ For example, you might want to write your pages using markdown. You could use co
         
           <article class="next">
             <a href="usage/config.html">
-              <small>Up Next</small><br>
+              <small>Previosly</small><br>
               Configuration
             </a>
             <i>➡</i>
@@ -255,7 +256,7 @@ For example, you might want to write your pages using markdown. You could use co
           
       </section></template></prev-next>
         <slot name="watermark">
-          <use-html src="./_watermark.html"><base href="/pree/"><picture class="local-style-h95ip9cw3dw" data-local-style="local-style-h95ip9cw3dw"><style>.local-style-h95ip9cw3dw[data-local-style=local-style-h95ip9cw3dw] { 
+          <use-html src="./_watermark.html"><base href="/pree/"><picture class="local-style-j6atmql33f9" data-local-style="local-style-j6atmql33f9"><style>.local-style-j6atmql33f9[data-local-style=local-style-j6atmql33f9] { 
  
     img {
       display: block;
@@ -301,7 +302,7 @@ For example, you might want to write your pages using markdown. You could use co
 
 <script type="module" src="./assets/components/finde-btn.js"></script>
 
-<div style="display: flex" class="local-style-45jg5qw157p" data-local-style="local-style-45jg5qw157p"><style>.local-style-45jg5qw157p[data-local-style=local-style-45jg5qw157p] { 
+<div style="display: flex" class="local-style-c7b1qg3kvew" data-local-style="local-style-c7b1qg3kvew"><style>.local-style-c7b1qg3kvew[data-local-style=local-style-c7b1qg3kvew] { 
  
     b {
       opacity: .35;

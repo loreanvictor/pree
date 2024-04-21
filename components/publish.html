@@ -174,7 +174,8 @@ they can use your components.</p>
 
     section[role="feed"] {
       flex-direction: row;
-      transition: opacity 1s;
+      transition: opacity .2s, max-height .2s;
+      overflow: hidden;
 
       article {
         flex-grow: 1;
@@ -202,12 +203,12 @@ they can use your components.</p>
       }
 
       margin-bottom: 4rem;
-    }</style><section role="feed" ref="?" style="opacity: 1; display: flex;">        
+    }</style><section role="feed" ref="?" style="opacity: 1; display: flex; max-height: 5rem;">        
         
           <article>
             <i>⬅</i>
             <a href="components/build-env.html">
-              <small>Previosly</small><br>
+              <small>Up Next</small><br>
               Build Environment
             </a>
           </article>
@@ -215,7 +216,7 @@ they can use your components.</p>
         
           <article class="next">
             <a href="deploy.html">
-              <small>Up Next</small><br>
+              <small>Previosly</small><br>
               Deploy
             </a>
             <i>➡</i>
@@ -223,7 +224,7 @@ they can use your components.</p>
           
       </section></template></prev-next>
         <slot name="watermark">
-          <use-html src="./_watermark.html"><base href="/pree/"><picture class="local-style-vmn41nqa1z" data-local-style="local-style-vmn41nqa1z"><style>.local-style-vmn41nqa1z[data-local-style=local-style-vmn41nqa1z] { 
+          <use-html src="./_watermark.html"><base href="/pree/"><picture class="local-style-a5i12u0llw9" data-local-style="local-style-a5i12u0llw9"><style>.local-style-a5i12u0llw9[data-local-style=local-style-a5i12u0llw9] { 
  
     img {
       display: block;
@@ -269,7 +270,7 @@ they can use your components.</p>
 
 <script type="module" src="./assets/components/finde-btn.js"></script>
 
-<div style="display: flex" class="local-style-e7835x3m1f5" data-local-style="local-style-e7835x3m1f5"><style>.local-style-e7835x3m1f5[data-local-style=local-style-e7835x3m1f5] { 
+<div style="display: flex" class="local-style-0pcznbrwpsvl" data-local-style="local-style-0pcznbrwpsvl"><style>.local-style-0pcznbrwpsvl[data-local-style=local-style-0pcznbrwpsvl] { 
  
     b {
       opacity: .35;

@@ -445,7 +445,8 @@ Use multiple times to silence more.</p>
 
     section[role="feed"] {
       flex-direction: row;
-      transition: opacity 1s;
+      transition: opacity .2s, max-height .2s;
+      overflow: hidden;
 
       article {
         flex-grow: 1;
@@ -473,12 +474,12 @@ Use multiple times to silence more.</p>
       }
 
       margin-bottom: 4rem;
-    }</style><section role="feed" ref="?" style="opacity: 1; display: flex;">        
+    }</style><section role="feed" ref="?" style="opacity: 1; display: flex; max-height: 5rem;">        
         
           <article>
             <i>⬅</i>
             <a href="usage/build-only-scripts.html">
-              <small>Previosly</small><br>
+              <small>Up Next</small><br>
               Build-Only Scripts
             </a>
           </article>
@@ -486,7 +487,7 @@ Use multiple times to silence more.</p>
         
           <article class="next">
             <a href="components/index.html">
-              <small>Up Next</small><br>
+              <small>Previosly</small><br>
               Using Components
             </a>
             <i>➡</i>
@@ -494,7 +495,7 @@ Use multiple times to silence more.</p>
           
       </section></template></prev-next>
         <slot name="watermark">
-          <use-html src="./_watermark.html"><base href="/pree/"><picture class="local-style-tlhob1kb33" data-local-style="local-style-tlhob1kb33"><style>.local-style-tlhob1kb33[data-local-style=local-style-tlhob1kb33] { 
+          <use-html src="./_watermark.html"><base href="/pree/"><picture class="local-style-dno0u2o0jz6" data-local-style="local-style-dno0u2o0jz6"><style>.local-style-dno0u2o0jz6[data-local-style=local-style-dno0u2o0jz6] { 
  
     img {
       display: block;
@@ -540,7 +541,7 @@ Use multiple times to silence more.</p>
 
 <script type="module" src="./assets/components/finde-btn.js"></script>
 
-<div style="display: flex" class="local-style-orqctfqisac" data-local-style="local-style-orqctfqisac"><style>.local-style-orqctfqisac[data-local-style=local-style-orqctfqisac] { 
+<div style="display: flex" class="local-style-nntgpfm1q4q" data-local-style="local-style-nntgpfm1q4q"><style>.local-style-nntgpfm1q4q[data-local-style=local-style-nntgpfm1q4q] { 
  
     b {
       opacity: .35;

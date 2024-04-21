@@ -60,7 +60,7 @@
 <p><code>pree</code> simplifies website deployment by generating static files, eliminating the need for specific server setups (thats the benefit of going no-build in general). This allows for deployment on any platform that supports static file hosting. For efficiency, it's practical to include the build step within your deployment process. Below are guides for integrating <code>pree</code> with several common static hosting platforms.</p>
 <template shadowrootmode="open"><slot></slot></template></m-d>
 
-<section role="feed" aria-orientation="horizontal" class="local-style-1h9c4azu4h1" data-local-style="local-style-1h9c4azu4h1"><style>.local-style-1h9c4azu4h1[data-local-style=local-style-1h9c4azu4h1] { 
+<section role="feed" aria-orientation="horizontal" class="local-style-szn2c53cpng" data-local-style="local-style-szn2c53cpng"><style>.local-style-szn2c53cpng[data-local-style=local-style-szn2c53cpng] { 
  
     @media (max-width: 800px) {
       & {
@@ -579,7 +579,8 @@ Execute the following to deploy a preview:
 
     section[role="feed"] {
       flex-direction: row;
-      transition: opacity 1s;
+      transition: opacity .2s, max-height .2s;
+      overflow: hidden;
 
       article {
         flex-grow: 1;
@@ -607,12 +608,12 @@ Execute the following to deploy a preview:
       }
 
       margin-bottom: 4rem;
-    }</style><section role="feed" ref="?" style="opacity: 1; display: flex;">        
+    }</style><section role="feed" ref="?" style="opacity: 1; display: flex; max-height: 5rem;">        
         
           <article>
             <i>⬅</i>
             <a href="components/publish.html">
-              <small>Previosly</small><br>
+              <small>Up Next</small><br>
               Publishing Components
             </a>
           </article>
@@ -620,7 +621,7 @@ Execute the following to deploy a preview:
         
           <article class="next">
             <a href="api.html">
-              <small>Up Next</small><br>
+              <small>Previosly</small><br>
               JavaScript API
             </a>
             <i>➡</i>
@@ -628,7 +629,7 @@ Execute the following to deploy a preview:
           
       </section></template></prev-next>
         <slot name="watermark">
-          <use-html src="./_watermark.html"><base href="/pree/"><picture class="local-style-vpyvdz6s2oa" data-local-style="local-style-vpyvdz6s2oa"><style>.local-style-vpyvdz6s2oa[data-local-style=local-style-vpyvdz6s2oa] { 
+          <use-html src="./_watermark.html"><base href="/pree/"><picture class="local-style-zld1phvulbh" data-local-style="local-style-zld1phvulbh"><style>.local-style-zld1phvulbh[data-local-style=local-style-zld1phvulbh] { 
  
     img {
       display: block;
@@ -674,7 +675,7 @@ Execute the following to deploy a preview:
 
 <script type="module" src="./assets/components/finde-btn.js"></script>
 
-<div style="display: flex" class="local-style-e44f1ryodzj" data-local-style="local-style-e44f1ryodzj"><style>.local-style-e44f1ryodzj[data-local-style=local-style-e44f1ryodzj] { 
+<div style="display: flex" class="local-style-5iw0qkwddc8" data-local-style="local-style-5iw0qkwddc8"><style>.local-style-5iw0qkwddc8[data-local-style=local-style-5iw0qkwddc8] { 
  
     b {
       opacity: .35;

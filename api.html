@@ -334,7 +334,8 @@ Takes the same options as <code>serve()</code>.</p>
 
     section[role="feed"] {
       flex-direction: row;
-      transition: opacity 1s;
+      transition: opacity .2s, max-height .2s;
+      overflow: hidden;
 
       article {
         flex-grow: 1;
@@ -362,12 +363,12 @@ Takes the same options as <code>serve()</code>.</p>
       }
 
       margin-bottom: 4rem;
-    }</style><section role="feed" ref="?" style="opacity: 1; display: flex;">        
+    }</style><section role="feed" ref="?" style="opacity: 1; display: flex; max-height: 5rem;">        
         
           <article>
             <i>⬅</i>
             <a href="deploy.html">
-              <small>Previosly</small><br>
+              <small>Up Next</small><br>
               Deploy
             </a>
           </article>
@@ -375,7 +376,7 @@ Takes the same options as <code>serve()</code>.</p>
         
           <article class="next">
             <a href="credits.html">
-              <small>Up Next</small><br>
+              <small>Previosly</small><br>
               Credits
             </a>
             <i>➡</i>
@@ -383,7 +384,7 @@ Takes the same options as <code>serve()</code>.</p>
           
       </section></template></prev-next>
         <slot name="watermark">
-          <use-html src="./_watermark.html"><base href="/pree/"><picture class="local-style-a1sijeflz3v" data-local-style="local-style-a1sijeflz3v"><style>.local-style-a1sijeflz3v[data-local-style=local-style-a1sijeflz3v] { 
+          <use-html src="./_watermark.html"><base href="/pree/"><picture class="local-style-yeo7ytuquyb" data-local-style="local-style-yeo7ytuquyb"><style>.local-style-yeo7ytuquyb[data-local-style=local-style-yeo7ytuquyb] { 
  
     img {
       display: block;
@@ -429,7 +430,7 @@ Takes the same options as <code>serve()</code>.</p>
 
 <script type="module" src="./assets/components/finde-btn.js"></script>
 
-<div style="display: flex" class="local-style-2vdiljijzy" data-local-style="local-style-2vdiljijzy"><style>.local-style-2vdiljijzy[data-local-style=local-style-2vdiljijzy] { 
+<div style="display: flex" class="local-style-nzlj0pwrg3" data-local-style="local-style-nzlj0pwrg3"><style>.local-style-nzlj0pwrg3[data-local-style=local-style-nzlj0pwrg3] { 
  
     b {
       opacity: .35;
