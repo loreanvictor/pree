@@ -138,7 +138,8 @@ define('dans-floor', () => {
 
     if (replacement) {
       scrollTo(0, 0)
-      host.innerHTML = replacement.innerHTML
+      host.innerHTML = ''
+      Array.from(replacement.children).forEach(child => host.appendChild(child.cloneNode(true)))
       executeScripts(host)
     } else {
       host.innerHTML = ''
