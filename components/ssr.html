@@ -241,12 +241,7 @@ customElements.<span class="hljs-title function_">define</span>(<span class="hlj
 
     section[role="feed"] {
       flex-direction: row;
-      &[aria-hidden] {
-        opacity: 0;
-      }
-
-      opacity: 1;
-      transition: opacity .5s;
+      transition: opacity 1s;
 
       article {
         flex-grow: 1;
@@ -274,7 +269,7 @@ customElements.<span class="hljs-title function_">define</span>(<span class="hlj
       }
 
       margin-bottom: 4rem;
-    }</style><section role="feed" ref="?">        
+    }</style><section role="feed" ref="?" style="opacity: 1; display: flex;">        
         
           <article>
             <i>⬅</i>
@@ -295,7 +290,7 @@ customElements.<span class="hljs-title function_">define</span>(<span class="hlj
           
       </section></template></prev-next>
         <slot name="watermark">
-          <use-html src="./_watermark.html"><base href="/pree/"><picture class="local-style-00e2zd8t7p9mp" data-local-style="local-style-00e2zd8t7p9mp"><style>.local-style-00e2zd8t7p9mp[data-local-style=local-style-00e2zd8t7p9mp] { 
+          <use-html src="./_watermark.html"><base href="/pree/"><picture class="local-style-ybxg4tq5ux" data-local-style="local-style-ybxg4tq5ux"><style>.local-style-ybxg4tq5ux[data-local-style=local-style-ybxg4tq5ux] { 
  
     img {
       display: block;
@@ -341,7 +336,7 @@ customElements.<span class="hljs-title function_">define</span>(<span class="hlj
 
 <script type="module" src="./assets/components/finde-btn.js"></script>
 
-<div style="display: flex" class="local-style-uk7fqioi4l7" data-local-style="local-style-uk7fqioi4l7"><style>.local-style-uk7fqioi4l7[data-local-style=local-style-uk7fqioi4l7] { 
+<div style="display: flex" class="local-style-mfm42wzoacj" data-local-style="local-style-mfm42wzoacj"><style>.local-style-mfm42wzoacj[data-local-style=local-style-mfm42wzoacj] { 
  
     b {
       opacity: .35;

@@ -206,12 +206,7 @@ For example, you might want to write your pages using markdown. You could use co
 
     section[role="feed"] {
       flex-direction: row;
-      &[aria-hidden] {
-        opacity: 0;
-      }
-
-      opacity: 1;
-      transition: opacity .5s;
+      transition: opacity 1s;
 
       article {
         flex-grow: 1;
@@ -239,7 +234,7 @@ For example, you might want to write your pages using markdown. You could use co
       }
 
       margin-bottom: 4rem;
-    }</style><section role="feed" ref="?">        
+    }</style><section role="feed" ref="?" style="opacity: 1; display: flex;">        
         
           <article>
             <i>⬅</i>
@@ -260,7 +255,7 @@ For example, you might want to write your pages using markdown. You could use co
           
       </section></template></prev-next>
         <slot name="watermark">
-          <use-html src="./_watermark.html"><base href="/pree/"><picture class="local-style-0fjafbmhr1y" data-local-style="local-style-0fjafbmhr1y"><style>.local-style-0fjafbmhr1y[data-local-style=local-style-0fjafbmhr1y] { 
+          <use-html src="./_watermark.html"><base href="/pree/"><picture class="local-style-h95ip9cw3dw" data-local-style="local-style-h95ip9cw3dw"><style>.local-style-h95ip9cw3dw[data-local-style=local-style-h95ip9cw3dw] { 
  
     img {
       display: block;
@@ -306,7 +301,7 @@ For example, you might want to write your pages using markdown. You could use co
 
 <script type="module" src="./assets/components/finde-btn.js"></script>
 
-<div style="display: flex" class="local-style-h1e47v7i7j4" data-local-style="local-style-h1e47v7i7j4"><style>.local-style-h1e47v7i7j4[data-local-style=local-style-h1e47v7i7j4] { 
+<div style="display: flex" class="local-style-45jg5qw157p" data-local-style="local-style-45jg5qw157p"><style>.local-style-45jg5qw157p[data-local-style=local-style-45jg5qw157p] { 
  
     b {
       opacity: .35;
