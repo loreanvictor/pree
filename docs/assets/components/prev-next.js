@@ -50,7 +50,7 @@ const useAttachedElement = (host) => {
 }
 
 
-define('prev-next', ({ target, prevlabel = 'Up Next', nextlabel = 'Previosly' }) => {
+define('prev-next', ({ target, prevlabel = 'Previously', nextlabel = 'Up Next' }) => {
   const host = ref()
   const prev$ = useAttachedElement(document.head)
   const next$ = useAttachedElement(document.head)
