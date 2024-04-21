@@ -47,6 +47,19 @@ const executeScripts = (container) => {
   })
 }
 
+const activateDeclarativeShadowDOM = (container) => {
+  container.querySelectorAll(':not(:defined)').forEach(elem => {
+    if (!elem.shadowRoot && elem.innerHTML.includes('<template shadowrootmode="open">')) {
+      const template = elem.querySelector('template[shadowrootmode="open"]')
+      if (template) {
+        const shadowRoot = elem.attachShadow({ mode: 'open' })
+        shadowRoot.appendChild(template.content.cloneNode(true))
+        template.remove()
+      }
+    }
+  })
+}
+
 function updateHead(doc) {
   const oldHead = document.head
   const newHead = doc.head
@@ -141,6 +154,7 @@ define('dans-floor', () => {
       host.innerHTML = ''
       Array.from(replacement.children).forEach(child => host.appendChild(child.cloneNode(true)))
       executeScripts(host)
+      activateDeclarativeShadowDOM(host)
     } else {
       host.innerHTML = ''
     }
