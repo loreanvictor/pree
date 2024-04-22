@@ -1,4 +1,4 @@
-import { define, onConnected, onDisconnected, currentNode, on } from 'https://esm.sh/minicomp'
+import { define, onConnected, onDisconnected, currentNode } from 'https://esm.sh/minicomp'
 
 
 // TODO: this should be a separate package, with proper tests, docs and organisation
@@ -14,7 +14,14 @@ const interceptLinks = () => {
         && anchor.origin === location.origin
         && anchor.pathname !== location.pathname) {
       event.preventDefault()
+      history.replaceState({ __dans__: true, url: location.href }, '', location.href)
       dispatchEvent(new CustomEvent('dans:start', { detail: { href: anchor.href } }))
+    }
+  })
+
+  window.__dansBackInterceptor__ ??= addEventListener('popstate', event => {
+    if (event.state?.__dans__) {
+      dispatchEvent(new CustomEvent('dans:start', { detail: { href: event.state.url, pop: true } }))
     }
   })
 }
@@ -25,7 +32,11 @@ const loadOnInterceptedLinks = () => {
     const body = await response.text()
     const parser = new DOMParser()
     const doc = parser.parseFromString(body, 'text/html')
-    history.pushState({ path: event.detail.href }, '', event.detail.href)
+
+    if (!event.detail.pop) {
+      history.pushState({ url: event.detail.href, __dans__: true }, '', event.detail.href)
+    }
+
     dispatchEvent(new CustomEvent('dans:load', { detail: { doc } }))
   })
 }
@@ -105,23 +116,47 @@ function updateElements(oldParent, newParent, selector, compare) {
 }
 
 // TODO: this should be a separate package
-const useGlobalListener = (event, callback) => {
+// TODO: add support for adding listener to a specific target
+const useListener = (event, callback) => {
   let listener
   onConnected(() => addEventListener(event, callback))
   onDisconnected(() => removeEventListener(listener))
 }
 
 // TODO: this should be a separate package
-const deferred = () => {
-  let resolve, reject
-  const promise = new Promise((res, rej) => { resolve = res; reject = rej })
+// TODO: add support for only watching specific properties
+const useTransitionPromise = (target) => {
+  target ??= currentNode()
+  const transition = {}
+  let startListener, endListener, resolve, reject
 
-  return { resolve, reject, promise }
+  onConnected(() => {
+    startListener = target.addEventListener('transitionstart', event => {
+      if (event.target === target) {
+        reject && reject()
+        transition.promise = new Promise((res, rej) => { resolve = res; reject = rej })
+      }
+    })
+
+    endListener = target.addEventListener('transitionend', event => {
+      if (event.target === target) {
+        resolve()
+      }
+    })
+  })
+
+  onDisconnected(() => {
+    target.removeEventListener('transitionstart', startListener)
+    target.removeEventListener('transitionend', endListener)
+  })
+
+  return transition
 }
+
 
 define('dans-floor', () => {
   const host = currentNode()
-  let transition
+  const transition = useTransitionPromise()
 
   onConnected(() => {
     interceptLinks()
@@ -129,26 +164,14 @@ define('dans-floor', () => {
     updateHeadOnLoad()
   })
 
-  on('transitionstart', (event) => {
-    if (event.target === host) {
-      transition = deferred()
-    }
-  })
-
-  on('transitionend', (event) => {
-    if (event.target === host) {
-      transition.resolve()
-    }
-  })
-
-  useGlobalListener('dans:start', () => host.setAttribute('loading', ''))
-  useGlobalListener('dans:load', async event => {
+  useListener('dans:start', () => host.setAttribute('loading', ''))
+  useListener('dans:load', async event => {
     await new Promise(resolve => setTimeout(resolve, 60))
 
     const query = host.id ? `dans-floor#${host.id}` : 'dans-floor:not([id])'
     const replacement = event.detail.doc.querySelector(query)
 
-    await transition?.promise
+    await transition.promise
     host.removeAttribute('loading')
 
     if (replacement) {
