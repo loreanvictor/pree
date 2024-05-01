@@ -6,6 +6,7 @@
     <base href="/" />
 
     <title>pree: prebuild html files</title>
+    <meta name="description" content="prebuild HTML files">
     <link rel="icon" type="image/png" sizes="32x32" href="favicon.ico">
 
     <style>
@@ -15,9 +16,9 @@
       href="https://esm.sh/graphis/font/graphis.css" >
     <link rel="stylesheet" href="./assets/styles/theme.css" />
     
-    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/highlight.min.js"></script>
-    <link rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github-dark.min.css">
+    <script build-only src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/highlight.min.js"></script>
+    <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github-dark.min.css" >
 
     <script build-only type="module" src="./assets/components/use-html.js"></script>
     <script build-only type="module" src="./assets/components/m-d.js"></script>
