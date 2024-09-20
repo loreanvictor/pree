@@ -30,7 +30,7 @@
         <link rel="prefetch" href="components/ssr.html"><link rel="prefetch" href="components/publish.html"></head>
   <body><slot name="background"></slot>
     <aside aria-hidden="true">
-      <use-html src="./_toc.html"><base href="/pree/"><style>
+      <use-html src="./_toc.html"><template shadowrootmode="open"><slot></slot></template><base href="/pree/"><style>
   #toc {
     a:not(:hover) {
       text-decoration-color: transparent;
@@ -43,7 +43,7 @@
 
 </style>
 
-<m-d id="toc" onparse="document.querySelector('prev-next').controls?.load()"><p><a href="index.html">Home</a> <br><a href="motivation.html">Motivation</a> <br><a href="install.html">Installation</a></p>
+<m-d id="toc" onparse="document.querySelector('prev-next').controls?.load()"><template shadowrootmode="open"><slot></slot></template><p><a href="index.html">Home</a> <br><a href="motivation.html">Motivation</a> <br><a href="install.html">Installation</a></p>
 <hr>
 <p><a href="usage/index.html"><strong>Usage</strong></a> <br>  <a href="usage/meta-layout.html">Metadata &amp; Layouts</a> <br>  <a href="usage/build-only-scripts.html">Build-Only Scripts</a> <br>  <a href="usage/config.html">Configuration</a></p>
 <hr>
@@ -51,13 +51,13 @@
 <hr>
 <p><a href="deploy.html">Deploy</a> <br><a href="api.html">JavaScript API</a> <br><a href="credits.html">Credits</a></p>
 <p><br><br></p>
-<template shadowrootmode="open"><slot></slot></template></m-d>
+</m-d>
 
-<template shadowrootmode="open"><slot></slot></template></use-html>
+</use-html>
     </aside>
     <main>
-      <dans-floor>
-        <m-d><h2 id="build-environment">Build Environment<menu role="toolbar"><button ref="?" aria-label="copy link" class="icon">🔗</button></menu></h2>
+      <dans-floor><template shadowrootmode="open"><slot></slot></template>
+        <m-d><template shadowrootmode="open"><slot></slot></template><h2 id="build-environment">Build Environment<menu role="toolbar"><button ref="?" aria-label="copy link" class="icon">🔗</button></menu></h2>
 <p>Access to build environment can help web components supercharge developer experience. For example, access to git history of HTML files allows web components to automatically deduce the author or publish date of a page. <code>pree</code> provides such access to web components during pre-rendering, through APIs accessible at <code>/@env/</code> path:</p>
 <pre><code class="language-js hljs language-javascript" data-highlighted="yes"><span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> <span class="hljs-title function_">fetch</span>(<span class="hljs-string">'/@env/git/commits/first/my-page.html'</span>)
 <span class="hljs-keyword">const</span> commit = <span class="hljs-keyword">await</span> res.<span class="hljs-title function_">json</span>()
@@ -96,7 +96,7 @@
   <span class="hljs-comment">// use the APIs</span>
 }
 </code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
-<template shadowrootmode="open"><slot></slot></template></m-d>
+</m-d>
 
 <div style="max-width: 100%; overflow: auto">
 <table>
@@ -105,107 +105,107 @@
   </caption>
   <tbody>
     <tr>
-      <td><m-d><p><code>/@env/conf</code></p>
-<template shadowrootmode="open"><slot></slot></template></m-d></td>
-      <td><m-d><p><code>pree</code>'s configuration</p>
-<template shadowrootmode="open"><slot></slot></template></m-d></td>
-      <td><m-d><p>JSON</p>
-<template shadowrootmode="open"><slot></slot></template></m-d></td>
+      <td><m-d><template shadowrootmode="open"><slot></slot></template><p><code>/@env/conf</code></p>
+</m-d></td>
+      <td><m-d><template shadowrootmode="open"><slot></slot></template><p><code>pree</code>'s configuration</p>
+</m-d></td>
+      <td><m-d><template shadowrootmode="open"><slot></slot></template><p>JSON</p>
+</m-d></td>
       <td>
         <details>
           <summary>Example</summary>
-          <m-d><pre><code class="language-json hljs" data-highlighted="yes"><span class="hljs-punctuation">{</span>
+          <m-d><template shadowrootmode="open"><slot></slot></template><pre><code class="language-json hljs" data-highlighted="yes"><span class="hljs-punctuation">{</span>
   <span class="hljs-attr">"src"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"docs"</span><span class="hljs-punctuation">,</span>
   <span class="hljs-attr">"dest"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"site"</span><span class="hljs-punctuation">,</span>
   <span class="hljs-attr">"prod"</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">false</span></span><span class="hljs-punctuation">,</span>
   ...
 <span class="hljs-punctuation">}</span>
 </code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
-<template shadowrootmode="open"><slot></slot></template></m-d>
+</m-d>
         </details>
       </td>
     </tr>
     <tr>
-      <td><m-d><p><code>/@env/conf/:var</code></p>
-<template shadowrootmode="open"><slot></slot></template></m-d></td>
-      <td><m-d><p>specific configuration variable</p>
-<template shadowrootmode="open"><slot></slot></template></m-d></td>
-      <td><m-d><p>JSON</p>
-<template shadowrootmode="open"><slot></slot></template></m-d></td>
+      <td><m-d><template shadowrootmode="open"><slot></slot></template><p><code>/@env/conf/:var</code></p>
+</m-d></td>
+      <td><m-d><template shadowrootmode="open"><slot></slot></template><p>specific configuration variable</p>
+</m-d></td>
+      <td><m-d><template shadowrootmode="open"><slot></slot></template><p>JSON</p>
+</m-d></td>
       <td>
         <details>
           <summary>Example</summary>
-          <m-d><p><code>/@env/conf/src</code></p>
+          <m-d><template shadowrootmode="open"><slot></slot></template><p><code>/@env/conf/src</code></p>
 <pre><code class="language-json hljs" data-highlighted="yes"><span class="hljs-string">"docs"</span>
 </code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
-<template shadowrootmode="open"><slot></slot></template></m-d>
+</m-d>
         </details>
       </td>
     </tr>
     <tr>
-      <td><m-d><p><code>/@env/vars/:var</code></p>
-<template shadowrootmode="open"><slot></slot></template></m-d></td>
-      <td><m-d><p>specific environment variable</p>
-<template shadowrootmode="open"><slot></slot></template></m-d></td>
-      <td><m-d><p>text</p>
-<template shadowrootmode="open"><slot></slot></template></m-d></td>
+      <td><m-d><template shadowrootmode="open"><slot></slot></template><p><code>/@env/vars/:var</code></p>
+</m-d></td>
+      <td><m-d><template shadowrootmode="open"><slot></slot></template><p>specific environment variable</p>
+</m-d></td>
+      <td><m-d><template shadowrootmode="open"><slot></slot></template><p>text</p>
+</m-d></td>
       <td>
         <details>
           <summary>Example</summary>
-          <m-d><p><code>/@env/vars/PATH</code></p>
+          <m-d><template shadowrootmode="open"><slot></slot></template><p><code>/@env/vars/PATH</code></p>
 <pre><code class="language-text hljs language-plaintext" data-highlighted="yes">/usr/local/bin:/usr/bin:/bin
 </code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
-<template shadowrootmode="open"><slot></slot></template></m-d>
+</m-d>
         </details>
       </td>
     </tr>
     <tr>
-      <td><m-d><p><code>/@env/git/remote/info</code></p>
-<template shadowrootmode="open"><slot></slot></template></m-d></td>
-      <td><m-d><p>remote git repository info</p>
-<template shadowrootmode="open"><slot></slot></template></m-d></td>
-      <td><m-d><p>JSON</p>
-<template shadowrootmode="open"><slot></slot></template></m-d></td>
+      <td><m-d><template shadowrootmode="open"><slot></slot></template><p><code>/@env/git/remote/info</code></p>
+</m-d></td>
+      <td><m-d><template shadowrootmode="open"><slot></slot></template><p>remote git repository info</p>
+</m-d></td>
+      <td><m-d><template shadowrootmode="open"><slot></slot></template><p>JSON</p>
+</m-d></td>
       <td>
         <details>
           <summary>Example</summary>
-          <m-d><pre><code class="language-json hljs" data-highlighted="yes"><span class="hljs-punctuation">{</span>
+          <m-d><template shadowrootmode="open"><slot></slot></template><pre><code class="language-json hljs" data-highlighted="yes"><span class="hljs-punctuation">{</span>
   <span class="hljs-attr">"host"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"github.com"</span><span class="hljs-punctuation">,</span>
   <span class="hljs-attr">"full_name"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"loreanvictor/pree"</span><span class="hljs-punctuation">,</span>
   ...
 <span class="hljs-punctuation">}</span>
 </code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
-<template shadowrootmode="open"><slot></slot></template></m-d>
+</m-d>
         </details>
       </td>
     </tr>
     <tr>
-      <td><m-d><p><code>/@env/git/remote/url</code></p>
-<template shadowrootmode="open"><slot></slot></template></m-d></td>
-      <td><m-d><p>remote git repository URL</p>
-<template shadowrootmode="open"><slot></slot></template></m-d></td>
-      <td><m-d><p>text</p>
-<template shadowrootmode="open"><slot></slot></template></m-d></td>
+      <td><m-d><template shadowrootmode="open"><slot></slot></template><p><code>/@env/git/remote/url</code></p>
+</m-d></td>
+      <td><m-d><template shadowrootmode="open"><slot></slot></template><p>remote git repository URL</p>
+</m-d></td>
+      <td><m-d><template shadowrootmode="open"><slot></slot></template><p>text</p>
+</m-d></td>
       <td>
         <details>
           <summary>Example</summary>
-          <m-d><pre><code class="language-text hljs language-plaintext" data-highlighted="yes">git@github.com:loreanvictor/pree.git
+          <m-d><template shadowrootmode="open"><slot></slot></template><pre><code class="language-text hljs language-plaintext" data-highlighted="yes">git@github.com:loreanvictor/pree.git
 </code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
-<template shadowrootmode="open"><slot></slot></template></m-d>
+</m-d>
         </details>
       </td>
     </tr>
     <tr>
-      <td><m-d><p><code>/@env/git/commits/first</code></p>
-<template shadowrootmode="open"><slot></slot></template></m-d></td>
-      <td><m-d><p>first commit of the project</p>
-<template shadowrootmode="open"><slot></slot></template></m-d></td>
-      <td><m-d><p>JSON</p>
-<template shadowrootmode="open"><slot></slot></template></m-d></td>
+      <td><m-d><template shadowrootmode="open"><slot></slot></template><p><code>/@env/git/commits/first</code></p>
+</m-d></td>
+      <td><m-d><template shadowrootmode="open"><slot></slot></template><p>first commit of the project</p>
+</m-d></td>
+      <td><m-d><template shadowrootmode="open"><slot></slot></template><p>JSON</p>
+</m-d></td>
       <td>
         <details>
           <summary>Example</summary>
-          <m-d><pre><code class="language-json hljs" data-highlighted="yes"><span class="hljs-punctuation">{</span>
+          <m-d><template shadowrootmode="open"><slot></slot></template><pre><code class="language-json hljs" data-highlighted="yes"><span class="hljs-punctuation">{</span>
   <span class="hljs-attr">"hash"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"d22c84..."</span><span class="hljs-punctuation">,</span>
   <span class="hljs-attr">"author_name"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"Eugene Ghanizadeh Khoub"</span><span class="hljs-punctuation">,</span>
   <span class="hljs-attr">"author_email"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"ghanizadeh.eugene@gmail.com"</span><span class="hljs-punctuation">,</span>
@@ -213,21 +213,21 @@
   <span class="hljs-attr">"message"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"Initial commit"</span>
 <span class="hljs-punctuation">}</span>
 </code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
-<template shadowrootmode="open"><slot></slot></template></m-d>
+</m-d>
         </details>
       </td>
     </tr>
     <tr>
-      <td><m-d><p><code>/@env/git/commits/last</code></p>
-<template shadowrootmode="open"><slot></slot></template></m-d></td>
-      <td><m-d><p>last commit of the project</p>
-<template shadowrootmode="open"><slot></slot></template></m-d></td>
-      <td><m-d><p>JSON</p>
-<template shadowrootmode="open"><slot></slot></template></m-d></td>
+      <td><m-d><template shadowrootmode="open"><slot></slot></template><p><code>/@env/git/commits/last</code></p>
+</m-d></td>
+      <td><m-d><template shadowrootmode="open"><slot></slot></template><p>last commit of the project</p>
+</m-d></td>
+      <td><m-d><template shadowrootmode="open"><slot></slot></template><p>JSON</p>
+</m-d></td>
       <td>
         <details>
           <summary>Example</summary>
-          <m-d><pre><code class="language-json hljs" data-highlighted="yes"><span class="hljs-punctuation">{</span>
+          <m-d><template shadowrootmode="open"><slot></slot></template><pre><code class="language-json hljs" data-highlighted="yes"><span class="hljs-punctuation">{</span>
   <span class="hljs-attr">"hash"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"051kl3z..."</span><span class="hljs-punctuation">,</span>
   <span class="hljs-attr">"author_name"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"Eugene Ghanizadeh Khoub"</span><span class="hljs-punctuation">,</span>
   <span class="hljs-attr">"author_email"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"ghanizadeh.eugene@gmail.com"</span><span class="hljs-punctuation">,</span>
@@ -235,105 +235,105 @@
   <span class="hljs-attr">"message"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"Some polush"</span>
 <span class="hljs-punctuation">}</span>
 </code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
-<template shadowrootmode="open"><slot></slot></template></m-d>
+</m-d>
         </details>
       </td>
     </tr>
     <tr>
-      <td><m-d><p><code>/@env/git/commits/first/:PATH</code></p>
-<template shadowrootmode="open"><slot></slot></template></m-d></td>
-      <td><m-d><p>first commit of given file</p>
-<template shadowrootmode="open"><slot></slot></template></m-d></td>
-      <td><m-d><p>JSON</p>
-<template shadowrootmode="open"><slot></slot></template></m-d></td>
+      <td><m-d><template shadowrootmode="open"><slot></slot></template><p><code>/@env/git/commits/first/:PATH</code></p>
+</m-d></td>
+      <td><m-d><template shadowrootmode="open"><slot></slot></template><p>first commit of given file</p>
+</m-d></td>
+      <td><m-d><template shadowrootmode="open"><slot></slot></template><p>JSON</p>
+</m-d></td>
       <td>
         <details>
           <summary>Example</summary>
-          <m-d><p><code>/@env/git/commits/first/docs/usage.html</code></p>
+          <m-d><template shadowrootmode="open"><slot></slot></template><p><code>/@env/git/commits/first/docs/usage.html</code></p>
 <pre><code class="language-json hljs" data-highlighted="yes"><span class="hljs-punctuation">{</span>
   <span class="hljs-attr">"hash"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"3653af..."</span><span class="hljs-punctuation">,</span>
   <span class="hljs-attr">"author_name"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"Eugene Ghanizadeh Khoub"</span><span class="hljs-punctuation">,</span>
   ...
 <span class="hljs-punctuation">}</span>
 </code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
-<template shadowrootmode="open"><slot></slot></template></m-d>
+</m-d>
         </details>
       </td>
     </tr>
     <tr>
-      <td><m-d><p><code>/@env/git/commits/last/:PATH</code></p>
-<template shadowrootmode="open"><slot></slot></template></m-d></td>
-      <td><m-d><p>last commit of given file</p>
-<template shadowrootmode="open"><slot></slot></template></m-d></td>
-      <td><m-d><p>JSON</p>
-<template shadowrootmode="open"><slot></slot></template></m-d></td>
+      <td><m-d><template shadowrootmode="open"><slot></slot></template><p><code>/@env/git/commits/last/:PATH</code></p>
+</m-d></td>
+      <td><m-d><template shadowrootmode="open"><slot></slot></template><p>last commit of given file</p>
+</m-d></td>
+      <td><m-d><template shadowrootmode="open"><slot></slot></template><p>JSON</p>
+</m-d></td>
       <td>
         <details>
           <summary>Example</summary>
-          <m-d><p><code>/@env/git/commits/last/docs/usage.html</code></p>
+          <m-d><template shadowrootmode="open"><slot></slot></template><p><code>/@env/git/commits/last/docs/usage.html</code></p>
 <pre><code class="language-json hljs" data-highlighted="yes"><span class="hljs-punctuation">{</span>
   <span class="hljs-attr">"hash"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"72g421..."</span><span class="hljs-punctuation">,</span>
   <span class="hljs-attr">"author_name"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"Eugene Ghanizadeh Khoub"</span><span class="hljs-punctuation">,</span>
   ...
 <span class="hljs-punctuation">}</span>
 </code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
-<template shadowrootmode="open"><slot></slot></template></m-d>
+</m-d>
         </details>
       </td>
     </tr>
     <tr>
-      <td><m-d><p><code>/@env/git/commits/all</code></p>
-<template shadowrootmode="open"><slot></slot></template></m-d></td>
-      <td><m-d><p>all commits of the project</p>
-<template shadowrootmode="open"><slot></slot></template></m-d></td>
-      <td><m-d><p>JSON</p>
-<template shadowrootmode="open"><slot></slot></template></m-d></td>
+      <td><m-d><template shadowrootmode="open"><slot></slot></template><p><code>/@env/git/commits/all</code></p>
+</m-d></td>
+      <td><m-d><template shadowrootmode="open"><slot></slot></template><p>all commits of the project</p>
+</m-d></td>
+      <td><m-d><template shadowrootmode="open"><slot></slot></template><p>JSON</p>
+</m-d></td>
       <td>
         <details>
           <summary>Example</summary>
-          <m-d><p><code>/@env/git/commits/all</code></p>
+          <m-d><template shadowrootmode="open"><slot></slot></template><p><code>/@env/git/commits/all</code></p>
 <pre><code class="language-json hljs" data-highlighted="yes"><span class="hljs-punctuation">[</span>
   <span class="hljs-punctuation">{</span> <span class="hljs-attr">"hash"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"3653af..."</span><span class="hljs-punctuation">,</span> ...<span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
   <span class="hljs-punctuation">{</span> <span class="hljs-attr">"hash"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"d22c84..."</span><span class="hljs-punctuation">,</span> ...<span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
   ...
 <span class="hljs-punctuation">]</span>
 </code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
-<template shadowrootmode="open"><slot></slot></template></m-d>
+</m-d>
         </details>
       </td>
     </tr>
     <tr>
-      <td><m-d><p><code>/@env/git/commits/all/:PATH</code></p>
-<template shadowrootmode="open"><slot></slot></template></m-d></td>
-      <td><m-d><p>all commits of given file</p>
-<template shadowrootmode="open"><slot></slot></template></m-d></td>
-      <td><m-d><p>JSON</p>
-<template shadowrootmode="open"><slot></slot></template></m-d></td>
+      <td><m-d><template shadowrootmode="open"><slot></slot></template><p><code>/@env/git/commits/all/:PATH</code></p>
+</m-d></td>
+      <td><m-d><template shadowrootmode="open"><slot></slot></template><p>all commits of given file</p>
+</m-d></td>
+      <td><m-d><template shadowrootmode="open"><slot></slot></template><p>JSON</p>
+</m-d></td>
       <td>
         <details>
           <summary>Example</summary>
-          <m-d><p><code>/@env/git/commits/all/docs/usage.html</code></p>
+          <m-d><template shadowrootmode="open"><slot></slot></template><p><code>/@env/git/commits/all/docs/usage.html</code></p>
 <pre><code class="language-json hljs" data-highlighted="yes"><span class="hljs-punctuation">[</span>
   <span class="hljs-punctuation">{</span> <span class="hljs-attr">"hash"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"3653af..."</span><span class="hljs-punctuation">,</span> ...<span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
   <span class="hljs-punctuation">{</span> <span class="hljs-attr">"hash"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"d22c84..."</span><span class="hljs-punctuation">,</span> ...<span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
   ...
 <span class="hljs-punctuation">]</span>
 </code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
-<template shadowrootmode="open"><slot></slot></template></m-d>
+</m-d>
         </details>
       </td>
     </tr>
     <tr>
-      <td><m-d><p><code>/@env/git/show/:OBJECT</code></p>
-<template shadowrootmode="open"><slot></slot></template></m-d></td>
-      <td><m-d><p><a href="https://git-scm.com/docs/git-show">git show given object</a></p>
-<template shadowrootmode="open"><slot></slot></template></m-d></td>
-      <td><m-d><p>file format</p>
-<template shadowrootmode="open"><slot></slot></template></m-d></td>
+      <td><m-d><template shadowrootmode="open"><slot></slot></template><p><code>/@env/git/show/:OBJECT</code></p>
+</m-d></td>
+      <td><m-d><template shadowrootmode="open"><slot></slot></template><p><a href="https://git-scm.com/docs/git-show">git show given object</a></p>
+</m-d></td>
+      <td><m-d><template shadowrootmode="open"><slot></slot></template><p>file format</p>
+</m-d></td>
       <td>
         <details>
           <summary>Example</summary>
-          <m-d><p><code>/@env/git/show/HEAD:docs/index.html</code></p>
+          <m-d><template shadowrootmode="open"><slot></slot></template><p><code>/@env/git/show/HEAD:docs/index.html</code></p>
 <pre><code class="language-html hljs language-xml" data-highlighted="yes">---
 layout: ./_layout.html
 ---
@@ -344,21 +344,21 @@ layout: ./_layout.html
 
 ...
 </code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
-<template shadowrootmode="open"><slot></slot></template></m-d>
+</m-d>
         </details>
       </td>
     </tr>
     <tr>
-      <td><m-d><p><code>/@env/files/list</code></p>
-<template shadowrootmode="open"><slot></slot></template></m-d></td>
-      <td><m-d><p>A list of files of the project</p>
-<template shadowrootmode="open"><slot></slot></template></m-d></td>
-      <td><m-d><p>JSON</p>
-<template shadowrootmode="open"><slot></slot></template></m-d></td>
+      <td><m-d><template shadowrootmode="open"><slot></slot></template><p><code>/@env/files/list</code></p>
+</m-d></td>
+      <td><m-d><template shadowrootmode="open"><slot></slot></template><p>A list of files of the project</p>
+</m-d></td>
+      <td><m-d><template shadowrootmode="open"><slot></slot></template><p>JSON</p>
+</m-d></td>
       <td>
         <details>
           <summary>Example</summary>
-          <m-d><pre><code class="language-json hljs" data-highlighted="yes"><span class="hljs-punctuation">[</span>
+          <m-d><template shadowrootmode="open"><slot></slot></template><pre><code class="language-json hljs" data-highlighted="yes"><span class="hljs-punctuation">[</span>
   <span class="hljs-string">".eslintrc"</span><span class="hljs-punctuation">,</span>
   <span class="hljs-string">".pree.yml"</span><span class="hljs-punctuation">,</span>
   <span class="hljs-string">"LICENSE"</span><span class="hljs-punctuation">,</span>
@@ -367,49 +367,49 @@ layout: ./_layout.html
   ...
 <span class="hljs-punctuation">]</span>
 </code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
-<template shadowrootmode="open"><slot></slot></template></m-d>
+</m-d>
         </details>
       </td>
     </tr>
     <tr>
-      <td><m-d><p><code>/@env/files/list/:PATTERN</code></p>
-<template shadowrootmode="open"><slot></slot></template></m-d></td>
-      <td><m-d><p>A list of files matching given pattern</p>
-<template shadowrootmode="open"><slot></slot></template></m-d></td>
-      <td><m-d><p>JSON</p>
-<template shadowrootmode="open"><slot></slot></template></m-d></td>
+      <td><m-d><template shadowrootmode="open"><slot></slot></template><p><code>/@env/files/list/:PATTERN</code></p>
+</m-d></td>
+      <td><m-d><template shadowrootmode="open"><slot></slot></template><p>A list of files matching given pattern</p>
+</m-d></td>
+      <td><m-d><template shadowrootmode="open"><slot></slot></template><p>JSON</p>
+</m-d></td>
       <td>
         <details>
           <summary>Example</summary>
-          <m-d><p><code>/@env/files/list/docs/**/*.html</code></p>
+          <m-d><template shadowrootmode="open"><slot></slot></template><p><code>/@env/files/list/docs/**/*.html</code></p>
 <pre><code class="language-json hljs" data-highlighted="yes"><span class="hljs-punctuation">[</span>
   <span class="hljs-string">"docs/index.html"</span><span class="hljs-punctuation">,</span>
   <span class="hljs-string">"docs/usage/index.html"</span><span class="hljs-punctuation">,</span>
   ...
 <span class="hljs-punctuation">]</span>
 </code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
-<template shadowrootmode="open"><slot></slot></template></m-d>
+</m-d>
         </details>
       </td>
     </tr>
     <tr>
-      <td><m-d><p><code>/@env/files/read/:PATH</code></p>
-<template shadowrootmode="open"><slot></slot></template></m-d></td>
-      <td><m-d><p>Read the content of a file</p>
-<template shadowrootmode="open"><slot></slot></template></m-d></td>
-      <td><m-d><p>file format</p>
-<template shadowrootmode="open"><slot></slot></template></m-d></td>
+      <td><m-d><template shadowrootmode="open"><slot></slot></template><p><code>/@env/files/read/:PATH</code></p>
+</m-d></td>
+      <td><m-d><template shadowrootmode="open"><slot></slot></template><p>Read the content of a file</p>
+</m-d></td>
+      <td><m-d><template shadowrootmode="open"><slot></slot></template><p>file format</p>
+</m-d></td>
       <td>
         <details>
           <summary>Example</summary>
-          <m-d><p><code>/@env/files/read/package.json</code></p>
+          <m-d><template shadowrootmode="open"><slot></slot></template><p><code>/@env/files/read/package.json</code></p>
 <pre><code class="language-json hljs" data-highlighted="yes"><span class="hljs-punctuation">{</span>
   <span class="hljs-attr">"name"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"pree"</span><span class="hljs-punctuation">,</span>
   <span class="hljs-attr">"version"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"0.1.10"</span><span class="hljs-punctuation">,</span>
   ...
 <span class="hljs-punctuation">}</span>
 </code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
-<template shadowrootmode="open"><slot></slot></template></m-d>
+</m-d>
         </details>
       </td>
   </tr></tbody>
@@ -461,34 +461,67 @@ layout: ./_layout.html
         }
       }</style><div><a ref="?" target="_blank" class="code" aria-label="edit" href="https://github.com/loreanvictor/pree/blob/main/docs/components/build-env.html">✎</a><a ref="?" target="_blank" href="https://github.com/loreanvictor/pree/commit/1b333d35d8b458ef257c1e5bbd26e44abc29e0f3">Updated at <span ref="?">Feb 15, 2024</span> <br>for <span ref="?">pree</span> version <span ref="?">0.1.20</span></a></div></template></change-history>
 <br>
-        <prev-next><template shadowrootmode="open"><link rel="stylesheet" href="https://unpkg.com/nokss"><link rel="stylesheet" href="https://unpkg.com/graphis/font/graphis.css"><style>i {
-      font-family: 'graphis', sans-serif;
-      font-style: normal;
-      font-size: 2rem;
-      opacity: .25;
-    }
-
-    section[role="feed"] {
+        <prev-next><template shadowrootmode="open"><link rel="stylesheet" href="https://unpkg.com/nokss"><link rel="stylesheet" href="https://unpkg.com/graphis/font/graphis.css"><style>section[role="feed"] {
       flex-direction: row;
       transition: opacity .2s, max-height .2s;
       overflow: hidden;
+      padding: 0.5rem;
 
       article {
+        --border-expression: 0;
+        --brightness: none;
+        --raised-card-brightness: none;
+        --card-shadow: 0 1px 3px rgba(0, 0, 0, .25);
+        --raised-card-shadow: 0 2px 6px rgba(0, 0, 0, .4);
+
+        @media (prefers-color-scheme: light) {
+          --card-shadow: 0 1px 3px rgba(0, 0, 0, .1);
+          --raised-card-shadow: 0 2px 6px rgba(0, 0, 0, .15);
+        }
+
         flex-grow: 1;
         display: flex;
         flex-direction: row;
         align-items: center;
         gap: 1rem;
+        padding: 1rem;
 
         & > a {
           display: block;
           flex-grow: 1;
           text-decoration: none!important;
+          font-size: 1.2rem;
+          opacity: .5;
+          font-weight: 400;
+
+          small {
+            font-weight: 200;
+            font-size: .7rem;
+          }
         }
 
+        &:hover > a {
+          opacity: 1;
+        }
+
+        text-align: right;
+        flex-basis: flex-end;
+
         &.next {
-          flex-basis: flex-end;
-          text-align: right;
+          flex-basis: flex-start;
+          text-align: left;
+        }
+
+        i {
+          font-family: 'graphis', sans-serif;
+          font-style: normal;
+          font-size: 1.5rem;
+          font-weight: bold;
+          opacity: .5;
+        }
+
+        &:hover > i {
+          opacity: 1;
         }
 
         @media (max-width: 480px) {
@@ -499,7 +532,7 @@ layout: ./_layout.html
       }
 
       margin-bottom: 4rem;
-    }</style><section role="feed" ref="?" style="opacity: 1; display: flex; max-height: 5rem;">        
+    }</style><section role="feed" ref="?" style="opacity: 1; display: flex; max-height: 6rem;">        
         
           <article>
             <i>⬅</i>
@@ -520,7 +553,7 @@ layout: ./_layout.html
           
       </section></template></prev-next>
         <slot name="watermark">
-          <use-html src="./_watermark.html"><base href="/pree/"><picture class="local-style-4acix7tob0n" data-local-style="local-style-4acix7tob0n"><style>.local-style-4acix7tob0n[data-local-style=local-style-4acix7tob0n] { 
+          <use-html src="./_watermark.html"><template shadowrootmode="open"><slot></slot></template><base href="/pree/"><picture class="local-style-jviqr4hklmo" data-local-style="local-style-jviqr4hklmo"><style>.local-style-jviqr4hklmo[data-local-style=local-style-jviqr4hklmo] { 
  
     img {
       display: block;
@@ -533,7 +566,7 @@ layout: ./_layout.html
   <source srcset="./assets/images/watermark-dark.svg" media="(prefers-color-scheme: dark)">
   <img width="192px" src="./assets/images/watermark-light.svg" alt="pree logo">
 </picture>
-<br><br><template shadowrootmode="open"><slot></slot></template></use-html>
+<br><br></use-html>
         </slot>
 
         
@@ -543,7 +576,7 @@ layout: ./_layout.html
           addCopyButtons()
           addHeaderLinks()
         </script>
-      <template shadowrootmode="open"><slot></slot></template></dans-floor>
+      </dans-floor>
       <style>
         dans-floor {
           display: block;
@@ -561,12 +594,12 @@ layout: ./_layout.html
     </main>
 
     <footer>
-      <use-html src="./_footer.html"><base href="/pree/"><script type="module" src="./assets/components/menu-toggle.js"></script>
+      <use-html src="./_footer.html"><template shadowrootmode="open"><slot></slot></template><base href="/pree/"><script type="module" src="./assets/components/menu-toggle.js"></script>
 
 
 <script type="module" src="./assets/components/finde-btn.js"></script>
 
-<div style="display: flex" class="local-style-91bi96dtu4" data-local-style="local-style-91bi96dtu4"><style>.local-style-91bi96dtu4[data-local-style=local-style-91bi96dtu4] { 
+<div style="display: flex" class="local-style-nicf197l6dc" data-local-style="local-style-nicf197l6dc"><style>.local-style-nicf197l6dc[data-local-style=local-style-nicf197l6dc] { 
  
     b {
       opacity: .35;
@@ -690,33 +723,7 @@ layout: ./_layout.html
   </div>
   <div style="flex-grow: 1"></div>
   <div align="right">
-    <small-device>
-      <gh-link no-label="">pree<template shadowrootmode="open"><link rel="stylesheet" href="https://unpkg.com/nokss/dist/bundles/md.css"><style>octo-icon { opacity: .45; transition: opacity .15s; }
-      a:not([role]) {
-        filter: none;
-        color: var(--text-color);
-        &:hover octo-icon { opacity: 1; }
-      }</style><a ref="?" target="_blank" href="https://github.com/loreanvictor/pree"><octo-icon style=""><template shadowrootmode="open">
-  <style>
-    svg {
-      width: 1.2rem;
-      vertical-align: -.65rem;
-      margin-right: .15rem;
-    }
-  </style>
-  <svg width="32" height="32" viewBox="0 0 98 96" xmlns="http://www.w3.org/2000/svg"> <path fill-rule="evenodd" clip-rule="evenodd" d="M48.854 0C21.839 0 0 22 0 49.217c0 21.756 13.993 40.172 33.405 46.69 2.427.49 3.316-1.059 3.316-2.362 0-1.141-.08-5.052-.08-9.127-13.59 2.934-16.42-5.867-16.42-5.867-2.184-5.704-5.42-7.17-5.42-7.17-4.448-3.015.324-3.015.324-3.015 4.934.326 7.523 5.052 7.523 5.052 4.367 7.496 11.404 5.378 14.235 4.074.404-3.178 1.699-5.378 3.074-6.6-10.839-1.141-22.243-5.378-22.243-24.283 0-5.378 1.94-9.778 5.014-13.2-.485-1.222-2.184-6.275.486-13.038 0 0 4.125-1.304 13.426 5.052a46.97 46.97 0 0 1 12.214-1.63c4.125 0 8.33.571 12.213 1.63 9.302-6.356 13.427-5.052 13.427-5.052 2.67 6.763.97 11.816.485 13.038 3.155 3.422 5.015 7.822 5.015 13.2 0 18.905-11.404 23.06-22.324 24.283 1.78 1.548 3.316 4.481 3.316 9.126 0 6.6-.08 11.897-.08 13.526 0 1.304.89 2.853 3.316 2.364 19.412-6.52 33.405-24.935 33.405-46.691C97.707 22 75.788 0 48.854 0z" fill="currentColor"></path> </svg>
-</template></octo-icon><slot ref="?" style="display: none">GitHub</slot></a></template></gh-link>  
-      <npm-badge no-label="">pree<template shadowrootmode="open"><style>@import 'https://unpkg.com/nokss/dist/bundles/md.css' layer(base);
-
-      a {
-        filter: none;
-        color: var(--text-color);
-      }
-      img {
-        vertical-align: middle;
-        margin-left: 0.5rem;
-      }</style><a ref="?" target="_blank" href="https://www.npmjs.com/package/pree"><slot ref="?" style="display: none">NPM</slot><img alt="npm" ref="?" src="https://img.shields.io/npm/v/pree.svg?label=&amp;style=normal"></a></template></npm-badge>
-    <template shadowrootmode="open">
+    <small-device><template shadowrootmode="open">
   <style>
     @media (min-width: 768px) {
       :host {
@@ -725,9 +732,8 @@ layout: ./_layout.html
     }
   </style>
   <slot></slot>
-</template></small-device>
-    <large-device>
-      <gh-link>github<template shadowrootmode="open"><link rel="stylesheet" href="https://unpkg.com/nokss/dist/bundles/md.css"><style>octo-icon { opacity: .45; transition: opacity .15s; }
+</template>
+      <gh-link no-label=""><template shadowrootmode="open"><link rel="stylesheet" href="https://unpkg.com/nokss/dist/bundles/md.css"><style>octo-icon { opacity: .45; transition: opacity .15s; }
       a:not([role]) {
         filter: none;
         color: var(--text-color);
@@ -741,9 +747,8 @@ layout: ./_layout.html
     }
   </style>
   <svg width="32" height="32" viewBox="0 0 98 96" xmlns="http://www.w3.org/2000/svg"> <path fill-rule="evenodd" clip-rule="evenodd" d="M48.854 0C21.839 0 0 22 0 49.217c0 21.756 13.993 40.172 33.405 46.69 2.427.49 3.316-1.059 3.316-2.362 0-1.141-.08-5.052-.08-9.127-13.59 2.934-16.42-5.867-16.42-5.867-2.184-5.704-5.42-7.17-5.42-7.17-4.448-3.015.324-3.015.324-3.015 4.934.326 7.523 5.052 7.523 5.052 4.367 7.496 11.404 5.378 14.235 4.074.404-3.178 1.699-5.378 3.074-6.6-10.839-1.141-22.243-5.378-22.243-24.283 0-5.378 1.94-9.778 5.014-13.2-.485-1.222-2.184-6.275.486-13.038 0 0 4.125-1.304 13.426 5.052a46.97 46.97 0 0 1 12.214-1.63c4.125 0 8.33.571 12.213 1.63 9.302-6.356 13.427-5.052 13.427-5.052 2.67 6.763.97 11.816.485 13.038 3.155 3.422 5.015 7.822 5.015 13.2 0 18.905-11.404 23.06-22.324 24.283 1.78 1.548 3.316 4.481 3.316 9.126 0 6.6-.08 11.897-.08 13.526 0 1.304.89 2.853 3.316 2.364 19.412-6.52 33.405-24.935 33.405-46.691C97.707 22 75.788 0 48.854 0z" fill="currentColor"></path> </svg>
-</template></octo-icon><slot ref="?" style="">GitHub</slot></a></template></gh-link>
-      <b>|</b>
-      <npm-badge design="flat-square">npm<template shadowrootmode="open"><style>@import 'https://unpkg.com/nokss/dist/bundles/md.css' layer(base);
+</template></octo-icon><slot ref="?" style="display: none">GitHub</slot></a></template>pree</gh-link>  
+      <npm-badge no-label=""><template shadowrootmode="open"><style>@import 'https://unpkg.com/nokss/dist/bundles/md.css' layer(base);
 
       a {
         filter: none;
@@ -752,8 +757,9 @@ layout: ./_layout.html
       img {
         vertical-align: middle;
         margin-left: 0.5rem;
-      }</style><a ref="?" target="_blank" href="https://www.npmjs.com/package/pree"><slot ref="?" style="">NPM</slot><img alt="npm" ref="?" src="https://img.shields.io/npm/v/pree.svg?label=&amp;style=flat-square"></a></template></npm-badge>
-    <template shadowrootmode="open">
+      }</style><a ref="?" target="_blank" href="https://www.npmjs.com/package/pree"><slot ref="?" style="display: none">NPM</slot><img alt="npm" ref="?" src="https://img.shields.io/npm/v/pree.svg?label=&amp;style=normal"></a></template>pree</npm-badge>
+    </small-device>
+    <large-device><template shadowrootmode="open">
   <style>
     @media (max-width: 767px) {
       :host {
@@ -762,9 +768,36 @@ layout: ./_layout.html
     }
   </style>
   <slot></slot>
-</template></large-device>
+</template>
+      <gh-link><template shadowrootmode="open"><link rel="stylesheet" href="https://unpkg.com/nokss/dist/bundles/md.css"><style>octo-icon { opacity: .45; transition: opacity .15s; }
+      a:not([role]) {
+        filter: none;
+        color: var(--text-color);
+        &:hover octo-icon { opacity: 1; }
+      }</style><a ref="?" target="_blank" href="https://github.com/loreanvictor/pree"><octo-icon style=""><template shadowrootmode="open">
+  <style>
+    svg {
+      width: 1.2rem;
+      vertical-align: -.65rem;
+      margin-right: .15rem;
+    }
+  </style>
+  <svg width="32" height="32" viewBox="0 0 98 96" xmlns="http://www.w3.org/2000/svg"> <path fill-rule="evenodd" clip-rule="evenodd" d="M48.854 0C21.839 0 0 22 0 49.217c0 21.756 13.993 40.172 33.405 46.69 2.427.49 3.316-1.059 3.316-2.362 0-1.141-.08-5.052-.08-9.127-13.59 2.934-16.42-5.867-16.42-5.867-2.184-5.704-5.42-7.17-5.42-7.17-4.448-3.015.324-3.015.324-3.015 4.934.326 7.523 5.052 7.523 5.052 4.367 7.496 11.404 5.378 14.235 4.074.404-3.178 1.699-5.378 3.074-6.6-10.839-1.141-22.243-5.378-22.243-24.283 0-5.378 1.94-9.778 5.014-13.2-.485-1.222-2.184-6.275.486-13.038 0 0 4.125-1.304 13.426 5.052a46.97 46.97 0 0 1 12.214-1.63c4.125 0 8.33.571 12.213 1.63 9.302-6.356 13.427-5.052 13.427-5.052 2.67 6.763.97 11.816.485 13.038 3.155 3.422 5.015 7.822 5.015 13.2 0 18.905-11.404 23.06-22.324 24.283 1.78 1.548 3.316 4.481 3.316 9.126 0 6.6-.08 11.897-.08 13.526 0 1.304.89 2.853 3.316 2.364 19.412-6.52 33.405-24.935 33.405-46.691C97.707 22 75.788 0 48.854 0z" fill="currentColor"></path> </svg>
+</template></octo-icon><slot ref="?" style="">GitHub</slot></a></template>github</gh-link>
+      <b>|</b>
+      <npm-badge design="flat-square"><template shadowrootmode="open"><style>@import 'https://unpkg.com/nokss/dist/bundles/md.css' layer(base);
+
+      a {
+        filter: none;
+        color: var(--text-color);
+      }
+      img {
+        vertical-align: middle;
+        margin-left: 0.5rem;
+      }</style><a ref="?" target="_blank" href="https://www.npmjs.com/package/pree"><slot ref="?" style="">NPM</slot><img alt="npm" ref="?" src="https://img.shields.io/npm/v/pree.svg?label=&amp;style=flat-square"></a></template>npm</npm-badge>
+    </large-device>
   </div>
-</div><template shadowrootmode="open"><slot></slot></template></use-html>
+</div></use-html>
     </footer>
   
 

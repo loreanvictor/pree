@@ -30,7 +30,7 @@
         <link rel="prefetch" href="usage/index.html"><link rel="prefetch" href="usage/build-only-scripts.html"></head>
   <body><slot name="background"></slot>
     <aside aria-hidden="true">
-      <use-html src="./_toc.html"><base href="/pree/"><style>
+      <use-html src="./_toc.html"><template shadowrootmode="open"><slot></slot></template><base href="/pree/"><style>
   #toc {
     a:not(:hover) {
       text-decoration-color: transparent;
@@ -43,7 +43,7 @@
 
 </style>
 
-<m-d id="toc" onparse="document.querySelector('prev-next').controls?.load()"><p><a href="index.html">Home</a> <br><a href="motivation.html">Motivation</a> <br><a href="install.html">Installation</a></p>
+<m-d id="toc" onparse="document.querySelector('prev-next').controls?.load()"><template shadowrootmode="open"><slot></slot></template><p><a href="index.html">Home</a> <br><a href="motivation.html">Motivation</a> <br><a href="install.html">Installation</a></p>
 <hr>
 <p><a href="usage/index.html"><strong>Usage</strong></a> <br>  <a href="usage/meta-layout.html">Metadata &amp; Layouts</a> <br>  <a href="usage/build-only-scripts.html">Build-Only Scripts</a> <br>  <a href="usage/config.html">Configuration</a></p>
 <hr>
@@ -51,13 +51,13 @@
 <hr>
 <p><a href="deploy.html">Deploy</a> <br><a href="api.html">JavaScript API</a> <br><a href="credits.html">Credits</a></p>
 <p><br><br></p>
-<template shadowrootmode="open"><slot></slot></template></m-d>
+</m-d>
 
-<template shadowrootmode="open"><slot></slot></template></use-html>
+</use-html>
     </aside>
     <main>
-      <dans-floor>
-        <m-d><h2 id="metadata--layouts">Metadata &amp; Layouts<menu role="toolbar"><button ref="?" aria-label="copy link" class="icon">🔗</button></menu></h2>
+      <dans-floor><template shadowrootmode="open"><slot></slot></template>
+        <m-d><template shadowrootmode="open"><slot></slot></template><h2 id="metadata--layouts">Metadata &amp; Layouts<menu role="toolbar"><button ref="?" aria-label="copy link" class="icon">🔗</button></menu></h2>
 <p>Websites typically have multiple pages, which generally follow the same layout, and share most of their assets and metadata (e.g. <code>&lt;meta&gt;</code> tags). Each page might also have its own unique metadata, such as its title or description. Use <code>pree</code>'s front matter and layouting to manage this shared metadata and layout.</p>
 <br>
 
@@ -85,12 +85,9 @@ layout: ./_layout.html
 <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Some Content<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
 </code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
 <p>👆 When prebuilding this HTML, <code>pree</code> will:</p>
-<template shadowrootmode="open"><slot></slot></template></m-d>
+</m-d>
 
-<emo-li>
-  <span slot="emo">🔍</span><m-d><p>Resolve and load <code>./_layout.html</code>,</p>
-<template shadowrootmode="open"><slot></slot></template></m-d>
-<template shadowrootmode="open">
+<emo-li><template shadowrootmode="open">
   <style>
   .holder {
     display: flex;
@@ -109,11 +106,11 @@ layout: ./_layout.html
     <span><slot name="emo"></slot></span>
     <div><slot></slot></div>
   </div>
-</template></emo-li>
-<emo-li>
-  <span slot="emo">🧩</span><m-d><p>Insert content of the page into the <code>&lt;slot&gt;</code> element in the layout,</p>
-<template shadowrootmode="open"><slot></slot></template></m-d>
-<template shadowrootmode="open">
+</template>
+  <span slot="emo">🔍</span><m-d><template shadowrootmode="open"><slot></slot></template><p>Resolve and load <code>./_layout.html</code>,</p>
+</m-d>
+</emo-li>
+<emo-li><template shadowrootmode="open">
   <style>
   .holder {
     display: flex;
@@ -132,11 +129,11 @@ layout: ./_layout.html
     <span><slot name="emo"></slot></span>
     <div><slot></slot></div>
   </div>
-</template></emo-li>
-<emo-li>
-  <span slot="emo">💳</span><m-d><p>Override metadata that is provided in the front matter.</p>
-<template shadowrootmode="open"><slot></slot></template></m-d>
-<template shadowrootmode="open">
+</template>
+  <span slot="emo">🧩</span><m-d><template shadowrootmode="open"><slot></slot></template><p>Insert content of the page into the <code>&lt;slot&gt;</code> element in the layout,</p>
+</m-d>
+</emo-li>
+<emo-li><template shadowrootmode="open">
   <style>
   .holder {
     display: flex;
@@ -155,18 +152,41 @@ layout: ./_layout.html
     <span><slot name="emo"></slot></span>
     <div><slot></slot></div>
   </div>
-</template></emo-li>
+</template>
+  <span slot="emo">💳</span><m-d><template shadowrootmode="open"><slot></slot></template><p>Override metadata that is provided in the front matter.</p>
+</m-d>
+</emo-li>
 
 
 <br>
 
 <blockquote>
-  <m-d><p><strong>Front matter</strong> is a <a href="https://yaml.org/">YAML</a> block at the top of a file, specifying title of the page, layout of the page, or any other page-specific metadata. If some metadata is provided in the front matter and the layout, the one in the front matter is used.</p>
-<template shadowrootmode="open"><slot></slot></template></m-d>
+  <m-d><template shadowrootmode="open"><slot></slot></template><p><strong>Front matter</strong> is a <a href="https://yaml.org/">YAML</a> block at the top of a file, specifying title of the page, layout of the page, or any other page-specific metadata. If some metadata is provided in the front matter and the layout, the one in the front matter is used.</p>
+</m-d>
 
-  <emo-li>
+  <emo-li><template shadowrootmode="open">
+  <style>
+  .holder {
+    display: flex;
+    gap: 1rem;
+    align-items: baseline;
+
+    & > span {
+      width: 1.2rem;
+      text-align: center;
+      display: inline-block;
+    }
+  }
+
+  </style>
+  <div class="holder">
+    <span><slot name="emo"></slot></span>
+    <div><slot></slot></div>
+  </div>
+</template>
     <span slot="emo">⚖️</span> Front matter MUST be the first string in your file,
-  <template shadowrootmode="open">
+  </emo-li>
+  <emo-li><template shadowrootmode="open">
   <style>
   .holder {
     display: flex;
@@ -185,10 +205,10 @@ layout: ./_layout.html
     <span><slot name="emo"></slot></span>
     <div><slot></slot></div>
   </div>
-</template></emo-li>
-  <emo-li>
+</template>
     <span slot="emo">⚖️</span> Front matter MUST be valid YAML,
-  <template shadowrootmode="open">
+  </emo-li>
+  <emo-li><template shadowrootmode="open">
   <style>
   .holder {
     display: flex;
@@ -207,33 +227,13 @@ layout: ./_layout.html
     <span><slot name="emo"></slot></span>
     <div><slot></slot></div>
   </div>
-</template></emo-li>
-  <emo-li>
+</template>
     <span slot="emo">⚖️</span> Front matter must be set between tripple-dashed lines.
-  <template shadowrootmode="open">
-  <style>
-  .holder {
-    display: flex;
-    gap: 1rem;
-    align-items: baseline;
-
-    & > span {
-      width: 1.2rem;
-      text-align: center;
-      display: inline-block;
-    }
-  }
-
-  </style>
-  <div class="holder">
-    <span><slot name="emo"></slot></span>
-    <div><slot></slot></div>
-  </div>
-</template></emo-li>
+  </emo-li>
   <br>
 </blockquote>
 
-<m-d><hr>
+<m-d><template shadowrootmode="open"><slot></slot></template><hr>
 <h3 id="named-slots">Named Slots<menu role="toolbar"><button ref="?" aria-label="copy link" class="icon">🔗</button></menu></h3>
 <p>A layout file can also have named slots, where other pages can insert specific content. For example, a page might also want to specify footer content alongside the main content:</p>
 <pre><code class="language-html hljs language-xml" data-highlighted="yes"><span class="hljs-comment">&lt;!-- _layout.html--&gt;</span>
@@ -260,7 +260,7 @@ layout: ./_layout.html
 <blockquote>
 <p><strong>IMPORTANT</strong>: named slots in the child pages MUST appear at the root of the content.</p>
 </blockquote>
-<template shadowrootmode="open"><slot></slot></template></m-d>
+</m-d>
 
 <br>
 
@@ -309,34 +309,67 @@ layout: ./_layout.html
       }</style><div><a ref="?" target="_blank" class="code" aria-label="edit" href="https://github.com/loreanvictor/pree/blob/main/docs/usage/meta-layout.html">✎</a><a ref="?" target="_blank" href="https://github.com/loreanvictor/pree/commit/f4134b7df10b21c9ba8fce02c2652ed0df114e5b">Updated at <span ref="?">Feb 16, 2024</span> <br>for <span ref="?">pree</span> version <span ref="?">0.1.21</span></a></div></template></change-history>
 
 <br>
-        <prev-next><template shadowrootmode="open"><link rel="stylesheet" href="https://unpkg.com/nokss"><link rel="stylesheet" href="https://unpkg.com/graphis/font/graphis.css"><style>i {
-      font-family: 'graphis', sans-serif;
-      font-style: normal;
-      font-size: 2rem;
-      opacity: .25;
-    }
-
-    section[role="feed"] {
+        <prev-next><template shadowrootmode="open"><link rel="stylesheet" href="https://unpkg.com/nokss"><link rel="stylesheet" href="https://unpkg.com/graphis/font/graphis.css"><style>section[role="feed"] {
       flex-direction: row;
       transition: opacity .2s, max-height .2s;
       overflow: hidden;
+      padding: 0.5rem;
 
       article {
+        --border-expression: 0;
+        --brightness: none;
+        --raised-card-brightness: none;
+        --card-shadow: 0 1px 3px rgba(0, 0, 0, .25);
+        --raised-card-shadow: 0 2px 6px rgba(0, 0, 0, .4);
+
+        @media (prefers-color-scheme: light) {
+          --card-shadow: 0 1px 3px rgba(0, 0, 0, .1);
+          --raised-card-shadow: 0 2px 6px rgba(0, 0, 0, .15);
+        }
+
         flex-grow: 1;
         display: flex;
         flex-direction: row;
         align-items: center;
         gap: 1rem;
+        padding: 1rem;
 
         & > a {
           display: block;
           flex-grow: 1;
           text-decoration: none!important;
+          font-size: 1.2rem;
+          opacity: .5;
+          font-weight: 400;
+
+          small {
+            font-weight: 200;
+            font-size: .7rem;
+          }
         }
 
+        &:hover > a {
+          opacity: 1;
+        }
+
+        text-align: right;
+        flex-basis: flex-end;
+
         &.next {
-          flex-basis: flex-end;
-          text-align: right;
+          flex-basis: flex-start;
+          text-align: left;
+        }
+
+        i {
+          font-family: 'graphis', sans-serif;
+          font-style: normal;
+          font-size: 1.5rem;
+          font-weight: bold;
+          opacity: .5;
+        }
+
+        &:hover > i {
+          opacity: 1;
         }
 
         @media (max-width: 480px) {
@@ -347,7 +380,7 @@ layout: ./_layout.html
       }
 
       margin-bottom: 4rem;
-    }</style><section role="feed" ref="?" style="opacity: 1; display: flex; max-height: 5rem;">        
+    }</style><section role="feed" ref="?" style="opacity: 1; display: flex; max-height: 6rem;">        
         
           <article>
             <i>⬅</i>
@@ -368,7 +401,7 @@ layout: ./_layout.html
           
       </section></template></prev-next>
         <slot name="watermark">
-          <use-html src="./_watermark.html"><base href="/pree/"><picture class="local-style-3epvqsn97ws" data-local-style="local-style-3epvqsn97ws"><style>.local-style-3epvqsn97ws[data-local-style=local-style-3epvqsn97ws] { 
+          <use-html src="./_watermark.html"><template shadowrootmode="open"><slot></slot></template><base href="/pree/"><picture class="local-style-4ythr8y3zqe" data-local-style="local-style-4ythr8y3zqe"><style>.local-style-4ythr8y3zqe[data-local-style=local-style-4ythr8y3zqe] { 
  
     img {
       display: block;
@@ -381,7 +414,7 @@ layout: ./_layout.html
   <source srcset="./assets/images/watermark-dark.svg" media="(prefers-color-scheme: dark)">
   <img width="192px" src="./assets/images/watermark-light.svg" alt="pree logo">
 </picture>
-<br><br><template shadowrootmode="open"><slot></slot></template></use-html>
+<br><br></use-html>
         </slot>
 
         
@@ -391,7 +424,7 @@ layout: ./_layout.html
           addCopyButtons()
           addHeaderLinks()
         </script>
-      <template shadowrootmode="open"><slot></slot></template></dans-floor>
+      </dans-floor>
       <style>
         dans-floor {
           display: block;
@@ -409,12 +442,12 @@ layout: ./_layout.html
     </main>
 
     <footer>
-      <use-html src="./_footer.html"><base href="/pree/"><script type="module" src="./assets/components/menu-toggle.js"></script>
+      <use-html src="./_footer.html"><template shadowrootmode="open"><slot></slot></template><base href="/pree/"><script type="module" src="./assets/components/menu-toggle.js"></script>
 
 
 <script type="module" src="./assets/components/finde-btn.js"></script>
 
-<div style="display: flex" class="local-style-kulouvdawpd" data-local-style="local-style-kulouvdawpd"><style>.local-style-kulouvdawpd[data-local-style=local-style-kulouvdawpd] { 
+<div style="display: flex" class="local-style-nwo42rd5sgb" data-local-style="local-style-nwo42rd5sgb"><style>.local-style-nwo42rd5sgb[data-local-style=local-style-nwo42rd5sgb] { 
  
     b {
       opacity: .35;
@@ -538,33 +571,7 @@ layout: ./_layout.html
   </div>
   <div style="flex-grow: 1"></div>
   <div align="right">
-    <small-device>
-      <gh-link no-label="">pree<template shadowrootmode="open"><link rel="stylesheet" href="https://unpkg.com/nokss/dist/bundles/md.css"><style>octo-icon { opacity: .45; transition: opacity .15s; }
-      a:not([role]) {
-        filter: none;
-        color: var(--text-color);
-        &:hover octo-icon { opacity: 1; }
-      }</style><a ref="?" target="_blank" href="https://github.com/loreanvictor/pree"><octo-icon style=""><template shadowrootmode="open">
-  <style>
-    svg {
-      width: 1.2rem;
-      vertical-align: -.65rem;
-      margin-right: .15rem;
-    }
-  </style>
-  <svg width="32" height="32" viewBox="0 0 98 96" xmlns="http://www.w3.org/2000/svg"> <path fill-rule="evenodd" clip-rule="evenodd" d="M48.854 0C21.839 0 0 22 0 49.217c0 21.756 13.993 40.172 33.405 46.69 2.427.49 3.316-1.059 3.316-2.362 0-1.141-.08-5.052-.08-9.127-13.59 2.934-16.42-5.867-16.42-5.867-2.184-5.704-5.42-7.17-5.42-7.17-4.448-3.015.324-3.015.324-3.015 4.934.326 7.523 5.052 7.523 5.052 4.367 7.496 11.404 5.378 14.235 4.074.404-3.178 1.699-5.378 3.074-6.6-10.839-1.141-22.243-5.378-22.243-24.283 0-5.378 1.94-9.778 5.014-13.2-.485-1.222-2.184-6.275.486-13.038 0 0 4.125-1.304 13.426 5.052a46.97 46.97 0 0 1 12.214-1.63c4.125 0 8.33.571 12.213 1.63 9.302-6.356 13.427-5.052 13.427-5.052 2.67 6.763.97 11.816.485 13.038 3.155 3.422 5.015 7.822 5.015 13.2 0 18.905-11.404 23.06-22.324 24.283 1.78 1.548 3.316 4.481 3.316 9.126 0 6.6-.08 11.897-.08 13.526 0 1.304.89 2.853 3.316 2.364 19.412-6.52 33.405-24.935 33.405-46.691C97.707 22 75.788 0 48.854 0z" fill="currentColor"></path> </svg>
-</template></octo-icon><slot ref="?" style="display: none">GitHub</slot></a></template></gh-link>  
-      <npm-badge no-label="">pree<template shadowrootmode="open"><style>@import 'https://unpkg.com/nokss/dist/bundles/md.css' layer(base);
-
-      a {
-        filter: none;
-        color: var(--text-color);
-      }
-      img {
-        vertical-align: middle;
-        margin-left: 0.5rem;
-      }</style><a ref="?" target="_blank" href="https://www.npmjs.com/package/pree"><slot ref="?" style="display: none">NPM</slot><img alt="npm" ref="?" src="https://img.shields.io/npm/v/pree.svg?label=&amp;style=normal"></a></template></npm-badge>
-    <template shadowrootmode="open">
+    <small-device><template shadowrootmode="open">
   <style>
     @media (min-width: 768px) {
       :host {
@@ -573,9 +580,8 @@ layout: ./_layout.html
     }
   </style>
   <slot></slot>
-</template></small-device>
-    <large-device>
-      <gh-link>github<template shadowrootmode="open"><link rel="stylesheet" href="https://unpkg.com/nokss/dist/bundles/md.css"><style>octo-icon { opacity: .45; transition: opacity .15s; }
+</template>
+      <gh-link no-label=""><template shadowrootmode="open"><link rel="stylesheet" href="https://unpkg.com/nokss/dist/bundles/md.css"><style>octo-icon { opacity: .45; transition: opacity .15s; }
       a:not([role]) {
         filter: none;
         color: var(--text-color);
@@ -589,9 +595,8 @@ layout: ./_layout.html
     }
   </style>
   <svg width="32" height="32" viewBox="0 0 98 96" xmlns="http://www.w3.org/2000/svg"> <path fill-rule="evenodd" clip-rule="evenodd" d="M48.854 0C21.839 0 0 22 0 49.217c0 21.756 13.993 40.172 33.405 46.69 2.427.49 3.316-1.059 3.316-2.362 0-1.141-.08-5.052-.08-9.127-13.59 2.934-16.42-5.867-16.42-5.867-2.184-5.704-5.42-7.17-5.42-7.17-4.448-3.015.324-3.015.324-3.015 4.934.326 7.523 5.052 7.523 5.052 4.367 7.496 11.404 5.378 14.235 4.074.404-3.178 1.699-5.378 3.074-6.6-10.839-1.141-22.243-5.378-22.243-24.283 0-5.378 1.94-9.778 5.014-13.2-.485-1.222-2.184-6.275.486-13.038 0 0 4.125-1.304 13.426 5.052a46.97 46.97 0 0 1 12.214-1.63c4.125 0 8.33.571 12.213 1.63 9.302-6.356 13.427-5.052 13.427-5.052 2.67 6.763.97 11.816.485 13.038 3.155 3.422 5.015 7.822 5.015 13.2 0 18.905-11.404 23.06-22.324 24.283 1.78 1.548 3.316 4.481 3.316 9.126 0 6.6-.08 11.897-.08 13.526 0 1.304.89 2.853 3.316 2.364 19.412-6.52 33.405-24.935 33.405-46.691C97.707 22 75.788 0 48.854 0z" fill="currentColor"></path> </svg>
-</template></octo-icon><slot ref="?" style="">GitHub</slot></a></template></gh-link>
-      <b>|</b>
-      <npm-badge design="flat-square">npm<template shadowrootmode="open"><style>@import 'https://unpkg.com/nokss/dist/bundles/md.css' layer(base);
+</template></octo-icon><slot ref="?" style="display: none">GitHub</slot></a></template>pree</gh-link>  
+      <npm-badge no-label=""><template shadowrootmode="open"><style>@import 'https://unpkg.com/nokss/dist/bundles/md.css' layer(base);
 
       a {
         filter: none;
@@ -600,8 +605,9 @@ layout: ./_layout.html
       img {
         vertical-align: middle;
         margin-left: 0.5rem;
-      }</style><a ref="?" target="_blank" href="https://www.npmjs.com/package/pree"><slot ref="?" style="">NPM</slot><img alt="npm" ref="?" src="https://img.shields.io/npm/v/pree.svg?label=&amp;style=flat-square"></a></template></npm-badge>
-    <template shadowrootmode="open">
+      }</style><a ref="?" target="_blank" href="https://www.npmjs.com/package/pree"><slot ref="?" style="display: none">NPM</slot><img alt="npm" ref="?" src="https://img.shields.io/npm/v/pree.svg?label=&amp;style=normal"></a></template>pree</npm-badge>
+    </small-device>
+    <large-device><template shadowrootmode="open">
   <style>
     @media (max-width: 767px) {
       :host {
@@ -610,9 +616,36 @@ layout: ./_layout.html
     }
   </style>
   <slot></slot>
-</template></large-device>
+</template>
+      <gh-link><template shadowrootmode="open"><link rel="stylesheet" href="https://unpkg.com/nokss/dist/bundles/md.css"><style>octo-icon { opacity: .45; transition: opacity .15s; }
+      a:not([role]) {
+        filter: none;
+        color: var(--text-color);
+        &:hover octo-icon { opacity: 1; }
+      }</style><a ref="?" target="_blank" href="https://github.com/loreanvictor/pree"><octo-icon style=""><template shadowrootmode="open">
+  <style>
+    svg {
+      width: 1.2rem;
+      vertical-align: -.65rem;
+      margin-right: .15rem;
+    }
+  </style>
+  <svg width="32" height="32" viewBox="0 0 98 96" xmlns="http://www.w3.org/2000/svg"> <path fill-rule="evenodd" clip-rule="evenodd" d="M48.854 0C21.839 0 0 22 0 49.217c0 21.756 13.993 40.172 33.405 46.69 2.427.49 3.316-1.059 3.316-2.362 0-1.141-.08-5.052-.08-9.127-13.59 2.934-16.42-5.867-16.42-5.867-2.184-5.704-5.42-7.17-5.42-7.17-4.448-3.015.324-3.015.324-3.015 4.934.326 7.523 5.052 7.523 5.052 4.367 7.496 11.404 5.378 14.235 4.074.404-3.178 1.699-5.378 3.074-6.6-10.839-1.141-22.243-5.378-22.243-24.283 0-5.378 1.94-9.778 5.014-13.2-.485-1.222-2.184-6.275.486-13.038 0 0 4.125-1.304 13.426 5.052a46.97 46.97 0 0 1 12.214-1.63c4.125 0 8.33.571 12.213 1.63 9.302-6.356 13.427-5.052 13.427-5.052 2.67 6.763.97 11.816.485 13.038 3.155 3.422 5.015 7.822 5.015 13.2 0 18.905-11.404 23.06-22.324 24.283 1.78 1.548 3.316 4.481 3.316 9.126 0 6.6-.08 11.897-.08 13.526 0 1.304.89 2.853 3.316 2.364 19.412-6.52 33.405-24.935 33.405-46.691C97.707 22 75.788 0 48.854 0z" fill="currentColor"></path> </svg>
+</template></octo-icon><slot ref="?" style="">GitHub</slot></a></template>github</gh-link>
+      <b>|</b>
+      <npm-badge design="flat-square"><template shadowrootmode="open"><style>@import 'https://unpkg.com/nokss/dist/bundles/md.css' layer(base);
+
+      a {
+        filter: none;
+        color: var(--text-color);
+      }
+      img {
+        vertical-align: middle;
+        margin-left: 0.5rem;
+      }</style><a ref="?" target="_blank" href="https://www.npmjs.com/package/pree"><slot ref="?" style="">NPM</slot><img alt="npm" ref="?" src="https://img.shields.io/npm/v/pree.svg?label=&amp;style=flat-square"></a></template>npm</npm-badge>
+    </large-device>
   </div>
-</div><template shadowrootmode="open"><slot></slot></template></use-html>
+</div></use-html>
     </footer>
   
 
