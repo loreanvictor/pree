@@ -8,6 +8,7 @@ import { help } from './help'
 import { Command, Options } from './types'
 import { LOGO } from './logo'
 import { view } from '../view'
+import { copy } from '../util/clipboard'
 
 
 export async function main(command: Command, options: Options) {
@@ -49,13 +50,19 @@ export async function main(command: Command, options: Options) {
         })
       }
     } else if (command === 'view') {
-      await view(options)
+      const viewer = await view(options)
+
+      await copy(viewer.url)
+      logger.success('Server URL copied to clipboard!')
     } else if (command === 'check') {
-      await view({
+      const viewer = await view({
         ...options,
         root: options.dest ?? options.root,
         prod: true,
       })
+
+      await copy(viewer.url)
+      logger.success('Server URL copied to clipboard!')
     } else if (command === 'version') {
       await version(options)
     } else {

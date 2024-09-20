@@ -13,6 +13,7 @@ export interface ServeOptions extends AppOptions {
 export interface RunningServer {
   port: number
   server: Server
+  url: string
   close: () => Promise<void>
 }
 
@@ -24,15 +25,12 @@ export function serve(options: ServeOptions = {}) {
 
     const server = createServer(app).listen(port, () => {
       const addr = server.address() as AddressInfo
-      logger.info('server up on ' + THEME.secondary(
-        'http://localhost:'
-        + addr.port
-        + (options.base ? els(options.base) : '')
-        + '/'
-      ))
+      const url = `http://localhost:${addr.port}` + (options.base ? els(options.base) : '') + '/'
+      logger.info('server up on ' + THEME.secondary(url))
 
       resolve({
         port: addr.port,
+        url,
         server,
         close: async () => { await server.close() }
       })
