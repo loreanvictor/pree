@@ -38,7 +38,7 @@ export class Builder {
       ...this.options,
       logLevel: (this.options.logLevel ?? 5) <= LOG_LEVEL.INFO ? LOG_LEVEL.SILENT : this.options.logLevel,
     })
-    this.browser ??= await puppeteer.launch({ headless: 'new' })
+    this.browser ??= await puppeteer.launch({ headless: true })
   }
 
   public async close() {
