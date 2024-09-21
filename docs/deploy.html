@@ -13,6 +13,10 @@ layout: ./_layout.html
 
 <section role="feed" aria-orientation="horizontal">
   <local-style>
+    --default-border-expression: var(--border-expression);
+
+    padding: .25rem;
+
     @media (max-width: 800px) {
       & {
         display: block;
@@ -34,7 +38,16 @@ layout: ./_layout.html
     }
 
     article {
-      border: 1px solid color-mix(in srgb, var(--text-color) 10%, var(--background-color));
+      --border-expression: 0;
+      --brightness: none;
+      --raised-card-brightness: none;
+      --card-shadow: 0 1px 3px rgba(0, 0, 0, .25);
+      --raised-card-shadow: 0 2px 6px rgba(0, 0, 0, .4);
+
+      @media (prefers-color-scheme: light) {
+        --card-shadow: 0 1px 3px rgba(0, 0, 0, .1);
+        --raised-card-shadow: 0 2px 6px rgba(0, 0, 0, .15);
+      }
 
       address {
         margin: .5rem;
@@ -46,6 +59,7 @@ layout: ./_layout.html
       }
   
       [role="toolbar"] {
+        --border-expression: var(--default-border-expression);
         top: 0; bottom: 0;
         display: flex;
         flex-direction: column;

@@ -76,6 +76,9 @@ define('prev-next', ({ target, prevlabel = 'Previously', nextlabel = 'Up Next' }
         return
       }
 
+      el.querySelector('a[aria-current]')?.removeAttribute('aria-current')
+      links[index].setAttribute('aria-current', 'page')
+
       const prev = index > 0 ? {
         href: links[index - 1].getAttribute('href'),
         text: links[index - 1].textContent
@@ -92,7 +95,7 @@ define('prev-next', ({ target, prevlabel = 'Previously', nextlabel = 'Up Next' }
       host.current.innerHTML = `        
         ${prev ? `
           <article>
-            <i>⬅</i>
+            <i><</i>
             <a href="${prev.href}">
               <small>${prevlabel}</small><br>
               ${prev.text}
@@ -105,7 +108,7 @@ define('prev-next', ({ target, prevlabel = 'Previously', nextlabel = 'Up Next' }
               <small>${nextlabel}</small><br>
               ${next.text}
             </a>
-            <i>➡</i>
+            <i>></i>
           </article>
           ` : ''}
       `
@@ -195,7 +198,7 @@ define('prev-next', ({ target, prevlabel = 'Previously', nextlabel = 'Up Next' }
         i {
           font-family: 'graphis', sans-serif;
           font-style: normal;
-          font-size: 1.5rem;
+          font-size: 1.7rem;
           font-weight: bold;
           opacity: .5;
         }
