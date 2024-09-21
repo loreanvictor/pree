@@ -36,6 +36,22 @@
       text-decoration-color: transparent;
     }
 
+    a::after {
+        content: '>';
+        font-family: graphis, sans-serif;
+        font-size: 1rem;
+        position: absolute;
+        margin-left: 0.5rem;
+        font-weight: bold;
+        opacity: 0;
+        transition: opacity .15s;
+        color: var(--primary-color);
+    }
+
+    a[aria-current]::after {
+      opacity: .5;
+    }
+
     hr {
       margin: 0;
     }
@@ -47,7 +63,7 @@
 <hr>
 <p><a href="usage/index.html"><strong>Usage</strong></a> <br>  <a href="usage/meta-layout.html">Metadata &amp; Layouts</a> <br>  <a href="usage/build-only-scripts.html">Build-Only Scripts</a> <br>  <a href="usage/config.html">Configuration</a></p>
 <hr>
-<p><a href="components/index.html"><strong>Using Components</strong></a> <br>  <a href="components/ssr.html">Server Side Rendering</a> <br>  <a href="components/build-env.html">Build Environment</a> <br>  <a href="components/publish.html">Publishing Components</a></p>
+<p><a href="components/index.html" aria-current="page"><strong>Using Components</strong></a> <br>  <a href="components/ssr.html">Server Side Rendering</a> <br>  <a href="components/build-env.html">Build Environment</a> <br>  <a href="components/publish.html">Publishing Components</a></p>
 <hr>
 <p><a href="deploy.html">Deploy</a> <br><a href="api.html">JavaScript API</a> <br><a href="credits.html">Credits</a></p>
 <p><br><br></p>
@@ -287,7 +303,7 @@
         i {
           font-family: 'graphis', sans-serif;
           font-style: normal;
-          font-size: 1.5rem;
+          font-size: 1.7rem;
           font-weight: bold;
           opacity: .5;
         }
@@ -307,7 +323,7 @@
     }</style><section role="feed" ref="?" style="opacity: 1; display: flex; max-height: 6rem;">        
         
           <article>
-            <i>⬅</i>
+            <i>&lt;</i>
             <a href="usage/config.html">
               <small>Previously</small><br>
               Configuration
@@ -320,12 +336,12 @@
               <small>Up Next</small><br>
               Server Side Rendering
             </a>
-            <i>➡</i>
+            <i>&gt;</i>
           </article>
           
       </section></template></prev-next>
         <slot name="watermark">
-          <use-html src="./_watermark.html"><template shadowrootmode="open"><slot></slot></template><base href="/pree/"><picture class="local-style-9cg0df05gjw" data-local-style="local-style-9cg0df05gjw"><style>.local-style-9cg0df05gjw[data-local-style=local-style-9cg0df05gjw] { 
+          <use-html src="./_watermark.html"><template shadowrootmode="open"><slot></slot></template><base href="/pree/"><picture class="local-style-r50f1z9pm9" data-local-style="local-style-r50f1z9pm9"><style>.local-style-r50f1z9pm9[data-local-style=local-style-r50f1z9pm9] { 
  
     img {
       display: block;
@@ -371,7 +387,7 @@
 
 <script type="module" src="./assets/components/finde-btn.js"></script>
 
-<div style="display: flex" class="local-style-8cssrk8bspm" data-local-style="local-style-8cssrk8bspm"><style>.local-style-8cssrk8bspm[data-local-style=local-style-8cssrk8bspm] { 
+<div style="display: flex" class="local-style-zgp9ek9z79" data-local-style="local-style-zgp9ek9z79"><style>.local-style-zgp9ek9z79[data-local-style=local-style-zgp9ek9z79] { 
  
     b {
       opacity: .35;

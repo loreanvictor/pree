@@ -36,6 +36,22 @@
       text-decoration-color: transparent;
     }
 
+    a::after {
+        content: '>';
+        font-family: graphis, sans-serif;
+        font-size: 1rem;
+        position: absolute;
+        margin-left: 0.5rem;
+        font-weight: bold;
+        opacity: 0;
+        transition: opacity .15s;
+        color: var(--primary-color);
+    }
+
+    a[aria-current]::after {
+      opacity: .5;
+    }
+
     hr {
       margin: 0;
     }
@@ -45,7 +61,7 @@
 
 <m-d id="toc" onparse="document.querySelector('prev-next').controls?.load()"><template shadowrootmode="open"><slot></slot></template><p><a href="index.html">Home</a> <br><a href="motivation.html">Motivation</a> <br><a href="install.html">Installation</a></p>
 <hr>
-<p><a href="usage/index.html"><strong>Usage</strong></a> <br>  <a href="usage/meta-layout.html">Metadata &amp; Layouts</a> <br>  <a href="usage/build-only-scripts.html">Build-Only Scripts</a> <br>  <a href="usage/config.html">Configuration</a></p>
+<p><a href="usage/index.html"><strong>Usage</strong></a> <br>  <a href="usage/meta-layout.html">Metadata &amp; Layouts</a> <br>  <a href="usage/build-only-scripts.html">Build-Only Scripts</a> <br>  <a href="usage/config.html" aria-current="page">Configuration</a></p>
 <hr>
 <p><a href="components/index.html"><strong>Using Components</strong></a> <br>  <a href="components/ssr.html">Server Side Rendering</a> <br>  <a href="components/build-env.html">Build Environment</a> <br>  <a href="components/publish.html">Publishing Components</a></p>
 <hr>
@@ -491,7 +507,7 @@ Use multiple times to silence more.</p>
         i {
           font-family: 'graphis', sans-serif;
           font-style: normal;
-          font-size: 1.5rem;
+          font-size: 1.7rem;
           font-weight: bold;
           opacity: .5;
         }
@@ -511,7 +527,7 @@ Use multiple times to silence more.</p>
     }</style><section role="feed" ref="?" style="opacity: 1; display: flex; max-height: 6rem;">        
         
           <article>
-            <i>⬅</i>
+            <i>&lt;</i>
             <a href="usage/build-only-scripts.html">
               <small>Previously</small><br>
               Build-Only Scripts
@@ -524,12 +540,12 @@ Use multiple times to silence more.</p>
               <small>Up Next</small><br>
               Using Components
             </a>
-            <i>➡</i>
+            <i>&gt;</i>
           </article>
           
       </section></template></prev-next>
         <slot name="watermark">
-          <use-html src="./_watermark.html"><template shadowrootmode="open"><slot></slot></template><base href="/pree/"><picture class="local-style-crzf5ob2eue" data-local-style="local-style-crzf5ob2eue"><style>.local-style-crzf5ob2eue[data-local-style=local-style-crzf5ob2eue] { 
+          <use-html src="./_watermark.html"><template shadowrootmode="open"><slot></slot></template><base href="/pree/"><picture class="local-style-601fj3mcmyr" data-local-style="local-style-601fj3mcmyr"><style>.local-style-601fj3mcmyr[data-local-style=local-style-601fj3mcmyr] { 
  
     img {
       display: block;
@@ -575,7 +591,7 @@ Use multiple times to silence more.</p>
 
 <script type="module" src="./assets/components/finde-btn.js"></script>
 
-<div style="display: flex" class="local-style-7aypgakhb1y" data-local-style="local-style-7aypgakhb1y"><style>.local-style-7aypgakhb1y[data-local-style=local-style-7aypgakhb1y] { 
+<div style="display: flex" class="local-style-117edbxalu2m" data-local-style="local-style-117edbxalu2m"><style>.local-style-117edbxalu2m[data-local-style=local-style-117edbxalu2m] { 
  
     b {
       opacity: .35;

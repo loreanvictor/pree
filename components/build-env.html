@@ -36,6 +36,22 @@
       text-decoration-color: transparent;
     }
 
+    a::after {
+        content: '>';
+        font-family: graphis, sans-serif;
+        font-size: 1rem;
+        position: absolute;
+        margin-left: 0.5rem;
+        font-weight: bold;
+        opacity: 0;
+        transition: opacity .15s;
+        color: var(--primary-color);
+    }
+
+    a[aria-current]::after {
+      opacity: .5;
+    }
+
     hr {
       margin: 0;
     }
@@ -47,7 +63,7 @@
 <hr>
 <p><a href="usage/index.html"><strong>Usage</strong></a> <br>  <a href="usage/meta-layout.html">Metadata &amp; Layouts</a> <br>  <a href="usage/build-only-scripts.html">Build-Only Scripts</a> <br>  <a href="usage/config.html">Configuration</a></p>
 <hr>
-<p><a href="components/index.html"><strong>Using Components</strong></a> <br>  <a href="components/ssr.html">Server Side Rendering</a> <br>  <a href="components/build-env.html">Build Environment</a> <br>  <a href="components/publish.html">Publishing Components</a></p>
+<p><a href="components/index.html"><strong>Using Components</strong></a> <br>  <a href="components/ssr.html">Server Side Rendering</a> <br>  <a href="components/build-env.html" aria-current="page">Build Environment</a> <br>  <a href="components/publish.html">Publishing Components</a></p>
 <hr>
 <p><a href="deploy.html">Deploy</a> <br><a href="api.html">JavaScript API</a> <br><a href="credits.html">Credits</a></p>
 <p><br><br></p>
@@ -515,7 +531,7 @@ layout: ./_layout.html
         i {
           font-family: 'graphis', sans-serif;
           font-style: normal;
-          font-size: 1.5rem;
+          font-size: 1.7rem;
           font-weight: bold;
           opacity: .5;
         }
@@ -535,7 +551,7 @@ layout: ./_layout.html
     }</style><section role="feed" ref="?" style="opacity: 1; display: flex; max-height: 6rem;">        
         
           <article>
-            <i>⬅</i>
+            <i>&lt;</i>
             <a href="components/ssr.html">
               <small>Previously</small><br>
               Server Side Rendering
@@ -548,12 +564,12 @@ layout: ./_layout.html
               <small>Up Next</small><br>
               Publishing Components
             </a>
-            <i>➡</i>
+            <i>&gt;</i>
           </article>
           
       </section></template></prev-next>
         <slot name="watermark">
-          <use-html src="./_watermark.html"><template shadowrootmode="open"><slot></slot></template><base href="/pree/"><picture class="local-style-jviqr4hklmo" data-local-style="local-style-jviqr4hklmo"><style>.local-style-jviqr4hklmo[data-local-style=local-style-jviqr4hklmo] { 
+          <use-html src="./_watermark.html"><template shadowrootmode="open"><slot></slot></template><base href="/pree/"><picture class="local-style-xl06h6pdyz" data-local-style="local-style-xl06h6pdyz"><style>.local-style-xl06h6pdyz[data-local-style=local-style-xl06h6pdyz] { 
  
     img {
       display: block;
@@ -599,7 +615,7 @@ layout: ./_layout.html
 
 <script type="module" src="./assets/components/finde-btn.js"></script>
 
-<div style="display: flex" class="local-style-nicf197l6dc" data-local-style="local-style-nicf197l6dc"><style>.local-style-nicf197l6dc[data-local-style=local-style-nicf197l6dc] { 
+<div style="display: flex" class="local-style-xwvmh475n1" data-local-style="local-style-xwvmh475n1"><style>.local-style-xwvmh475n1[data-local-style=local-style-xwvmh475n1] { 
  
     b {
       opacity: .35;

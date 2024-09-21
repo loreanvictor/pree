@@ -36,6 +36,22 @@
       text-decoration-color: transparent;
     }
 
+    a::after {
+        content: '>';
+        font-family: graphis, sans-serif;
+        font-size: 1rem;
+        position: absolute;
+        margin-left: 0.5rem;
+        font-weight: bold;
+        opacity: 0;
+        transition: opacity .15s;
+        color: var(--primary-color);
+    }
+
+    a[aria-current]::after {
+      opacity: .5;
+    }
+
     hr {
       margin: 0;
     }
@@ -49,7 +65,7 @@
 <hr>
 <p><a href="components/index.html"><strong>Using Components</strong></a> <br>  <a href="components/ssr.html">Server Side Rendering</a> <br>  <a href="components/build-env.html">Build Environment</a> <br>  <a href="components/publish.html">Publishing Components</a></p>
 <hr>
-<p><a href="deploy.html">Deploy</a> <br><a href="api.html">JavaScript API</a> <br><a href="credits.html">Credits</a></p>
+<p><a href="deploy.html" aria-current="page">Deploy</a> <br><a href="api.html">JavaScript API</a> <br><a href="credits.html">Credits</a></p>
 <p><br><br></p>
 </m-d>
 
@@ -61,8 +77,12 @@
 <p><code>pree</code> simplifies website deployment by generating static files, eliminating the need for specific server setups (thats the benefit of going no-build in general). This allows for deployment on any platform that supports static file hosting. For efficiency, it's practical to include the build step within your deployment process. Below are guides for integrating <code>pree</code> with several common static hosting platforms.</p>
 </m-d>
 
-<section role="feed" aria-orientation="horizontal" class="local-style-k33yx7phhb" data-local-style="local-style-k33yx7phhb"><style>.local-style-k33yx7phhb[data-local-style=local-style-k33yx7phhb] { 
+<section role="feed" aria-orientation="horizontal" class="local-style-c5nhvgylwgr" data-local-style="local-style-c5nhvgylwgr"><style>.local-style-c5nhvgylwgr[data-local-style=local-style-c5nhvgylwgr] { 
  
+    --default-border-expression: var(--border-expression);
+
+    padding: .25rem;
+
     @media (max-width: 800px) {
       & {
         display: block;
@@ -84,7 +104,16 @@
     }
 
     article {
-      border: 1px solid color-mix(in srgb, var(--text-color) 10%, var(--background-color));
+      --border-expression: 0;
+      --brightness: none;
+      --raised-card-brightness: none;
+      --card-shadow: 0 1px 3px rgba(0, 0, 0, .25);
+      --raised-card-shadow: 0 2px 6px rgba(0, 0, 0, .4);
+
+      @media (prefers-color-scheme: light) {
+        --card-shadow: 0 1px 3px rgba(0, 0, 0, .1);
+        --raised-card-shadow: 0 2px 6px rgba(0, 0, 0, .15);
+      }
 
       address {
         margin: .5rem;
@@ -96,6 +125,7 @@
       }
   
       [role="toolbar"] {
+        --border-expression: var(--default-border-expression);
         top: 0; bottom: 0;
         display: flex;
         flex-direction: column;
@@ -569,7 +599,7 @@ Execute the following to deploy a preview:
             }
           }
         }
-      }</style><div><a ref="?" target="_blank" class="code" aria-label="edit" href="https://github.com/loreanvictor/pree/blob/main/docs/deploy.html">✎</a><a ref="?" target="_blank" href="https://github.com/loreanvictor/pree/commit/261667760526796f4f06e6fc31d39f5e6e85e834">Updated at <span ref="?">Apr 20, 2024</span> <br>for <span ref="?">pree</span> version <span ref="?">0.2.0</span></a></div></template></change-history>
+      }</style><div><a ref="?" target="_blank" class="code" aria-label="edit" href="https://github.com/loreanvictor/pree/blob/main/docs/deploy.html">✎</a><a ref="?" target="_blank" href="https://github.com/loreanvictor/pree/commit/fc808e8fed514ecc13f4f16b0b145a1e00540187">Updated at <span ref="?">Sep 21, 2024</span> <br>for <span ref="?">pree</span> version <span ref="?">0.2.1</span></a></div></template></change-history>
 <br>
         <prev-next><template shadowrootmode="open"><link rel="stylesheet" href="https://unpkg.com/nokss"><link rel="stylesheet" href="https://unpkg.com/graphis/font/graphis.css"><style>section[role="feed"] {
       flex-direction: row;
@@ -625,7 +655,7 @@ Execute the following to deploy a preview:
         i {
           font-family: 'graphis', sans-serif;
           font-style: normal;
-          font-size: 1.5rem;
+          font-size: 1.7rem;
           font-weight: bold;
           opacity: .5;
         }
@@ -645,7 +675,7 @@ Execute the following to deploy a preview:
     }</style><section role="feed" ref="?" style="opacity: 1; display: flex; max-height: 6rem;">        
         
           <article>
-            <i>⬅</i>
+            <i>&lt;</i>
             <a href="components/publish.html">
               <small>Previously</small><br>
               Publishing Components
@@ -658,12 +688,12 @@ Execute the following to deploy a preview:
               <small>Up Next</small><br>
               JavaScript API
             </a>
-            <i>➡</i>
+            <i>&gt;</i>
           </article>
           
       </section></template></prev-next>
         <slot name="watermark">
-          <use-html src="./_watermark.html"><template shadowrootmode="open"><slot></slot></template><base href="/pree/"><picture class="local-style-4vikzzny0xm" data-local-style="local-style-4vikzzny0xm"><style>.local-style-4vikzzny0xm[data-local-style=local-style-4vikzzny0xm] { 
+          <use-html src="./_watermark.html"><template shadowrootmode="open"><slot></slot></template><base href="/pree/"><picture class="local-style-pu6fj2vtp7g" data-local-style="local-style-pu6fj2vtp7g"><style>.local-style-pu6fj2vtp7g[data-local-style=local-style-pu6fj2vtp7g] { 
  
     img {
       display: block;
@@ -709,7 +739,7 @@ Execute the following to deploy a preview:
 
 <script type="module" src="./assets/components/finde-btn.js"></script>
 
-<div style="display: flex" class="local-style-iqxp7e9xa5h" data-local-style="local-style-iqxp7e9xa5h"><style>.local-style-iqxp7e9xa5h[data-local-style=local-style-iqxp7e9xa5h] { 
+<div style="display: flex" class="local-style-c261z5q00q6" data-local-style="local-style-c261z5q00q6"><style>.local-style-c261z5q00q6[data-local-style=local-style-c261z5q00q6] { 
  
     b {
       opacity: .35;

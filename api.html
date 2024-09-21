@@ -36,6 +36,22 @@
       text-decoration-color: transparent;
     }
 
+    a::after {
+        content: '>';
+        font-family: graphis, sans-serif;
+        font-size: 1rem;
+        position: absolute;
+        margin-left: 0.5rem;
+        font-weight: bold;
+        opacity: 0;
+        transition: opacity .15s;
+        color: var(--primary-color);
+    }
+
+    a[aria-current]::after {
+      opacity: .5;
+    }
+
     hr {
       margin: 0;
     }
@@ -49,7 +65,7 @@
 <hr>
 <p><a href="components/index.html"><strong>Using Components</strong></a> <br>  <a href="components/ssr.html">Server Side Rendering</a> <br>  <a href="components/build-env.html">Build Environment</a> <br>  <a href="components/publish.html">Publishing Components</a></p>
 <hr>
-<p><a href="deploy.html">Deploy</a> <br><a href="api.html">JavaScript API</a> <br><a href="credits.html">Credits</a></p>
+<p><a href="deploy.html">Deploy</a> <br><a href="api.html" aria-current="page">JavaScript API</a> <br><a href="credits.html">Credits</a></p>
 <p><br><br></p>
 </m-d>
 
@@ -380,7 +396,7 @@ Takes the same options as <code>serve()</code>.</p>
         i {
           font-family: 'graphis', sans-serif;
           font-style: normal;
-          font-size: 1.5rem;
+          font-size: 1.7rem;
           font-weight: bold;
           opacity: .5;
         }
@@ -400,7 +416,7 @@ Takes the same options as <code>serve()</code>.</p>
     }</style><section role="feed" ref="?" style="opacity: 1; display: flex; max-height: 6rem;">        
         
           <article>
-            <i>⬅</i>
+            <i>&lt;</i>
             <a href="deploy.html">
               <small>Previously</small><br>
               Deploy
@@ -413,12 +429,12 @@ Takes the same options as <code>serve()</code>.</p>
               <small>Up Next</small><br>
               Credits
             </a>
-            <i>➡</i>
+            <i>&gt;</i>
           </article>
           
       </section></template></prev-next>
         <slot name="watermark">
-          <use-html src="./_watermark.html"><template shadowrootmode="open"><slot></slot></template><base href="/pree/"><picture class="local-style-ed2v71m3274" data-local-style="local-style-ed2v71m3274"><style>.local-style-ed2v71m3274[data-local-style=local-style-ed2v71m3274] { 
+          <use-html src="./_watermark.html"><template shadowrootmode="open"><slot></slot></template><base href="/pree/"><picture class="local-style-vf3vbd9qkvg" data-local-style="local-style-vf3vbd9qkvg"><style>.local-style-vf3vbd9qkvg[data-local-style=local-style-vf3vbd9qkvg] { 
  
     img {
       display: block;
@@ -464,7 +480,7 @@ Takes the same options as <code>serve()</code>.</p>
 
 <script type="module" src="./assets/components/finde-btn.js"></script>
 
-<div style="display: flex" class="local-style-7d35jn03ukm" data-local-style="local-style-7d35jn03ukm"><style>.local-style-7d35jn03ukm[data-local-style=local-style-7d35jn03ukm] { 
+<div style="display: flex" class="local-style-uia9g6e0a0j" data-local-style="local-style-uia9g6e0a0j"><style>.local-style-uia9g6e0a0j[data-local-style=local-style-uia9g6e0a0j] { 
  
     b {
       opacity: .35;

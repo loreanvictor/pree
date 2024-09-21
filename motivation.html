@@ -36,6 +36,22 @@
       text-decoration-color: transparent;
     }
 
+    a::after {
+        content: '>';
+        font-family: graphis, sans-serif;
+        font-size: 1rem;
+        position: absolute;
+        margin-left: 0.5rem;
+        font-weight: bold;
+        opacity: 0;
+        transition: opacity .15s;
+        color: var(--primary-color);
+    }
+
+    a[aria-current]::after {
+      opacity: .5;
+    }
+
     hr {
       margin: 0;
     }
@@ -43,7 +59,7 @@
 
 </style>
 
-<m-d id="toc" onparse="document.querySelector('prev-next').controls?.load()"><template shadowrootmode="open"><slot></slot></template><p><a href="index.html">Home</a> <br><a href="motivation.html">Motivation</a> <br><a href="install.html">Installation</a></p>
+<m-d id="toc" onparse="document.querySelector('prev-next').controls?.load()"><template shadowrootmode="open"><slot></slot></template><p><a href="index.html">Home</a> <br><a href="motivation.html" aria-current="page">Motivation</a> <br><a href="install.html">Installation</a></p>
 <hr>
 <p><a href="usage/index.html"><strong>Usage</strong></a> <br>  <a href="usage/meta-layout.html">Metadata &amp; Layouts</a> <br>  <a href="usage/build-only-scripts.html">Build-Only Scripts</a> <br>  <a href="usage/config.html">Configuration</a></p>
 <hr>
@@ -427,7 +443,7 @@ TLDR:
         i {
           font-family: 'graphis', sans-serif;
           font-style: normal;
-          font-size: 1.5rem;
+          font-size: 1.7rem;
           font-weight: bold;
           opacity: .5;
         }
@@ -447,7 +463,7 @@ TLDR:
     }</style><section role="feed" ref="?" style="opacity: 1; display: flex; max-height: 6rem;">        
         
           <article>
-            <i>⬅</i>
+            <i>&lt;</i>
             <a href="index.html">
               <small>Previously</small><br>
               Home
@@ -460,12 +476,12 @@ TLDR:
               <small>Up Next</small><br>
               Installation
             </a>
-            <i>➡</i>
+            <i>&gt;</i>
           </article>
           
       </section></template></prev-next>
         <slot name="watermark">
-          <use-html src="./_watermark.html"><template shadowrootmode="open"><slot></slot></template><base href="/pree/"><picture class="local-style-yk7ag2spt3b" data-local-style="local-style-yk7ag2spt3b"><style>.local-style-yk7ag2spt3b[data-local-style=local-style-yk7ag2spt3b] { 
+          <use-html src="./_watermark.html"><template shadowrootmode="open"><slot></slot></template><base href="/pree/"><picture class="local-style-qjlq3mbi7vi" data-local-style="local-style-qjlq3mbi7vi"><style>.local-style-qjlq3mbi7vi[data-local-style=local-style-qjlq3mbi7vi] { 
  
     img {
       display: block;
@@ -511,7 +527,7 @@ TLDR:
 
 <script type="module" src="./assets/components/finde-btn.js"></script>
 
-<div style="display: flex" class="local-style-7bif3l23izf" data-local-style="local-style-7bif3l23izf"><style>.local-style-7bif3l23izf[data-local-style=local-style-7bif3l23izf] { 
+<div style="display: flex" class="local-style-qifjpuo43y8" data-local-style="local-style-qifjpuo43y8"><style>.local-style-qifjpuo43y8[data-local-style=local-style-qifjpuo43y8] { 
  
     b {
       opacity: .35;

@@ -36,6 +36,22 @@
       text-decoration-color: transparent;
     }
 
+    a::after {
+        content: '>';
+        font-family: graphis, sans-serif;
+        font-size: 1rem;
+        position: absolute;
+        margin-left: 0.5rem;
+        font-weight: bold;
+        opacity: 0;
+        transition: opacity .15s;
+        color: var(--primary-color);
+    }
+
+    a[aria-current]::after {
+      opacity: .5;
+    }
+
     hr {
       margin: 0;
     }
@@ -45,7 +61,7 @@
 
 <m-d id="toc" onparse="document.querySelector('prev-next').controls?.load()"><template shadowrootmode="open"><slot></slot></template><p><a href="index.html">Home</a> <br><a href="motivation.html">Motivation</a> <br><a href="install.html">Installation</a></p>
 <hr>
-<p><a href="usage/index.html"><strong>Usage</strong></a> <br>  <a href="usage/meta-layout.html">Metadata &amp; Layouts</a> <br>  <a href="usage/build-only-scripts.html">Build-Only Scripts</a> <br>  <a href="usage/config.html">Configuration</a></p>
+<p><a href="usage/index.html" aria-current="page"><strong>Usage</strong></a> <br>  <a href="usage/meta-layout.html">Metadata &amp; Layouts</a> <br>  <a href="usage/build-only-scripts.html">Build-Only Scripts</a> <br>  <a href="usage/config.html">Configuration</a></p>
 <hr>
 <p><a href="components/index.html"><strong>Using Components</strong></a> <br>  <a href="components/ssr.html">Server Side Rendering</a> <br>  <a href="components/build-env.html">Build Environment</a> <br>  <a href="components/publish.html">Publishing Components</a></p>
 <hr>
@@ -435,7 +451,7 @@ the content is not prebuilt. To double check the performance of your prebuilt we
         i {
           font-family: 'graphis', sans-serif;
           font-style: normal;
-          font-size: 1.5rem;
+          font-size: 1.7rem;
           font-weight: bold;
           opacity: .5;
         }
@@ -455,7 +471,7 @@ the content is not prebuilt. To double check the performance of your prebuilt we
     }</style><section role="feed" ref="?" style="opacity: 1; display: flex; max-height: 6rem;">        
         
           <article>
-            <i>⬅</i>
+            <i>&lt;</i>
             <a href="install.html">
               <small>Previously</small><br>
               Installation
@@ -468,12 +484,12 @@ the content is not prebuilt. To double check the performance of your prebuilt we
               <small>Up Next</small><br>
               Metadata &amp; Layouts
             </a>
-            <i>➡</i>
+            <i>&gt;</i>
           </article>
           
       </section></template></prev-next>
         <slot name="watermark">
-          <use-html src="./_watermark.html"><template shadowrootmode="open"><slot></slot></template><base href="/pree/"><picture class="local-style-gpgp9u3g586" data-local-style="local-style-gpgp9u3g586"><style>.local-style-gpgp9u3g586[data-local-style=local-style-gpgp9u3g586] { 
+          <use-html src="./_watermark.html"><template shadowrootmode="open"><slot></slot></template><base href="/pree/"><picture class="local-style-yjg6yu64rth" data-local-style="local-style-yjg6yu64rth"><style>.local-style-yjg6yu64rth[data-local-style=local-style-yjg6yu64rth] { 
  
     img {
       display: block;
@@ -519,7 +535,7 @@ the content is not prebuilt. To double check the performance of your prebuilt we
 
 <script type="module" src="./assets/components/finde-btn.js"></script>
 
-<div style="display: flex" class="local-style-avfvp3xermp" data-local-style="local-style-avfvp3xermp"><style>.local-style-avfvp3xermp[data-local-style=local-style-avfvp3xermp] { 
+<div style="display: flex" class="local-style-qzfz1rnugeq" data-local-style="local-style-qzfz1rnugeq"><style>.local-style-qzfz1rnugeq[data-local-style=local-style-qzfz1rnugeq] { 
  
     b {
       opacity: .35;
