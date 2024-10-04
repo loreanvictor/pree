@@ -1,6 +1,7 @@
 @media (prefers-color-scheme: light) {
   :root {
-    --primary-color: #265073;
+    /* --primary-color: #265073; */
+    --primary-color: black;
   }
 }
 
@@ -8,12 +9,13 @@
   :root {
     --background-color: #010204;
     --text-color: #dcdfd7;
-    --primary-color: #9AD0C2;
+    --primary-color: white;
+    /* --primary-color: #9AD0C2; */
     --primary-text-color: #000;
   }
 }
 
-a {
+a:not[role] {
   cursor: pointer;
   text-decoration: underline;
   text-decoration-color: color-mix(in srgb, var(--primary-color) 35%, var(--background-color));
