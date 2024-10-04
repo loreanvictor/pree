@@ -42,12 +42,21 @@ i {
     grid-auto-flow: unset;
 
     article {
+      --border-expression: .15; 
       padding: 1rem;
+
+      --raised-card-transform: translateX(0);
+      --raised-card-shadow: none;
+      --card-shadow: none;
 
       header {
         display: flex;
         align-items: center;
         gap: 1.25rem;
+      }
+
+      footer {
+        --border-expression: 0;
       }
     }
   }
@@ -109,4 +118,3 @@ i {
 
 <br>
 
-<span slot="watermark"></span>
