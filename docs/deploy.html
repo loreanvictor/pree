@@ -16,39 +16,39 @@ layout: ./_layout.html
     --default-border-expression: var(--border-expression);
 
     padding: .25rem;
-
+  
     @media (max-width: 800px) {
       & {
         display: block;
       }
     }
-
+  
     img {
       border-radius: 0;
-
+  
       @media (prefers-color-scheme: dark) {
         &:not([no-inv]) {
           filter: invert(1);
         }
       }
     }
-
+  
     a {
       text-decoration: none !important;
     }
-
+  
     article {
       --border-expression: 0;
       --brightness: none;
       --raised-card-brightness: none;
       --card-shadow: 0 1px 3px rgba(0, 0, 0, .25);
       --raised-card-shadow: 0 2px 6px rgba(0, 0, 0, .4);
-
+  
       @media (prefers-color-scheme: light) {
         --card-shadow: 0 1px 3px rgba(0, 0, 0, .1);
         --raised-card-shadow: 0 2px 6px rgba(0, 0, 0, .15);
       }
-
+  
       address {
         margin: .5rem;
   

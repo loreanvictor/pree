@@ -3,49 +3,110 @@ layout: ./_layout.html
 dont search: true
 ---
 
+<link rel="stylesheet" href="https://unpkg.com/graphis/font/graphis.css">
+<style>
+i {
+  font-family: 'graphis', sans-serif;
+  font-style: normal;
+  font-size: 1.5em;
+}
+</style>
+
 <div slot="background">
   <use-html src="./_lines.html"></use-html>
 </div>
 
-<picture>
-  <source srcset="./assets/images/logo-dark.svg" media="(prefers-color-scheme: dark)">
-  <img width="192px" src="./assets/images/logo-light.svg" alt="pree logo">
-</picture>
+<div style="text-align: center">
+  <picture>
+    <source srcset="./assets/images/banner-dark.svg" media="(prefers-color-scheme: dark)">
+    <img width="360px" src="./assets/images/banner-light.svg" alt="pree logo">
+  </picture>
 
-<br><br>
+  <m-d>
+    the prebuild tool for no-build websites
+  </m-d>
+</div>
+
+<br>
+
 <m-d>
-  A [CLI](https://en.wikipedia.org/wiki/Command-line_interface) that prebuilds HTML files. Use it to build websites with plain HTML, CSS and JS.
+  `pree` is a command line tool for building websites using plain HTML, CSS and JavaScript, with performance and developer experience of modern web frameworks. It simply pre-builds your HTML files, pre-rendering web components, resolving layouts, and striping JavaScript that is only needed for the first-render (which happens on build time).
 </m-d>
+
+<br>
 
 <style>
-small {
-  opacity: .5;
-  white-space: nowrap;
-}
+  section[role="feed"] {
+    padding: .5rem;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    grid-auto-flow: unset;
+
+    article {
+      padding: 1rem;
+
+      header {
+        display: flex;
+        align-items: center;
+        gap: 1.25rem;
+      }
+    }
+  }
 </style>
 
-<emo-li>
-  <span slot="emo">🧬</span>
-  It pre-renders web components <small>(instant page load)</small>
-</emo-li>
-<emo-li>
-  <span slot="emo">🏗️</span>
-  It handles <a href="usage/meta-layout">layouting and metadata</a> <small>(smooth DX)</small>
-</emo-li>
-<emo-li>
-  <span slot="emo">👻</span>
-  It manages <a href="usage/build-only-scripts">build-only components and scripts</a> <small>(small bundles)</small>
-</emo-li>
-<emo-li>
-  <span slot="emo">✨</span>
-  It gets components and scripts access to <a href="components/build-env">build environment</a> <small>(for some magical web components)</small>
-</emo-li>
+<section role="feed" aria-orientation="horizontal">
+  <article role="comment">
+    <header>
+        <i>⚡</i>
+        <h3>Pre-render</h3>
+    </header>
+    <m-d>
+      `pree` pre-renders web components on build time, so they instantly load on client side.
+    </m-d>
+    <footer align="end">
+      <div><a href="usage/index.html" role="button">Learn More</a></div>
+    </footer>
+  </article>
+  <article role="comment">
+    <header>
+      <i>┗</i>
+      <h3>Layout</h3>
+    </header>
+    <m-d>
+      `pree` provides shared layout between HTML pages with using page-specific
+      metadata.
+    </m-d>
+    <footer align="end">
+      <div><a href="usage/meta-layout" role="button">Learn More</a></div>
+    </footer>
+  </article>
+  <article role="comment">
+    <header>
+      <i>⎶</i>
+      <h3>Build-only Scripts</h3>
+    </header>
+    <m-d>
+      `pree` strips static component code and scripts
+      only needed on build time, reducing bundle size.
+    </m-d>
+    <footer align="end">
+      <div><a href="usage/build-only-scripts" role="button">Learn More</a></div>
+    </footer>
+  </article>
+  <article role="comment">
+    <header>
+      <i>🎚</i>
+      <h3>Build Environment</h3>
+    </header>
+    <m-d>
+      `pree` provides access to build environment (e.g. git info, env vars)
+      to scripts during build time.
+    </m-d>
+    <footer align="end">
+      <div><a href="components/build-env" role="button">Learn More</a></div>
+    </footer>
+  </article>
+</section>
 
-<m-d>
-  ```bash
-  pree view     <src>                      # 👉 preview your website
-  pree build    <src> <dest>               # 👉 prebuild your website
-  ```
-</m-d>
+<br>
 
 <span slot="watermark"></span>
