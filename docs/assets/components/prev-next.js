@@ -142,7 +142,7 @@ define('prev-next', ({ target, prevlabel = 'Previously', nextlabel = 'Up Next' }
 
   return template`
     <link rel="stylesheet" href="https://unpkg.com/nokss" />
-    <link rel="stylesheet" href="https://unpkg.com/graphis/font/graphis.css" />
+    <link rel="stylesheet" href="https://esm.sh/graphis/font/graphis.css" />
     <style>
     section[role="feed"] {
       flex-direction: row;

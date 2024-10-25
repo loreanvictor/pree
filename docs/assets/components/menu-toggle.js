@@ -45,7 +45,7 @@ define('menu-toggle', ({ target }) => {
 
   return template`
     <link rel="stylesheet" href="https://unpkg.com/nokss" />
-    <link rel="stylesheet" href="https://unpkg.com/graphis/font/graphis.css" />
+    <link rel="stylesheet" href="https://esm.sh/graphis/font/graphis.css" />
     <style>
     .icon {
       font-family: 'graphis', sans-serif;
