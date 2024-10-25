@@ -106,7 +106,7 @@ define('finde-btn', ({ base, src, shortcut = '/,cmd+k,ctrl+k' }) => {
   return template`
     <style>
       @import 'https://unpkg.com/nokss' layer(base);
-      @import 'https://unpkg.com/graphis/font/graphis.css';
+      @import 'https://esm.sh/graphis/font/graphis.css';
 
       [aria-label] {
         font-family: 'graphis', sans-serif;
