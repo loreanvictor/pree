@@ -30,7 +30,7 @@
         <link rel="prefetch" href="usage/build-only-scripts.html"><link rel="prefetch" href="components/index.html"></head>
   <body><slot name="background"></slot>
     <aside aria-hidden="true">
-      <use-html src="./_toc.html"><template shadowrootmode="open"><slot></slot></template><base href="/pree/"><style>
+      <use-html src="./_toc.html"><template shadowrootmode="open" shadowrootserializable=""><slot></slot></template><base href="/pree/"><style>
   #toc {
     a:not(:hover) {
       text-decoration-color: transparent;
@@ -59,7 +59,7 @@
 
 </style>
 
-<m-d id="toc" onparse="document.querySelector('prev-next').controls?.load()"><template shadowrootmode="open"><slot></slot></template><p><a href="index.html">Home</a> <br><a href="motivation.html">Motivation</a> <br><a href="install.html">Installation</a></p>
+<m-d id="toc" onparse="document.querySelector('prev-next').controls?.load()"><template shadowrootmode="open" shadowrootserializable=""><slot></slot></template><p><a href="index.html">Home</a> <br><a href="motivation.html">Motivation</a> <br><a href="install.html">Installation</a></p>
 <hr>
 <p><a href="usage/index.html"><strong>Usage</strong></a> <br>  <a href="usage/meta-layout.html">Metadata &amp; Layouts</a> <br>  <a href="usage/build-only-scripts.html">Build-Only Scripts</a> <br>  <a href="usage/config.html" aria-current="page">Configuration</a></p>
 <hr>
@@ -72,8 +72,8 @@
 </use-html>
     </aside>
     <main>
-      <dans-floor><template shadowrootmode="open"><slot></slot></template>
-        <m-d><template shadowrootmode="open"><slot></slot></template><h1 id="configuration">Configuration<menu role="toolbar"><button ref="?" aria-label="copy link" class="icon">🔗</button></menu></h1>
+      <dans-floor><template shadowrootmode="open" shadowrootserializable=""><slot></slot></template>
+        <m-d><template shadowrootmode="open" shadowrootserializable=""><slot></slot></template><h1 id="configuration">Configuration<menu role="toolbar"><button ref="?" aria-label="copy link" class="icon">🔗</button></menu></h1>
 <p>To configure <code>pree</code>, either provide params and options to the CLI:</p>
 <pre><code class="language-bash hljs" data-highlighted="yes">pree build docs site -b repo
 </code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
@@ -106,44 +106,44 @@ is treated as a convenient default, any options provided to the CLI will overrid
   </thead>
   <tbody>
     <tr>
-      <td><m-d><template shadowrootmode="open"><slot></slot></template><p><code>src</code></p>
+      <td><m-d><template shadowrootmode="open" shadowrootserializable=""><slot></slot></template><p><code>src</code></p>
 </m-d></td>
-      <td><m-d><template shadowrootmode="open"><slot></slot></template><p><em>first param</em></p>
+      <td><m-d><template shadowrootmode="open" shadowrootserializable=""><slot></slot></template><p><em>first param</em></p>
 </m-d></td>
-      <td><m-d><template shadowrootmode="open"><slot></slot></template><p>The source of website content.<br> Either an HTML file or a directory.</p>
+      <td><m-d><template shadowrootmode="open" shadowrootserializable=""><slot></slot></template><p>The source of website content.<br> Either an HTML file or a directory.</p>
 </m-d></td>
       <td>
         <details>
           <summary>CLI Example</summary>
-          <m-d><template shadowrootmode="open"><slot></slot></template><pre><code class="language-bash hljs" data-highlighted="yes">pree view docs
+          <m-d><template shadowrootmode="open" shadowrootserializable=""><slot></slot></template><pre><code class="language-bash hljs" data-highlighted="yes">pree view docs
 </code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
 </m-d>
         </details>
         <details>
           <summary>Config Example</summary>
-          <m-d><template shadowrootmode="open"><slot></slot></template><pre><code class="language-yaml hljs" data-highlighted="yes"><span class="hljs-attr">src:</span> <span class="hljs-string">docs</span>
+          <m-d><template shadowrootmode="open" shadowrootserializable=""><slot></slot></template><pre><code class="language-yaml hljs" data-highlighted="yes"><span class="hljs-attr">src:</span> <span class="hljs-string">docs</span>
 </code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
 </m-d>
         </details>
       </td>
     </tr>
     <tr>
-      <td><m-d><template shadowrootmode="open"><slot></slot></template><p><code>dest</code></p>
+      <td><m-d><template shadowrootmode="open" shadowrootserializable=""><slot></slot></template><p><code>dest</code></p>
 </m-d></td>
-      <td><m-d><template shadowrootmode="open"><slot></slot></template><p><em>second param</em></p>
+      <td><m-d><template shadowrootmode="open" shadowrootserializable=""><slot></slot></template><p><em>second param</em></p>
 </m-d></td>
-      <td><m-d><template shadowrootmode="open"><slot></slot></template><p>The destination of the built website.<br> Either an HTML file or a directory.</p>
+      <td><m-d><template shadowrootmode="open" shadowrootserializable=""><slot></slot></template><p>The destination of the built website.<br> Either an HTML file or a directory.</p>
 </m-d></td>
       <td>
         <details>
           <summary>CLI Example</summary>
-          <m-d><template shadowrootmode="open"><slot></slot></template><pre><code class="language-bash hljs" data-highlighted="yes">pree build docs site
+          <m-d><template shadowrootmode="open" shadowrootserializable=""><slot></slot></template><pre><code class="language-bash hljs" data-highlighted="yes">pree build docs site
 </code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
 </m-d>
         </details>
         <details>
           <summary>Config Example</summary>
-          <m-d><template shadowrootmode="open"><slot></slot></template><pre><code class="language-yaml hljs" data-highlighted="yes"><span class="hljs-attr">src:</span> <span class="hljs-string">docs</span>
+          <m-d><template shadowrootmode="open" shadowrootserializable=""><slot></slot></template><pre><code class="language-yaml hljs" data-highlighted="yes"><span class="hljs-attr">src:</span> <span class="hljs-string">docs</span>
 <span class="hljs-attr">dest:</span> <span class="hljs-string">site</span>
 </code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
 </m-d>
@@ -151,33 +151,33 @@ is treated as a convenient default, any options provided to the CLI will overrid
       </td>
     </tr>
     <tr>
-      <td><m-d><template shadowrootmode="open"><slot></slot></template><p><code>base</code></p>
+      <td><m-d><template shadowrootmode="open" shadowrootserializable=""><slot></slot></template><p><code>base</code></p>
 </m-d></td>
-      <td><m-d><template shadowrootmode="open"><slot></slot></template><p><code>-b</code>, <code>--base</code></p>
+      <td><m-d><template shadowrootmode="open" shadowrootserializable=""><slot></slot></template><p><code>-b</code>, <code>--base</code></p>
 </m-d></td>
-      <td><m-d><template shadowrootmode="open"><slot></slot></template><p>The <a href="usage/index#asset-management">base path</a> of the website.</p>
+      <td><m-d><template shadowrootmode="open" shadowrootserializable=""><slot></slot></template><p>The <a href="usage/index#asset-management">base path</a> of the website.</p>
 </m-d></td>
       <td>
         <details>
           <summary>CLI Example</summary>
-          <m-d><template shadowrootmode="open"><slot></slot></template><pre><code class="language-bash hljs" data-highlighted="yes">pree build docs site -b repo
+          <m-d><template shadowrootmode="open" shadowrootserializable=""><slot></slot></template><pre><code class="language-bash hljs" data-highlighted="yes">pree build docs site -b repo
 </code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
 </m-d>
         </details>
         <details>
           <summary>Config Example</summary>
-          <m-d><template shadowrootmode="open"><slot></slot></template><pre><code class="language-yaml hljs" data-highlighted="yes"><span class="hljs-attr">base:</span> <span class="hljs-string">repo</span>
+          <m-d><template shadowrootmode="open" shadowrootserializable=""><slot></slot></template><pre><code class="language-yaml hljs" data-highlighted="yes"><span class="hljs-attr">base:</span> <span class="hljs-string">repo</span>
 </code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
 </m-d>
         </details>
       </td>
     </tr>
     <tr>
-      <td><m-d><template shadowrootmode="open"><slot></slot></template><p><code>inject base</code></p>
+      <td><m-d><template shadowrootmode="open" shadowrootserializable=""><slot></slot></template><p><code>inject base</code></p>
 </m-d></td>
-      <td><m-d><template shadowrootmode="open"><slot></slot></template><p><code>--inject-base</code></p>
+      <td><m-d><template shadowrootmode="open" shadowrootserializable=""><slot></slot></template><p><code>--inject-base</code></p>
 </m-d></td>
-      <td><m-d><template shadowrootmode="open"><slot></slot></template><p>Automatically inject the <a href="usage/index#asset-management">base path</a> into HTML files. <br>Defaults to <code>false</code>.</p>
+      <td><m-d><template shadowrootmode="open" shadowrootserializable=""><slot></slot></template><p>Automatically inject the <a href="usage/index#asset-management">base path</a> into HTML files. <br>Defaults to <code>false</code>.</p>
 <blockquote>
 <p>Only use this options if you want to deploy <br>your website to multiple hosts with different <br>base paths. Otherwise explicitly include a <br><code>&lt;base&gt;</code> tag in your HTML files.</p>
 </blockquote>
@@ -185,13 +185,13 @@ is treated as a convenient default, any options provided to the CLI will overrid
       <td>
         <details>
           <summary>CLI Example</summary>
-          <m-d><template shadowrootmode="open"><slot></slot></template><pre><code class="language-bash hljs" data-highlighted="yes">pree build docs site -b repo --inject-base
+          <m-d><template shadowrootmode="open" shadowrootserializable=""><slot></slot></template><pre><code class="language-bash hljs" data-highlighted="yes">pree build docs site -b repo --inject-base
 </code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
 </m-d>
         </details>
         <details>
           <summary>Config Example</summary>
-          <m-d><template shadowrootmode="open"><slot></slot></template><pre><code class="language-yaml hljs" data-highlighted="yes"><span class="hljs-attr">base:</span> <span class="hljs-string">repo</span>
+          <m-d><template shadowrootmode="open" shadowrootserializable=""><slot></slot></template><pre><code class="language-yaml hljs" data-highlighted="yes"><span class="hljs-attr">base:</span> <span class="hljs-string">repo</span>
 <span class="hljs-attr">inject base:</span> <span class="hljs-literal">true</span>
 </code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
 </m-d>
@@ -199,11 +199,11 @@ is treated as a convenient default, any options provided to the CLI will overrid
       </td>
     </tr>
     <tr>
-      <td><m-d><template shadowrootmode="open"><slot></slot></template><p><code>include</code></p>
+      <td><m-d><template shadowrootmode="open" shadowrootserializable=""><slot></slot></template><p><code>include</code></p>
 </m-d></td>
-      <td><m-d><template shadowrootmode="open"><slot></slot></template><p><code>-i</code>, <code>--include</code></p>
+      <td><m-d><template shadowrootmode="open" shadowrootserializable=""><slot></slot></template><p><code>-i</code>, <code>--include</code></p>
 </m-d></td>
-      <td><m-d><template shadowrootmode="open"><slot></slot></template><p>A <a href="https://en.wikipedia.org/wiki/Glob_(programming)">glob pattern</a> to include files for build. <br></p>
+      <td><m-d><template shadowrootmode="open" shadowrootserializable=""><slot></slot></template><p>A <a href="https://en.wikipedia.org/wiki/Glob_(programming)">glob pattern</a> to include files for build. <br></p>
 <blockquote>
 <p>For multiple patterns, use multiple <code>-i</code> flags, <br>
 or provide an array in the config.</p>
@@ -212,24 +212,24 @@ or provide an array in the config.</p>
       <td>
         <details>
           <summary>CLI Example</summary>
-          <m-d><template shadowrootmode="open"><slot></slot></template><pre><code class="language-bash hljs" data-highlighted="yes">pree build -i <span class="hljs-string">"**/*.final.html"</span>
+          <m-d><template shadowrootmode="open" shadowrootserializable=""><slot></slot></template><pre><code class="language-bash hljs" data-highlighted="yes">pree build -i <span class="hljs-string">"**/*.final.html"</span>
 </code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
 </m-d>
         </details>
         <details>
           <summary>Config Example</summary>
-          <m-d><template shadowrootmode="open"><slot></slot></template><pre><code class="language-yaml hljs" data-highlighted="yes"><span class="hljs-attr">src:</span> <span class="hljs-string">docs</span>
+          <m-d><template shadowrootmode="open" shadowrootserializable=""><slot></slot></template><pre><code class="language-yaml hljs" data-highlighted="yes"><span class="hljs-attr">src:</span> <span class="hljs-string">docs</span>
 <span class="hljs-attr">include:</span> <span class="hljs-string">"**/*.final.html"</span>
 </code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
 </m-d>
         </details>
     </td></tr>
     <tr>
-      <td><m-d><template shadowrootmode="open"><slot></slot></template><p><code>exclude</code></p>
+      <td><m-d><template shadowrootmode="open" shadowrootserializable=""><slot></slot></template><p><code>exclude</code></p>
 </m-d></td>
-      <td><m-d><template shadowrootmode="open"><slot></slot></template><p><code>-e</code>, <code>--exclude</code></p>
+      <td><m-d><template shadowrootmode="open" shadowrootserializable=""><slot></slot></template><p><code>-e</code>, <code>--exclude</code></p>
 </m-d></td>
-      <td><m-d><template shadowrootmode="open"><slot></slot></template><p>A <a href="https://en.wikipedia.org/wiki/Glob_(programming)">glob pattern</a> to exclude files from build. <br>
+      <td><m-d><template shadowrootmode="open" shadowrootserializable=""><slot></slot></template><p>A <a href="https://en.wikipedia.org/wiki/Glob_(programming)">glob pattern</a> to exclude files from build. <br>
 Defaults to <code>['**/_*', '**/.*']</code>. <br></p>
 <blockquote>
 <p>For multiple patterns, use multiple <code>-e</code> flags, <br>
@@ -239,121 +239,121 @@ or provide an array in the config. <br></p>
       <td>
         <details>
           <summary>CLI Example</summary>
-          <m-d><template shadowrootmode="open"><slot></slot></template><pre><code class="language-bash hljs" data-highlighted="yes">pree build -e <span class="hljs-string">"**/*.draft.html"</span>
+          <m-d><template shadowrootmode="open" shadowrootserializable=""><slot></slot></template><pre><code class="language-bash hljs" data-highlighted="yes">pree build -e <span class="hljs-string">"**/*.draft.html"</span>
 </code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
 </m-d>
         </details>
         <details>
           <summary>Config Example</summary>
-          <m-d><template shadowrootmode="open"><slot></slot></template><pre><code class="language-yaml hljs" data-highlighted="yes"><span class="hljs-attr">src:</span> <span class="hljs-string">docs</span>
+          <m-d><template shadowrootmode="open" shadowrootserializable=""><slot></slot></template><pre><code class="language-yaml hljs" data-highlighted="yes"><span class="hljs-attr">src:</span> <span class="hljs-string">docs</span>
 <span class="hljs-attr">exclude:</span> <span class="hljs-string">"**/*.draft.html"</span>
 </code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
 </m-d>
         </details>
     </td></tr>
     <tr>
-      <td><m-d><template shadowrootmode="open"><slot></slot></template><p><code>port</code></p>
+      <td><m-d><template shadowrootmode="open" shadowrootserializable=""><slot></slot></template><p><code>port</code></p>
 </m-d></td>
-      <td><m-d><template shadowrootmode="open"><slot></slot></template><p><code>-p</code>, <code>--port</code></p>
+      <td><m-d><template shadowrootmode="open" shadowrootserializable=""><slot></slot></template><p><code>-p</code>, <code>--port</code></p>
 </m-d></td>
-      <td><m-d><template shadowrootmode="open"><slot></slot></template><p>The port to serve the website on.<br>
+      <td><m-d><template shadowrootmode="open" shadowrootserializable=""><slot></slot></template><p>The port to serve the website on.<br>
 By default will pick a random available port.</p>
 </m-d></td>
       <td>
         <details>
           <summary>CLI Example</summary>
-          <m-d><template shadowrootmode="open"><slot></slot></template><pre><code class="language-bash hljs" data-highlighted="yes">pree view -p 8080
+          <m-d><template shadowrootmode="open" shadowrootserializable=""><slot></slot></template><pre><code class="language-bash hljs" data-highlighted="yes">pree view -p 8080
 </code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
 </m-d>
         </details>
         <details>
           <summary>Config Example</summary>
-          <m-d><template shadowrootmode="open"><slot></slot></template><pre><code class="language-yaml hljs" data-highlighted="yes"><span class="hljs-attr">port:</span> <span class="hljs-number">8080</span>
+          <m-d><template shadowrootmode="open" shadowrootserializable=""><slot></slot></template><pre><code class="language-yaml hljs" data-highlighted="yes"><span class="hljs-attr">port:</span> <span class="hljs-number">8080</span>
 </code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
 </m-d>
         </details>
         </td>
     </tr>
     <tr>
-      <td><m-d><template shadowrootmode="open"><slot></slot></template><p><code>prod</code></p>
+      <td><m-d><template shadowrootmode="open" shadowrootserializable=""><slot></slot></template><p><code>prod</code></p>
 </m-d></td>
-      <td><m-d><template shadowrootmode="open"><slot></slot></template><p><code>-P</code>, <code>--prod</code></p>
+      <td><m-d><template shadowrootmode="open" shadowrootserializable=""><slot></slot></template><p><code>-P</code>, <code>--prod</code></p>
 </m-d></td>
-      <td><m-d><template shadowrootmode="open"><slot></slot></template><p>View the website in production mode. <br>
+      <td><m-d><template shadowrootmode="open" shadowrootserializable=""><slot></slot></template><p>View the website in production mode. <br>
 Disables <a href="components/build-env">build env access</a>.</p>
 </m-d></td>
       <td>
         <details>
           <summary>CLI Example</summary>
-          <m-d><template shadowrootmode="open"><slot></slot></template><pre><code class="language-bash hljs" data-highlighted="yes">pree view -P
+          <m-d><template shadowrootmode="open" shadowrootserializable=""><slot></slot></template><pre><code class="language-bash hljs" data-highlighted="yes">pree view -P
 </code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
 </m-d>
         </details>
         <details>
           <summary>Config Example</summary>
-          <m-d><template shadowrootmode="open"><slot></slot></template><pre><code class="language-yaml hljs" data-highlighted="yes"><span class="hljs-attr">prod:</span> <span class="hljs-literal">true</span>
+          <m-d><template shadowrootmode="open" shadowrootserializable=""><slot></slot></template><pre><code class="language-yaml hljs" data-highlighted="yes"><span class="hljs-attr">prod:</span> <span class="hljs-literal">true</span>
 </code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
 </m-d>
         </details>
       </td>
     </tr>
     <tr>
-      <td><m-d><template shadowrootmode="open"><slot></slot></template><p><code>concurrency</code></p>
+      <td><m-d><template shadowrootmode="open" shadowrootserializable=""><slot></slot></template><p><code>concurrency</code></p>
 </m-d></td>
-      <td><m-d><template shadowrootmode="open"><slot></slot></template><p><code>-C</code>, <code>--concurrency</code></p>
+      <td><m-d><template shadowrootmode="open" shadowrootserializable=""><slot></slot></template><p><code>-C</code>, <code>--concurrency</code></p>
 </m-d></td>
-      <td><m-d><template shadowrootmode="open"><slot></slot></template><p>The number of concurrent pages to build at once. <br>
+      <td><m-d><template shadowrootmode="open" shadowrootserializable=""><slot></slot></template><p>The number of concurrent pages to build at once. <br>
 Defaults to <code>16</code>.</p>
 </m-d></td>
       <td>
         <details>
           <summary>CLI Example</summary>
-          <m-d><template shadowrootmode="open"><slot></slot></template><pre><code class="language-bash hljs" data-highlighted="yes">pree build -C 8
+          <m-d><template shadowrootmode="open" shadowrootserializable=""><slot></slot></template><pre><code class="language-bash hljs" data-highlighted="yes">pree build -C 8
 </code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
 </m-d>
         </details>
         <details>
           <summary>Config Example</summary>
-          <m-d><template shadowrootmode="open"><slot></slot></template><pre><code class="language-yaml hljs" data-highlighted="yes"><span class="hljs-attr">concurrency:</span> <span class="hljs-number">8</span>
+          <m-d><template shadowrootmode="open" shadowrootserializable=""><slot></slot></template><pre><code class="language-yaml hljs" data-highlighted="yes"><span class="hljs-attr">concurrency:</span> <span class="hljs-number">8</span>
 </code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
 </m-d>
         </details>
       </td>
     </tr>
     <tr>
-      <td><m-d><template shadowrootmode="open"><slot></slot></template><p><code>root</code></p>
+      <td><m-d><template shadowrootmode="open" shadowrootserializable=""><slot></slot></template><p><code>root</code></p>
 </m-d></td>
-      <td><m-d><template shadowrootmode="open"><slot></slot></template><p><code>-r</code>, <code>--root</code></p>
+      <td><m-d><template shadowrootmode="open" shadowrootserializable=""><slot></slot></template><p><code>-r</code>, <code>--root</code></p>
 </m-d></td>
-      <td><m-d><template shadowrootmode="open"><slot></slot></template><p>The root path of the website.<br>
+      <td><m-d><template shadowrootmode="open" shadowrootserializable=""><slot></slot></template><p>The root path of the website.<br>
 Defaults to <code>src</code>.</p>
 </m-d></td>
       <td>
         <details>
           <summary>CLI Example</summary>
-          <m-d><template shadowrootmode="open"><slot></slot></template><pre><code class="language-bash hljs" data-highlighted="yes">pree view -r path
+          <m-d><template shadowrootmode="open" shadowrootserializable=""><slot></slot></template><pre><code class="language-bash hljs" data-highlighted="yes">pree view -r path
 </code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
 </m-d>
         </details>
         <details>
           <summary>Config Example</summary>
-          <m-d><template shadowrootmode="open"><slot></slot></template><pre><code class="language-yaml hljs" data-highlighted="yes"><span class="hljs-attr">root:</span> <span class="hljs-string">path</span>
+          <m-d><template shadowrootmode="open" shadowrootserializable=""><slot></slot></template><pre><code class="language-yaml hljs" data-highlighted="yes"><span class="hljs-attr">root:</span> <span class="hljs-string">path</span>
 </code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
 </m-d>
         </details>
     </td></tr>
     <tr>
-      <td><m-d><template shadowrootmode="open"><slot></slot></template><p><code>logLevel</code></p>
+      <td><m-d><template shadowrootmode="open" shadowrootserializable=""><slot></slot></template><p><code>logLevel</code></p>
 </m-d></td>
       <td></td>
-      <td><m-d><template shadowrootmode="open"><slot></slot></template><p>The log level of the CLI. <br>
+      <td><m-d><template shadowrootmode="open" shadowrootserializable=""><slot></slot></template><p>The log level of the CLI. <br>
 One of <code>debug</code>, <code>info</code>, <code>warn</code>, <code>error</code>, <code>silent</code>. <br>
 Defaults to <code>info</code>.</p>
 </m-d></td>
       <td>
         <details>
           <summary>Config Example</summary>
-          <m-d><template shadowrootmode="open"><slot></slot></template><pre><code class="language-yaml hljs" data-highlighted="yes"><span class="hljs-attr">logLevel:</span> <span class="hljs-string">debug</span>
+          <m-d><template shadowrootmode="open" shadowrootserializable=""><slot></slot></template><pre><code class="language-yaml hljs" data-highlighted="yes"><span class="hljs-attr">logLevel:</span> <span class="hljs-string">debug</span>
 </code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
 </m-d>
         </details>
@@ -361,29 +361,29 @@ Defaults to <code>info</code>.</p>
     </tr>
     <tr>
       <td> </td>
-      <td><m-d><template shadowrootmode="open"><slot></slot></template><p><code>-c</code>, <code>--config</code></p>
+      <td><m-d><template shadowrootmode="open" shadowrootserializable=""><slot></slot></template><p><code>-c</code>, <code>--config</code></p>
 </m-d></td>
-      <td><m-d><template shadowrootmode="open"><slot></slot></template><p>The path to the config file. <br>
+      <td><m-d><template shadowrootmode="open" shadowrootserializable=""><slot></slot></template><p>The path to the config file. <br>
 Defaults to <code>.pree.yml</code>.</p>
 </m-d></td>
       <td>
         <details>
           <summary>CLI Example</summary>
-          <m-d><template shadowrootmode="open"><slot></slot></template><pre><code class="language-bash hljs" data-highlighted="yes">pree build -c preeconf.yml
+          <m-d><template shadowrootmode="open" shadowrootserializable=""><slot></slot></template><pre><code class="language-bash hljs" data-highlighted="yes">pree build -c preeconf.yml
 </code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
 </m-d>
         </details>
     </td></tr>
     <tr>
       <td></td>
-      <td><m-d><template shadowrootmode="open"><slot></slot></template><p><code>-V</code>, <code>--verbose</code></p>
+      <td><m-d><template shadowrootmode="open" shadowrootserializable=""><slot></slot></template><p><code>-V</code>, <code>--verbose</code></p>
 </m-d></td>
-      <td><m-d><template shadowrootmode="open"><slot></slot></template><p>Show verbose output.</p>
+      <td><m-d><template shadowrootmode="open" shadowrootserializable=""><slot></slot></template><p>Show verbose output.</p>
 </m-d></td>
       <td>
         <details>
           <summary>CLI Example</summary>
-          <m-d><template shadowrootmode="open"><slot></slot></template><pre><code class="language-bash hljs" data-highlighted="yes">pree build -V
+          <m-d><template shadowrootmode="open" shadowrootserializable=""><slot></slot></template><pre><code class="language-bash hljs" data-highlighted="yes">pree build -V
 </code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
 </m-d>
         </details>
@@ -391,15 +391,15 @@ Defaults to <code>.pree.yml</code>.</p>
     </tr>
     <tr>
       <td></td>
-      <td><m-d><template shadowrootmode="open"><slot></slot></template><p><code>-S</code>, <code>--silent</code></p>
+      <td><m-d><template shadowrootmode="open" shadowrootserializable=""><slot></slot></template><p><code>-S</code>, <code>--silent</code></p>
 </m-d></td>
-      <td><m-d><template shadowrootmode="open"><slot></slot></template><p>Silent mode. <br>
+      <td><m-d><template shadowrootmode="open" shadowrootserializable=""><slot></slot></template><p>Silent mode. <br>
 Use multiple times to silence more.</p>
 </m-d></td>
       <td>
         <details>
           <summary>CLI Example</summary>
-          <m-d><template shadowrootmode="open"><slot></slot></template><pre><code class="language-bash hljs" data-highlighted="yes">pree build -SS
+          <m-d><template shadowrootmode="open" shadowrootserializable=""><slot></slot></template><pre><code class="language-bash hljs" data-highlighted="yes">pree build -SS
 </code><menu role="toolbar" align="right"><button ref="?" class="icon" aria-label="copy">📑</button></menu></pre>
 </m-d>
         </details>
@@ -409,7 +409,7 @@ Use multiple times to silence more.</p>
 </div>
 
 <br>
-<change-history><template shadowrootmode="open"><style>div {
+<change-history><template shadowrootmode="open" shadowrootserializable=""><style>div {
         display: flex;
         flex-direction: row-reverse;
         gap: 1rem;
@@ -453,7 +453,7 @@ Use multiple times to silence more.</p>
         }
       }</style><div><a ref="?" target="_blank" class="code" aria-label="edit" href="https://github.com/loreanvictor/pree/blob/main/docs/usage/config.html">✎</a><a ref="?" target="_blank" href="https://github.com/loreanvictor/pree/commit/d2ca533c049b28feb1d852582cf56c6cd8473343">Updated at <span ref="?">Feb 16, 2024</span> <br>for <span ref="?">pree</span> version <span ref="?">0.1.22</span></a></div></template></change-history>
 <br>
-        <prev-next><template shadowrootmode="open"><link rel="stylesheet" href="https://unpkg.com/nokss"><link rel="stylesheet" href="https://esm.sh/graphis/font/graphis.css"><style>section[role="feed"] {
+        <prev-next><template shadowrootmode="open" shadowrootserializable=""><link rel="stylesheet" href="https://unpkg.com/nokss"><link rel="stylesheet" href="https://esm.sh/graphis/font/graphis.css"><style>section[role="feed"] {
       flex-direction: row;
       transition: opacity .2s, max-height .2s;
       overflow: hidden;
@@ -545,7 +545,7 @@ Use multiple times to silence more.</p>
           
       </section></template></prev-next>
         <slot name="watermark">
-          <use-html src="./_watermark.html"><template shadowrootmode="open"><slot></slot></template><base href="/pree/"><picture class="local-style-poju23bkbf" data-local-style="local-style-poju23bkbf"><style>.local-style-poju23bkbf[data-local-style=local-style-poju23bkbf] { 
+          <use-html src="./_watermark.html"><template shadowrootmode="open" shadowrootserializable=""><slot></slot></template><base href="/pree/"><picture class="local-style-oyaih0jir5o" data-local-style="local-style-oyaih0jir5o"><style>.local-style-oyaih0jir5o[data-local-style=local-style-oyaih0jir5o] { 
  
     img {
       display: block;
@@ -586,12 +586,12 @@ Use multiple times to silence more.</p>
     </main>
 
     <footer>
-      <use-html src="./_footer.html"><template shadowrootmode="open"><slot></slot></template><base href="/pree/"><script type="module" src="./assets/components/menu-toggle.js"></script>
+      <use-html src="./_footer.html"><template shadowrootmode="open" shadowrootserializable=""><slot></slot></template><base href="/pree/"><script type="module" src="./assets/components/menu-toggle.js"></script>
 
 
 <script type="module" src="./assets/components/finde-btn.js"></script>
 
-<div style="display: flex" class="local-style-xxyb6svet6h" data-local-style="local-style-xxyb6svet6h"><style>.local-style-xxyb6svet6h[data-local-style=local-style-xxyb6svet6h] { 
+<div style="display: flex" class="local-style-fjerp49cme5" data-local-style="local-style-fjerp49cme5"><style>.local-style-fjerp49cme5[data-local-style=local-style-fjerp49cme5] { 
  
     b {
       opacity: .35;
@@ -605,7 +605,7 @@ Use multiple times to silence more.</p>
   
 
   <div style="display: flex; gap: var(--spacing)">
-    <menu-toggle><template shadowrootmode="open"><link rel="stylesheet" href="https://unpkg.com/nokss"><link rel="stylesheet" href="https://esm.sh/graphis/font/graphis.css"><style>.icon {
+    <menu-toggle><template shadowrootmode="open" shadowrootserializable=""><link rel="stylesheet" href="https://unpkg.com/nokss"><link rel="stylesheet" href="https://esm.sh/graphis/font/graphis.css"><style>.icon {
       font-family: 'graphis', sans-serif;
       font-style: normal;
       font-size: 1.2rem;
@@ -614,7 +614,7 @@ Use multiple times to silence more.</p>
     button[role="switch"][aria-checked="true"]>span{
       color: var(--background-color);
     }</style><button ref="?" role="switch" aria-label="toggle sidebar" aria-checked="true"><span class="icon">❌</span><span class="icon">⩧</span></button></template></menu-toggle>
-    <finde-btn><template shadowrootmode="open"><style>@import 'https://unpkg.com/nokss' layer(base);
+    <finde-btn><template shadowrootmode="open" shadowrootserializable=""><style>@import 'https://unpkg.com/nokss' layer(base);
       @import 'https://esm.sh/graphis/font/graphis.css';
 
       [aria-label] {
@@ -715,7 +715,7 @@ Use multiple times to silence more.</p>
   </div>
   <div style="flex-grow: 1"></div>
   <div align="right">
-    <small-device><template shadowrootmode="open">
+    <small-device><template shadowrootmode="open" shadowrootserializable="">
   <style>
     @media (min-width: 768px) {
       :host {
@@ -725,12 +725,12 @@ Use multiple times to silence more.</p>
   </style>
   <slot></slot>
 </template>
-      <gh-link no-label=""><template shadowrootmode="open"><link rel="stylesheet" href="https://unpkg.com/nokss/dist/bundles/md.css"><style>octo-icon { opacity: .45; transition: opacity .15s; }
+      <gh-link no-label=""><template shadowrootmode="open" shadowrootserializable=""><link rel="stylesheet" href="https://unpkg.com/nokss/dist/bundles/md.css"><style>octo-icon { opacity: .45; transition: opacity .15s; }
       a:not([role]) {
         filter: none;
         color: var(--text-color);
         &:hover octo-icon { opacity: 1; }
-      }</style><a ref="?" target="_blank" href="https://github.com/loreanvictor/pree"><octo-icon style=""><template shadowrootmode="open">
+      }</style><a ref="?" target="_blank" href="https://github.com/loreanvictor/pree"><octo-icon style=""><template shadowrootmode="open" shadowrootserializable="">
   <style>
     svg {
       width: 1.2rem;
@@ -740,7 +740,7 @@ Use multiple times to silence more.</p>
   </style>
   <svg width="32" height="32" viewBox="0 0 98 96" xmlns="http://www.w3.org/2000/svg"> <path fill-rule="evenodd" clip-rule="evenodd" d="M48.854 0C21.839 0 0 22 0 49.217c0 21.756 13.993 40.172 33.405 46.69 2.427.49 3.316-1.059 3.316-2.362 0-1.141-.08-5.052-.08-9.127-13.59 2.934-16.42-5.867-16.42-5.867-2.184-5.704-5.42-7.17-5.42-7.17-4.448-3.015.324-3.015.324-3.015 4.934.326 7.523 5.052 7.523 5.052 4.367 7.496 11.404 5.378 14.235 4.074.404-3.178 1.699-5.378 3.074-6.6-10.839-1.141-22.243-5.378-22.243-24.283 0-5.378 1.94-9.778 5.014-13.2-.485-1.222-2.184-6.275.486-13.038 0 0 4.125-1.304 13.426 5.052a46.97 46.97 0 0 1 12.214-1.63c4.125 0 8.33.571 12.213 1.63 9.302-6.356 13.427-5.052 13.427-5.052 2.67 6.763.97 11.816.485 13.038 3.155 3.422 5.015 7.822 5.015 13.2 0 18.905-11.404 23.06-22.324 24.283 1.78 1.548 3.316 4.481 3.316 9.126 0 6.6-.08 11.897-.08 13.526 0 1.304.89 2.853 3.316 2.364 19.412-6.52 33.405-24.935 33.405-46.691C97.707 22 75.788 0 48.854 0z" fill="currentColor"></path> </svg>
 </template></octo-icon><slot ref="?" style="display: none">GitHub</slot></a></template>pree</gh-link>  
-      <npm-badge no-label=""><template shadowrootmode="open"><style>@import 'https://unpkg.com/nokss/dist/bundles/md.css' layer(base);
+      <npm-badge no-label=""><template shadowrootmode="open" shadowrootserializable=""><style>@import 'https://unpkg.com/nokss/dist/bundles/md.css' layer(base);
 
       a {
         filter: none;
@@ -751,7 +751,7 @@ Use multiple times to silence more.</p>
         margin-left: 0.5rem;
       }</style><a ref="?" target="_blank" href="https://www.npmjs.com/package/pree"><slot ref="?" style="display: none">NPM</slot><img alt="npm" ref="?" src="https://img.shields.io/npm/v/pree.svg?label=&amp;style=normal"></a></template>pree</npm-badge>
     </small-device>
-    <large-device><template shadowrootmode="open">
+    <large-device><template shadowrootmode="open" shadowrootserializable="">
   <style>
     @media (max-width: 767px) {
       :host {
@@ -761,12 +761,12 @@ Use multiple times to silence more.</p>
   </style>
   <slot></slot>
 </template>
-      <gh-link><template shadowrootmode="open"><link rel="stylesheet" href="https://unpkg.com/nokss/dist/bundles/md.css"><style>octo-icon { opacity: .45; transition: opacity .15s; }
+      <gh-link><template shadowrootmode="open" shadowrootserializable=""><link rel="stylesheet" href="https://unpkg.com/nokss/dist/bundles/md.css"><style>octo-icon { opacity: .45; transition: opacity .15s; }
       a:not([role]) {
         filter: none;
         color: var(--text-color);
         &:hover octo-icon { opacity: 1; }
-      }</style><a ref="?" target="_blank" href="https://github.com/loreanvictor/pree"><octo-icon style=""><template shadowrootmode="open">
+      }</style><a ref="?" target="_blank" href="https://github.com/loreanvictor/pree"><octo-icon style=""><template shadowrootmode="open" shadowrootserializable="">
   <style>
     svg {
       width: 1.2rem;
@@ -777,7 +777,7 @@ Use multiple times to silence more.</p>
   <svg width="32" height="32" viewBox="0 0 98 96" xmlns="http://www.w3.org/2000/svg"> <path fill-rule="evenodd" clip-rule="evenodd" d="M48.854 0C21.839 0 0 22 0 49.217c0 21.756 13.993 40.172 33.405 46.69 2.427.49 3.316-1.059 3.316-2.362 0-1.141-.08-5.052-.08-9.127-13.59 2.934-16.42-5.867-16.42-5.867-2.184-5.704-5.42-7.17-5.42-7.17-4.448-3.015.324-3.015.324-3.015 4.934.326 7.523 5.052 7.523 5.052 4.367 7.496 11.404 5.378 14.235 4.074.404-3.178 1.699-5.378 3.074-6.6-10.839-1.141-22.243-5.378-22.243-24.283 0-5.378 1.94-9.778 5.014-13.2-.485-1.222-2.184-6.275.486-13.038 0 0 4.125-1.304 13.426 5.052a46.97 46.97 0 0 1 12.214-1.63c4.125 0 8.33.571 12.213 1.63 9.302-6.356 13.427-5.052 13.427-5.052 2.67 6.763.97 11.816.485 13.038 3.155 3.422 5.015 7.822 5.015 13.2 0 18.905-11.404 23.06-22.324 24.283 1.78 1.548 3.316 4.481 3.316 9.126 0 6.6-.08 11.897-.08 13.526 0 1.304.89 2.853 3.316 2.364 19.412-6.52 33.405-24.935 33.405-46.691C97.707 22 75.788 0 48.854 0z" fill="currentColor"></path> </svg>
 </template></octo-icon><slot ref="?" style="">GitHub</slot></a></template>github</gh-link>
       <b>|</b>
-      <npm-badge design="flat-square"><template shadowrootmode="open"><style>@import 'https://unpkg.com/nokss/dist/bundles/md.css' layer(base);
+      <npm-badge design="flat-square"><template shadowrootmode="open" shadowrootserializable=""><style>@import 'https://unpkg.com/nokss/dist/bundles/md.css' layer(base);
 
       a {
         filter: none;

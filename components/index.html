@@ -30,7 +30,7 @@
         <link rel="prefetch" href="usage/config.html"><link rel="prefetch" href="components/ssr.html"></head>
   <body><slot name="background"></slot>
     <aside aria-hidden="true">
-      <use-html src="./_toc.html"><template shadowrootmode="open"><slot></slot></template><base href="/pree/"><style>
+      <use-html src="./_toc.html"><template shadowrootmode="open" shadowrootserializable=""><slot></slot></template><base href="/pree/"><style>
   #toc {
     a:not(:hover) {
       text-decoration-color: transparent;
@@ -59,7 +59,7 @@
 
 </style>
 
-<m-d id="toc" onparse="document.querySelector('prev-next').controls?.load()"><template shadowrootmode="open"><slot></slot></template><p><a href="index.html">Home</a> <br><a href="motivation.html">Motivation</a> <br><a href="install.html">Installation</a></p>
+<m-d id="toc" onparse="document.querySelector('prev-next').controls?.load()"><template shadowrootmode="open" shadowrootserializable=""><slot></slot></template><p><a href="index.html">Home</a> <br><a href="motivation.html">Motivation</a> <br><a href="install.html">Installation</a></p>
 <hr>
 <p><a href="usage/index.html"><strong>Usage</strong></a> <br>  <a href="usage/meta-layout.html">Metadata &amp; Layouts</a> <br>  <a href="usage/build-only-scripts.html">Build-Only Scripts</a> <br>  <a href="usage/config.html">Configuration</a></p>
 <hr>
@@ -72,13 +72,13 @@
 </use-html>
     </aside>
     <main>
-      <dans-floor><template shadowrootmode="open"><slot></slot></template>
-        <m-d><template shadowrootmode="open"><slot></slot></template><h2 id="using-components">Using Components<menu role="toolbar"><button ref="?" aria-label="copy link" class="icon">🔗</button></menu></h2>
+      <dans-floor><template shadowrootmode="open" shadowrootserializable=""><slot></slot></template>
+        <m-d><template shadowrootmode="open" shadowrootserializable=""><slot></slot></template><h2 id="using-components">Using Components<menu role="toolbar"><button ref="?" aria-label="copy link" class="icon">🔗</button></menu></h2>
 <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_components">Web components</a> are a key technology making <code>pree</code> (and no-build in general) possible. You can use them to re-use logic, DOM and styling across various pages of your website. Due to their isolated nature, you can also use them on multiple websites with ease, share them with others, etc.</p>
 </m-d>
 
 <blockquote>
-  <emo-li><template shadowrootmode="open">
+  <emo-li><template shadowrootmode="open" shadowrootserializable="">
   <style>
   .holder {
     display: flex;
@@ -98,10 +98,10 @@
     <div><slot></slot></div>
   </div>
 </template>
-    <span slot="emo">🔍</span><m-d><template shadowrootmode="open"><slot></slot></template><p>Find reusable components in collections like <a href="https://www.webcomponents.org/">webcomponents.org</a> or <a href="https://component.kitchen/elix">component kitchen</a>.</p>
+    <span slot="emo">🔍</span><m-d><template shadowrootmode="open" shadowrootserializable=""><slot></slot></template><p>Find reusable components in collections like <a href="https://www.webcomponents.org/">webcomponents.org</a> or <a href="https://component.kitchen/elix">component kitchen</a>.</p>
 </m-d>
   </emo-li>
-  <emo-li><template shadowrootmode="open">
+  <emo-li><template shadowrootmode="open" shadowrootserializable="">
   <style>
   .holder {
     display: flex;
@@ -121,17 +121,17 @@
     <div><slot></slot></div>
   </div>
 </template>
-    <span slot="emo">🎨</span><m-d><template shadowrootmode="open"><slot></slot></template><p>Develop your own components <a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_custom_elements">without any tooling</a>, or using libraries such as <a href="https://lit.dev">Lit</a> or <a href="https://github.com/loreanvictor/minicomp">minicomp</a>. Also check the resources at <a href="https://open-wc.org/">Open Web Components</a></p>
+    <span slot="emo">🎨</span><m-d><template shadowrootmode="open" shadowrootserializable=""><slot></slot></template><p>Develop your own components <a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_custom_elements">without any tooling</a>, or using libraries such as <a href="https://lit.dev">Lit</a> or <a href="https://github.com/loreanvictor/minicomp">minicomp</a>. Also check the resources at <a href="https://open-wc.org/">Open Web Components</a></p>
 </m-d>
   </emo-li>
 </blockquote>
 
 <br>
 
-<m-d><template shadowrootmode="open"><slot></slot></template><p>Any web component works with <code>pree</code>. When using web components or writing your own components, consider the following guildelines to get a better website performance / improved developer experience:</p>
+<m-d><template shadowrootmode="open" shadowrootserializable=""><slot></slot></template><p>Any web component works with <code>pree</code>. When using web components or writing your own components, consider the following guildelines to get a better website performance / improved developer experience:</p>
 </m-d>
 
-<emo-li><template shadowrootmode="open">
+<emo-li><template shadowrootmode="open" shadowrootserializable="">
   <style>
   .holder {
     display: flex;
@@ -152,10 +152,10 @@
   </div>
 </template>
   <span slot="emo">⚡</span>
-  <m-d><template shadowrootmode="open"><slot></slot></template><p>Load static components <a href="usage/build-only-scripts">build-only</a>.</p>
+  <m-d><template shadowrootmode="open" shadowrootserializable=""><slot></slot></template><p>Load static components <a href="usage/build-only-scripts">build-only</a>.</p>
 </m-d>
 </emo-li>
-<emo-li><template shadowrootmode="open">
+<emo-li><template shadowrootmode="open" shadowrootserializable="">
   <style>
   .holder {
     display: flex;
@@ -176,10 +176,10 @@
   </div>
 </template>
   <span slot="emo">🕹️</span>
-  <m-d><template shadowrootmode="open"><slot></slot></template><p>Interactive components supporting <a href="components/ssr">SSR</a> are faster.</p>
+  <m-d><template shadowrootmode="open" shadowrootserializable=""><slot></slot></template><p>Interactive components supporting <a href="components/ssr">SSR</a> are faster.</p>
 </m-d>
 </emo-li>
-<emo-li><template shadowrootmode="open">
+<emo-li><template shadowrootmode="open" shadowrootserializable="">
   <style>
   .holder {
     display: flex;
@@ -200,12 +200,12 @@
   </div>
 </template>
   <span slot="emo">✨</span>
-  <m-d><template shadowrootmode="open"><slot></slot></template><p>Components can access <a href="components/build-env">build environment</a> for improved DX.</p>
+  <m-d><template shadowrootmode="open" shadowrootserializable=""><slot></slot></template><p>Components can access <a href="components/build-env">build environment</a> for improved DX.</p>
 </m-d>
 </emo-li>
 
 <br>
-<change-history><template shadowrootmode="open"><style>div {
+<change-history><template shadowrootmode="open" shadowrootserializable=""><style>div {
         display: flex;
         flex-direction: row-reverse;
         gap: 1rem;
@@ -249,7 +249,7 @@
         }
       }</style><div><a ref="?" target="_blank" class="code" aria-label="edit" href="https://github.com/loreanvictor/pree/blob/main/docs/components/index.html">✎</a><a ref="?" target="_blank" href="https://github.com/loreanvictor/pree/commit/d6c44c9a349dde326654ac9e77a7a7ad7d1c1f75">Updated at <span ref="?">Feb 10, 2024</span> <br>for <span ref="?">pree</span> version <span ref="?">0.1.17</span></a></div></template></change-history>
 <br>
-        <prev-next><template shadowrootmode="open"><link rel="stylesheet" href="https://unpkg.com/nokss"><link rel="stylesheet" href="https://esm.sh/graphis/font/graphis.css"><style>section[role="feed"] {
+        <prev-next><template shadowrootmode="open" shadowrootserializable=""><link rel="stylesheet" href="https://unpkg.com/nokss"><link rel="stylesheet" href="https://esm.sh/graphis/font/graphis.css"><style>section[role="feed"] {
       flex-direction: row;
       transition: opacity .2s, max-height .2s;
       overflow: hidden;
@@ -341,7 +341,7 @@
           
       </section></template></prev-next>
         <slot name="watermark">
-          <use-html src="./_watermark.html"><template shadowrootmode="open"><slot></slot></template><base href="/pree/"><picture class="local-style-g7xtwxrfdyo" data-local-style="local-style-g7xtwxrfdyo"><style>.local-style-g7xtwxrfdyo[data-local-style=local-style-g7xtwxrfdyo] { 
+          <use-html src="./_watermark.html"><template shadowrootmode="open" shadowrootserializable=""><slot></slot></template><base href="/pree/"><picture class="local-style-cvq9x640f7" data-local-style="local-style-cvq9x640f7"><style>.local-style-cvq9x640f7[data-local-style=local-style-cvq9x640f7] { 
  
     img {
       display: block;
@@ -382,12 +382,12 @@
     </main>
 
     <footer>
-      <use-html src="./_footer.html"><template shadowrootmode="open"><slot></slot></template><base href="/pree/"><script type="module" src="./assets/components/menu-toggle.js"></script>
+      <use-html src="./_footer.html"><template shadowrootmode="open" shadowrootserializable=""><slot></slot></template><base href="/pree/"><script type="module" src="./assets/components/menu-toggle.js"></script>
 
 
 <script type="module" src="./assets/components/finde-btn.js"></script>
 
-<div style="display: flex" class="local-style-impgh6h6ugr" data-local-style="local-style-impgh6h6ugr"><style>.local-style-impgh6h6ugr[data-local-style=local-style-impgh6h6ugr] { 
+<div style="display: flex" class="local-style-4lq5o7eftt" data-local-style="local-style-4lq5o7eftt"><style>.local-style-4lq5o7eftt[data-local-style=local-style-4lq5o7eftt] { 
  
     b {
       opacity: .35;
@@ -401,7 +401,7 @@
   
 
   <div style="display: flex; gap: var(--spacing)">
-    <menu-toggle><template shadowrootmode="open"><link rel="stylesheet" href="https://unpkg.com/nokss"><link rel="stylesheet" href="https://esm.sh/graphis/font/graphis.css"><style>.icon {
+    <menu-toggle><template shadowrootmode="open" shadowrootserializable=""><link rel="stylesheet" href="https://unpkg.com/nokss"><link rel="stylesheet" href="https://esm.sh/graphis/font/graphis.css"><style>.icon {
       font-family: 'graphis', sans-serif;
       font-style: normal;
       font-size: 1.2rem;
@@ -410,7 +410,7 @@
     button[role="switch"][aria-checked="true"]>span{
       color: var(--background-color);
     }</style><button ref="?" role="switch" aria-label="toggle sidebar" aria-checked="true"><span class="icon">❌</span><span class="icon">⩧</span></button></template></menu-toggle>
-    <finde-btn><template shadowrootmode="open"><style>@import 'https://unpkg.com/nokss' layer(base);
+    <finde-btn><template shadowrootmode="open" shadowrootserializable=""><style>@import 'https://unpkg.com/nokss' layer(base);
       @import 'https://esm.sh/graphis/font/graphis.css';
 
       [aria-label] {
@@ -511,7 +511,7 @@
   </div>
   <div style="flex-grow: 1"></div>
   <div align="right">
-    <small-device><template shadowrootmode="open">
+    <small-device><template shadowrootmode="open" shadowrootserializable="">
   <style>
     @media (min-width: 768px) {
       :host {
@@ -521,12 +521,12 @@
   </style>
   <slot></slot>
 </template>
-      <gh-link no-label=""><template shadowrootmode="open"><link rel="stylesheet" href="https://unpkg.com/nokss/dist/bundles/md.css"><style>octo-icon { opacity: .45; transition: opacity .15s; }
+      <gh-link no-label=""><template shadowrootmode="open" shadowrootserializable=""><link rel="stylesheet" href="https://unpkg.com/nokss/dist/bundles/md.css"><style>octo-icon { opacity: .45; transition: opacity .15s; }
       a:not([role]) {
         filter: none;
         color: var(--text-color);
         &:hover octo-icon { opacity: 1; }
-      }</style><a ref="?" target="_blank" href="https://github.com/loreanvictor/pree"><octo-icon style=""><template shadowrootmode="open">
+      }</style><a ref="?" target="_blank" href="https://github.com/loreanvictor/pree"><octo-icon style=""><template shadowrootmode="open" shadowrootserializable="">
   <style>
     svg {
       width: 1.2rem;
@@ -536,7 +536,7 @@
   </style>
   <svg width="32" height="32" viewBox="0 0 98 96" xmlns="http://www.w3.org/2000/svg"> <path fill-rule="evenodd" clip-rule="evenodd" d="M48.854 0C21.839 0 0 22 0 49.217c0 21.756 13.993 40.172 33.405 46.69 2.427.49 3.316-1.059 3.316-2.362 0-1.141-.08-5.052-.08-9.127-13.59 2.934-16.42-5.867-16.42-5.867-2.184-5.704-5.42-7.17-5.42-7.17-4.448-3.015.324-3.015.324-3.015 4.934.326 7.523 5.052 7.523 5.052 4.367 7.496 11.404 5.378 14.235 4.074.404-3.178 1.699-5.378 3.074-6.6-10.839-1.141-22.243-5.378-22.243-24.283 0-5.378 1.94-9.778 5.014-13.2-.485-1.222-2.184-6.275.486-13.038 0 0 4.125-1.304 13.426 5.052a46.97 46.97 0 0 1 12.214-1.63c4.125 0 8.33.571 12.213 1.63 9.302-6.356 13.427-5.052 13.427-5.052 2.67 6.763.97 11.816.485 13.038 3.155 3.422 5.015 7.822 5.015 13.2 0 18.905-11.404 23.06-22.324 24.283 1.78 1.548 3.316 4.481 3.316 9.126 0 6.6-.08 11.897-.08 13.526 0 1.304.89 2.853 3.316 2.364 19.412-6.52 33.405-24.935 33.405-46.691C97.707 22 75.788 0 48.854 0z" fill="currentColor"></path> </svg>
 </template></octo-icon><slot ref="?" style="display: none">GitHub</slot></a></template>pree</gh-link>  
-      <npm-badge no-label=""><template shadowrootmode="open"><style>@import 'https://unpkg.com/nokss/dist/bundles/md.css' layer(base);
+      <npm-badge no-label=""><template shadowrootmode="open" shadowrootserializable=""><style>@import 'https://unpkg.com/nokss/dist/bundles/md.css' layer(base);
 
       a {
         filter: none;
@@ -547,7 +547,7 @@
         margin-left: 0.5rem;
       }</style><a ref="?" target="_blank" href="https://www.npmjs.com/package/pree"><slot ref="?" style="display: none">NPM</slot><img alt="npm" ref="?" src="https://img.shields.io/npm/v/pree.svg?label=&amp;style=normal"></a></template>pree</npm-badge>
     </small-device>
-    <large-device><template shadowrootmode="open">
+    <large-device><template shadowrootmode="open" shadowrootserializable="">
   <style>
     @media (max-width: 767px) {
       :host {
@@ -557,12 +557,12 @@
   </style>
   <slot></slot>
 </template>
-      <gh-link><template shadowrootmode="open"><link rel="stylesheet" href="https://unpkg.com/nokss/dist/bundles/md.css"><style>octo-icon { opacity: .45; transition: opacity .15s; }
+      <gh-link><template shadowrootmode="open" shadowrootserializable=""><link rel="stylesheet" href="https://unpkg.com/nokss/dist/bundles/md.css"><style>octo-icon { opacity: .45; transition: opacity .15s; }
       a:not([role]) {
         filter: none;
         color: var(--text-color);
         &:hover octo-icon { opacity: 1; }
-      }</style><a ref="?" target="_blank" href="https://github.com/loreanvictor/pree"><octo-icon style=""><template shadowrootmode="open">
+      }</style><a ref="?" target="_blank" href="https://github.com/loreanvictor/pree"><octo-icon style=""><template shadowrootmode="open" shadowrootserializable="">
   <style>
     svg {
       width: 1.2rem;
@@ -573,7 +573,7 @@
   <svg width="32" height="32" viewBox="0 0 98 96" xmlns="http://www.w3.org/2000/svg"> <path fill-rule="evenodd" clip-rule="evenodd" d="M48.854 0C21.839 0 0 22 0 49.217c0 21.756 13.993 40.172 33.405 46.69 2.427.49 3.316-1.059 3.316-2.362 0-1.141-.08-5.052-.08-9.127-13.59 2.934-16.42-5.867-16.42-5.867-2.184-5.704-5.42-7.17-5.42-7.17-4.448-3.015.324-3.015.324-3.015 4.934.326 7.523 5.052 7.523 5.052 4.367 7.496 11.404 5.378 14.235 4.074.404-3.178 1.699-5.378 3.074-6.6-10.839-1.141-22.243-5.378-22.243-24.283 0-5.378 1.94-9.778 5.014-13.2-.485-1.222-2.184-6.275.486-13.038 0 0 4.125-1.304 13.426 5.052a46.97 46.97 0 0 1 12.214-1.63c4.125 0 8.33.571 12.213 1.63 9.302-6.356 13.427-5.052 13.427-5.052 2.67 6.763.97 11.816.485 13.038 3.155 3.422 5.015 7.822 5.015 13.2 0 18.905-11.404 23.06-22.324 24.283 1.78 1.548 3.316 4.481 3.316 9.126 0 6.6-.08 11.897-.08 13.526 0 1.304.89 2.853 3.316 2.364 19.412-6.52 33.405-24.935 33.405-46.691C97.707 22 75.788 0 48.854 0z" fill="currentColor"></path> </svg>
 </template></octo-icon><slot ref="?" style="">GitHub</slot></a></template>github</gh-link>
       <b>|</b>
-      <npm-badge design="flat-square"><template shadowrootmode="open"><style>@import 'https://unpkg.com/nokss/dist/bundles/md.css' layer(base);
+      <npm-badge design="flat-square"><template shadowrootmode="open" shadowrootserializable=""><style>@import 'https://unpkg.com/nokss/dist/bundles/md.css' layer(base);
 
       a {
         filter: none;

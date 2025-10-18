@@ -30,7 +30,7 @@
         <link rel="prefetch" href="index.html"><link rel="prefetch" href="install.html"></head>
   <body><slot name="background"></slot>
     <aside aria-hidden="true">
-      <use-html src="./_toc.html"><template shadowrootmode="open"><slot></slot></template><base href="/pree/"><style>
+      <use-html src="./_toc.html"><template shadowrootmode="open" shadowrootserializable=""><slot></slot></template><base href="/pree/"><style>
   #toc {
     a:not(:hover) {
       text-decoration-color: transparent;
@@ -59,7 +59,7 @@
 
 </style>
 
-<m-d id="toc" onparse="document.querySelector('prev-next').controls?.load()"><template shadowrootmode="open"><slot></slot></template><p><a href="index.html">Home</a> <br><a href="motivation.html" aria-current="page">Motivation</a> <br><a href="install.html">Installation</a></p>
+<m-d id="toc" onparse="document.querySelector('prev-next').controls?.load()"><template shadowrootmode="open" shadowrootserializable=""><slot></slot></template><p><a href="index.html">Home</a> <br><a href="motivation.html" aria-current="page">Motivation</a> <br><a href="install.html">Installation</a></p>
 <hr>
 <p><a href="usage/index.html"><strong>Usage</strong></a> <br>  <a href="usage/meta-layout.html">Metadata &amp; Layouts</a> <br>  <a href="usage/build-only-scripts.html">Build-Only Scripts</a> <br>  <a href="usage/config.html">Configuration</a></p>
 <hr>
@@ -72,14 +72,14 @@
 </use-html>
     </aside>
     <main>
-      <dans-floor><template shadowrootmode="open"><slot></slot></template>
+      <dans-floor><template shadowrootmode="open" shadowrootserializable=""><slot></slot></template>
         <style>
   main p {
     margin-bottom: 1.5em;
   }
 </style>
 
-<m-d><template shadowrootmode="open"><slot></slot></template><h2 id="why-pree">Why <code>pree</code>?<menu role="toolbar"><button ref="?" aria-label="copy link" class="icon">🔗</button></menu></h2>
+<m-d><template shadowrootmode="open" shadowrootserializable=""><slot></slot></template><h2 id="why-pree">Why <code>pree</code>?<menu role="toolbar"><button ref="?" aria-label="copy link" class="icon">🔗</button></menu></h2>
 <p>TLDR:</p>
 </m-d>
 
@@ -88,7 +88,7 @@
     margin-bottom: 0;
   }
 </style>
-<emo-li><template shadowrootmode="open">
+<emo-li><template shadowrootmode="open" shadowrootserializable="">
   <style>
   .holder {
     display: flex;
@@ -111,7 +111,7 @@
   <span slot="emo">🛠️</span>
   for building websites, we spend too much time wrestling with tools.
 </emo-li>
-<emo-li><template shadowrootmode="open">
+<emo-li><template shadowrootmode="open" shadowrootserializable="">
   <style>
   .holder {
     display: flex;
@@ -132,10 +132,10 @@
   </div>
 </template>
   <span slot="emo">☕</span>
-  <m-d><template shadowrootmode="open"><slot></slot></template><p>we can go <a href="https://world.hey.com/dhh/once-1-is-entirely-nobuild-for-the-front-end-ce56f6d7">no build</a> with modern web features (<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules">ESM</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_components">Web Components</a>, etc.).</p>
+  <m-d><template shadowrootmode="open" shadowrootserializable=""><slot></slot></template><p>we can go <a href="https://world.hey.com/dhh/once-1-is-entirely-nobuild-for-the-front-end-ce56f6d7">no build</a> with modern web features (<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules">ESM</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_components">Web Components</a>, etc.).</p>
 </m-d>
 </emo-li>
-<emo-li><template shadowrootmode="open">
+<emo-li><template shadowrootmode="open" shadowrootserializable="">
   <style>
   .holder {
     display: flex;
@@ -158,7 +158,7 @@
   <span slot="emo">🚧</span>
   there are a few fundamental gaps though (e.g. web components render on client).
 </emo-li>
-<emo-li><template shadowrootmode="open">
+<emo-li><template shadowrootmode="open" shadowrootserializable="">
   <style>
   .holder {
     display: flex;
@@ -179,11 +179,11 @@
   </div>
 </template>
   <span slot="emo">🧩</span>
-  <m-d><template shadowrootmode="open"><slot></slot></template><p><code>pree</code> fills these gaps as leanly as possible.</p>
+  <m-d><template shadowrootmode="open" shadowrootserializable=""><slot></slot></template><p><code>pree</code> fills these gaps as leanly as possible.</p>
 </m-d>
 </emo-li>
 
-<m-d><template shadowrootmode="open"><slot></slot></template><hr>
+<m-d><template shadowrootmode="open" shadowrootserializable=""><slot></slot></template><hr>
 <p>A ton of modern web development is wrestling with build tools. A package has a new module format, your transpiler doesn't like that. The work-around pisses off the bundler. You fix that with a weird trick, but that messes up your test-runner, now your coverage reports are screwed up. You spend hours on getting your build tools to work, without having built anything.</p>
 <p>There is a chance that you don't need many of these tools anyways. Bundlers were designed to handle dependencies and <a href="https://hpbn.co/optimizing-application-delivery/#optimizing-for-http1x">optimize asset delivery</a>. Nowadays we can handle dependencies perfectly with <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules">ESM</a> and <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script/type/importmap">import maps</a>, and with <a href="https://web.dev/articles/performance-http2#request_and_response_multiplexing">HTTP/2 multiplexing</a>, in a lot of cases bundling doesn't optimise anything, sometimes even <a href="https://hpbn.co/optimizing-application-delivery/#minimize-concatenation-and-image-spriting">lowering the performance</a>. Modern CSS with its <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_nesting/Using_CSS_nesting">nested styles</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties">CSS variables</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@layer">CSS layers</a>, etc. has filled the gaps that likes of <a href="https://sass-lang.com/">Sass</a> and <a href="http://lesscss.org/">Less</a> were designed to fill. We got <a href="https://reactjs.org/">React</a>, <a href="https://angular.io/">Angular</a>, <a href="https://en.wikipedia.org/wiki/Single-page_application#JavaScript_frameworks">and others</a>, to break our websites into isolated, reusable nuggets of logic, style and layout (i.e. components), but <a href="https://developer.mozilla.org/en-US/docs/Web/Web_Components">Web Components</a> do provide all of that, alongside <a href="https://developer.chrome.com/docs/css-ui/declarative-shadow-dom">the possibility of server-side rendering</a>, in an interoperable standard  manner (e.g. you can use any web component anywhere without having to care about the framework it was built with). </p>
 <p>So can't we just shed all that weight and build websites using <a href="https://world.hey.com/dhh/you-can-t-get-faster-than-no-build-7a44131c">no build tools</a> at all? <em>Well ...</em></p>
@@ -191,7 +191,7 @@
 <p>As great as that sounds, in practice, there are still gaps. Even for smaller projects like documentation sites or blogs, which have fewer moving parts and require less logic on the client, there are few, but fundamental, shortcomings:</p>
 </m-d>
 
-<emo-li><template shadowrootmode="open">
+<emo-li><template shadowrootmode="open" shadowrootserializable="">
   <style>
   .holder {
     display: flex;
@@ -215,7 +215,7 @@
   Web components render on client by default. This makes user experience janky and slow. You can pre-render them, but that would require a build step.
 </emo-li>
 <br>
-<emo-li><template shadowrootmode="open">
+<emo-li><template shadowrootmode="open" shadowrootserializable="">
   <style>
   .holder {
     display: flex;
@@ -239,7 +239,7 @@
   Websites typically have multiple pages, sharing layout and tons of metadata, differing in a few. Without a build step, managing these shared and differing parts would be a headache.
 </emo-li>
 <br>
-<emo-li><template shadowrootmode="open">
+<emo-li><template shadowrootmode="open" shadowrootserializable="">
   <style>
   .holder {
     display: flex;
@@ -263,7 +263,7 @@
   Many components are static: they don't do anything on the client. Removing their code, you wouldn't just be cutting down on downloaded assets, but also on unnecessary work the client has to do. But then again, that wouldn't be possible without a build step.
 </emo-li>
 
-<m-d><template shadowrootmode="open"><slot></slot></template><hr>
+<m-d><template shadowrootmode="open" shadowrootserializable=""><slot></slot></template><hr>
 <p>This is where <code>pree</code> comes in. It is a little tiny tool that meerly fills those gaps, as simply as it can, without changing much. It is specifically designed for building static websites (websites with fixed pages), as conveniently as possible, while being as "no build" as possible:</p>
 <ul>
 <li>It <a href="usage/index">prebuilds HTML files</a>, pre-rendering all web components using <a href="https://developer.chrome.com/docs/css-ui/declarative-shadow-dom">declarative shadow DOM</a>.</li>
@@ -343,7 +343,7 @@ TLDR:
 <p><strong>A</strong>: I'm salty about this, but I couldn't come close to the developer experience of layouting with front matter using web components. As powerful as they are, web components are about <em>isolation</em>, which isn't what you want with layouting.</p>
 <br></m-d>
 
-<change-history><template shadowrootmode="open"><style>div {
+<change-history><template shadowrootmode="open" shadowrootserializable=""><style>div {
         display: flex;
         flex-direction: row-reverse;
         gap: 1rem;
@@ -389,7 +389,7 @@ TLDR:
 
 <br>
 
-        <prev-next><template shadowrootmode="open"><link rel="stylesheet" href="https://unpkg.com/nokss"><link rel="stylesheet" href="https://esm.sh/graphis/font/graphis.css"><style>section[role="feed"] {
+        <prev-next><template shadowrootmode="open" shadowrootserializable=""><link rel="stylesheet" href="https://unpkg.com/nokss"><link rel="stylesheet" href="https://esm.sh/graphis/font/graphis.css"><style>section[role="feed"] {
       flex-direction: row;
       transition: opacity .2s, max-height .2s;
       overflow: hidden;
@@ -481,7 +481,7 @@ TLDR:
           
       </section></template></prev-next>
         <slot name="watermark">
-          <use-html src="./_watermark.html"><template shadowrootmode="open"><slot></slot></template><base href="/pree/"><picture class="local-style-ew3tvv88ioq" data-local-style="local-style-ew3tvv88ioq"><style>.local-style-ew3tvv88ioq[data-local-style=local-style-ew3tvv88ioq] { 
+          <use-html src="./_watermark.html"><template shadowrootmode="open" shadowrootserializable=""><slot></slot></template><base href="/pree/"><picture class="local-style-7yqyv9igvds" data-local-style="local-style-7yqyv9igvds"><style>.local-style-7yqyv9igvds[data-local-style=local-style-7yqyv9igvds] { 
  
     img {
       display: block;
@@ -522,12 +522,12 @@ TLDR:
     </main>
 
     <footer>
-      <use-html src="./_footer.html"><template shadowrootmode="open"><slot></slot></template><base href="/pree/"><script type="module" src="./assets/components/menu-toggle.js"></script>
+      <use-html src="./_footer.html"><template shadowrootmode="open" shadowrootserializable=""><slot></slot></template><base href="/pree/"><script type="module" src="./assets/components/menu-toggle.js"></script>
 
 
 <script type="module" src="./assets/components/finde-btn.js"></script>
 
-<div style="display: flex" class="local-style-tah3920uh1c" data-local-style="local-style-tah3920uh1c"><style>.local-style-tah3920uh1c[data-local-style=local-style-tah3920uh1c] { 
+<div style="display: flex" class="local-style-1xbmtxkw5vo" data-local-style="local-style-1xbmtxkw5vo"><style>.local-style-1xbmtxkw5vo[data-local-style=local-style-1xbmtxkw5vo] { 
  
     b {
       opacity: .35;
@@ -541,7 +541,7 @@ TLDR:
   
 
   <div style="display: flex; gap: var(--spacing)">
-    <menu-toggle><template shadowrootmode="open"><link rel="stylesheet" href="https://unpkg.com/nokss"><link rel="stylesheet" href="https://esm.sh/graphis/font/graphis.css"><style>.icon {
+    <menu-toggle><template shadowrootmode="open" shadowrootserializable=""><link rel="stylesheet" href="https://unpkg.com/nokss"><link rel="stylesheet" href="https://esm.sh/graphis/font/graphis.css"><style>.icon {
       font-family: 'graphis', sans-serif;
       font-style: normal;
       font-size: 1.2rem;
@@ -550,7 +550,7 @@ TLDR:
     button[role="switch"][aria-checked="true"]>span{
       color: var(--background-color);
     }</style><button ref="?" role="switch" aria-label="toggle sidebar" aria-checked="true"><span class="icon">❌</span><span class="icon">⩧</span></button></template></menu-toggle>
-    <finde-btn><template shadowrootmode="open"><style>@import 'https://unpkg.com/nokss' layer(base);
+    <finde-btn><template shadowrootmode="open" shadowrootserializable=""><style>@import 'https://unpkg.com/nokss' layer(base);
       @import 'https://esm.sh/graphis/font/graphis.css';
 
       [aria-label] {
@@ -651,7 +651,7 @@ TLDR:
   </div>
   <div style="flex-grow: 1"></div>
   <div align="right">
-    <small-device><template shadowrootmode="open">
+    <small-device><template shadowrootmode="open" shadowrootserializable="">
   <style>
     @media (min-width: 768px) {
       :host {
@@ -661,12 +661,12 @@ TLDR:
   </style>
   <slot></slot>
 </template>
-      <gh-link no-label=""><template shadowrootmode="open"><link rel="stylesheet" href="https://unpkg.com/nokss/dist/bundles/md.css"><style>octo-icon { opacity: .45; transition: opacity .15s; }
+      <gh-link no-label=""><template shadowrootmode="open" shadowrootserializable=""><link rel="stylesheet" href="https://unpkg.com/nokss/dist/bundles/md.css"><style>octo-icon { opacity: .45; transition: opacity .15s; }
       a:not([role]) {
         filter: none;
         color: var(--text-color);
         &:hover octo-icon { opacity: 1; }
-      }</style><a ref="?" target="_blank" href="https://github.com/loreanvictor/pree"><octo-icon style=""><template shadowrootmode="open">
+      }</style><a ref="?" target="_blank" href="https://github.com/loreanvictor/pree"><octo-icon style=""><template shadowrootmode="open" shadowrootserializable="">
   <style>
     svg {
       width: 1.2rem;
@@ -676,7 +676,7 @@ TLDR:
   </style>
   <svg width="32" height="32" viewBox="0 0 98 96" xmlns="http://www.w3.org/2000/svg"> <path fill-rule="evenodd" clip-rule="evenodd" d="M48.854 0C21.839 0 0 22 0 49.217c0 21.756 13.993 40.172 33.405 46.69 2.427.49 3.316-1.059 3.316-2.362 0-1.141-.08-5.052-.08-9.127-13.59 2.934-16.42-5.867-16.42-5.867-2.184-5.704-5.42-7.17-5.42-7.17-4.448-3.015.324-3.015.324-3.015 4.934.326 7.523 5.052 7.523 5.052 4.367 7.496 11.404 5.378 14.235 4.074.404-3.178 1.699-5.378 3.074-6.6-10.839-1.141-22.243-5.378-22.243-24.283 0-5.378 1.94-9.778 5.014-13.2-.485-1.222-2.184-6.275.486-13.038 0 0 4.125-1.304 13.426 5.052a46.97 46.97 0 0 1 12.214-1.63c4.125 0 8.33.571 12.213 1.63 9.302-6.356 13.427-5.052 13.427-5.052 2.67 6.763.97 11.816.485 13.038 3.155 3.422 5.015 7.822 5.015 13.2 0 18.905-11.404 23.06-22.324 24.283 1.78 1.548 3.316 4.481 3.316 9.126 0 6.6-.08 11.897-.08 13.526 0 1.304.89 2.853 3.316 2.364 19.412-6.52 33.405-24.935 33.405-46.691C97.707 22 75.788 0 48.854 0z" fill="currentColor"></path> </svg>
 </template></octo-icon><slot ref="?" style="display: none">GitHub</slot></a></template>pree</gh-link>  
-      <npm-badge no-label=""><template shadowrootmode="open"><style>@import 'https://unpkg.com/nokss/dist/bundles/md.css' layer(base);
+      <npm-badge no-label=""><template shadowrootmode="open" shadowrootserializable=""><style>@import 'https://unpkg.com/nokss/dist/bundles/md.css' layer(base);
 
       a {
         filter: none;
@@ -687,7 +687,7 @@ TLDR:
         margin-left: 0.5rem;
       }</style><a ref="?" target="_blank" href="https://www.npmjs.com/package/pree"><slot ref="?" style="display: none">NPM</slot><img alt="npm" ref="?" src="https://img.shields.io/npm/v/pree.svg?label=&amp;style=normal"></a></template>pree</npm-badge>
     </small-device>
-    <large-device><template shadowrootmode="open">
+    <large-device><template shadowrootmode="open" shadowrootserializable="">
   <style>
     @media (max-width: 767px) {
       :host {
@@ -697,12 +697,12 @@ TLDR:
   </style>
   <slot></slot>
 </template>
-      <gh-link><template shadowrootmode="open"><link rel="stylesheet" href="https://unpkg.com/nokss/dist/bundles/md.css"><style>octo-icon { opacity: .45; transition: opacity .15s; }
+      <gh-link><template shadowrootmode="open" shadowrootserializable=""><link rel="stylesheet" href="https://unpkg.com/nokss/dist/bundles/md.css"><style>octo-icon { opacity: .45; transition: opacity .15s; }
       a:not([role]) {
         filter: none;
         color: var(--text-color);
         &:hover octo-icon { opacity: 1; }
-      }</style><a ref="?" target="_blank" href="https://github.com/loreanvictor/pree"><octo-icon style=""><template shadowrootmode="open">
+      }</style><a ref="?" target="_blank" href="https://github.com/loreanvictor/pree"><octo-icon style=""><template shadowrootmode="open" shadowrootserializable="">
   <style>
     svg {
       width: 1.2rem;
@@ -713,7 +713,7 @@ TLDR:
   <svg width="32" height="32" viewBox="0 0 98 96" xmlns="http://www.w3.org/2000/svg"> <path fill-rule="evenodd" clip-rule="evenodd" d="M48.854 0C21.839 0 0 22 0 49.217c0 21.756 13.993 40.172 33.405 46.69 2.427.49 3.316-1.059 3.316-2.362 0-1.141-.08-5.052-.08-9.127-13.59 2.934-16.42-5.867-16.42-5.867-2.184-5.704-5.42-7.17-5.42-7.17-4.448-3.015.324-3.015.324-3.015 4.934.326 7.523 5.052 7.523 5.052 4.367 7.496 11.404 5.378 14.235 4.074.404-3.178 1.699-5.378 3.074-6.6-10.839-1.141-22.243-5.378-22.243-24.283 0-5.378 1.94-9.778 5.014-13.2-.485-1.222-2.184-6.275.486-13.038 0 0 4.125-1.304 13.426 5.052a46.97 46.97 0 0 1 12.214-1.63c4.125 0 8.33.571 12.213 1.63 9.302-6.356 13.427-5.052 13.427-5.052 2.67 6.763.97 11.816.485 13.038 3.155 3.422 5.015 7.822 5.015 13.2 0 18.905-11.404 23.06-22.324 24.283 1.78 1.548 3.316 4.481 3.316 9.126 0 6.6-.08 11.897-.08 13.526 0 1.304.89 2.853 3.316 2.364 19.412-6.52 33.405-24.935 33.405-46.691C97.707 22 75.788 0 48.854 0z" fill="currentColor"></path> </svg>
 </template></octo-icon><slot ref="?" style="">GitHub</slot></a></template>github</gh-link>
       <b>|</b>
-      <npm-badge design="flat-square"><template shadowrootmode="open"><style>@import 'https://unpkg.com/nokss/dist/bundles/md.css' layer(base);
+      <npm-badge design="flat-square"><template shadowrootmode="open" shadowrootserializable=""><style>@import 'https://unpkg.com/nokss/dist/bundles/md.css' layer(base);
 
       a {
         filter: none;
