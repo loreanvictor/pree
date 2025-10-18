@@ -37,7 +37,7 @@ export async function conf(options: ConfigOptions = {}) {
     parsed.injectBase = parsed['inject base']
 
     return parsed
-  } catch (error) {
+  } catch (_) {
     logger.debug(`config file not found: ${config}`)
 
     return {}

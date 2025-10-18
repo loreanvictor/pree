@@ -28,8 +28,10 @@ export class Builder {
   private server?: RunningServer
   private browser?: Browser
   private blockedResourceTypes: string[]
+  private options: BuilderOptions = {}
 
-  constructor(readonly options: BuilderOptions = {}) {
+  constructor(options: BuilderOptions = {}) {
+    this.options = options
     this.blockedResourceTypes = options.blockedResourceTypes ?? _DefaultOptions.blockedResourceTypes
   }
 
@@ -73,7 +75,7 @@ export class Builder {
     })
 
     const html = await page.content()
-    const body = await page.$eval('body', (el: any) => el.getInnerHTML())
+    const body = await page.$eval('body', (el) => el.getHTML({ serializableShadowRoots: true }))
 
     await page.close()
 

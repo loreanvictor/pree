@@ -82,7 +82,7 @@ describe(file, () => {
       host: '',
     }, next)
 
-    expect(next).toBeCalled()
+    expect(next).toHaveBeenCalled()
   })
 
   test('it can load other file types.', async () => {

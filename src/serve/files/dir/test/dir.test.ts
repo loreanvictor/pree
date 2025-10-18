@@ -33,7 +33,7 @@ describe(dir, () => {
       root: '', base: '', logger, host: '',
     }, next)
 
-    expect(next).toBeCalled()
+    expect(next).toHaveBeenCalled()
   })
 
   test('it invokes next loader when stuff is not a directory.', async () => {
@@ -43,6 +43,6 @@ describe(dir, () => {
       root: '', base: '', logger, host: '',
     }, next)
 
-    expect(next).toBeCalled()
+    expect(next).toHaveBeenCalled()
   })
 })
