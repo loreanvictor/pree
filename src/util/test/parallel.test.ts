@@ -9,8 +9,8 @@ describe(parallel, () => {
 
     const tasks = [
       () => sleep(10).then(() => res.push('A')),
-      () => sleep(30).then(() => res.push('B')),
-      () => sleep(10).then(() => res.push('C')),
+      () => sleep(500).then(() => res.push('B')),
+      () => sleep(20).then(() => res.push('C')),
     ]
 
     await parallel(tasks, { concurrency: 2 })

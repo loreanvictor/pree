@@ -7,7 +7,12 @@ permissions:
   contents: write
 jobs:
   run:
-    runs-on: ubuntu-latest
+    # this is due to an issue with ubuntu 23+
+    # https://pptr.dev/troubleshooting#issues-with-apparmor-on-ubuntu
+    # perhaps we should use a workaround from here if this
+    # issue is going to persist in ubuntu runners:
+    # https://chromium.googlesource.com/chromium/src/+/main/docs/security/apparmor-userns-restrictions.md
+    runs-on: ubuntu-22.04
     steps:
       - name: Checkout
         uses: actions/checkout@v2
